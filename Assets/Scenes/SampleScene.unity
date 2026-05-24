@@ -197,8 +197,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 86818bbd37806984baf92d486c500b73, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   fillTransform: {fileID: 13941174}
   playerHealth: {fileID: 305952427}
   enemyHealth: {fileID: 0}
@@ -272,8 +272,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 2136215045
+  m_SortingLayer: 2
   m_SortingOrder: 46
   m_Sprite: {fileID: 21300000, guid: 89844e9b3aa268749afac02952bf3737, type: 3}
   m_Color: {r: 0.86, g: 0.06, b: 0.12, a: 1}
@@ -473,8 +473,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 2136215045
+  m_SortingLayer: 2
   m_SortingOrder: 46
   m_Sprite: {fileID: 21300000, guid: 89844e9b3aa268749afac02952bf3737, type: 3}
   m_Color: {r: 0.86, g: 0.06, b: 0.12, a: 1}
@@ -568,7 +568,7 @@ SpriteRenderer:
   m_Size: {x: 0.64, y: 0.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &79460455
@@ -817,8 +817,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 29a78c8fbb3d6ac43871654178813751, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   maxHealth: 5
 --- !u!4 &305952428
 Transform:
@@ -876,8 +876,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b43a906e6d7a104e942b8695f101388, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   anim: {fileID: 0}
   spriteRenderer: {fileID: 1270036207}
   maxHealth: 100
@@ -895,7 +895,7 @@ MonoBehaviour:
     m_Bits: 128
   groundCheckDistance: 0.45
   wallSlideSpeed: 2
-  wallCheckDistance: 0.3
+  wallCheckDistance: 0.6
 --- !u!114 &305952431
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -906,8 +906,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 959d330a81e021f44ab29395207d448b, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   attackCooldown: 0.35
   meleeHitDetector: {fileID: 305952433}
   attackSlashVisual: {fileID: 1844712632}
@@ -923,8 +923,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5ef2e595121b8c748980a6656a27acba, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   attackPoint: {fileID: 1212678573}
   visualRoot: {fileID: 1270036204}
   horizontalOffset: 0.9
@@ -939,8 +939,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 617c4b81d07fc9a4ea014bc377f14cc6, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   attackPoint: {fileID: 1212678573}
   attackRange: 1.1
   hittableLayer:
@@ -958,8 +958,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f5b27e2f94ab87c419ac7aeef271a67a, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   level: 1
   experience: 0
   experienceToLevel: 3
@@ -1046,8 +1046,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 51a6317f4438796448a5827c6e78a1d6, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   platformName: EarlyGround
   gameplayPurpose: Early safe route and first weak enemy space.
 --- !u!61 &325206214
@@ -1192,8 +1192,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 51a6317f4438796448a5827c6e78a1d6, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   platformName: EarlyStep
   gameplayPurpose: Small jump check before the mid room.
 --- !u!61 &347741267
@@ -1374,7 +1374,7 @@ SpriteRenderer:
   m_Size: {x: 1.4, y: 0.93}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &365645685
@@ -1419,8 +1419,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a0e3373cb8175164dafe5fd963d9cb28, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   markerType: 2
   note: Place stronger BasicEnemy here.
 --- !u!1 &369653909
@@ -1610,8 +1610,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 2136215045
+  m_SortingLayer: 2
   m_SortingOrder: 45
   m_Sprite: {fileID: 21300000, guid: 89844e9b3aa268749afac02952bf3737, type: 3}
   m_Color: {r: 0.03, g: 0.02, b: 0.03, a: 1}
@@ -1686,8 +1686,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 781ab485aa462b441981fba438b4553f, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   IsUnlocked: 0
   doorSpriteRenderer: {fileID: 409351802}
   lockedColor: {r: 0.22, g: 0.02, b: 0.04, a: 1}
@@ -1930,8 +1930,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a0e3373cb8175164dafe5fd963d9cb28, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   markerType: 6
   note: Place final ExitDoor here.
 --- !u!1 &445245157
@@ -1961,8 +1961,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a8405edc75247294b93ae57d02ace4b8, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   enemiesInRoom:
   - {fileID: 1370363853}
   - {fileID: 968340595}
@@ -3345,8 +3345,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 86818bbd37806984baf92d486c500b73, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   fillTransform: {fileID: 1784220345}
   playerHealth: {fileID: 0}
   enemyHealth: {fileID: 1370363853}
@@ -3461,8 +3461,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a8405edc75247294b93ae57d02ace4b8, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   enemiesInRoom:
   - {fileID: 698912527}
   exitDoor: {fileID: 1439428637}
@@ -3508,8 +3508,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_ComponentVersion: 1
   m_LightType: 4
   m_BlendStyleIndex: 0
@@ -3756,8 +3756,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a0e3373cb8175164dafe5fd963d9cb28, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   markerType: 2
   note: Optional platform enemy.
 --- !u!1 &686986975
@@ -3805,8 +3805,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 51a6317f4438796448a5827c6e78a1d6, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   platformName: MidGround
   gameplayPurpose: Mid room floor for upgraded combat.
 --- !u!61 &686986978
@@ -3938,8 +3938,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f00ba86439975034bad099584324b71c, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   maxHealth: 12
   disableOnDefeat: 1
 --- !u!114 &698912528
@@ -3952,8 +3952,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8ef0c04b546df1342a782b869175f479, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   enemyHealth: {fileID: 698912527}
   experiencePickupPrefab: {fileID: 8888184914718716195, guid: 370c51ff52949474a8ae7aafe2692155, type: 3}
   dropCount: 1
@@ -3969,8 +3969,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d89b4dfd93b45c54db8e756a06a03c4c, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   playerTarget: {fileID: 305952428}
   playerHealth: {fileID: 305952427}
   patrolLeftPoint: {fileID: 251474941}
@@ -3991,8 +3991,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 610562a908f16ef4aa417276a42baee0, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   damageAmount: 2
   attackCooldown: 1.4
 --- !u!70 &698912531
@@ -4314,8 +4314,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f00ba86439975034bad099584324b71c, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   maxHealth: 2
   disableOnDefeat: 1
 --- !u!114 &760707301
@@ -4328,8 +4328,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8ef0c04b546df1342a782b869175f479, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   enemyHealth: {fileID: 760707300}
   experiencePickupPrefab: {fileID: 8888184914718716195, guid: 370c51ff52949474a8ae7aafe2692155, type: 3}
   dropCount: 1
@@ -4345,8 +4345,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d89b4dfd93b45c54db8e756a06a03c4c, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   playerTarget: {fileID: 305952428}
   playerHealth: {fileID: 305952427}
   patrolLeftPoint: {fileID: 1558912549}
@@ -4367,8 +4367,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 610562a908f16ef4aa417276a42baee0, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   damageAmount: 1
   attackCooldown: 1
 --- !u!70 &760707304
@@ -4662,8 +4662,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f5e4ef15129521943b744a71a2843767, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   boundaryName: Prevents camera and jump tests from leaving the room vertically.
   blocksPlayer: 1
 --- !u!61 &869932376
@@ -4805,8 +4805,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a0e3373cb8175164dafe5fd963d9cb28, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   markerType: 0
   note: Move Player here before Play.
 --- !u!1 &888000991
@@ -4990,8 +4990,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f00ba86439975034bad099584324b71c, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   maxHealth: 4
   disableOnDefeat: 1
 --- !u!114 &968340596
@@ -5004,8 +5004,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8ef0c04b546df1342a782b869175f479, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   enemyHealth: {fileID: 968340595}
   experiencePickupPrefab: {fileID: 8888184914718716195, guid: 370c51ff52949474a8ae7aafe2692155, type: 3}
   dropCount: 1
@@ -5021,8 +5021,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d89b4dfd93b45c54db8e756a06a03c4c, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   playerTarget: {fileID: 305952428}
   playerHealth: {fileID: 305952427}
   patrolLeftPoint: {fileID: 1064464248}
@@ -5043,8 +5043,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 610562a908f16ef4aa417276a42baee0, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   damageAmount: 1
   attackCooldown: 1
 --- !u!70 &968340599
@@ -5203,8 +5203,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 86818bbd37806984baf92d486c500b73, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   fillTransform: {fileID: 1591101488}
   playerHealth: {fileID: 0}
   enemyHealth: {fileID: 968340595}
@@ -5287,8 +5287,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a0e3373cb8175164dafe5fd963d9cb28, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   markerType: 1
   note: Place one weak BasicEnemy here.
 --- !u!1 &1042885631
@@ -5456,7 +5456,7 @@ SpriteRenderer:
   m_Size: {x: 0.64, y: 0.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1064464247
@@ -5532,8 +5532,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a0e3373cb8175164dafe5fd963d9cb28, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   markerType: 8
   note: Create DemoStageController and three RoomClearControllers in the scene.
 --- !u!1 &1088824734
@@ -5662,8 +5662,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a0e3373cb8175164dafe5fd963d9cb28, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   markerType: 2
   note: Place stronger BasicEnemy here.
 --- !u!1 &1103388412
@@ -5708,8 +5708,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a0e3373cb8175164dafe5fd963d9cb28, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   markerType: 4
   note: Place Early ExitDoor here.
 --- !u!1 &1111971079
@@ -5907,8 +5907,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: de8f6c90f5b63ed459e1eead4c7076af, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   currentStage: 0
   earlyRoom: {fileID: 1243274121}
   midRoom: {fileID: 445245158}
@@ -5975,8 +5975,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 86818bbd37806984baf92d486c500b73, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   fillTransform: {fileID: 48883465}
   playerHealth: {fileID: 0}
   enemyHealth: {fileID: 698912527}
@@ -6202,8 +6202,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a8405edc75247294b93ae57d02ace4b8, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   enemiesInRoom:
   - {fileID: 760707300}
   exitDoor: {fileID: 409351801}
@@ -6250,8 +6250,8 @@ Transform:
   m_GameObject: {fileID: 1270036203}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.63, z: 0}
-  m_LocalScale: {x: 1.3, y: 1.3, z: 1}
+  m_LocalPosition: {x: -0.0878, y: 0.0208, z: 0}
+  m_LocalScale: {x: 0.51569146, y: 0.52895117, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 305952428}
@@ -6266,8 +6266,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7e05705f79d932478a45afeaa907b85, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   animator: {fileID: 1270036206}
   velocitySource: {fileID: 305952429}
   movingThreshold: 0.05
@@ -6281,13 +6281,13 @@ Animator:
   m_GameObject: {fileID: 1270036203}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f6c39742152a9f4449057da506edae19, type: 2}
+  m_Controller: {fileID: 9100000, guid: 8567336522f096e4bb50ce09c9e26bf8, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
-  m_WarningMessage:
+  m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
@@ -6333,7 +6333,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 35
-  m_Sprite: {fileID: -8977104579944270581, guid: 3e4f38ae06acb394192770f869a779d4, type: 3}
+  m_Sprite: {fileID: -1927613214, guid: 5d72adc717e082c4c9765713567071cd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -6373,8 +6373,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 781ab485aa462b441981fba438b4553f, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   IsUnlocked: 0
   doorSpriteRenderer: {fileID: 1292718068}
   lockedColor: {r: 0.22, g: 0.02, b: 0.04, a: 1}
@@ -6535,8 +6535,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f5e4ef15129521943b744a71a2843767, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   boundaryName: Left demo route wall.
   blocksPlayer: 1
 --- !u!61 &1312172180
@@ -6706,8 +6706,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 2136215045
+  m_SortingLayer: 2
   m_SortingOrder: 45
   m_Sprite: {fileID: 21300000, guid: 89844e9b3aa268749afac02952bf3737, type: 3}
   m_Color: {r: 0.03, g: 0.02, b: 0.03, a: 1}
@@ -6752,8 +6752,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f00ba86439975034bad099584324b71c, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   maxHealth: 4
   disableOnDefeat: 1
 --- !u!114 &1370363854
@@ -6766,8 +6766,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8ef0c04b546df1342a782b869175f479, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   enemyHealth: {fileID: 1370363853}
   experiencePickupPrefab: {fileID: 8888184914718716195, guid: 370c51ff52949474a8ae7aafe2692155, type: 3}
   dropCount: 1
@@ -6783,8 +6783,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d89b4dfd93b45c54db8e756a06a03c4c, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   playerTarget: {fileID: 305952428}
   playerHealth: {fileID: 305952427}
   patrolLeftPoint: {fileID: 1878369235}
@@ -6805,8 +6805,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 610562a908f16ef4aa417276a42baee0, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   damageAmount: 1
   attackCooldown: 1
 --- !u!70 &1370363857
@@ -6994,8 +6994,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a0e3373cb8175164dafe5fd963d9cb28, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   markerType: 3
   note: Use BasicEnemyController with higher health, or Bringer Of Death visual as
     child.
@@ -7043,8 +7043,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f5e4ef15129521943b744a71a2843767, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   boundaryName: Right demo route wall.
   blocksPlayer: 1
 --- !u!61 &1403212407
@@ -7210,8 +7210,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 781ab485aa462b441981fba438b4553f, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   IsUnlocked: 0
   doorSpriteRenderer: {fileID: 1439428638}
   lockedColor: {r: 0.22, g: 0.02, b: 0.04, a: 1}
@@ -7509,8 +7509,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_SendPointerHoverToParent: 1
   m_HorizontalAxis: Horizontal
   m_VerticalAxis: Vertical
@@ -7529,8 +7529,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
@@ -7765,8 +7765,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 2136215045
+  m_SortingLayer: 2
   m_SortingOrder: 46
   m_Sprite: {fileID: 21300000, guid: 89844e9b3aa268749afac02952bf3737, type: 3}
   m_Color: {r: 0.86, g: 0.06, b: 0.12, a: 1}
@@ -7824,8 +7824,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 51a6317f4438796448a5827c6e78a1d6, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   platformName: BossLeftLedge
   gameplayPurpose: Short ledge for camera framing.
 --- !u!61 &1603692248
@@ -7995,8 +7995,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 2136215045
+  m_SortingLayer: 2
   m_SortingOrder: 45
   m_Sprite: {fileID: 21300000, guid: 89844e9b3aa268749afac02952bf3737, type: 3}
   m_Color: {r: 0.03, g: 0.02, b: 0.03, a: 1}
@@ -8054,8 +8054,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 51a6317f4438796448a5827c6e78a1d6, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   platformName: BossGround
   gameplayPurpose: Long floor for the demo boss chase.
 --- !u!61 &1639409671
@@ -8350,8 +8350,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 594f73a9587ea6d41ab24a85243b1790, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   player: {fileID: 305952430}
 --- !u!4 &1737375892
 Transform:
@@ -8438,8 +8438,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 2136215045
+  m_SortingLayer: 2
   m_SortingOrder: 45
   m_Sprite: {fileID: 21300000, guid: 89844e9b3aa268749afac02952bf3737, type: 3}
   m_Color: {r: 0.03, g: 0.02, b: 0.03, a: 1}
@@ -8639,8 +8639,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 2136215045
+  m_SortingLayer: 2
   m_SortingOrder: 46
   m_Sprite: {fileID: 21300000, guid: 89844e9b3aa268749afac02952bf3737, type: 3}
   m_Color: {r: 0.86, g: 0.06, b: 0.12, a: 1}
@@ -8734,7 +8734,7 @@ SpriteRenderer:
   m_Size: {x: 0.64, y: 0.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1844712630
@@ -8780,8 +8780,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6fd11229172b8c1468eed1bd8bf25993, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   slashRenderer: {fileID: 1844712633}
   showDuration: 0.12
 --- !u!212 &1844712633
@@ -8881,8 +8881,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 51a6317f4438796448a5827c6e78a1d6, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   platformName: MidPlatform_Left
   gameplayPurpose: Optional enemy or jump platform.
 --- !u!61 &1860858870
@@ -9958,8 +9958,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a0e3373cb8175164dafe5fd963d9cb28, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   markerType: 5
   note: Place Mid ExitDoor here.
 --- !u!1 &1928354749
@@ -10057,6 +10057,7 @@ GameObject:
   - component: {fileID: 1947841474}
   - component: {fileID: 1947841473}
   - component: {fileID: 1947841472}
+  - component: {fileID: 1947841475}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -10074,8 +10075,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 49a6f663059b14144943547eb35adf0d, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   target: {fileID: 305952428}
   deadZoneWidth: 2
   deadZoneHeight: 1
@@ -10147,6 +10148,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1947841475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1947841471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
+  m_TaaSettings:
+    m_Quality: 3
+    m_FrameInfluence: 0.1
+    m_JitterScale: 1
+    m_MipBias: 0
+    m_VarianceClampScale: 0.9
+    m_ContrastAdaptiveSharpening: 0
 --- !u!1 &1953585180
 GameObject:
   m_ObjectHideFlags: 0
@@ -10360,8 +10405,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 51a6317f4438796448a5827c6e78a1d6, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   platformName: BossRightLedge
   gameplayPurpose: Short ledge for camera framing.
 --- !u!61 &1971345848
@@ -10531,8 +10576,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 2136215045
+  m_SortingLayer: 2
   m_SortingOrder: 46
   m_Sprite: {fileID: 21300000, guid: 89844e9b3aa268749afac02952bf3737, type: 3}
   m_Color: {r: 0.86, g: 0.06, b: 0.12, a: 1}
@@ -10623,8 +10668,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a0e3373cb8175164dafe5fd963d9cb28, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   markerType: 7
   note: Place Main Camera near this point and keep CameraFollow target on Player.
 --- !u!1 &2040353591
@@ -10697,8 +10742,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 2136215045
+  m_SortingLayer: 2
   m_SortingOrder: 45
   m_Sprite: {fileID: 21300000, guid: 89844e9b3aa268749afac02952bf3737, type: 3}
   m_Color: {r: 0.03, g: 0.02, b: 0.03, a: 1}
@@ -10756,8 +10801,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 51a6317f4438796448a5827c6e78a1d6, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   platformName: MidPlatform_Right
   gameplayPurpose: Higher route for spacing checks.
 --- !u!61 &2064810195
@@ -10901,8 +10946,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 86818bbd37806984baf92d486c500b73, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   fillTransform: {fileID: 1987005715}
   playerHealth: {fileID: 0}
   enemyHealth: {fileID: 760707300}
@@ -10948,8 +10993,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a0e3373cb8175164dafe5fd963d9cb28, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   markerType: 1
   note: Optional second weak BasicEnemy.
 --- !u!1 &2142448820
@@ -10993,11 +11038,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4683423426736860954, guid: 964e6dcceecc30f4d8072fd1d30a755e, type: 3}
       propertyPath: patrolPointA
-      value:
+      value: 
       objectReference: {fileID: 2142448821}
     - target: {fileID: 4683423426736860954, guid: 964e6dcceecc30f4d8072fd1d30a755e, type: 3}
       propertyPath: patrolPointB
-      value:
+      value: 
       objectReference: {fileID: 12141749}
     - target: {fileID: 5935863665971632252, guid: 964e6dcceecc30f4d8072fd1d30a755e, type: 3}
       propertyPath: m_Name

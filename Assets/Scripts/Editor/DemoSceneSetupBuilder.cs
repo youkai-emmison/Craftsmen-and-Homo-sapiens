@@ -601,8 +601,8 @@ public static class DemoSceneSetupBuilder
         barRoot.transform.SetParent(parent, false);
         barRoot.transform.localPosition = localPosition;
 
-        CreateVisualBlock("Background", barRoot.transform, Vector3.zero, new Vector2(0.9f, 0.12f), new Color(0.03f, 0.02f, 0.03f, 1f), 45);
-        SpriteRenderer fillRenderer = CreateVisualBlock("Fill", barRoot.transform, Vector3.zero, new Vector2(0.82f, 0.07f), new Color(0.86f, 0.06f, 0.12f, 1f), 46);
+        CreateVisualBlock("Background", barRoot.transform, Vector3.zero, new Vector2(0.9f, 0.12f), new Color(0.03f, 0.02f, 0.03f, 1f), 45, "Ground");
+        SpriteRenderer fillRenderer = CreateVisualBlock("Fill", barRoot.transform, Vector3.zero, new Vector2(0.82f, 0.07f), new Color(0.86f, 0.06f, 0.12f, 1f), 46, "Ground");
 
         SimpleHealthBar healthBar = barRoot.AddComponent<SimpleHealthBar>();
         healthBar.fillTransform = fillRenderer.transform;
@@ -611,7 +611,7 @@ public static class DemoSceneSetupBuilder
         return healthBar;
     }
 
-    private static SpriteRenderer CreateVisualBlock(string objectName, Transform parent, Vector3 localPosition, Vector2 size, Color color, int sortingOrder)
+    private static SpriteRenderer CreateVisualBlock(string objectName, Transform parent, Vector3 localPosition, Vector2 size, Color color, int sortingOrder, string sortingLayerName = null)
     {
         GameObject block = new GameObject(objectName);
         block.transform.SetParent(parent, false);
@@ -623,6 +623,8 @@ public static class DemoSceneSetupBuilder
         renderer.size = size;
         renderer.color = color;
         renderer.sortingOrder = sortingOrder;
+        if (sortingLayerName != null)
+            renderer.sortingLayerName = sortingLayerName;
         return renderer;
     }
 

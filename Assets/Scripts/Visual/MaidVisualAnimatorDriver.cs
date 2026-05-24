@@ -18,6 +18,9 @@ public class MaidVisualAnimatorDriver : MonoBehaviour
     private static readonly int IsMovingHash = Animator.StringToHash("IsMoving");
     private static readonly int AttackHash = Animator.StringToHash("Attack");
     private static readonly int HurtHash = Animator.StringToHash("Hurt");
+    private static readonly int JumpHash = Animator.StringToHash("Jump");
+    private static readonly int IsGroundedHash = Animator.StringToHash("IsGrounded");
+    private static readonly int IsWallSlidingHash = Animator.StringToHash("IsWallSliding");
 
     private void Awake()
     {
@@ -55,6 +58,36 @@ public class MaidVisualAnimatorDriver : MonoBehaviour
         }
 
         animator.SetTrigger(HurtHash);
+    }
+
+    public void PlayJump()
+    {
+        if (animator == null)
+        {
+            return;
+        }
+
+        animator.SetTrigger(JumpHash);
+    }
+
+    public void SetGrounded(bool grounded)
+    {
+        if (animator == null)
+        {
+            return;
+        }
+
+        animator.SetBool(IsGroundedHash, grounded);
+    }
+
+    public void SetWallSliding(bool wallSliding)
+    {
+        if (animator == null)
+        {
+            return;
+        }
+
+        animator.SetBool(IsWallSlidingHash, wallSliding);
     }
 
     private void UpdateMovingState()

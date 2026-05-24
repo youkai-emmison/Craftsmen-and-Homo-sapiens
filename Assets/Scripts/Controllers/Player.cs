@@ -65,6 +65,9 @@ public class Player : Entity
     private bool isTouchingWall;           // 本帧是否接触墙面
     private bool isWallSliding;            // 是否正在滑墙
 
+    // 动画驱动
+    private MaidVisualAnimatorDriver visualAnimatorDriver;
+
     #endregion
 
     #region 生命周期
@@ -76,6 +79,7 @@ public class Player : Entity
         anim = null;
         rb = GetComponent<Rigidbody2D>();
         rb.sharedMaterial = new PhysicsMaterial2D("NoFriction") { friction = 0f };
+        visualAnimatorDriver = GetComponentInChildren<MaidVisualAnimatorDriver>();
     }
 
     protected override void Start()
@@ -162,6 +166,22 @@ public class Player : Entity
 
     #endregion
 
+    #region 朝向翻转
+
+    /// <summary>
+    /// 禁用 Entity 基类的 spriteRenderer.flipX 翻转。
+    /// MaidVisual 的翻转由 PlayerAttackFacingController 通过 localScale.x 控制，
+    /// 两套机制同时运行会互相覆盖导致翻转失效。
+    /// </summary>
+    protected override void Flip()
+    {
+        // 仅更新朝向状态，不操作 spriteRenderer.flipX
+        facingDirection *= -1;
+        isFacingRight = !isFacingRight;
+    }
+
+    #endregion
+
     #region 跳跃
 
     /// <summary>
@@ -172,8 +192,8 @@ public class Player : Entity
         // 先清空 Y 轴速度，确保从地面起跳时高度一致
         SetVelocity(rb.velocity.x, jumpForce);
 
-        if (anim != null)
-            anim.SetTrigger("Jump");
+        if (visualAnimatorDriver != null)
+            visualAnimatorDriver.PlayJump();
     }
 
     #endregion
@@ -240,13 +260,10 @@ public class Player : Entity
     /// </summary>
     private void UpdateAnimations()
     {
-        if (anim == null) return;
+        if (visualAnimatorDriver == null) return;
 
-        anim.SetFloat("MoveSpeed", GetCurrentMoveSpeed());
-        anim.SetBool("IsGrounded", isGrounded);
-        anim.SetFloat("YVelocity", rb.velocity.y);
-        anim.SetBool("IsDashing", isDashing);
-        anim.SetBool("IsWallSliding", isWallSliding);
+        visualAnimatorDriver.SetGrounded(isGrounded);
+        visualAnimatorDriver.SetWallSliding(isWallSliding);
     }
 
     #endregion
