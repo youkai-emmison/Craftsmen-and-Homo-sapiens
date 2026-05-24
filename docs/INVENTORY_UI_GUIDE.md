@@ -7,9 +7,10 @@ This branch adds the first minimal backpack UI for testing only.
 The goal is:
 
 1. Press `I` to open or close the backpack.
-2. Show a fixed 8-slot inventory panel.
-3. Display several test items from `InventoryManager`.
-4. Keep inventory data separate from UI rendering.
+2. Press `Esc` to close the backpack when it is open.
+3. Show a fixed 8-slot inventory panel.
+4. Display several test items from `InventoryManager`.
+5. Keep inventory data separate from UI rendering.
 
 ## Scene Setup
 
@@ -42,8 +43,45 @@ The scene now contains:
 3. Click the Game view once so it has keyboard focus.
 4. Press `I`.
 5. The backpack panel should open in the top-right corner.
-6. Press `I` again.
+6. Press `Esc`.
 7. The backpack panel should close.
+8. Press `I` twice to confirm toggle open and close also works.
+
+## Inspector Variables
+
+`InventoryManager`
+
+- `startingItems`: Test items loaded when the scene starts.
+- `itemId`: Stable id used when stackable items merge.
+- `displayName`: Name shown in a slot.
+- `description`: Reserved for later tooltip text.
+- `quantity`: Stack count shown in a slot.
+- `canStack`: Whether items with the same id merge.
+- `icon`: Optional sprite icon.
+- `itemColor`: Color swatch shown when no icon is assigned.
+
+`InventoryInputController`
+
+- `inventoryPanel`: The panel controlled by keyboard input.
+- `toggleKey`: Opens or closes the backpack. Current value: `I`.
+- `closeKey`: Closes the backpack only. Current value: `Escape`.
+
+`InventoryPanel`
+
+- `inventoryManager`: Data source for the UI.
+- `canvasGroup`: Shows or hides the panel without destroying objects.
+- `slotViews`: Fixed slot views used by the current 8-slot backpack.
+- `emptyMessageText`: Message shown only when the inventory has no items.
+- `startsVisible`: Whether the backpack starts open.
+
+`InventorySlotView`
+
+- `slotBackgroundImage`: Background image for one slot.
+- `iconImage`: Item icon or color swatch.
+- `itemNameText`: Text used for the item name.
+- `quantityText`: Text used for stack count.
+- `emptyColor`: Slot color when empty.
+- `filledColor`: Slot color when an item exists.
 
 ## Script Responsibilities
 

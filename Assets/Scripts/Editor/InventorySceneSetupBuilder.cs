@@ -218,7 +218,7 @@ public static class InventorySceneSetupBuilder
 
     private static void CreateHintText(Transform canvasTransform)
     {
-        Text hintText = CreateTextObject("InventoryHint", canvasTransform, "Press I to open backpack", 22, TextAnchor.MiddleLeft);
+        Text hintText = CreateTextObject("InventoryHint", canvasTransform, "Press I to open backpack, Esc to close", 22, TextAnchor.MiddleLeft);
         RectTransform hintRect = hintText.GetComponent<RectTransform>();
         hintRect.anchorMin = new Vector2(0f, 0f);
         hintRect.anchorMax = new Vector2(0f, 0f);

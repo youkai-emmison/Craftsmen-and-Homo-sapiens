@@ -52,6 +52,14 @@ public class InventoryPanel : MonoBehaviour
     }
 
     /// <summary>
+    /// Closes the panel from explicit UI commands such as Escape.
+    /// </summary>
+    public void Close()
+    {
+        SetVisible(false);
+    }
+
+    /// <summary>
     /// Sets UI visibility while keeping the same objects alive in the scene.
     /// </summary>
     public void SetVisible(bool isVisible)

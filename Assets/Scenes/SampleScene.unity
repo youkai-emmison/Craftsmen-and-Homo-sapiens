@@ -3104,6 +3104,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventoryPanel: {fileID: 1409888359}
   toggleKey: 105
+  closeKey: 27
 --- !u!4 &877241311
 Transform:
   m_ObjectHideFlags: 0
@@ -3610,7 +3611,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Press I to open backpack
+  m_Text: Press I to open backpack, Esc to close
 --- !u!222 &1233339315
 CanvasRenderer:
   m_ObjectHideFlags: 0
