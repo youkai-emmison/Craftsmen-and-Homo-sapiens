@@ -59,6 +59,15 @@ Recommended setup:
 
 If the repository is public, do not commit raw Unity Asset Store files. Use local imports for testing and record the source in `docs/THIRD_PARTY_ASSETS.md`.
 
+Keep local imported art under:
+
+- `Assets/Art/ThirdParty/Bringer Of Death/`
+- `Assets/Art/ThirdParty/Enemy Galore 1 - Pixel Art/`
+
+The generated original Player art lives separately under:
+
+- `Assets/Art/Generated/Characters/`
+
 If the repository becomes private and the team decides to commit selected assets, record:
 
 - Asset URL.

@@ -11,7 +11,7 @@ using UnityEngine.SceneManagement;
 public static class StageBlockoutBuilder
 {
     private const string StageBlockoutName = "StageBlockout";
-    private const string BlockSpriteAssetPath = "Assets/Art/Tiles/wall_1.png";
+    private const string BlockSpriteAssetPath = "Assets/Art/Generated/Environment/blockout_square.png";
     private const string BuiltInBlockSpritePath = "UI/Skin/UISprite.psd";
 
     private static Sprite blockSprite;
@@ -220,6 +220,7 @@ public static class StageBlockoutBuilder
             return blockSprite;
         }
 
+        ConfigureBlockSpriteImporter();
         blockSprite = AssetDatabase.LoadAssetAtPath<Sprite>(BlockSpriteAssetPath);
 
         if (blockSprite != null)
@@ -235,6 +236,31 @@ public static class StageBlockoutBuilder
         }
 
         return blockSprite;
+    }
+
+    private static void ConfigureBlockSpriteImporter()
+    {
+        TextureImporter importer = AssetImporter.GetAtPath(BlockSpriteAssetPath) as TextureImporter;
+
+        if (importer == null)
+        {
+            return;
+        }
+
+        importer.textureType = TextureImporterType.Sprite;
+        importer.spriteImportMode = SpriteImportMode.Single;
+        importer.spritePixelsPerUnit = 8;
+        importer.filterMode = FilterMode.Point;
+        importer.textureCompression = TextureImporterCompression.Uncompressed;
+        importer.mipmapEnabled = false;
+        importer.alphaIsTransparency = true;
+
+        TextureImporterSettings importerSettings = new TextureImporterSettings();
+        importer.ReadTextureSettings(importerSettings);
+        importerSettings.spriteMeshType = SpriteMeshType.FullRect;
+        importer.SetTextureSettings(importerSettings);
+
+        importer.SaveAndReimport();
     }
 
     private static Color GetMarkerColor(LevelBlockoutMarker.MarkerType markerType)

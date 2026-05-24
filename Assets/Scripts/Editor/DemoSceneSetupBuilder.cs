@@ -15,23 +15,26 @@ public static class DemoSceneSetupBuilder
 {
     private const string ScenePath = "Assets/Scenes/SampleScene.unity";
     private const string ExperiencePickupPrefabPath = "Assets/Prefabs/Demo/ExperiencePickup.prefab";
-    private const string BlockSpriteAssetPath = "Assets/Art/Tiles/wall_1.png";
-    private const string MihoPrefabPath = "Assets/FW_MIHO/prefabs/Miho.prefab";
-    private const string ImportedBackdropPath = "Assets/Free 2D Cartoon Parallax Background/FullBG/3_Graveyard.png";
+    private const string BlockSpriteAssetPath = "Assets/Art/Generated/Environment/blockout_square.png";
+    private const string BuiltInBlockSpritePath = "UI/Skin/UISprite.psd";
+    private const string GeneratedMaidSpriteSheetPath = "Assets/Art/Generated/Characters/maid_heroine_spritesheet.png";
+    private const string GeneratedMaidAnimatorPath = "Assets/Art/Generated/Characters/MaidPlayerAnimator.controller";
+    private const string MihoPrefabPath = "Assets/Art/ThirdParty/FW_MIHO/prefabs/Miho.prefab";
+    private const string ImportedBackdropPath = "Assets/Art/ThirdParty/Free 2D Cartoon Parallax Background/FullBG/3_Graveyard.png";
     private const string FallbackEnemySpriteAssetPath = "Assets/Art/Enemy/Little Evil/basic_enemy_placeholder.png";
 
     private static readonly string[] BasicEnemySpriteCandidatePaths =
     {
-        "Assets/Enemy Galore 1 - Pixel Art/Sprites/Rat/Rat_Idle.png",
-        "Assets/Enemy Galore 1 - Pixel Art/Sprites/Spiked Slime/Slime_Spiked_Idle.png",
-        "Assets/Enemy Galore 1 - Pixel Art/Sprites/Crab/Crab_Idle.png"
+        "Assets/Art/ThirdParty/Enemy Galore 1 - Pixel Art/Sprites/Rat/Rat_Idle.png",
+        "Assets/Art/ThirdParty/Enemy Galore 1 - Pixel Art/Sprites/Spiked Slime/Slime_Spiked_Idle.png",
+        "Assets/Art/ThirdParty/Enemy Galore 1 - Pixel Art/Sprites/Crab/Crab_Idle.png"
     };
 
     private static readonly string[] BossSpriteCandidatePaths =
     {
-        "Assets/Bringer Of Death/Sprite Sheet/Bringer-of-Death-SpritSheet.png",
-        "Assets/Enemy Galore 1 - Pixel Art/Sprites/Reinforced Golem/Golem_Armor_Idle.png",
-        "Assets/Enemy Galore 1 - Pixel Art/Sprites/Golem/Golem_IdleA.png"
+        "Assets/Art/ThirdParty/Bringer Of Death/Sprite Sheet/Bringer-of-Death-SpritSheet.png",
+        "Assets/Art/ThirdParty/Enemy Galore 1 - Pixel Art/Sprites/Reinforced Golem/Golem_Armor_Idle.png",
+        "Assets/Art/ThirdParty/Enemy Galore 1 - Pixel Art/Sprites/Golem/Golem_IdleA.png"
     };
 
     private static Sprite blockSprite;
@@ -235,7 +238,8 @@ public static class DemoSceneSetupBuilder
         capsuleCollider.offset = new Vector2(0f, -0.02f);
 
         Transform visualRootTransform;
-        SpriteRenderer bodyRenderer = CreatePlayerVisual(playerObject.transform, out visualRootTransform);
+        MaidVisualAnimatorDriver maidVisualAnimatorDriver;
+        SpriteRenderer bodyRenderer = CreatePlayerVisual(playerObject.transform, rigidbody, out visualRootTransform, out maidVisualAnimatorDriver);
         Player player = playerObject.AddComponent<Player>();
         AssignSerializedReference(player, "spriteRenderer", bodyRenderer);
         AssignLayerMask(player, "groundLayer", RequireLayer("Ground"));
@@ -266,13 +270,22 @@ public static class DemoSceneSetupBuilder
         playerAttackController.meleeHitDetector = meleeHitDetector;
         playerAttackController.attackFacingController = attackFacingController;
         playerAttackController.attackSlashVisual = attackSlashVisual;
+        playerAttackController.maidVisualAnimatorDriver = maidVisualAnimatorDriver;
 
         CreateHealthBar("PlayerHealthBar", playerObject.transform, new Vector3(0f, 1.0f, 0f), playerHealth, null);
         return player;
     }
 
-    private static SpriteRenderer CreatePlayerVisual(Transform parent, out Transform visualRootTransform)
+    private static SpriteRenderer CreatePlayerVisual(Transform parent, Rigidbody2D velocitySource, out Transform visualRootTransform, out MaidVisualAnimatorDriver maidVisualAnimatorDriver)
     {
+        maidVisualAnimatorDriver = null;
+        SpriteRenderer generatedMaidRenderer = CreateGeneratedMaidVisual(parent, velocitySource, out visualRootTransform, out maidVisualAnimatorDriver);
+
+        if (generatedMaidRenderer != null)
+        {
+            return generatedMaidRenderer;
+        }
+
         SpriteRenderer importedRenderer = CreateImportedMihoVisual(parent, out visualRootTransform);
 
         if (importedRenderer != null)
@@ -291,6 +304,47 @@ public static class DemoSceneSetupBuilder
         CreateVisualBlock("EyeLeft", visualRoot.transform, new Vector3(-0.12f, 0.47f, 0f), new Vector2(0.07f, 0.09f), new Color(0.85f, 0.1f, 0.14f, 1f), 28);
         CreateVisualBlock("EyeRight", visualRoot.transform, new Vector3(0.12f, 0.47f, 0f), new Vector2(0.07f, 0.09f), new Color(0.85f, 0.1f, 0.14f, 1f), 28);
         return body != null ? body : legs;
+    }
+
+    private static SpriteRenderer CreateGeneratedMaidVisual(Transform parent, Rigidbody2D velocitySource, out Transform visualRootTransform, out MaidVisualAnimatorDriver maidVisualAnimatorDriver)
+    {
+        visualRootTransform = null;
+        maidVisualAnimatorDriver = null;
+
+        Sprite maidSprite = LoadFirstSprite(GeneratedMaidSpriteSheetPath);
+        RuntimeAnimatorController animatorController = AssetDatabase.LoadAssetAtPath<RuntimeAnimatorController>(GeneratedMaidAnimatorPath);
+
+        if (maidSprite == null)
+        {
+            return null;
+        }
+
+        GameObject maidVisual = new GameObject("MaidVisual");
+        maidVisual.transform.SetParent(parent, false);
+        maidVisual.transform.localPosition = new Vector3(0f, -0.63f, 0f);
+        maidVisual.transform.localScale = new Vector3(1.3f, 1.3f, 1f);
+        visualRootTransform = maidVisual.transform;
+
+        SpriteRenderer spriteRenderer = maidVisual.AddComponent<SpriteRenderer>();
+        spriteRenderer.sprite = maidSprite;
+        spriteRenderer.sortingOrder = 35;
+
+        if (animatorController != null)
+        {
+            Animator animator = maidVisual.AddComponent<Animator>();
+            animator.runtimeAnimatorController = animatorController;
+            animator.applyRootMotion = false;
+
+            maidVisualAnimatorDriver = maidVisual.AddComponent<MaidVisualAnimatorDriver>();
+            maidVisualAnimatorDriver.animator = animator;
+            maidVisualAnimatorDriver.velocitySource = velocitySource;
+        }
+        else
+        {
+            Debug.LogWarning("DemoSceneSetupBuilder: Maid Animator Controller missing. MaidVisual will use the first idle sprite only.");
+        }
+
+        return spriteRenderer;
     }
 
     private static SpriteRenderer CreateImportedMihoVisual(Transform parent, out Transform visualRootTransform)
@@ -558,14 +612,40 @@ public static class DemoSceneSetupBuilder
             return blockSprite;
         }
 
+        ConfigureBlockSpriteImporter();
         blockSprite = AssetDatabase.LoadAssetAtPath<Sprite>(BlockSpriteAssetPath);
 
         if (blockSprite == null)
         {
-            blockSprite = AssetDatabase.GetBuiltinExtraResource<Sprite>("UI/Skin/UISprite.psd");
+            blockSprite = AssetDatabase.GetBuiltinExtraResource<Sprite>(BuiltInBlockSpritePath);
         }
 
         return blockSprite;
+    }
+
+    private static void ConfigureBlockSpriteImporter()
+    {
+        TextureImporter importer = AssetImporter.GetAtPath(BlockSpriteAssetPath) as TextureImporter;
+
+        if (importer == null)
+        {
+            return;
+        }
+
+        importer.textureType = TextureImporterType.Sprite;
+        importer.spriteImportMode = SpriteImportMode.Single;
+        importer.spritePixelsPerUnit = 8;
+        importer.filterMode = FilterMode.Point;
+        importer.textureCompression = TextureImporterCompression.Uncompressed;
+        importer.mipmapEnabled = false;
+        importer.alphaIsTransparency = true;
+
+        TextureImporterSettings importerSettings = new TextureImporterSettings();
+        importer.ReadTextureSettings(importerSettings);
+        importerSettings.spriteMeshType = SpriteMeshType.FullRect;
+        importer.SetTextureSettings(importerSettings);
+
+        importer.SaveAndReimport();
     }
 
     private static Sprite GetEnemySprite(bool isBoss)

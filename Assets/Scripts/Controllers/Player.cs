@@ -72,6 +72,8 @@ public class Player : Entity
     protected override void Awake()
     {
         base.Awake();
+        // Visual-only child animators use their own driver, so Player movement does not push missing parameters into imported controllers.
+        anim = null;
         rb = GetComponent<Rigidbody2D>();
         rb.sharedMaterial = new PhysicsMaterial2D("NoFriction") { friction = 0f };
     }

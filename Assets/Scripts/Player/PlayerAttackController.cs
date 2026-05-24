@@ -3,6 +3,7 @@
 // - attackCooldown: Minimum time between attack attempts.
 // - meleeHitDetector: Component that performs the actual melee overlap check.
 // - attackSlashVisual: Optional visual flash shown when the attack is accepted.
+// - maidVisualAnimatorDriver: Optional visual-only attack animation trigger.
 using UnityEngine;
 
 public class PlayerAttackController : MonoBehaviour
@@ -18,6 +19,9 @@ public class PlayerAttackController : MonoBehaviour
 
     // Optional facing controller used to flip the slash direction.
     public PlayerAttackFacingController attackFacingController;
+
+    // Optional visual-only Animator driver. It does not control hit detection.
+    public MaidVisualAnimatorDriver maidVisualAnimatorDriver;
 
     // Timestamp gate that prevents click-spam attacks.
     private float nextAttackAllowedTime;
@@ -52,7 +56,18 @@ public class PlayerAttackController : MonoBehaviour
 
         nextAttackAllowedTime = Time.time + attackCooldown;
         meleeHitDetector.DetectHit();
+        PlayAttackAnimation();
         PlayAttackVisual();
+    }
+
+    private void PlayAttackAnimation()
+    {
+        if (maidVisualAnimatorDriver == null)
+        {
+            return;
+        }
+
+        maidVisualAnimatorDriver.PlayAttack();
     }
 
     private void PlayAttackVisual()
