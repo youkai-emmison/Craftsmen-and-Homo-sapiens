@@ -19,6 +19,9 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     // True after the enemy has been defeated.
     public bool IsDead { get; private set; }
 
+    // Current health exposed for small world-space demo bars.
+    public int CurrentHealth => currentHealth;
+
     // Room and drop controllers subscribe to this to react to defeat.
     public Action<EnemyHealth> OnEnemyDefeated;
 

@@ -3,6 +3,7 @@
 // - enemyHealth: EnemyHealth event source for the defeated signal.
 // - experiencePickupPrefab: Pickup prefab spawned after defeat.
 // - dropCount: Number of pickups spawned for compressed demo pacing.
+// - experienceAmount: Experience value assigned to spawned pickups.
 // - dropOffset: Offset from the enemy position used for pickup placement.
 using UnityEngine;
 
@@ -16,6 +17,9 @@ public class EnemyDropController : MonoBehaviour
 
     // Number of pickups spawned when this enemy is defeated.
     public int dropCount = 1;
+
+    // Experience amount assigned to each spawned pickup.
+    public int experienceAmount = 3;
 
     // Position offset applied from the defeated enemy.
     public Vector3 dropOffset = new Vector3(0f, 0.6f, 0f);
@@ -74,7 +78,18 @@ public class EnemyDropController : MonoBehaviour
         for (int pickupIndex = 0; pickupIndex < dropCount; pickupIndex++)
         {
             Vector3 pickupPosition = transform.position + dropOffset + GetSpreadOffset(pickupIndex);
-            Instantiate(experiencePickupPrefab, pickupPosition, Quaternion.identity);
+            GameObject pickupObject = Instantiate(experiencePickupPrefab, pickupPosition, Quaternion.identity);
+            AssignExperienceAmount(pickupObject);
+        }
+    }
+
+    private void AssignExperienceAmount(GameObject pickupObject)
+    {
+        ExperiencePickup experiencePickup = pickupObject.GetComponent<ExperiencePickup>();
+
+        if (experiencePickup != null)
+        {
+            experiencePickup.experienceAmount = experienceAmount;
         }
     }
 

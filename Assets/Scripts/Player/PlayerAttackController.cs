@@ -2,6 +2,7 @@
 // Key Inspector variables:
 // - attackCooldown: Minimum time between attack attempts.
 // - meleeHitDetector: Component that performs the actual melee overlap check.
+// - attackSlashVisual: Optional visual flash shown when the attack is accepted.
 using UnityEngine;
 
 public class PlayerAttackController : MonoBehaviour
@@ -11,6 +12,12 @@ public class PlayerAttackController : MonoBehaviour
 
     // Required detector called once when an attack is accepted.
     public MeleeHitDetector meleeHitDetector;
+
+    // Optional slash marker used only for demo readability.
+    public AttackSlashVisual attackSlashVisual;
+
+    // Optional facing controller used to flip the slash direction.
+    public PlayerAttackFacingController attackFacingController;
 
     // Timestamp gate that prevents click-spam attacks.
     private float nextAttackAllowedTime;
@@ -45,5 +52,17 @@ public class PlayerAttackController : MonoBehaviour
 
         nextAttackAllowedTime = Time.time + attackCooldown;
         meleeHitDetector.DetectHit();
+        PlayAttackVisual();
+    }
+
+    private void PlayAttackVisual()
+    {
+        if (attackSlashVisual == null || meleeHitDetector == null || meleeHitDetector.attackPoint == null)
+        {
+            return;
+        }
+
+        float facingDirectionX = attackFacingController != null ? attackFacingController.FacingDirectionX : Mathf.Sign(meleeHitDetector.attackPoint.localPosition.x);
+        attackSlashVisual.Play(meleeHitDetector.attackPoint.position, facingDirectionX);
     }
 }

@@ -1,7 +1,7 @@
 // Script purpose: Builds a dark three-stage dungeon greybox in the open scene.
 // Key variables:
 // - StageBlockoutName: Root object rebuilt by this Editor tool.
-// - BuiltInBlockSpritePath: Built-in sprite used by SpriteRenderer blocks.
+// - BlockSpriteAssetPath: Project sprite used by SpriteRenderer blocks.
 // - Room positions: Fixed demo route positions for Early, Mid, and Boss rooms.
 using UnityEditor;
 using UnityEditor.SceneManagement;
@@ -11,6 +11,7 @@ using UnityEngine.SceneManagement;
 public static class StageBlockoutBuilder
 {
     private const string StageBlockoutName = "StageBlockout";
+    private const string BlockSpriteAssetPath = "Assets/Art/Tiles/blank.png";
     private const string BuiltInBlockSpritePath = "UI/Skin/UISprite.psd";
 
     private static Sprite blockSprite;
@@ -38,6 +39,24 @@ public static class StageBlockoutBuilder
         EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
         Debug.Log("StageBlockoutBuilder: Three-stage dungeon demo created. Manually place Player, enemies, exits, and room controllers on the marker points.");
         Debug.Log("StageBlockoutBuilder: Add Player, Ground, and Hittable layers manually. Set generated ground, platforms, and boundaries to Ground.");
+    }
+
+    public static void RebuildThreeStageDungeonDemoForAutomation()
+    {
+        RemoveExistingStageBlockout();
+
+        GameObject root = CreateGroup(StageBlockoutName, null);
+        Transform rootTransform = root.transform;
+
+        CreateBackground(rootTransform);
+        CreateEarlyRoom(rootTransform);
+        CreateMidRoom(rootTransform);
+        CreateBossRoom(rootTransform);
+        CreateBoundaries(rootTransform);
+        CreateSharedMarkers(rootTransform);
+
+        EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
+        Debug.Log("StageBlockoutBuilder: Three-stage dungeon demo rebuilt by scene setup automation.");
     }
 
     private static bool ConfirmRebuild()
@@ -196,6 +215,13 @@ public static class StageBlockoutBuilder
 
     private static Sprite GetBlockSprite()
     {
+        if (blockSprite != null)
+        {
+            return blockSprite;
+        }
+
+        blockSprite = AssetDatabase.LoadAssetAtPath<Sprite>(BlockSpriteAssetPath);
+
         if (blockSprite != null)
         {
             return blockSprite;
