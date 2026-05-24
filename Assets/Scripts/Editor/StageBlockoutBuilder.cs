@@ -2,6 +2,7 @@
 // Key variables:
 // - StageBlockoutName: Root object rebuilt by this Editor tool.
 // - BlockSpriteAssetPath: Visible project sprite used by SpriteRenderer blocks.
+// - Tile sprite paths: Project-owned Art/Tiles sprites used to make the greybox look like a dungeon.
 // - Room positions: Fixed demo route positions for Early, Mid, and Boss rooms.
 using UnityEditor;
 using UnityEditor.SceneManagement;
@@ -13,8 +14,12 @@ public static class StageBlockoutBuilder
     private const string StageBlockoutName = "StageBlockout";
     private const string BlockSpriteAssetPath = "Assets/Art/Generated/Environment/blockout_square.png";
     private const string BuiltInBlockSpritePath = "UI/Skin/UISprite.psd";
+    private const string WallTileSpritePath = "Assets/Art/Tiles/wall_1.png";
+    private const string PlatformTileSpritePath = "Assets/Art/Tiles/platform_1.png";
 
     private static Sprite blockSprite;
+    private static Sprite wallTileSprite;
+    private static Sprite platformTileSprite;
 
     [MenuItem("Tools/Stage Blockout/Create Three Stage Dungeon Demo")]
     public static void CreateThreeStageDungeonDemo()
@@ -88,11 +93,15 @@ public static class StageBlockoutBuilder
     private static void CreateBackground(Transform rootTransform)
     {
         Transform background = CreateGroup("Background", rootTransform).transform;
-        CreateBlock("BackWall", background, new Vector2(18f, 1.2f), new Vector2(112f, 14f), new Color(0.08f, 0.08f, 0.10f, 1f), false, -30);
-        CreateBlock("DarkFacilityPanel", background, new Vector2(18f, 2.2f), new Vector2(92f, 8f), new Color(0.12f, 0.11f, 0.14f, 1f), false, -28);
-        CreateBlock("RedWarningBand", background, new Vector2(18f, -0.7f), new Vector2(104f, 0.4f), new Color(0.32f, 0.04f, 0.06f, 1f), false, -27);
-        CreateBlock("StageFloorGlow", background, new Vector2(18f, -2.45f), new Vector2(108f, 0.25f), new Color(0.55f, 0.08f, 0.10f, 0.85f), false, -26);
-        CreateBlock("BossRoomBackPlate", background, new Vector2(50f, 1.8f), new Vector2(28f, 9f), new Color(0.05f, 0.04f, 0.07f, 1f), false, -25);
+        CreateBlock("BackWall", background, new Vector2(18f, 1.2f), new Vector2(112f, 14f), new Color(0.07f, 0.075f, 0.09f, 1f), false, -50);
+        CreateBlock("DistantUpperShadow", background, new Vector2(18f, 3.6f), new Vector2(112f, 2.8f), new Color(0.035f, 0.038f, 0.05f, 1f), false, -49);
+        CreateBlock("DungeonWallPanel", background, new Vector2(18f, 0.7f), new Vector2(96f, 9.5f), new Color(0.12f, 0.12f, 0.13f, 1f), false, -48);
+        CreateBlock("SoftDepthPanel", background, new Vector2(18f, 1.2f), new Vector2(78f, 6.0f), new Color(0.16f, 0.16f, 0.18f, 0.55f), false, -47);
+        CreateBlock("SubtleWarningLine", background, new Vector2(18f, -2.58f), new Vector2(104f, 0.12f), new Color(0.30f, 0.03f, 0.05f, 0.55f), false, -46);
+        CreateBlock("BossRoomBackPlate", background, new Vector2(50f, 1.1f), new Vector2(27f, 8.0f), new Color(0.055f, 0.045f, 0.065f, 0.85f), false, -45);
+        CreateBackgroundAccent("EarlyWallAccent", background, new Vector2(-18f, 1.4f), new Vector2(18f, 0.12f));
+        CreateBackgroundAccent("MidWallAccent", background, new Vector2(12f, 1.0f), new Vector2(20f, 0.12f));
+        CreateBackgroundAccent("BossWallAccent", background, new Vector2(44f, 0.8f), new Vector2(22f, 0.12f));
     }
 
     private static void CreateEarlyRoom(Transform rootTransform)
@@ -144,8 +153,8 @@ public static class StageBlockoutBuilder
         CreateBoundary("DungeonLeftWall", boundaries, new Vector2(-32f, 0f), new Vector2(1f, 11f), "Left demo route wall.");
         CreateBoundary("DungeonRightWall", boundaries, new Vector2(61f, 0f), new Vector2(1f, 11f), "Right demo route wall.");
         CreateBoundary("DungeonCeilingLimit", boundaries, new Vector2(14.5f, 4.3f), new Vector2(94f, 1f), "Prevents camera and jump tests from leaving the room vertically.");
-        CreateBlock("EarlyMidDivider", boundaries, new Vector2(-1f, 0f), new Vector2(0.35f, 8.5f), new Color(0.18f, 0.03f, 0.05f, 1f), false, -2);
-        CreateBlock("MidBossDivider", boundaries, new Vector2(29f, 0f), new Vector2(0.35f, 8.5f), new Color(0.18f, 0.03f, 0.05f, 1f), false, -2);
+        CreateBlock("EarlyMidDivider", boundaries, new Vector2(-1f, 0f), new Vector2(0.20f, 8.5f), new Color(0.10f, 0.04f, 0.05f, 0.55f), false, -20);
+        CreateBlock("MidBossDivider", boundaries, new Vector2(29f, 0f), new Vector2(0.20f, 8.5f), new Color(0.10f, 0.04f, 0.05f, 0.55f), false, -20);
     }
 
     private static void CreateSharedMarkers(Transform rootTransform)
@@ -157,7 +166,9 @@ public static class StageBlockoutBuilder
 
     private static void CreateGroundBlock(string objectName, Transform parent, Vector2 position, Vector2 size, string purpose)
     {
-        GameObject block = CreateBlock(objectName, parent, position, size, new Color(0.19f, 0.18f, 0.17f, 1f), true, -5);
+        GameObject block = CreateBlock(objectName, parent, position, size, new Color(0.08f, 0.075f, 0.075f, 1f), true, -8);
+        CreateGroundTileVisuals(block.transform, size);
+
         SimplePlatformLabel platformLabel = block.AddComponent<SimplePlatformLabel>();
         platformLabel.platformName = objectName;
         platformLabel.gameplayPurpose = purpose;
@@ -169,6 +180,42 @@ public static class StageBlockoutBuilder
         RoomBoundary roomBoundary = boundary.AddComponent<RoomBoundary>();
         roomBoundary.boundaryName = boundaryName;
         roomBoundary.blocksPlayer = true;
+    }
+
+    private static void CreateBackgroundAccent(string objectName, Transform parent, Vector2 position, Vector2 size)
+    {
+        CreateBlock(objectName, parent, position, size, new Color(0.34f, 0.29f, 0.22f, 0.45f), false, -44);
+    }
+
+    private static void CreateGroundTileVisuals(Transform groundTransform, Vector2 size)
+    {
+        Transform visualRoot = CreateGroup("TileVisuals", groundTransform).transform;
+        Sprite wallSprite = GetWallTileSprite();
+        Sprite platformSprite = GetPlatformTileSprite();
+
+        if (wallSprite != null)
+        {
+            CreateTiledVisual("WallFill", visualRoot, wallSprite, new Vector2(0f, -0.12f), new Vector2(size.x, Mathf.Max(0.25f, size.y - 0.22f)), new Color(0.54f, 0.52f, 0.46f, 1f), 4);
+        }
+
+        if (platformSprite != null)
+        {
+            CreateTiledVisual("TopEdge", visualRoot, platformSprite, new Vector2(0f, size.y * 0.5f - 0.25f), new Vector2(size.x, 0.5f), new Color(0.96f, 0.89f, 0.73f, 1f), 12);
+        }
+    }
+
+    private static void CreateTiledVisual(string objectName, Transform parent, Sprite sprite, Vector2 localPosition, Vector2 size, Color color, int sortingOrder)
+    {
+        GameObject visual = new GameObject(objectName);
+        visual.transform.SetParent(parent, false);
+        visual.transform.localPosition = localPosition;
+
+        SpriteRenderer spriteRenderer = visual.AddComponent<SpriteRenderer>();
+        spriteRenderer.sprite = sprite;
+        spriteRenderer.drawMode = SpriteDrawMode.Tiled;
+        spriteRenderer.size = size;
+        spriteRenderer.color = color;
+        spriteRenderer.sortingOrder = sortingOrder;
     }
 
     private static GameObject CreateBlock(string objectName, Transform parent, Vector2 position, Vector2 size, Color color, bool addCollider, int sortingOrder)
@@ -195,7 +242,9 @@ public static class StageBlockoutBuilder
 
     private static void CreateMarker(string objectName, Transform parent, Vector2 position, LevelBlockoutMarker.MarkerType markerType, string note)
     {
-        GameObject marker = CreateBlock(objectName, parent, position, new Vector2(0.45f, 0.45f), GetMarkerColor(markerType), false, 5);
+        GameObject marker = CreateGroup(objectName, parent);
+        marker.transform.position = position;
+
         LevelBlockoutMarker levelBlockoutMarker = marker.AddComponent<LevelBlockoutMarker>();
         levelBlockoutMarker.markerType = markerType;
         levelBlockoutMarker.note = note;
@@ -236,6 +285,53 @@ public static class StageBlockoutBuilder
         }
 
         return blockSprite;
+    }
+
+    private static Sprite GetWallTileSprite()
+    {
+        if (wallTileSprite == null)
+        {
+            ConfigureTileSpriteImporter(WallTileSpritePath);
+            wallTileSprite = AssetDatabase.LoadAssetAtPath<Sprite>(WallTileSpritePath);
+        }
+
+        return wallTileSprite;
+    }
+
+    private static Sprite GetPlatformTileSprite()
+    {
+        if (platformTileSprite == null)
+        {
+            ConfigureTileSpriteImporter(PlatformTileSpritePath);
+            platformTileSprite = AssetDatabase.LoadAssetAtPath<Sprite>(PlatformTileSpritePath);
+        }
+
+        return platformTileSprite;
+    }
+
+    private static void ConfigureTileSpriteImporter(string spritePath)
+    {
+        TextureImporter importer = AssetImporter.GetAtPath(spritePath) as TextureImporter;
+
+        if (importer == null)
+        {
+            return;
+        }
+
+        importer.textureType = TextureImporterType.Sprite;
+        importer.spriteImportMode = SpriteImportMode.Single;
+        importer.spritePixelsPerUnit = 32;
+        importer.filterMode = FilterMode.Point;
+        importer.textureCompression = TextureImporterCompression.Uncompressed;
+        importer.mipmapEnabled = false;
+        importer.alphaIsTransparency = true;
+
+        TextureImporterSettings importerSettings = new TextureImporterSettings();
+        importer.ReadTextureSettings(importerSettings);
+        importerSettings.spriteMeshType = SpriteMeshType.FullRect;
+        importer.SetTextureSettings(importerSettings);
+
+        importer.SaveAndReimport();
     }
 
     private static void ConfigureBlockSpriteImporter()

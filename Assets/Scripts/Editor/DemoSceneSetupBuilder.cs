@@ -4,6 +4,7 @@
 // - ExperiencePickupPrefabPath: Local prefab used by enemy demo drops.
 // - Layer names: Existing Unity layers assigned to generated gameplay objects.
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using UnityEditor;
@@ -20,7 +21,6 @@ public static class DemoSceneSetupBuilder
     private const string GeneratedMaidSpriteSheetPath = "Assets/Art/Generated/Characters/maid_heroine_spritesheet.png";
     private const string GeneratedMaidAnimatorPath = "Assets/Art/Generated/Characters/MaidPlayerAnimator.controller";
     private const string MihoPrefabPath = "Assets/Art/ThirdParty/FW_MIHO/prefabs/Miho.prefab";
-    private const string ImportedBackdropPath = "Assets/Art/ThirdParty/Free 2D Cartoon Parallax Background/FullBG/3_Graveyard.png";
     private const string FallbackEnemySpriteAssetPath = "Assets/Art/Enemy/Little Evil/basic_enemy_placeholder.png";
 
     private static readonly string[] BasicEnemySpriteCandidatePaths =
@@ -38,8 +38,6 @@ public static class DemoSceneSetupBuilder
     };
 
     private static Sprite blockSprite;
-    private static Sprite enemySprite;
-    private static Sprite bossSprite;
 
     [MenuItem("Tools/Demo Scene/Build Playable Three Stage Demo")]
     public static void BuildPlayableThreeStageDemo()
@@ -48,7 +46,6 @@ public static class DemoSceneSetupBuilder
         CleanGeneratedObjects();
         StageBlockoutBuilder.RebuildThreeStageDungeonDemoForAutomation();
         AssignGeneratedStageLayers();
-        CreateImportedBackdrop();
 
         GameObject experiencePickupPrefab = CreateExperiencePickupPrefab();
         Player player = CreatePlayer();
@@ -115,6 +112,7 @@ public static class DemoSceneSetupBuilder
     {
         RemoveObject("StageBlockout");
         RemoveObject("DemoRuntime");
+        RemoveObject("ImportedGraveyardBackdrop");
         RemoveObject("Player");
         RemoveObject("Main Camera");
         RemoveObject("Directional Light");
@@ -144,12 +142,30 @@ public static class DemoSceneSetupBuilder
 
     private static void RemoveObject(string objectName)
     {
-        GameObject existingObject = GameObject.Find(objectName);
+        List<GameObject> matchingObjects = new List<GameObject>();
 
-        while (existingObject != null)
+        foreach (GameObject rootObject in SceneManager.GetActiveScene().GetRootGameObjects())
         {
-            UnityEngine.Object.DestroyImmediate(existingObject);
-            existingObject = GameObject.Find(objectName);
+            CollectObjectsByName(rootObject.transform, objectName, matchingObjects);
+        }
+
+        foreach (GameObject matchingObject in matchingObjects)
+        {
+            UnityEngine.Object.DestroyImmediate(matchingObject);
+        }
+    }
+
+    private static void CollectObjectsByName(Transform currentTransform, string objectName, List<GameObject> matchingObjects)
+    {
+        if (currentTransform.name == objectName)
+        {
+            matchingObjects.Add(currentTransform.gameObject);
+            return;
+        }
+
+        for (int childIndex = 0; childIndex < currentTransform.childCount; childIndex++)
+        {
+            CollectObjectsByName(currentTransform.GetChild(childIndex), objectName, matchingObjects);
         }
     }
 
@@ -168,28 +184,6 @@ public static class DemoSceneSetupBuilder
         {
             collider.gameObject.layer = groundLayer;
         }
-    }
-
-    private static void CreateImportedBackdrop()
-    {
-        Sprite backdropSprite = LoadFirstSprite(ImportedBackdropPath);
-
-        if (backdropSprite == null)
-        {
-            Debug.LogWarning("DemoSceneSetupBuilder: Imported parallax backdrop was not found. Keeping generated blockout background.");
-            return;
-        }
-
-        GameObject backdropObject = new GameObject("ImportedGraveyardBackdrop");
-        backdropObject.transform.position = new Vector3(18f, 0.1f, 0f);
-
-        SpriteRenderer backdropRenderer = backdropObject.AddComponent<SpriteRenderer>();
-        backdropRenderer.sprite = backdropSprite;
-        backdropRenderer.sortingOrder = -45;
-        backdropRenderer.color = new Color(0.72f, 0.76f, 0.86f, 1f);
-
-        Vector2 spriteSize = backdropSprite.bounds.size;
-        backdropObject.transform.localScale = new Vector3(112f / spriteSize.x, 13f / spriteSize.y, 1f);
     }
 
     private static GameObject CreateExperiencePickupPrefab()
@@ -433,7 +427,7 @@ public static class DemoSceneSetupBuilder
 
         Camera camera = cameraObject.AddComponent<Camera>();
         camera.clearFlags = CameraClearFlags.SolidColor;
-        camera.backgroundColor = new Color(0.05f, 0.06f, 0.09f, 1f);
+        camera.backgroundColor = new Color(0.24f, 0.29f, 0.36f, 1f);
         camera.orthographic = true;
         camera.orthographicSize = 5.5f;
 
@@ -464,7 +458,7 @@ public static class DemoSceneSetupBuilder
         collider.direction = CapsuleDirection2D.Vertical;
         collider.size = new Vector2(0.9f, 1.0f);
 
-        CreateEnemyVisual(enemyObject.transform, objectName == "DemoBoss");
+        CreateEnemyVisual(enemyObject.transform, objectName);
 
         EnemyHealth enemyHealth = enemyObject.AddComponent<EnemyHealth>();
         enemyHealth.maxHealth = maxHealth;
@@ -500,14 +494,16 @@ public static class DemoSceneSetupBuilder
         return enemyHealth;
     }
 
-    private static void CreateEnemyVisual(Transform parent, bool isBoss)
+    private static void CreateEnemyVisual(Transform parent, string enemyObjectName)
     {
+        bool isBoss = enemyObjectName == "DemoBoss";
         GameObject visual = new GameObject("EnemyVisual");
         visual.transform.SetParent(parent, false);
-        visual.transform.localScale = isBoss ? new Vector3(1.25f, 1.25f, 1f) : Vector3.one;
+        visual.transform.localScale = GetEnemyVisualScale(enemyObjectName);
+        visual.transform.localPosition = GetEnemyVisualOffset(enemyObjectName);
 
         SpriteRenderer renderer = visual.AddComponent<SpriteRenderer>();
-        renderer.sprite = GetEnemySprite(isBoss);
+        renderer.sprite = GetEnemySprite(enemyObjectName);
         renderer.color = Color.white;
         renderer.sortingOrder = isBoss ? 23 : 22;
 
@@ -518,6 +514,31 @@ public static class DemoSceneSetupBuilder
             renderer.size = isBoss ? new Vector2(1.2f, 1.4f) : new Vector2(0.8f, 0.8f);
             renderer.color = isBoss ? new Color(0.55f, 0.04f, 0.08f, 1f) : new Color(0.48f, 0.18f, 0.72f, 1f);
         }
+    }
+
+    private static Vector3 GetEnemyVisualScale(string enemyObjectName)
+    {
+        if (enemyObjectName == "DemoBoss")
+        {
+            return new Vector3(1.55f, 1.55f, 1f);
+        }
+
+        if (enemyObjectName.StartsWith("MidEnemy", StringComparison.Ordinal))
+        {
+            return new Vector3(1.25f, 1.25f, 1f);
+        }
+
+        return new Vector3(1.15f, 1.15f, 1f);
+    }
+
+    private static Vector3 GetEnemyVisualOffset(string enemyObjectName)
+    {
+        if (enemyObjectName == "DemoBoss")
+        {
+            return new Vector3(0f, -0.25f, 0f);
+        }
+
+        return new Vector3(0f, -0.18f, 0f);
     }
 
     private static Transform CreatePatrolPoint(string objectName, Transform parent, Vector2 position)
@@ -648,29 +669,36 @@ public static class DemoSceneSetupBuilder
         importer.SaveAndReimport();
     }
 
-    private static Sprite GetEnemySprite(bool isBoss)
+    private static Sprite GetEnemySprite(string enemyObjectName)
     {
-        if (isBoss)
+        if (enemyObjectName == "DemoBoss")
         {
-            if (bossSprite == null)
-            {
-                bossSprite = LoadFirstExistingSprite(BossSpriteCandidatePaths);
-            }
-
-            return bossSprite;
+            return LoadFirstExistingSprite(BossSpriteCandidatePaths);
         }
 
-        if (enemySprite == null)
+        if (enemyObjectName == "EarlyEnemy_01")
         {
-            enemySprite = LoadFirstExistingSprite(BasicEnemySpriteCandidatePaths);
-
-            if (enemySprite == null)
-            {
-                enemySprite = LoadFirstSprite(FallbackEnemySpriteAssetPath);
-            }
+            return LoadFirstSprite(BasicEnemySpriteCandidatePaths[0])
+                ?? LoadFirstExistingSprite(BasicEnemySpriteCandidatePaths)
+                ?? LoadFirstSprite(FallbackEnemySpriteAssetPath);
         }
 
-        return enemySprite;
+        if (enemyObjectName == "MidEnemy_01")
+        {
+            return LoadFirstSprite(BasicEnemySpriteCandidatePaths[1])
+                ?? LoadFirstExistingSprite(BasicEnemySpriteCandidatePaths)
+                ?? LoadFirstSprite(FallbackEnemySpriteAssetPath);
+        }
+
+        if (enemyObjectName == "MidEnemy_02")
+        {
+            return LoadFirstSprite(BasicEnemySpriteCandidatePaths[2])
+                ?? LoadFirstExistingSprite(BasicEnemySpriteCandidatePaths)
+                ?? LoadFirstSprite(FallbackEnemySpriteAssetPath);
+        }
+
+        return LoadFirstExistingSprite(BasicEnemySpriteCandidatePaths)
+            ?? LoadFirstSprite(FallbackEnemySpriteAssetPath);
     }
 
     private static Sprite LoadFirstExistingSprite(string[] assetPaths)
