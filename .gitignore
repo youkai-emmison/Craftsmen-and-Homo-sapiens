@@ -32,3 +32,15 @@ Thumbs.db
 *.zip
 *.rar
 *.7z
+
+# Unity Asset Store raw assets kept local for the public repository
+/Assets/Bringer Of Death/
+/Assets/Bringer Of Death.meta
+/Assets/Enemy Galore 1 - Pixel Art/
+/Assets/Enemy Galore 1 - Pixel Art.meta
+/Assets/FW_MIHO/
+/Assets/FW_MIHO.meta
+/Assets/Free 2D Cartoon Parallax Background/
+/Assets/Free 2D Cartoon Parallax Background.meta
+/Assets/Skyden_Games/
+/Assets/Skyden_Games.meta

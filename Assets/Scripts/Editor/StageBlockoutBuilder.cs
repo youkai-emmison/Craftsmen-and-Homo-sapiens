@@ -1,7 +1,7 @@
 // Script purpose: Builds a dark three-stage dungeon greybox in the open scene.
 // Key variables:
 // - StageBlockoutName: Root object rebuilt by this Editor tool.
-// - BlockSpriteAssetPath: Project sprite used by SpriteRenderer blocks.
+// - BlockSpriteAssetPath: Visible project sprite used by SpriteRenderer blocks.
 // - Room positions: Fixed demo route positions for Early, Mid, and Boss rooms.
 using UnityEditor;
 using UnityEditor.SceneManagement;
@@ -11,7 +11,7 @@ using UnityEngine.SceneManagement;
 public static class StageBlockoutBuilder
 {
     private const string StageBlockoutName = "StageBlockout";
-    private const string BlockSpriteAssetPath = "Assets/Art/Tiles/blank.png";
+    private const string BlockSpriteAssetPath = "Assets/Art/Tiles/wall_1.png";
     private const string BuiltInBlockSpritePath = "UI/Skin/UISprite.psd";
 
     private static Sprite blockSprite;

@@ -5,6 +5,7 @@
 // - Layer names: Existing Unity layers assigned to generated gameplay objects.
 using System;
 using System.IO;
+using System.Linq;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
@@ -14,11 +15,28 @@ public static class DemoSceneSetupBuilder
 {
     private const string ScenePath = "Assets/Scenes/SampleScene.unity";
     private const string ExperiencePickupPrefabPath = "Assets/Prefabs/Demo/ExperiencePickup.prefab";
-    private const string BlockSpriteAssetPath = "Assets/Art/Tiles/blank.png";
-    private const string EnemySpriteAssetPath = "Assets/Art/Enemy/Little Evil/basic_enemy_placeholder.png";
+    private const string BlockSpriteAssetPath = "Assets/Art/Tiles/wall_1.png";
+    private const string MihoPrefabPath = "Assets/FW_MIHO/prefabs/Miho.prefab";
+    private const string ImportedBackdropPath = "Assets/Free 2D Cartoon Parallax Background/FullBG/3_Graveyard.png";
+    private const string FallbackEnemySpriteAssetPath = "Assets/Art/Enemy/Little Evil/basic_enemy_placeholder.png";
+
+    private static readonly string[] BasicEnemySpriteCandidatePaths =
+    {
+        "Assets/Enemy Galore 1 - Pixel Art/Sprites/Rat/Rat_Idle.png",
+        "Assets/Enemy Galore 1 - Pixel Art/Sprites/Spiked Slime/Slime_Spiked_Idle.png",
+        "Assets/Enemy Galore 1 - Pixel Art/Sprites/Crab/Crab_Idle.png"
+    };
+
+    private static readonly string[] BossSpriteCandidatePaths =
+    {
+        "Assets/Bringer Of Death/Sprite Sheet/Bringer-of-Death-SpritSheet.png",
+        "Assets/Enemy Galore 1 - Pixel Art/Sprites/Reinforced Golem/Golem_Armor_Idle.png",
+        "Assets/Enemy Galore 1 - Pixel Art/Sprites/Golem/Golem_IdleA.png"
+    };
 
     private static Sprite blockSprite;
     private static Sprite enemySprite;
+    private static Sprite bossSprite;
 
     [MenuItem("Tools/Demo Scene/Build Playable Three Stage Demo")]
     public static void BuildPlayableThreeStageDemo()
@@ -27,6 +45,7 @@ public static class DemoSceneSetupBuilder
         CleanGeneratedObjects();
         StageBlockoutBuilder.RebuildThreeStageDungeonDemoForAutomation();
         AssignGeneratedStageLayers();
+        CreateImportedBackdrop();
 
         GameObject experiencePickupPrefab = CreateExperiencePickupPrefab();
         Player player = CreatePlayer();
@@ -148,6 +167,28 @@ public static class DemoSceneSetupBuilder
         }
     }
 
+    private static void CreateImportedBackdrop()
+    {
+        Sprite backdropSprite = LoadFirstSprite(ImportedBackdropPath);
+
+        if (backdropSprite == null)
+        {
+            Debug.LogWarning("DemoSceneSetupBuilder: Imported parallax backdrop was not found. Keeping generated blockout background.");
+            return;
+        }
+
+        GameObject backdropObject = new GameObject("ImportedGraveyardBackdrop");
+        backdropObject.transform.position = new Vector3(18f, 0.1f, 0f);
+
+        SpriteRenderer backdropRenderer = backdropObject.AddComponent<SpriteRenderer>();
+        backdropRenderer.sprite = backdropSprite;
+        backdropRenderer.sortingOrder = -45;
+        backdropRenderer.color = new Color(0.72f, 0.76f, 0.86f, 1f);
+
+        Vector2 spriteSize = backdropSprite.bounds.size;
+        backdropObject.transform.localScale = new Vector3(112f / spriteSize.x, 13f / spriteSize.y, 1f);
+    }
+
     private static GameObject CreateExperiencePickupPrefab()
     {
         EnsureFolder("Assets/Prefabs");
@@ -193,7 +234,8 @@ public static class DemoSceneSetupBuilder
         capsuleCollider.size = new Vector2(0.75f, 1.25f);
         capsuleCollider.offset = new Vector2(0f, -0.02f);
 
-        SpriteRenderer bodyRenderer = CreatePlayerVisual(playerObject.transform);
+        Transform visualRootTransform;
+        SpriteRenderer bodyRenderer = CreatePlayerVisual(playerObject.transform, out visualRootTransform);
         Player player = playerObject.AddComponent<Player>();
         AssignSerializedReference(player, "spriteRenderer", bodyRenderer);
         AssignLayerMask(player, "groundLayer", RequireLayer("Ground"));
@@ -215,6 +257,7 @@ public static class DemoSceneSetupBuilder
 
         PlayerAttackFacingController attackFacingController = playerObject.AddComponent<PlayerAttackFacingController>();
         attackFacingController.attackPoint = attackPoint;
+        attackFacingController.visualRoot = visualRootTransform;
         attackFacingController.horizontalOffset = 0.9f;
 
         AttackSlashVisual attackSlashVisual = CreateAttackSlash(playerObject.transform);
@@ -228,10 +271,18 @@ public static class DemoSceneSetupBuilder
         return player;
     }
 
-    private static SpriteRenderer CreatePlayerVisual(Transform parent)
+    private static SpriteRenderer CreatePlayerVisual(Transform parent, out Transform visualRootTransform)
     {
+        SpriteRenderer importedRenderer = CreateImportedMihoVisual(parent, out visualRootTransform);
+
+        if (importedRenderer != null)
+        {
+            return importedRenderer;
+        }
+
         GameObject visualRoot = new GameObject("PlayerVisual");
         visualRoot.transform.SetParent(parent, false);
+        visualRootTransform = visualRoot.transform;
 
         SpriteRenderer legs = CreateVisualBlock("Legs", visualRoot.transform, new Vector3(0f, -0.38f, 0f), new Vector2(0.44f, 0.36f), new Color(0.08f, 0.08f, 0.12f, 1f), 24);
         SpriteRenderer body = CreateVisualBlock("Coat", visualRoot.transform, new Vector3(0f, -0.02f, 0f), new Vector2(0.58f, 0.56f), new Color(0.16f, 0.18f, 0.32f, 1f), 25);
@@ -240,6 +291,57 @@ public static class DemoSceneSetupBuilder
         CreateVisualBlock("EyeLeft", visualRoot.transform, new Vector3(-0.12f, 0.47f, 0f), new Vector2(0.07f, 0.09f), new Color(0.85f, 0.1f, 0.14f, 1f), 28);
         CreateVisualBlock("EyeRight", visualRoot.transform, new Vector3(0.12f, 0.47f, 0f), new Vector2(0.07f, 0.09f), new Color(0.85f, 0.1f, 0.14f, 1f), 28);
         return body != null ? body : legs;
+    }
+
+    private static SpriteRenderer CreateImportedMihoVisual(Transform parent, out Transform visualRootTransform)
+    {
+        visualRootTransform = null;
+        GameObject mihoPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(MihoPrefabPath);
+
+        if (mihoPrefab == null)
+        {
+            return null;
+        }
+
+        GameObject visualRoot = PrefabUtility.InstantiatePrefab(mihoPrefab) as GameObject;
+
+        if (visualRoot == null)
+        {
+            return null;
+        }
+
+        visualRoot.name = "PlayerVisual_MihoImported";
+        visualRoot.transform.SetParent(parent, false);
+        visualRoot.transform.localPosition = new Vector3(0f, -0.67f, 0f);
+        visualRoot.transform.localRotation = Quaternion.identity;
+        visualRoot.transform.localScale = new Vector3(0.52f, 0.52f, 1f);
+        visualRootTransform = visualRoot.transform;
+
+        RemoveImportedGameplayComponents(visualRoot);
+        SetImportedVisualSorting(visualRoot, 35);
+
+        SpriteRenderer renderer = visualRoot.GetComponentsInChildren<SpriteRenderer>(true).FirstOrDefault();
+
+        if (renderer == null)
+        {
+            Debug.LogWarning("DemoSceneSetupBuilder: Miho prefab was imported but no SpriteRenderer was found.");
+            return null;
+        }
+
+        return CreateFacingProxyRenderer(parent);
+    }
+
+    private static SpriteRenderer CreateFacingProxyRenderer(Transform parent)
+    {
+        SpriteRenderer proxyRenderer = CreateVisualBlock(
+            "FacingProxyRenderer",
+            parent,
+            Vector3.zero,
+            new Vector2(0.1f, 0.1f),
+            new Color(1f, 1f, 1f, 0f),
+            -100);
+
+        return proxyRenderer;
     }
 
     private static Transform CreateAttackPoint(Transform parent)
@@ -351,8 +453,8 @@ public static class DemoSceneSetupBuilder
         visual.transform.localScale = isBoss ? new Vector3(1.25f, 1.25f, 1f) : Vector3.one;
 
         SpriteRenderer renderer = visual.AddComponent<SpriteRenderer>();
-        renderer.sprite = GetEnemySprite();
-        renderer.color = isBoss ? new Color(0.55f, 0.04f, 0.08f, 1f) : new Color(0.48f, 0.18f, 0.72f, 1f);
+        renderer.sprite = GetEnemySprite(isBoss);
+        renderer.color = Color.white;
         renderer.sortingOrder = isBoss ? 23 : 22;
 
         if (renderer.sprite == null)
@@ -360,6 +462,7 @@ public static class DemoSceneSetupBuilder
             renderer.sprite = GetBlockSprite();
             renderer.drawMode = SpriteDrawMode.Sliced;
             renderer.size = isBoss ? new Vector2(1.2f, 1.4f) : new Vector2(0.8f, 0.8f);
+            renderer.color = isBoss ? new Color(0.55f, 0.04f, 0.08f, 1f) : new Color(0.48f, 0.18f, 0.72f, 1f);
         }
     }
 
@@ -465,15 +568,85 @@ public static class DemoSceneSetupBuilder
         return blockSprite;
     }
 
-    private static Sprite GetEnemySprite()
+    private static Sprite GetEnemySprite(bool isBoss)
     {
-        if (enemySprite != null)
+        if (isBoss)
         {
-            return enemySprite;
+            if (bossSprite == null)
+            {
+                bossSprite = LoadFirstExistingSprite(BossSpriteCandidatePaths);
+            }
+
+            return bossSprite;
         }
 
-        enemySprite = AssetDatabase.LoadAssetAtPath<Sprite>(EnemySpriteAssetPath);
+        if (enemySprite == null)
+        {
+            enemySprite = LoadFirstExistingSprite(BasicEnemySpriteCandidatePaths);
+
+            if (enemySprite == null)
+            {
+                enemySprite = LoadFirstSprite(FallbackEnemySpriteAssetPath);
+            }
+        }
+
         return enemySprite;
+    }
+
+    private static Sprite LoadFirstExistingSprite(string[] assetPaths)
+    {
+        foreach (string assetPath in assetPaths)
+        {
+            Sprite sprite = LoadFirstSprite(assetPath);
+
+            if (sprite != null)
+            {
+                return sprite;
+            }
+        }
+
+        return null;
+    }
+
+    private static Sprite LoadFirstSprite(string assetPath)
+    {
+        Sprite sprite = AssetDatabase.LoadAssetAtPath<Sprite>(assetPath);
+
+        if (sprite != null)
+        {
+            return sprite;
+        }
+
+        return AssetDatabase.LoadAllAssetsAtPath(assetPath).OfType<Sprite>().FirstOrDefault();
+    }
+
+    private static void RemoveImportedGameplayComponents(GameObject visualRoot)
+    {
+        foreach (Rigidbody2D rigidbody in visualRoot.GetComponentsInChildren<Rigidbody2D>(true))
+        {
+            UnityEngine.Object.DestroyImmediate(rigidbody);
+        }
+
+        foreach (Collider2D collider in visualRoot.GetComponentsInChildren<Collider2D>(true))
+        {
+            UnityEngine.Object.DestroyImmediate(collider);
+        }
+
+        foreach (MonoBehaviour behaviour in visualRoot.GetComponentsInChildren<MonoBehaviour>(true))
+        {
+            UnityEngine.Object.DestroyImmediate(behaviour);
+        }
+    }
+
+    private static void SetImportedVisualSorting(GameObject visualRoot, int baseSortingOrder)
+    {
+        SpriteRenderer[] renderers = visualRoot.GetComponentsInChildren<SpriteRenderer>(true);
+
+        for (int rendererIndex = 0; rendererIndex < renderers.Length; rendererIndex++)
+        {
+            renderers[rendererIndex].sortingOrder = baseSortingOrder + rendererIndex;
+            renderers[rendererIndex].color = Color.white;
+        }
     }
 
     private static void AssignSerializedReference(UnityEngine.Object target, string propertyName, UnityEngine.Object reference)
