@@ -10,7 +10,8 @@ The goal is:
 2. Press `Esc` to close the backpack when it is open.
 3. Show a fixed 8-slot inventory panel.
 4. Display several test items from `InventoryManager`.
-5. Keep inventory data separate from UI rendering.
+5. Click an item slot to show item details.
+6. Keep inventory data separate from UI rendering.
 
 ## Scene Setup
 
@@ -23,6 +24,7 @@ The scene now contains:
 - `InventorySystem`
 - `InventoryCanvas`
 - `InventoryPanel`
+- `ItemDetailPanel`
 - `InventoryHint`
 - `EventSystem`
 
@@ -34,6 +36,7 @@ The scene now contains:
 `InventoryCanvas` owns the visible UI objects:
 
 - `InventoryPanel`
+- `ItemDetailPanel`
 - `Slot_01` to `Slot_08`
 
 ## How To Test
@@ -46,6 +49,11 @@ The scene now contains:
 6. Press `Esc`.
 7. The backpack panel should close.
 8. Press `I` twice to confirm toggle open and close also works.
+9. Open the backpack again.
+10. Click `Small Potion`.
+11. The detail panel should show its name, quantity, and description.
+12. Click an empty slot.
+13. The detail panel should show `No item selected`.
 
 ## Inspector Variables
 
@@ -72,6 +80,7 @@ The scene now contains:
 - `canvasGroup`: Shows or hides the panel without destroying objects.
 - `slotViews`: Fixed slot views used by the current 8-slot backpack.
 - `emptyMessageText`: Message shown only when the inventory has no items.
+- `detailPanel`: Detail panel updated when a slot is clicked.
 - `startsVisible`: Whether the backpack starts open.
 
 `InventorySlotView`
@@ -82,6 +91,12 @@ The scene now contains:
 - `quantityText`: Text used for stack count.
 - `emptyColor`: Slot color when empty.
 - `filledColor`: Slot color when an item exists.
+
+`InventoryItemDetailPanel`
+
+- `itemNameText`: Shows the selected item name.
+- `quantityText`: Shows the selected item quantity.
+- `descriptionText`: Shows the selected item description.
 
 ## Script Responsibilities
 
@@ -101,13 +116,21 @@ The scene now contains:
 
 - Shows items from `InventoryManager`.
 - Controls panel visibility through `CanvasGroup`.
+- Receives slot clicks and updates `InventoryItemDetailPanel`.
 - Does not read input.
 
 `InventorySlotView`
 
 - Shows one item slot.
 - Displays a color swatch when no icon is assigned.
+- Sends its current item to `InventoryPanel` when clicked.
 - Does not modify inventory data.
+
+`InventoryItemDetailPanel`
+
+- Shows the selected item name, quantity, and description.
+- Shows `No item selected` when an empty slot is clicked.
+- Does not modify inventory data or apply item effects.
 
 `InventoryInputController`
 
@@ -129,7 +152,8 @@ This branch does not implement:
 - Enemy drops.
 - Equipment stats.
 - Drag and drop.
-- Item tooltips.
+- Hover tooltips.
+- Use item buttons.
 - Save/load.
 - Shop.
 - Crafting.

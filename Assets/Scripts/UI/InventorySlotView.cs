@@ -1,11 +1,14 @@
+using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 /// <summary>
 /// InventorySlotView renders one backpack slot.
 /// It receives item data from InventoryPanel and never changes inventory contents directly.
+/// Click handling reports the current item back to InventoryPanel for detail display.
 /// </summary>
-public class InventorySlotView : MonoBehaviour
+public class InventorySlotView : MonoBehaviour, IPointerClickHandler
 {
     [Header("References")]
     [SerializeField] private Image slotBackgroundImage; // Slot background image.
@@ -19,9 +22,13 @@ public class InventorySlotView : MonoBehaviour
 
     private const string EmptySlotText = "Empty";
 
+    private InventoryItem currentItem;                 // Runtime item shown by this slot.
+    private Action<InventoryItem> itemClickedCallback; // Callback owned by InventoryPanel.
+
     private void Awake()
     {
         ValidateReferences();
+        DisableChildRaycasts();
     }
 
     /// <summary>
@@ -35,6 +42,7 @@ public class InventorySlotView : MonoBehaviour
             return;
         }
 
+        currentItem = item;
         SetBackground(filledColor);
         SetIcon(item);
         SetName(item.displayName);
@@ -46,6 +54,7 @@ public class InventorySlotView : MonoBehaviour
     /// </summary>
     public void SetEmpty()
     {
+        currentItem = null;
         SetBackground(emptyColor);
 
         if (iconImage != null)
@@ -53,6 +62,22 @@ public class InventorySlotView : MonoBehaviour
 
         SetName(EmptySlotText);
         SetQuantity(0);
+    }
+
+    /// <summary>
+    /// Stores the callback used when this slot is clicked.
+    /// </summary>
+    public void SetClickCallback(Action<InventoryItem> callback)
+    {
+        itemClickedCallback = callback;
+    }
+
+    /// <summary>
+    /// Sends the currently displayed item to InventoryPanel. Null means the slot is empty.
+    /// </summary>
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        itemClickedCallback?.Invoke(currentItem);
     }
 
     private void SetBackground(Color targetColor)
@@ -98,5 +123,18 @@ public class InventorySlotView : MonoBehaviour
 
         if (quantityText == null)
             Debug.LogError("InventorySlotView: quantityText is not assigned.");
+    }
+
+    private void DisableChildRaycasts()
+    {
+        // The slot background receives clicks; child visuals should not steal pointer events.
+        if (iconImage != null)
+            iconImage.raycastTarget = false;
+
+        if (itemNameText != null)
+            itemNameText.raycastTarget = false;
+
+        if (quantityText != null)
+            quantityText.raycastTarget = false;
     }
 }

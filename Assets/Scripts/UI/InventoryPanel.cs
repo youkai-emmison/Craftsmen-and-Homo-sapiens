@@ -13,6 +13,7 @@ public class InventoryPanel : MonoBehaviour
     [SerializeField] private CanvasGroup canvasGroup;           // Controls panel visibility without destroying objects.
     [SerializeField] private InventorySlotView[] slotViews;     // Fixed visible slot views in the panel.
     [SerializeField] private Text emptyMessageText;             // Message shown when no items exist.
+    [SerializeField] private InventoryItemDetailPanel detailPanel; // Shows details for the selected item.
 
     [Header("State")]
     [SerializeField] private bool startsVisible;                // Whether the backpack is open at scene start.
@@ -33,8 +34,13 @@ public class InventoryPanel : MonoBehaviour
 
     private void Start()
     {
+        InitializeSlotCallbacks();
+
         if (inventoryManager != null)
             Refresh(inventoryManager.Items);
+
+        if (detailPanel != null)
+            detailPanel.Clear();
     }
 
     private void OnDisable()
@@ -109,5 +115,28 @@ public class InventoryPanel : MonoBehaviour
 
         if (slotViews == null || slotViews.Length == 0)
             Debug.LogError("InventoryPanel: slotViews is empty. Assign slot views in the Inspector.");
+
+        if (detailPanel == null)
+            Debug.LogError("InventoryPanel: detailPanel is not assigned.");
+    }
+
+    private void InitializeSlotCallbacks()
+    {
+        if (slotViews == null)
+            return;
+
+        foreach (InventorySlotView slotView in slotViews)
+        {
+            if (slotView != null)
+                slotView.SetClickCallback(ShowItemDetails);
+        }
+    }
+
+    private void ShowItemDetails(InventoryItem item)
+    {
+        if (detailPanel == null)
+            return;
+
+        detailPanel.ShowItem(item);
     }
 }
