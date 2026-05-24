@@ -1,127 +1,77 @@
 # Gameplay Direction
 
-## 项目一句话定位
+## One-Line Positioning
 
-《能工智人 / Craftsmen and Homo sapiens》当前是一款日系动漫美少女风格的横版动作 Roguelite 原型：玩家操控原创女主角，在手工设计的小房间中移动、跳跃、近战、学习节奏并推进下一房间。
+Craftsmen and Homo sapiens is currently a dark dungeon side-scrolling action Roguelite prototype focused on a short, readable demo route: move, jump, attack, defeat abnormal enemies, gain a visible power bump, and clear a final demo boss.
 
-当前阶段只做小闭环，不做完整游戏。
+This is still a prototype, not a complete Roguelike.
 
-## 核心玩法循环
+## Current Demo Direction
 
-1. 进入一个小房间。
-2. 观察地形、训练靶或敌人的位置。
-3. 用左右移动、跳跃和基础近战处理当前挑战。
-4. 击败房间敌人后解锁出口。
-5. 接触出口，获得进入下一房间的反馈。
-6. 失败后复盘移动、攻击距离和敌人攻击节奏。
+The current visual and pacing direction is:
 
-核心体验不是堆数值，也不是照搬成熟商业 Roguelite，而是先把角色手感、攻击反馈、敌人节奏、房间推进和清爽二次元视觉立住。
+- Dark dungeon / abnormal monster / low-saturation side-scrolling Roguelite.
+- Compact rooms that feel like a controlled facility or stage, not a random maze.
+- Strong readable silhouettes, clear enemy states, and fast demo feedback.
+- A compressed three-stage route: Early Room, Mid Room, Boss Room.
 
-## 装备武器流
+Project Moon works can be used only as a high-level mood reference: abnormal monsters, oppressive facility atmosphere, archival feeling, and staged combat pressure. Do not copy any Project Moon characters, setting terms, UI, icons, text, music, numbers, story, or monster designs.
 
-装备武器流负责提供横版动作的即时手感。
+## Core Demo Loop
 
-- 武器决定攻击距离、攻击节奏、硬直和命中反馈。
-- 第二、三阶段只需要一套基础近战验证。
-- 后续可以扩展为轻武器、重武器、远程工具、特殊武器。
-- 武器差异优先体现在操作节奏和风险，不是单纯伤害数字。
-- 武器数据应独立于 UI 和角色移动逻辑，避免塞进 `PlayerMovement`。
+1. Enter Early Room.
+2. Defeat one or two weak enemies.
+3. Pick up large demo experience.
+4. Level up quickly and gain a clear attack damage increase.
+5. Enter Mid Room.
+6. Defeat two or three stronger enemies faster because of the upgrade.
+7. Enter Boss Room.
+8. Defeat one simple DemoBoss.
+9. Print `Demo Complete / Boss Defeated`.
 
-早期只做一把默认近战武器，用它验证攻击输入、防连点、命中检测、敌人受击和房间清理。
+## Why This Is Not A Full Roguelike Yet
 
-## 日系动漫角色表现流
+This stage is for a competition-friendly recording path, not a full game structure.
 
-项目差异点是“原创动漫女主角 + 清爽动作反馈 + 小房间节奏”。
+The demo deliberately avoids:
 
-- 主角优先表现为日系动漫美少女方向，但当前阶段可以用简单原创占位图。
-- 视觉重点是干净、明亮、可读，不追求复杂立绘。
-- 角色、敌人、训练靶、血条、门、背景必须一眼可区分。
-- 后续正式美术可以替换为原创角色立绘、原创动作帧和原创 UI。
-- 不复制任何商业角色、素材、UI、数值或关卡。
-- 不做成人内容，不使用版权不明素材。
+- Random maps.
+- Full equipment systems.
+- Skill trees.
+- Backpack expansion.
+- Save data.
+- Formal boss systems.
+- Complex UI.
+- Long-term balance.
 
-这个方向不做机械设备系统，也不把机械合成或部署装置作为当前项目核心。
+The goal is to prove that the basic action route and progression readability work before adding more systems.
 
-## 第三阶段方向
+## Temporary Third-Party Visuals
 
-第三阶段唯一目标是第一个简单战斗房。
+Imported Unity Asset Store monster assets can be used as local visual placeholders only:
 
-本阶段新增内容：
+- Bringer Of Death can be used as a DemoBoss visual placeholder.
+- Enemy Galore 1 - Pixel Art can be used as Early Room or Mid Room enemy placeholders.
 
-- `PlayerHealth`：玩家生命值和受伤反馈。
-- `BasicEnemy`：一个会巡逻、追击、攻击的简单敌人。
-- `EnemyHealth`：敌人生命值、受击和死亡通知。
-- `RoomClearController`：判断房间敌人是否全部清理。
-- `ExitDoorController`：锁定/解锁出口门，并在玩家接触时输出反馈。
-- 轻量原创二次元占位图：女主角、小怪、背景、门、斩击特效。
+If the GitHub repository is public, raw Asset Store files should not be committed unless the team confirms that the repository is private and the license allows that workflow. Final art can replace these placeholders later with original assets.
 
-仍然不做：
+## Current Feature Scope
 
-- Boss。
-- 随机地图。
-- 机械系统。
-- 完整装备系统。
-- 技能树。
-- 背包。
-- 掉落表。
-- 正式 UI。
-- AI API。
+Allowed in this demo stage:
 
-## 为什么不能做成低配死亡细胞
+- Player movement, jump, and melee attack.
+- Attack cooldown.
+- Basic enemy patrol, chase, and attack.
+- PlayerHealth and EnemyHealth.
+- Room clear and exit door unlock.
+- Demo experience pickup and fast level-up.
+- Three-stage greybox route.
 
-项目可以参考横版动作 Roguelite 的节奏，但不能变成低配模仿。
+Not allowed in this demo stage:
 
-- 成熟商业游戏已经有完整动作、关卡、敌人、装备和数值体系，直接追赶会让小团队失焦。
-- 复制节奏容易变成“内容少、手感弱、完成度低”的版本。
-- 本项目应该先验证自己的角色气质、攻击反馈、敌人节奏和房间推进。
-- 早期只做训练房、第一战斗房和奖励房这类小范围内容。
-
-判断标准：如果某个功能不能帮助验证主角动作、武器手感、敌人节奏或房间推进，就应该暂缓。
-
-## 7 天 MVP 玩法范围
-
-目标：证明横版动作基础可玩。
-
-- Player 横版左右移动。
-- Player 单次跳跃。
-- 简单地面和平台。
-- 基础近战攻击。
-- 攻击防连点。
-- 静态训练靶受击反馈。
-- 清楚可见的血条。
-- 柔和动漫训练房背景占位。
-- 相机跟随。
-- 一个训练房。
-
-不做敌人 AI、装备掉落、随机地图、完整 UI 系统、技能树、存档、Boss。
-
-## 14 天演示版玩法范围
-
-目标：证明“横版动作 + 房间推进 + 动漫角色表现”成立。
-
-- 一个出生房。
-- 一个训练房。
-- 一个第一战斗房。
-- 一个奖励房占位。
-- 一个简单敌人，使用有限状态机。
-- 简单生命值数据。
-- 基础受击和死亡反馈。
-- 一把默认武器。
-- 少量手工摆放的关卡对象。
-- 原创动漫女主角占位图或临时原创草图。
-
-不做完整装备库、随机地图、Boss、技能树和复杂 UI。
-
-## 30 天增强版玩法范围
-
-目标：让项目从“能跑的原型”变成“有角色记忆点的演示”。
-
-- 至少两个手工战斗房。
-- 至少两种武器体验差异。
-- 一个奖励房基础选择。
-- 一个原创女主角基础动作表现。
-- 更清晰的命中、受击、死亡反馈。
-- 基础 UI 只展示必要数据。
-- 更完整的动漫训练房/战斗房占位美术。
-
-仍然不做完整随机生成、完整装备库、Boss、技能树、复杂经济系统和 AI API。
+- Boss complexity beyond chase and cooldown attack.
+- Random dungeon generation.
+- Complete Tilemap pipeline.
+- Complete equipment, backpack, shop, crafting, or skill tree.
+- AI API integration.
+- Copying any commercial or open-source game content.
