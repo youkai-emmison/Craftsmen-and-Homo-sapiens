@@ -2,7 +2,8 @@
 // Key variables:
 // - KenneyTileRoot: Imported Kenney tile folder used by this scene builder.
 // - Map root: Scene object that keeps Ground and Background map objects together.
-// - Tile unit: One Kenney tile is imported as one Unity world unit.
+// - TilePixelsPerUnit: Unity 2022.3 project import setting for the 16 px Kenney tiles.
+// - TileWorldScale: Keeps each imported tile at the existing one-unit map size.
 using System;
 using UnityEditor;
 using UnityEditor.SceneManagement;
@@ -17,7 +18,8 @@ public static class KenneyAdventureMapBuilder
     private const string KenneyTileRoot = "Assets/Art/Kenney/PixelPlatformerFoodExpansion/Tiles";
     private const string BlockSpriteAssetPath = "Assets/Art/Generated/Environment/blockout_square.png";
     private const string BuiltInBlockSpritePath = "UI/Skin/UISprite.psd";
-    private const int TilePixelsPerUnit = 16;
+    private const int TilePixelsPerUnit = 32;
+    private const float TileWorldScale = 2f;
 
     private static Sprite blockSprite;
 
@@ -121,6 +123,7 @@ public static class KenneyAdventureMapBuilder
         GameObject tileObject = new GameObject(objectName);
         tileObject.transform.SetParent(parent, false);
         tileObject.transform.position = new Vector3(position.x, position.y, 0f);
+        tileObject.transform.localScale = Vector3.one * TileWorldScale;
 
         SpriteRenderer spriteRenderer = tileObject.AddComponent<SpriteRenderer>();
         spriteRenderer.sprite = tileSprite;
@@ -134,7 +137,7 @@ public static class KenneyAdventureMapBuilder
         GameObject decoration = new GameObject(objectName);
         decoration.transform.SetParent(parent, false);
         decoration.transform.position = new Vector3(position.x, position.y, 0f);
-        decoration.transform.localScale = new Vector3(scale.x, scale.y, 1f);
+        decoration.transform.localScale = new Vector3(scale.x * TileWorldScale, scale.y * TileWorldScale, 1f);
 
         SpriteRenderer spriteRenderer = decoration.AddComponent<SpriteRenderer>();
         spriteRenderer.sprite = tileSprite;

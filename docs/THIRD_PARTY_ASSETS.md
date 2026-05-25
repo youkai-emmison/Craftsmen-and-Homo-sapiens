@@ -10,6 +10,14 @@ This file records candidate or locally imported third-party assets. Do not treat
 - Current scene setup may reference locally imported Asset Store files by their Unity package GUIDs. Teammates should import the same packages from Package Manager before testing the polished scene.
 - Local third-party art packages should live under `Assets/Art/ThirdParty/`. This folder is ignored while the repository is public.
 
+## Unity 2022.3 Meta Compatibility Rule
+
+- This project targets Unity 2022.3.53f1 / 2022.3.53f1c1 compatibility.
+- Committed TextureImporter `.meta` files for public art assets should use `serializedVersion: 12`.
+- Do not commit Unity 6 TextureImporter-only fields such as `flipGreenChannel`, `ignoreMipmapLimit`, `swizzle`, `ignorePngGamma`, `applyGammaDecoding`, `cookieLightType`, `mipmapLimitGroupName`, or `pSDRemoveMatte`.
+- Kenney 16 px tile sprites should use `spritePixelsToUnits: 32`. Scene builders can scale tile objects if one tile needs to remain one Unity world unit.
+- If Unity regenerates Kenney `.meta` files with a newer format, normalize them before committing.
+
 ## Asset Records
 
 | Asset Name | Asset Store URL | Publisher | Price | License | Status | Used In | Raw Asset Committed To Repository | License File Checked | Notes |
