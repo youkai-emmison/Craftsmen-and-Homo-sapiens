@@ -11,6 +11,7 @@ All current generated enemy sheets are original placeholder art for the demo:
 - `Assets/Art/Generated/Enemies/crystal_fox_spirit_girl_spritesheet.png`
 - `Assets/Art/Generated/Enemies/ember_bat_familiar_girl_spritesheet.png`
 - `Assets/Art/Generated/Enemies/flower_slime_nymph_spritesheet.png`
+- `Assets/Art/Generated/Enemies/cream_bun_monster_spritesheet.png`
 
 Each sheet uses:
 
