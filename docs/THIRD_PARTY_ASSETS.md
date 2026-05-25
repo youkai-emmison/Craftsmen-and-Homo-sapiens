@@ -28,6 +28,7 @@ This file records candidate or locally imported third-party assets. Do not treat
 | Free 2D Cartoon Parallax Background | Unity Asset Store package page | CPasteGame | Free | Check Unity Asset Store page and package files | Imported Locally / Used In Demo | SampleScene backdrop | No, ignored while repository is public | No package license file found locally | Local path: `Assets/Art/ThirdParty/Free 2D Cartoon Parallax Background/`. |
 | Free Casual GUI | Unity Asset Store package page | Sky Den Games | Free | Check Unity Asset Store page and package files | Imported Locally / Not Used Yet | Future UI polish candidate | No, ignored while repository is public | Not checked | Local path: `Assets/Art/ThirdParty/Skyden_Games/`. |
 | Kenney Pixel Platformer: Food Expansion | https://kenney.nl/assets/pixel-platformer-food-expansion | Kenney | Free | CC0 1.0 | Used In Demo | SampleScene bright adventure map | Yes | Yes | Local path: `Assets/Art/Kenney/PixelPlatformerFoodExpansion/`. CC0 license allows public repository use. |
+| Kenney Fantasy UI Borders | https://kenney.nl/assets/fantasy-ui-borders | Kenney | Free | CC0 1.0 | Used In Demo | Inventory panel, slots, and detail frame | Yes | Yes | Local path: `Assets/Art/Kenney/FantasyUIBorders/`. PNG files are committed; Vector files and web shortcuts were not imported. |
 
 ## Update Rule
 

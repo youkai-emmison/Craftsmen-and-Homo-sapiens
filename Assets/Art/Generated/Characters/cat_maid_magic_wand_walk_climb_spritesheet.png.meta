@@ -3,7 +3,7 @@ guid: beb0c9d14bcb5c4418b0ecd64f1141a3
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
-  serializedVersion: 13
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -20,12 +20,10 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
-    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
-  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -62,10 +60,6 @@ TextureImporter:
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
-  ignorePngGamma: 0
-  applyGammaDecoding: 0
-  swizzle: 50462976
-  cookieLightType: 0
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -140,7 +134,7 @@ TextureImporter:
       spriteID: 27b04b7461d348e20800000000000000
       internalID: 3351871188572048242
       vertices: []
-      indices: 
+      indices:
       edges: []
       weights: []
     - serializedVersion: 2
@@ -161,7 +155,7 @@ TextureImporter:
       spriteID: b2e5bba70b7bac300800000000000000
       internalID: 273232696010563115
       vertices: []
-      indices: 
+      indices:
       edges: []
       weights: []
     - serializedVersion: 2
@@ -182,7 +176,7 @@ TextureImporter:
       spriteID: 38fb4ff021d5c3d90800000000000000
       internalID: -7116710978993733757
       vertices: []
-      indices: 
+      indices:
       edges: []
       weights: []
     - serializedVersion: 2
@@ -203,7 +197,7 @@ TextureImporter:
       spriteID: 38be2e0d8757876b0800000000000000
       internalID: -5298355799840330877
       vertices: []
-      indices: 
+      indices:
       edges: []
       weights: []
     - serializedVersion: 2
@@ -224,7 +218,7 @@ TextureImporter:
       spriteID: 154ff6f3f7eea3700800000000000000
       internalID: 520990937207272529
       vertices: []
-      indices: 
+      indices:
       edges: []
       weights: []
     - serializedVersion: 2
@@ -245,7 +239,7 @@ TextureImporter:
       spriteID: 9682731a478e59cf0800000000000000
       internalID: -246035017003227031
       vertices: []
-      indices: 
+      indices:
       edges: []
       weights: []
     - serializedVersion: 2
@@ -266,7 +260,7 @@ TextureImporter:
       spriteID: c174ac80713e37f40800000000000000
       internalID: 5725169239389259548
       vertices: []
-      indices: 
+      indices:
       edges: []
       weights: []
     - serializedVersion: 2
@@ -287,7 +281,7 @@ TextureImporter:
       spriteID: 164e988ec1ec1ef20800000000000000
       internalID: 3450265413098267745
       vertices: []
-      indices: 
+      indices:
       edges: []
       weights: []
     - serializedVersion: 2
@@ -308,7 +302,7 @@ TextureImporter:
       spriteID: 3535f2c86475ae8d0800000000000000
       internalID: -2816342656455584941
       vertices: []
-      indices: 
+      indices:
       edges: []
       weights: []
     - serializedVersion: 2
@@ -329,7 +323,7 @@ TextureImporter:
       spriteID: afb265822d7c1fbd0800000000000000
       internalID: -2598075804582269958
       vertices: []
-      indices: 
+      indices:
       edges: []
       weights: []
     - serializedVersion: 2
@@ -350,7 +344,7 @@ TextureImporter:
       spriteID: 801747444c8aced30800000000000000
       internalID: 4462126891732857096
       vertices: []
-      indices: 
+      indices:
       edges: []
       weights: []
     - serializedVersion: 2
@@ -371,7 +365,7 @@ TextureImporter:
       spriteID: b8c46b42b2045cc80800000000000000
       internalID: -8303159783943943029
       vertices: []
-      indices: 
+      indices:
       edges: []
       weights: []
     - serializedVersion: 2
@@ -392,7 +386,7 @@ TextureImporter:
       spriteID: 9560baf21dc332a00800000000000000
       internalID: 730494433709721177
       vertices: []
-      indices: 
+      indices:
       edges: []
       weights: []
     - serializedVersion: 2
@@ -413,7 +407,7 @@ TextureImporter:
       spriteID: c3f0b6d9896d71b30800000000000000
       internalID: 4258107923666505532
       vertices: []
-      indices: 
+      indices:
       edges: []
       weights: []
     outline: []
@@ -422,7 +416,7 @@ TextureImporter:
     spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
-    indices: 
+    indices:
     edges: []
     weights: []
     secondaryTextures: []
@@ -441,8 +435,6 @@ TextureImporter:
       cat_walk4: -5298355799840330877
       cat_walk5: 520990937207272529
       cat_walk6: -246035017003227031
-  mipmapLimitGroupName: 
-  pSDRemoveMatte: 0
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
+  userData:
+  assetBundleName:
+  assetBundleVariant:

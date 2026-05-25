@@ -13,6 +13,19 @@ The goal is:
 5. Click an item slot to show item details.
 6. Keep inventory data separate from UI rendering.
 
+## UI Art Source
+
+The minimal backpack builder now uses Kenney Fantasy UI Borders for panel and slot frames:
+
+- `Assets/Art/Kenney/FantasyUIBorders/PNG/Default/Panel/`
+- `Assets/Art/Kenney/FantasyUIBorders/PNG/Default/Border/`
+
+This is a CC0 Kenney asset pack, so it is safe to keep in the public repository. The current builder only uses a few PNG sprites from the pack; the remaining PNG files are kept nearby so UI polish can reuse the same style later.
+
+The source package was copied from:
+
+`C:\Users\qintian\Desktop\腾讯比赛\kenney_fantasy-ui-borders`
+
 ## Scene Setup
 
 Open:
@@ -143,6 +156,7 @@ The scene now contains:
 - Editor-only tool.
 - Menu path: `Tools/Inventory/Create Minimal Inventory UI`.
 - Rebuilds the minimal inventory UI in the open scene.
+- Applies Kenney Fantasy UI Borders sprites to the panel, slots, and item detail frame.
 
 ## Not Implemented Yet
 

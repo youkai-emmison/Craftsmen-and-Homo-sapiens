@@ -17,6 +17,10 @@ public static class InventorySceneSetupBuilder
     private const string InventoryPanelName = "InventoryPanel";   // Backpack panel object toggled by I.
     private const string ItemDetailPanelName = "ItemDetailPanel"; // Detail panel shown after clicking a slot.
     private const int SlotCount = 8;                               // Fixed slots for the first backpack test.
+    private const string UiArtRoot = "Assets/Art/Kenney/FantasyUIBorders/PNG/Default"; // CC0 UI art used by the builder.
+    private const string PanelSpritePath = UiArtRoot + "/Panel/panel-025.png";          // Large backpack frame.
+    private const string SlotSpritePath = UiArtRoot + "/Panel/panel-008.png";           // Reused frame for item slots.
+    private const string DetailSpritePath = UiArtRoot + "/Border/panel-border-025.png"; // Detail panel frame.
 
     [MenuItem("Tools/Inventory/Create Minimal Inventory UI")]
     public static void CreateMinimalInventoryUi()
@@ -128,7 +132,7 @@ public static class InventorySceneSetupBuilder
     {
         GameObject panelObject = CreateUiObject(InventoryPanelName, canvasTransform);
         Image panelImage = panelObject.AddComponent<Image>();
-        panelImage.color = new Color(0.10f, 0.08f, 0.13f, 0.92f);
+        ApplyUiSprite(panelImage, PanelSpritePath, new Color(0.92f, 0.90f, 0.80f, 0.98f));
 
         CanvasGroup canvasGroup = panelObject.AddComponent<CanvasGroup>();
         InventoryPanel inventoryPanel = panelObject.AddComponent<InventoryPanel>();
@@ -185,7 +189,7 @@ public static class InventorySceneSetupBuilder
     {
         GameObject slotObject = CreateUiObject($"Slot_{slotIndex + 1:00}", gridTransform);
         Image slotBackgroundImage = slotObject.AddComponent<Image>();
-        slotBackgroundImage.color = new Color(0.18f, 0.18f, 0.22f, 0.75f);
+        ApplyUiSprite(slotBackgroundImage, SlotSpritePath, new Color(0.92f, 0.86f, 0.70f, 0.94f));
 
         InventorySlotView slotView = slotObject.AddComponent<InventorySlotView>();
 
@@ -217,6 +221,7 @@ public static class InventorySceneSetupBuilder
     private static Text CreatePanelText(string objectName, Transform parent, string text, int fontSize, TextAnchor alignment)
     {
         Text textComponent = CreateTextObject(objectName, parent, text, fontSize, alignment);
+        textComponent.color = new Color(0.20f, 0.12f, 0.08f, 1f);
         RectTransform textRect = textComponent.GetComponent<RectTransform>();
         textRect.anchorMin = new Vector2(0f, 1f);
         textRect.anchorMax = new Vector2(1f, 1f);
@@ -232,7 +237,7 @@ public static class InventorySceneSetupBuilder
     {
         GameObject detailObject = CreateUiObject(ItemDetailPanelName, panelTransform);
         Image detailBackground = detailObject.AddComponent<Image>();
-        detailBackground.color = new Color(0.18f, 0.15f, 0.24f, 0.95f);
+        ApplyUiSprite(detailBackground, DetailSpritePath, new Color(0.90f, 0.84f, 0.68f, 0.96f));
 
         InventoryItemDetailPanel detailPanel = detailObject.AddComponent<InventoryItemDetailPanel>();
 
@@ -261,8 +266,18 @@ public static class InventorySceneSetupBuilder
     private static Text CreateDetailText(string objectName, Transform parent, string text, int fontSize, TextAnchor alignment)
     {
         Text textComponent = CreateTextObject(objectName, parent, text, fontSize, alignment);
-        textComponent.color = new Color(0.96f, 0.94f, 1f, 1f);
+        textComponent.color = new Color(0.20f, 0.12f, 0.08f, 1f);
         return textComponent;
+    }
+
+    private static void ApplyUiSprite(Image image, string spritePath, Color tintColor)
+    {
+        Sprite sprite = AssetDatabase.LoadAssetAtPath<Sprite>(spritePath);
+        Require(sprite != null, $"Inventory UI sprite is missing: {spritePath}");
+
+        image.sprite = sprite;
+        image.type = Image.Type.Sliced;
+        image.color = tintColor;
     }
 
     private static void SetTopTextRect(RectTransform rectTransform, float topOffset, float height)
@@ -285,6 +300,7 @@ public static class InventorySceneSetupBuilder
     private static Text CreateSlotText(string objectName, Transform parent, string text, int fontSize, TextAnchor alignment, Vector2 offsetMin, Vector2 offsetMax)
     {
         Text textComponent = CreateTextObject(objectName, parent, text, fontSize, alignment);
+        textComponent.color = new Color(0.20f, 0.12f, 0.08f, 1f);
         RectTransform textRect = textComponent.GetComponent<RectTransform>();
         textRect.anchorMin = Vector2.zero;
         textRect.anchorMax = Vector2.one;
