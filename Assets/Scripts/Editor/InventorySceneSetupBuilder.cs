@@ -17,9 +17,10 @@ public static class InventorySceneSetupBuilder
     private const string InventoryPanelName = "InventoryPanel";   // Backpack panel object toggled by I.
     private const string ItemDetailPanelName = "ItemDetailPanel"; // Detail panel shown after clicking a slot.
     private const int SlotCount = 8;                               // Fixed slots for the first backpack test.
-
-    private const string PanelSpritePath = "Assets/Art/Kenney/FantasyUIBorders/PNG/Default/Panel/panel-009.png";
-    private const string BorderSpritePath = "Assets/Art/Kenney/FantasyUIBorders/PNG/Default/Border/panel-border-009.png";
+    private const string UiArtRoot = "Assets/Art/Kenney/FantasyUIBorders/PNG/Default"; // CC0 UI art used by the builder.
+    private const string PanelSpritePath = UiArtRoot + "/Panel/panel-025.png";          // Large backpack frame.
+    private const string SlotSpritePath = UiArtRoot + "/Panel/panel-008.png";           // Reused frame for item slots.
+    private const string DetailSpritePath = UiArtRoot + "/Border/panel-border-025.png"; // Detail panel frame.
 
     [MenuItem("Tools/Inventory/Create Minimal Inventory UI")]
     public static void CreateMinimalInventoryUi()
@@ -130,7 +131,8 @@ public static class InventorySceneSetupBuilder
     private static InventoryPanel CreateInventoryPanel(Transform canvasTransform, InventoryManager inventoryManager)
     {
         GameObject panelObject = CreateUiObject(InventoryPanelName, canvasTransform);
-        SetSpriteBackground(panelObject, PanelSpritePath);
+        Image panelImage = panelObject.AddComponent<Image>();
+        ApplyUiSprite(panelImage, PanelSpritePath, new Color(0.92f, 0.90f, 0.80f, 0.98f));
 
         CanvasGroup canvasGroup = panelObject.AddComponent<CanvasGroup>();
         InventoryPanel inventoryPanel = panelObject.AddComponent<InventoryPanel>();
@@ -186,7 +188,8 @@ public static class InventorySceneSetupBuilder
     private static InventorySlotView CreateSlotView(Transform gridTransform, int slotIndex)
     {
         GameObject slotObject = CreateUiObject($"Slot_{slotIndex + 1:00}", gridTransform);
-        Image slotBackgroundImage = SetSpriteBackground(slotObject, PanelSpritePath);
+        Image slotBackgroundImage = slotObject.AddComponent<Image>();
+        ApplyUiSprite(slotBackgroundImage, SlotSpritePath, new Color(0.92f, 0.86f, 0.70f, 0.94f));
 
         InventorySlotView slotView = slotObject.AddComponent<InventorySlotView>();
 
@@ -218,6 +221,7 @@ public static class InventorySceneSetupBuilder
     private static Text CreatePanelText(string objectName, Transform parent, string text, int fontSize, TextAnchor alignment)
     {
         Text textComponent = CreateTextObject(objectName, parent, text, fontSize, alignment);
+        textComponent.color = new Color(0.20f, 0.12f, 0.08f, 1f);
         RectTransform textRect = textComponent.GetComponent<RectTransform>();
         textRect.anchorMin = new Vector2(0f, 1f);
         textRect.anchorMax = new Vector2(1f, 1f);
@@ -232,7 +236,8 @@ public static class InventorySceneSetupBuilder
     private static InventoryItemDetailPanel CreateItemDetailPanel(Transform panelTransform)
     {
         GameObject detailObject = CreateUiObject(ItemDetailPanelName, panelTransform);
-        SetSpriteBackground(detailObject, BorderSpritePath);
+        Image detailBackground = detailObject.AddComponent<Image>();
+        ApplyUiSprite(detailBackground, DetailSpritePath, new Color(0.90f, 0.84f, 0.68f, 0.96f));
 
         InventoryItemDetailPanel detailPanel = detailObject.AddComponent<InventoryItemDetailPanel>();
 
@@ -261,8 +266,18 @@ public static class InventorySceneSetupBuilder
     private static Text CreateDetailText(string objectName, Transform parent, string text, int fontSize, TextAnchor alignment)
     {
         Text textComponent = CreateTextObject(objectName, parent, text, fontSize, alignment);
-        textComponent.color = new Color(0.96f, 0.94f, 1f, 1f);
+        textComponent.color = new Color(0.20f, 0.12f, 0.08f, 1f);
         return textComponent;
+    }
+
+    private static void ApplyUiSprite(Image image, string spritePath, Color tintColor)
+    {
+        Sprite sprite = AssetDatabase.LoadAssetAtPath<Sprite>(spritePath);
+        Require(sprite != null, $"Inventory UI sprite is missing: {spritePath}");
+
+        image.sprite = sprite;
+        image.type = Image.Type.Sliced;
+        image.color = tintColor;
     }
 
     private static void SetTopTextRect(RectTransform rectTransform, float topOffset, float height)
@@ -285,6 +300,7 @@ public static class InventorySceneSetupBuilder
     private static Text CreateSlotText(string objectName, Transform parent, string text, int fontSize, TextAnchor alignment, Vector2 offsetMin, Vector2 offsetMax)
     {
         Text textComponent = CreateTextObject(objectName, parent, text, fontSize, alignment);
+        textComponent.color = new Color(0.20f, 0.12f, 0.08f, 1f);
         RectTransform textRect = textComponent.GetComponent<RectTransform>();
         textRect.anchorMin = Vector2.zero;
         textRect.anchorMax = Vector2.one;
@@ -459,30 +475,6 @@ public static class InventorySceneSetupBuilder
     {
         SerializedObject serializedInput = new SerializedObject(inputController);
         Require(serializedInput.FindProperty("inventoryPanel").objectReferenceValue != null, "Inventory validation failed: input inventoryPanel is missing.");
-    }
-
-    private static Sprite LoadSprite(string assetPath)
-    {
-        Sprite sprite = AssetDatabase.LoadAssetAtPath<Sprite>(assetPath);
-        if (sprite == null)
-            Debug.LogWarning($"InventorySceneSetupBuilder: Could not load sprite at '{assetPath}'.");
-        return sprite;
-    }
-
-    private static Image SetSpriteBackground(GameObject target, string spritePath)
-    {
-        Image image = target.GetComponent<Image>();
-        if (image == null)
-            image = target.AddComponent<Image>();
-
-        Sprite sprite = LoadSprite(spritePath);
-        if (sprite != null)
-        {
-            image.sprite = sprite;
-            image.type = Image.Type.Sliced;
-            image.color = Color.white;
-        }
-        return image;
     }
 
     private static void Require(bool condition, string message)

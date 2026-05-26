@@ -1,4 +1,4 @@
-	
+
 
 	Fantasy UI Borders (1.0)
 
@@ -22,7 +22,7 @@
 	• Donate  : www.kenney.nl/donate
 
 	• Patreon : patreon.com/kenney
-	
+
 	Follow on social media for updates:
 
 	• Twitter:	twitter.com/KenneyNL
