@@ -4,6 +4,7 @@
 // - attackRange: Radius of the melee check.
 // - hittableLayer: Layers that can be hit by the melee attack.
 // - damageAmount: Damage sent to each IDamageable found.
+using System;
 using UnityEngine;
 
 public class MeleeHitDetector : MonoBehaviour
@@ -19,6 +20,9 @@ public class MeleeHitDetector : MonoBehaviour
 
     // Damage applied to each hit target.
     public int damageAmount = 1;
+
+    /// <summary>每次命中目标时触发，用于装备特效等</summary>
+    public event Action<Transform> OnHitTarget;
 
     public void DetectHit()
     {
@@ -37,6 +41,7 @@ public class MeleeHitDetector : MonoBehaviour
             if (damageable != null)
             {
                 damageable.TakeDamage(damageAmount);
+                OnHitTarget?.Invoke(hitCollider.transform);
             }
         }
     }

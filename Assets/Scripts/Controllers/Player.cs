@@ -69,6 +69,10 @@ public class Player : Entity
     // 动画驱动
     private MaidVisualAnimatorDriver visualAnimatorDriver;
 
+    // 装备特效
+    private MeleeHitDetector meleeHitDetector;
+    private ItemEffectManager itemEffectManager;
+
     #endregion
 
     #region 生命周期
@@ -83,6 +87,26 @@ public class Player : Entity
         visualAnimatorDriver = GetComponentInChildren<MaidVisualAnimatorDriver>();
         groundCheck = GetComponentInChildren<GroundCheck>();
         wallCheck = GetComponentInChildren<WallCheck>();
+        meleeHitDetector = GetComponentInChildren<MeleeHitDetector>();
+        itemEffectManager = GetComponent<ItemEffectManager>();
+    }
+
+    private void OnEnable()
+    {
+        if (meleeHitDetector != null)
+            meleeHitDetector.OnHitTarget += OnMeleeHit;
+    }
+
+    private void OnDisable()
+    {
+        if (meleeHitDetector != null)
+            meleeHitDetector.OnHitTarget -= OnMeleeHit;
+    }
+
+    private void OnMeleeHit(Transform target)
+    {
+        if (itemEffectManager != null)
+            itemEffectManager.OnAttackHit(target);
     }
 
     protected override void Start()
@@ -96,6 +120,10 @@ public class Player : Entity
 
         if (visualAnimatorDriver != null)
             visualAnimatorDriver.PlayHurt();
+
+        // 触发护甲特效
+        if (itemEffectManager != null)
+            itemEffectManager.OnDamaged(transform);
     }
 
     protected override void Die()

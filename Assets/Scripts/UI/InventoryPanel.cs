@@ -1,142 +1,225 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-/// <summary>
-/// InventoryPanel shows the current inventory list in prebuilt slot views.
-/// It does not own item data and does not read keyboard input.
-/// </summary>
 public class InventoryPanel : MonoBehaviour
 {
-    [Header("References")]
-    [SerializeField] private InventoryManager inventoryManager; // Data source for the backpack.
-    [SerializeField] private CanvasGroup canvasGroup;           // Controls panel visibility without destroying objects.
-    [SerializeField] private InventorySlotView[] slotViews;     // Fixed visible slot views in the panel.
-    [SerializeField] private Text emptyMessageText;             // Message shown when no items exist.
-    [SerializeField] private InventoryItemDetailPanel detailPanel; // Shows details for the selected item.
+    [Header("System References")]
+    [SerializeField] private Inventory inventory;
+    [SerializeField] private Equipment equipment;
 
-    [Header("State")]
-    [SerializeField] private bool startsVisible;                // Whether the backpack is open at scene start.
+    [Header("UI References")]
+    [SerializeField] private CanvasGroup canvasGroup;
+    [SerializeField] private ItemTooltip tooltip;
+    [SerializeField] private Text emptyMessageText;
 
-    public bool IsVisible { get; private set; }                 // Current panel visibility state.
+    [Header("Tab Buttons")]
+    [SerializeField] private Button backpackTabButton;
+    [SerializeField] private Button craftingTabButton;
+    [SerializeField] private GameObject backpackContent;
+    [SerializeField] private GameObject craftingContent;
+
+    [Header("Backpack Slots")]
+    [SerializeField] private InventorySlotView[] slotViews;
+
+    [Header("Equipment Slots")]
+    [SerializeField] private EquipmentSlotView[] equipmentSlots;
+
+    [Header("Character Info")]
+    [SerializeField] private CharacterInfoPanel characterInfoPanel;
+
+    [Header("Crafting")]
+    [SerializeField] private CraftingPanel craftingPanel;
+
+    public bool IsVisible { get; private set; }
+
+    private PlayerStats playerStats;
+    private int currentTab; // 0=背包, 1=制作
 
     private void Awake()
     {
-        ValidateReferences();
-        SetVisible(startsVisible);
+        if (inventory == null) inventory = GetComponentInParent<Inventory>();
+        if (equipment == null) equipment = GetComponentInParent<Equipment>();
+
+        if (inventory != null)
+            playerStats = inventory.GetComponentInParent<PlayerStats>();
+
+        SetVisible(false);
     }
 
     private void OnEnable()
     {
-        if (inventoryManager != null)
-            inventoryManager.InventoryChanged += Refresh;
-    }
-
-    private void Start()
-    {
-        InitializeSlotCallbacks();
-
-        if (inventoryManager != null)
-            Refresh(inventoryManager.Items);
-
-        if (detailPanel != null)
-            detailPanel.Clear();
+        if (inventory != null)
+        {
+            inventory.OnInventoryChanged += RefreshBackpack;
+            inventory.OnEquipmentChanged += RefreshEquipment;
+        }
     }
 
     private void OnDisable()
     {
-        if (inventoryManager != null)
-            inventoryManager.InventoryChanged -= Refresh;
-    }
-
-    /// <summary>
-    /// Opens the panel when closed, closes it when open.
-    /// </summary>
-    public void Toggle()
-    {
-        SetVisible(!IsVisible);
-    }
-
-    /// <summary>
-    /// Closes the panel from explicit UI commands such as Escape.
-    /// </summary>
-    public void Close()
-    {
-        SetVisible(false);
-    }
-
-    /// <summary>
-    /// Sets UI visibility while keeping the same objects alive in the scene.
-    /// </summary>
-    public void SetVisible(bool isVisible)
-    {
-        IsVisible = isVisible;
-
-        if (canvasGroup == null)
-            return;
-
-        canvasGroup.alpha = isVisible ? 1f : 0f;
-        canvasGroup.interactable = isVisible;
-        canvasGroup.blocksRaycasts = isVisible;
-    }
-
-    private void Refresh(IReadOnlyList<InventoryItem> items)
-    {
-        if (slotViews == null)
-            return;
-
-        for (int slotIndex = 0; slotIndex < slotViews.Length; slotIndex++)
-            RefreshSlot(slotIndex, items);
-
-        if (emptyMessageText != null)
-            emptyMessageText.enabled = items == null || items.Count == 0;
-    }
-
-    private void RefreshSlot(int slotIndex, IReadOnlyList<InventoryItem> items)
-    {
-        InventorySlotView slotView = slotViews[slotIndex];
-
-        if (slotView == null)
-            return;
-
-        if (items != null && slotIndex < items.Count)
-            slotView.SetItem(items[slotIndex]);
-        else
-            slotView.SetEmpty();
-    }
-
-    private void ValidateReferences()
-    {
-        if (inventoryManager == null)
-            Debug.LogError("InventoryPanel: inventoryManager is not assigned.");
-
-        if (canvasGroup == null)
-            Debug.LogError("InventoryPanel: canvasGroup is not assigned.");
-
-        if (slotViews == null || slotViews.Length == 0)
-            Debug.LogError("InventoryPanel: slotViews is empty. Assign slot views in the Inspector.");
-
-        if (detailPanel == null)
-            Debug.LogError("InventoryPanel: detailPanel is not assigned.");
-    }
-
-    private void InitializeSlotCallbacks()
-    {
-        if (slotViews == null)
-            return;
-
-        foreach (InventorySlotView slotView in slotViews)
+        if (inventory != null)
         {
-            if (slotView != null)
-                slotView.SetClickCallback(ShowItemDetails);
+            inventory.OnInventoryChanged -= RefreshBackpack;
+            inventory.OnEquipmentChanged -= RefreshEquipment;
         }
     }
 
-    private void ShowItemDetails(InventoryItem item)
+    private void Start()
     {
-        if (detailPanel == null)
-            return;
+        InitializeSlots();
+        SwitchTab(0);
+        if (characterInfoPanel != null) characterInfoPanel.Initialize(playerStats);
+    }
 
-        detailPanel.ShowItem(item);
+    private void Update()
+    {
+        // 实时刷新角色属性面板（因为 HP 等会变化）
+        if (IsVisible && currentTab == 0 && characterInfoPanel != null)
+            characterInfoPanel.Refresh();
+    }
+
+    public void Toggle()
+    {
+        SetVisible(!IsVisible);
+        if (IsVisible) RefreshAll();
+    }
+
+    public void Close()
+    {
+        SetVisible(false);
+        if (tooltip != null) tooltip.Hide();
+    }
+
+    public void SetVisible(bool visible)
+    {
+        IsVisible = visible;
+        if (canvasGroup != null)
+        {
+            canvasGroup.alpha = visible ? 1f : 0f;
+            canvasGroup.interactable = visible;
+            canvasGroup.blocksRaycasts = visible;
+        }
+        if (visible) RefreshAll();
+    }
+
+    public void SwitchTab(int tab)
+    {
+        currentTab = tab;
+        if (backpackContent != null) backpackContent.SetActive(tab == 0);
+        if (craftingContent != null) craftingContent.SetActive(tab == 1);
+
+        if (tab == 1 && craftingPanel != null)
+            craftingPanel.RefreshRecipeList();
+    }
+
+    private void InitializeSlots()
+    {
+        // 背包格子
+        if (slotViews != null)
+        {
+            for (int i = 0; i < slotViews.Length; i++)
+            {
+                if (slotViews[i] == null) continue;
+                slotViews[i].SlotIndex = i;
+                slotViews[i].SetTooltip(tooltip);
+                slotViews[i].SetCallbacks(OnSlotClicked, OnSlotDiscard);
+            }
+        }
+
+        // 装备栏
+        if (equipmentSlots != null)
+        {
+            foreach (var eqSlot in equipmentSlots)
+            {
+                if (eqSlot == null) continue;
+                eqSlot.Initialize(inventory, equipment, tooltip);
+            }
+        }
+
+        // Tab 按钮
+        if (backpackTabButton != null)
+            backpackTabButton.onClick.AddListener(() => SwitchTab(0));
+        if (craftingTabButton != null)
+            craftingTabButton.onClick.AddListener(() => SwitchTab(1));
+    }
+
+    private void RefreshAll()
+    {
+        RefreshBackpack();
+        RefreshEquipment();
+        if (characterInfoPanel != null) characterInfoPanel.Refresh();
+    }
+
+    private void RefreshBackpack()
+    {
+        if (inventory == null || slotViews == null) return;
+
+        var equipmentSlots_data = inventory.EquipmentSlots;
+        var materialDict = inventory.MaterialDict;
+
+        // 先显示装备
+        int slotIdx = 0;
+        for (int i = 0; i < equipmentSlots_data.Count && slotIdx < slotViews.Length; i++, slotIdx++)
+        {
+            if (slotViews[slotIdx] != null)
+                slotViews[slotIdx].SetEquipment(equipmentSlots_data[i]);
+        }
+
+        // 再显示材料
+        foreach (var kvp in materialDict)
+        {
+            if (slotIdx >= slotViews.Length) break;
+            if (slotViews[slotIdx] != null)
+                slotViews[slotIdx].SetMaterial(kvp.Key, kvp.Value);
+            slotIdx++;
+        }
+
+        // 剩余格子置空
+        for (; slotIdx < slotViews.Length; slotIdx++)
+        {
+            if (slotViews[slotIdx] != null)
+                slotViews[slotIdx].SetEmpty();
+        }
+
+        if (emptyMessageText != null)
+            emptyMessageText.enabled = equipmentSlots_data.Count == 0 && materialDict.Count == 0;
+    }
+
+    private void RefreshEquipment()
+    {
+        if (equipmentSlots == null) return;
+        foreach (var eqSlot in equipmentSlots)
+        {
+            if (eqSlot != null) eqSlot.Refresh();
+        }
+    }
+
+    private void OnSlotClicked(int slotIndex)
+    {
+        if (inventory == null) return;
+
+        // 计算该 slotIndex 对应的是装备还是材料
+        var equipmentList = inventory.EquipmentSlots;
+        if (slotIndex < equipmentList.Count)
+        {
+            // 点击装备 → 穿戴
+            equipment?.EquipFromSlot(slotIndex);
+        }
+        else
+        {
+            // 点击材料 → 无操作（或可扩展为使用）
+        }
+    }
+
+    private void OnSlotDiscard(int slotIndex)
+    {
+        if (inventory == null) return;
+
+        var equipmentList = inventory.EquipmentSlots;
+        if (slotIndex < equipmentList.Count)
+        {
+            // Ctrl+Click 丢弃装备
+            inventory.DiscardEquipment(equipmentList[slotIndex]);
+        }
     }
 }
