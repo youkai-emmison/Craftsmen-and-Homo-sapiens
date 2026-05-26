@@ -1,6 +1,6 @@
 // Script purpose: Unlocks the room exit after all assigned enemies are defeated.
 // Key Inspector variables:
-// - enemiesInRoom: EnemyHealth references that must all be dead.
+// - enemiesInRoom: Enemy references that must all be dead.
 // - exitDoor: Door unlocked when the room is clear.
 using System;
 using UnityEngine;
@@ -8,23 +8,22 @@ using UnityEngine;
 public class RoomClearController : MonoBehaviour
 {
     // Enemy list manually assigned for this room.
-    public EnemyHealth[] enemiesInRoom;
+    public Enemy[] enemiesInRoom;
 
     // Exit door unlocked after all enemies are defeated.
     public ExitDoorController exitDoor;
 
-    // Prevents repeated logs if the array contains a missing enemy reference.
-    private bool hasLoggedNullEnemy;
-
     // True after this room has completed its clear check.
     public bool IsRoomCleared { get; private set; }
 
-    // DemoStageController subscribes to this for three-room demo flow.
+    // DemoStageController subscribes to this for room flow.
     public Action<RoomClearController> OnRoomCleared;
 
     private void Start()
     {
-        ValidateRequiredReferences();
+        if (exitDoor == null)
+            Debug.LogError("RoomClearController: Exit Door is not assigned.", this);
+
         SubscribeToEnemies();
 
         if (enemiesInRoom == null || enemiesInRoom.Length == 0)
@@ -39,98 +38,53 @@ public class RoomClearController : MonoBehaviour
         UnsubscribeFromEnemies();
     }
 
-    private void ValidateRequiredReferences()
-    {
-        if (exitDoor == null)
-        {
-            Debug.LogError("RoomClearController: Exit Door is not assigned.", this);
-        }
-    }
-
     private void SubscribeToEnemies()
     {
-        if (enemiesInRoom == null)
-        {
-            return;
-        }
+        if (enemiesInRoom == null) return;
 
-        foreach (EnemyHealth enemyHealth in enemiesInRoom)
+        foreach (Enemy enemy in enemiesInRoom)
         {
-            if (enemyHealth != null)
-            {
-                enemyHealth.OnEnemyDefeated += HandleEnemyDefeated;
-            }
+            if (enemy != null)
+                enemy.OnDeath += HandleEnemyDefeated;
         }
     }
 
     private void UnsubscribeFromEnemies()
     {
-        if (enemiesInRoom == null)
-        {
-            return;
-        }
+        if (enemiesInRoom == null) return;
 
-        foreach (EnemyHealth enemyHealth in enemiesInRoom)
+        foreach (Enemy enemy in enemiesInRoom)
         {
-            if (enemyHealth != null)
-            {
-                enemyHealth.OnEnemyDefeated -= HandleEnemyDefeated;
-            }
+            if (enemy != null)
+                enemy.OnDeath -= HandleEnemyDefeated;
         }
     }
 
-    private void HandleEnemyDefeated(EnemyHealth defeatedEnemy)
+    private void HandleEnemyDefeated()
     {
         if (AreAllEnemiesDefeated())
-        {
             UnlockExitDoor();
-        }
     }
 
     private bool AreAllEnemiesDefeated()
     {
-        foreach (EnemyHealth enemyHealth in enemiesInRoom)
+        foreach (Enemy enemy in enemiesInRoom)
         {
-            if (enemyHealth == null)
-            {
-                LogNullEnemy();
-                return false;
-            }
-
-            if (!enemyHealth.IsDead)
-            {
-                return false;
-            }
+            if (enemy == null) continue;
+            if (enemy.currentHealth > 0f) return false;
         }
-
         return true;
     }
 
     private void UnlockExitDoor()
     {
-        if (IsRoomCleared)
-        {
-            return;
-        }
+        if (IsRoomCleared) return;
 
         IsRoomCleared = true;
 
         if (exitDoor != null)
-        {
             exitDoor.UnlockDoor();
-        }
 
         OnRoomCleared?.Invoke(this);
-    }
-
-    private void LogNullEnemy()
-    {
-        if (hasLoggedNullEnemy)
-        {
-            return;
-        }
-
-        Debug.LogError("RoomClearController: Enemies In Room contains a missing EnemyHealth reference.", this);
-        hasLoggedNullEnemy = true;
     }
 }

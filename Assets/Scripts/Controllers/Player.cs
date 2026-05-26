@@ -90,6 +90,24 @@ public class Player : Entity
         base.Start();
     }
 
+    public override void TakeDamage(float damage, Vector2 damageSource)
+    {
+        base.TakeDamage(damage, damageSource);
+
+        if (visualAnimatorDriver != null)
+            visualAnimatorDriver.PlayHurt();
+    }
+
+    protected override void Die()
+    {
+        RaiseOnDeath();
+
+        if (visualAnimatorDriver != null)
+            visualAnimatorDriver.PlayDie();
+
+        Destroy(gameObject, 0.5f);
+    }
+
     /// <summary>
     /// Update：每帧读取输入、更新计时器、处理跳跃和冲刺触发。
     /// </summary>

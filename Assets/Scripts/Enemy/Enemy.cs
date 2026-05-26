@@ -222,8 +222,9 @@ public class Enemy : Entity
             return;
         }
 
-        // 追击方向
-        float directionX = Mathf.Sign(playerTransform.position.x - transform.position.x);
+        // 追击方向（重叠时保持当前朝向，避免疯狂翻转）
+        float diffX = playerTransform.position.x - transform.position.x;
+        float directionX = Mathf.Abs(diffX) < 0.1f ? facingDirection : Mathf.Sign(diffX);
 
         // 前方没有地面（平台边缘），放弃追击
         if (!IsGroundAhead(directionX))
@@ -246,8 +247,11 @@ public class Enemy : Entity
         // 停止移动
         SetVelocity(0f);
 
-        // 触发攻击动画（由子类实现具体攻击逻辑）
+        // 触发攻击动画
         SafeSetTrigger("Attack");
+
+        // 执行攻击判定
+        PerformAttack();
 
         // 攻击完成后：开始冷却，打开反击窗口
         isAttackOnCooldown = true;

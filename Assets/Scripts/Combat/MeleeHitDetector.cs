@@ -3,8 +3,7 @@
 // - attackPoint: Center point of the melee check.
 // - attackRange: Radius of the melee check.
 // - hittableLayer: Layers that can be hit by the melee attack.
-// - damageAmount: Damage sent when no PlayerDemoStats is assigned.
-// - playerDemoStats: Optional demo stats source that overrides attack damage.
+// - damageAmount: Damage sent to each IDamageable found.
 using UnityEngine;
 
 public class MeleeHitDetector : MonoBehaviour
@@ -18,11 +17,8 @@ public class MeleeHitDetector : MonoBehaviour
     // Layers considered valid attack targets.
     public LayerMask hittableLayer;
 
-    // Damage used before demo progression is configured.
+    // Damage applied to each hit target.
     public int damageAmount = 1;
-
-    // Optional demo progression stats used to show stronger attacks after level-up.
-    public PlayerDemoStats playerDemoStats;
 
     public void DetectHit()
     {
@@ -40,27 +36,14 @@ public class MeleeHitDetector : MonoBehaviour
 
             if (damageable != null)
             {
-                damageable.TakeDamage(GetCurrentDamageAmount());
+                damageable.TakeDamage(damageAmount);
             }
         }
     }
 
-    private int GetCurrentDamageAmount()
-    {
-        if (playerDemoStats != null)
-        {
-            return playerDemoStats.CurrentAttackDamage;
-        }
-
-        return damageAmount;
-    }
-
     private void OnDrawGizmosSelected()
     {
-        if (attackPoint == null)
-        {
-            return;
-        }
+        if (attackPoint == null) return;
 
         Gizmos.color = Color.white;
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);

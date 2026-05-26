@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -6,7 +7,7 @@ using UnityEngine;
 /// 提供：组件缓存、生命值管理、朝向翻转、受伤击退、速度控制。
 /// 子类只需关注自身特有逻辑（如移动、AI）。
 /// </summary>
-public class Entity : MonoBehaviour
+public class Entity : MonoBehaviour, IDamageable
 {
     #region 组件引用（Inspector 面板）
 
@@ -38,6 +39,10 @@ public class Entity : MonoBehaviour
     protected int facingDirection = 1;   // 朝向：1 = 右，-1 = 左
     protected bool isFacingRight = true; // 是否朝右（用于翻转判断）
     protected float defaultMoveSpeed;    // 记录初始速度，用于速度修改后恢复
+
+    public event Action OnDeath;         // 死亡事件，供外部系统（如房间、掉落）订阅
+
+    protected void RaiseOnDeath() { OnDeath?.Invoke(); }
 
     #endregion
 
@@ -128,6 +133,15 @@ public class Entity : MonoBehaviour
     #region 受伤与死亡
 
     /// <summary>
+    /// IDamageable 接口实现：桥接 MeleeHitDetector 的 int 伤害调用。
+    /// 默认以实体自身位置作为伤害来源（无击退方向）。
+    /// </summary>
+    public void TakeDamage(int damageAmount)
+    {
+        TakeDamage(damageAmount, (Vector2)transform.position);
+    }
+
+    /// <summary>
     /// 受伤接口。扣除生命值，触发击退，播放受击动画。
     /// 子类可重写以添加额外逻辑（如无敌帧、受击音效等）。
     /// </summary>
@@ -172,6 +186,7 @@ public class Entity : MonoBehaviour
     /// </summary>
     protected virtual void Die()
     {
+        RaiseOnDeath();
         SafeSetTrigger("Die");
 
         // 延迟销毁，让死亡动画有时间播放

@@ -21,6 +21,7 @@ public class MaidVisualAnimatorDriver : MonoBehaviour
     private static readonly int JumpHash = Animator.StringToHash("Jump");
     private static readonly int IsGroundedHash = Animator.StringToHash("IsGrounded");
     private static readonly int IsWallSlidingHash = Animator.StringToHash("IsWallSliding");
+    private static readonly int DieHash = Animator.StringToHash("Die");
 
     private void Awake()
     {
@@ -58,6 +59,16 @@ public class MaidVisualAnimatorDriver : MonoBehaviour
         }
 
         animator.SetTrigger(HurtHash);
+    }
+
+    public void PlayDie()
+    {
+        if (animator == null)
+        {
+            return;
+        }
+
+        animator.SetTrigger(DieHash);
     }
 
     public void PlayJump()
