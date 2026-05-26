@@ -144,8 +144,7 @@ public class Entity : MonoBehaviour
         StartCoroutine(KnockbackCoroutine(knockbackDir));
 
         // 触发受击动画
-        if (anim != null)
-            anim.SetTrigger("Hit");
+        SafeSetTrigger("Hit");
 
         if (currentHealth <= 0f)
             Die();
@@ -173,8 +172,7 @@ public class Entity : MonoBehaviour
     /// </summary>
     protected virtual void Die()
     {
-        if (anim != null)
-            anim.SetTrigger("Die");
+        SafeSetTrigger("Die");
 
         // 延迟销毁，让死亡动画有时间播放
         Destroy(gameObject, 0.5f);
@@ -208,6 +206,39 @@ public class Entity : MonoBehaviour
         // 从实体底部向下发射短射线检测地面
         Vector2 origin = (Vector2)transform.position + Vector2.down * 0.5f;
         return Physics2D.Raycast(origin, Vector2.down, 0.1f, groundLayer);
+    }
+
+    #endregion
+
+    #region Animator 安全调用
+
+    protected bool HasAnimatorParam(string paramName, AnimatorControllerParameterType type)
+    {
+        if (anim == null) return false;
+        foreach (var p in anim.parameters)
+        {
+            if (p.name == paramName && p.type == type)
+                return true;
+        }
+        return false;
+    }
+
+    protected void SafeSetTrigger(string name)
+    {
+        if (HasAnimatorParam(name, AnimatorControllerParameterType.Trigger))
+            anim.SetTrigger(name);
+    }
+
+    protected void SafeSetBool(string name, bool value)
+    {
+        if (HasAnimatorParam(name, AnimatorControllerParameterType.Bool))
+            anim.SetBool(name, value);
+    }
+
+    protected void SafeSetFloat(string name, float value)
+    {
+        if (HasAnimatorParam(name, AnimatorControllerParameterType.Float))
+            anim.SetFloat(name, value);
     }
 
     #endregion

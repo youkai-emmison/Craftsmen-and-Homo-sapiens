@@ -30,10 +30,15 @@ public class Enemy : Entity
 
     [Header("AI 参数")]
     [SerializeField] protected float moveSpeed = 3f;            // 移动速度
-    [SerializeField] protected float chaseSpeed = 5f;           // 追击速度
+    [SerializeField] protected float chaseSpeedMultiplier = 1.5f; // 追击速度倍率（相对 moveSpeed）
     [SerializeField] protected float detectionRange = 8f;       // 检测玩家的范围
     [SerializeField] protected float attackRange = 1.5f;        // 发动攻击的距离
     [SerializeField] protected float patrolWaitTime = 2f;       // 巡逻到达端点后的等待时间
+
+    [Header("平台边缘检测")]
+    [SerializeField] protected float edgeCheckDistance = 1f;    // 向前探测距离
+    [SerializeField] protected float edgeCheckDepth = 2f;       // 向下探测深度
+    [SerializeField] protected LayerMask groundLayer;           // 地面层
 
     [Header("攻击")]
     [SerializeField] protected float attackCooldown = 1.5f;     // 攻击冷却时间
@@ -48,10 +53,6 @@ public class Enemy : Entity
 
     [Header("反击窗口")]
     [SerializeField] protected float counterWindowDuration = 1f; // 攻击后暴露的反击窗口时长
-
-    [Header("巡逻")]
-    [SerializeField] protected Transform patrolPointA;          // 巡逻起点
-    [SerializeField] protected Transform patrolPointB;          // 巡逻终点
 
     #endregion
 
@@ -76,8 +77,8 @@ public class Enemy : Entity
     protected bool isCounterWindowOpen;                     // 反击窗口是否打开（攻击后暴露弱点时为 true）
 
     // 巡逻
-    protected Transform currentPatrolTarget;                // 当前巡逻目标点
-    protected bool isWaitingAtPatrolPoint;                  // 是否在巡逻点等待
+    protected float patrolDirection = 1f;                   // 当前巡逻方向：1 = 右，-1 = 左
+    protected bool isPatrolWaiting;                         // 巡逻中是否在等待转向
 
     #endregion
 
@@ -95,10 +96,6 @@ public class Enemy : Entity
         // 查找玩家
         if (PlayerManager.Instance != null)
             playerTransform = PlayerManager.Instance.GetPlayer().transform;
-
-        // 初始化巡逻目标
-        if (patrolPointA != null)
-            currentPatrolTarget = patrolPointA;
     }
 
     /// <summary>
@@ -162,7 +159,7 @@ public class Enemy : Entity
     }
 
     /// <summary>
-    /// 巡逻状态：在两个巡逻点之间来回移动。
+    /// 巡逻状态：沿当前方向来回行走，遇到平台边缘则停下转向。
     /// 检测到玩家则切换到追击。
     /// </summary>
     protected virtual void UpdatePatrol()
@@ -173,42 +170,35 @@ public class Enemy : Entity
             return;
         }
 
-        if (patrolPointA == null || patrolPointB == null)
-        {
-            SwitchState(EnemyState.Idle);
-            return;
-        }
-
-        // 在巡逻点等待
-        if (isWaitingAtPatrolPoint)
+        // 等待转向
+        if (isPatrolWaiting)
         {
             stateTimer -= Time.deltaTime;
             if (stateTimer <= 0f)
             {
-                isWaitingAtPatrolPoint = false;
-                // 切换巡逻目标
-                currentPatrolTarget = currentPatrolTarget == patrolPointA ? patrolPointB : patrolPointA;
+                isPatrolWaiting = false;
+                patrolDirection *= -1f;
             }
             return;
         }
 
-        // 向当前巡逻点移动
-        Vector2 direction = ((Vector2)currentPatrolTarget.position - (Vector2)transform.position).normalized;
-        SetVelocity(direction.x * moveSpeed);
-        FlipController(direction.x);
-
-        // 到达巡逻点
-        if (Vector2.Distance(transform.position, currentPatrolTarget.position) < 0.3f)
+        // 前方没有地面（平台边缘），停下等待后转向
+        if (!IsGroundAhead(patrolDirection))
         {
-            isWaitingAtPatrolPoint = true;
+            isPatrolWaiting = true;
             stateTimer = patrolWaitTime;
             SetVelocity(0f);
+            return;
         }
+
+        // 沿当前方向移动
+        SetVelocity(patrolDirection * moveSpeed);
+        FlipController(patrolDirection);
     }
 
     /// <summary>
-    /// 追击状态：向玩家移动，进入攻击范围则切换到攻击。
-    /// 玩家脱离检测范围则返回巡逻。
+    /// 追击状态：以 1.5 倍速向玩家移动，进入攻击范围则切换到攻击。
+    /// 玩家脱离检测范围或到达平台边缘则返回巡逻。
     /// </summary>
     protected virtual void UpdateChase()
     {
@@ -232,10 +222,19 @@ public class Enemy : Entity
             return;
         }
 
-        // 向玩家移动
-        Vector2 direction = ((Vector2)playerTransform.position - (Vector2)transform.position).normalized;
-        SetVelocity(direction.x * chaseSpeed);
-        FlipController(direction.x);
+        // 追击方向
+        float directionX = Mathf.Sign(playerTransform.position.x - transform.position.x);
+
+        // 前方没有地面（平台边缘），放弃追击
+        if (!IsGroundAhead(directionX))
+        {
+            SwitchState(EnemyState.Patrol);
+            return;
+        }
+
+        // 向玩家移动（1.5 倍速）
+        SetVelocity(directionX * moveSpeed * chaseSpeedMultiplier);
+        FlipController(directionX);
     }
 
     /// <summary>
@@ -248,8 +247,7 @@ public class Enemy : Entity
         SetVelocity(0f);
 
         // 触发攻击动画（由子类实现具体攻击逻辑）
-        if (anim != null)
-            anim.SetTrigger("Attack");
+        SafeSetTrigger("Attack");
 
         // 攻击完成后：开始冷却，打开反击窗口
         isAttackOnCooldown = true;
@@ -287,7 +285,7 @@ public class Enemy : Entity
         // 离开当前状态的清理
         if (currentState == EnemyState.Patrol)
         {
-            isWaitingAtPatrolPoint = false;
+            isPatrolWaiting = false;
         }
 
         currentState = newState;
@@ -303,8 +301,7 @@ public class Enemy : Entity
                 isStunned = true;
                 stateTimer = stunDuration;
                 SetVelocity(0f);
-                if (anim != null)
-                    anim.SetTrigger("Stunned");
+                SafeSetTrigger("Stunned");
                 break;
             case EnemyState.Dead:
                 SetVelocity(0f);
@@ -375,14 +372,12 @@ public class Enemy : Entity
     protected IEnumerator CounterWindowCoroutine()
     {
         isCounterWindowOpen = true;
-        if (anim != null)
-            anim.SetBool("CounterWindowOpen", true);
+        SafeSetBool("CounterWindowOpen", true);
 
         yield return new WaitForSeconds(counterWindowDuration);
 
         isCounterWindowOpen = false;
-        if (anim != null)
-            anim.SetBool("CounterWindowOpen", false);
+        SafeSetBool("CounterWindowOpen", false);
     }
 
     /// <summary>
@@ -402,8 +397,7 @@ public class Enemy : Entity
         // 停止所有协程，避免死后仍执行反击窗口等逻辑
         StopAllCoroutines();
 
-        if (anim != null)
-            anim.SetTrigger("Die");
+        SafeSetTrigger("Die");
 
         // 禁用碰撞，防止死后仍与玩家交互
         Collider2D col = GetComponent<Collider2D>();
@@ -425,6 +419,19 @@ public class Enemy : Entity
         return Vector2.Distance(transform.position, playerTransform.position) <= range;
     }
 
+    /// <summary>
+    /// 检测指定方向前方是否有地面（防止走到平台边缘）。
+    /// 从前方底部向下发射射线，如果没有命中地面则表示前方是悬崖。
+    /// </summary>
+    protected bool IsGroundAhead(float directionX)
+    {
+        // 起点：前方底部
+        Vector2 origin = (Vector2)transform.position
+            + Vector2.right * directionX * edgeCheckDistance
+            + Vector2.down * 0.5f;
+        return Physics2D.Raycast(origin, Vector2.down, edgeCheckDepth, groundLayer);
+    }
+
     #endregion
 
     #region 动画
@@ -436,8 +443,8 @@ public class Enemy : Entity
     {
         if (anim == null) return;
 
-        anim.SetFloat("MoveSpeed", GetCurrentMoveSpeed());
-        anim.SetBool("IsStunned", isStunned);
+        SafeSetFloat("MoveSpeed", GetCurrentMoveSpeed());
+        SafeSetBool("IsStunned", isStunned);
     }
 
     #endregion
@@ -463,14 +470,12 @@ public class Enemy : Entity
             Gizmos.DrawWireSphere(attackPoint.position, attackRadius);
         }
 
-        // 巡逻路径（蓝色线段）
-        if (patrolPointA != null && patrolPointB != null)
-        {
-            Gizmos.color = Color.blue;
-            Gizmos.DrawLine(patrolPointA.position, patrolPointB.position);
-            Gizmos.DrawSphere(patrolPointA.position, 0.2f);
-            Gizmos.DrawSphere(patrolPointB.position, 0.2f);
-        }
+        // 平台边缘检测（青色射线，左右各一条）
+        Gizmos.color = Color.cyan;
+        Vector2 leftOrigin = (Vector2)transform.position + Vector2.right * -edgeCheckDistance + Vector2.down * 0.5f;
+        Vector2 rightOrigin = (Vector2)transform.position + Vector2.right * edgeCheckDistance + Vector2.down * 0.5f;
+        Gizmos.DrawLine(leftOrigin, leftOrigin + Vector2.down * edgeCheckDepth);
+        Gizmos.DrawLine(rightOrigin, rightOrigin + Vector2.down * edgeCheckDepth);
     }
 
     #endregion

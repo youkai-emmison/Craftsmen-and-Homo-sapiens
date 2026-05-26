@@ -18,6 +18,9 @@ public static class InventorySceneSetupBuilder
     private const string ItemDetailPanelName = "ItemDetailPanel"; // Detail panel shown after clicking a slot.
     private const int SlotCount = 8;                               // Fixed slots for the first backpack test.
 
+    private const string PanelSpritePath = "Assets/Art/Kenney/FantasyUIBorders/PNG/Default/Panel/panel-009.png";
+    private const string BorderSpritePath = "Assets/Art/Kenney/FantasyUIBorders/PNG/Default/Border/panel-border-009.png";
+
     [MenuItem("Tools/Inventory/Create Minimal Inventory UI")]
     public static void CreateMinimalInventoryUi()
     {
@@ -127,8 +130,7 @@ public static class InventorySceneSetupBuilder
     private static InventoryPanel CreateInventoryPanel(Transform canvasTransform, InventoryManager inventoryManager)
     {
         GameObject panelObject = CreateUiObject(InventoryPanelName, canvasTransform);
-        Image panelImage = panelObject.AddComponent<Image>();
-        panelImage.color = new Color(0.10f, 0.08f, 0.13f, 0.92f);
+        SetSpriteBackground(panelObject, PanelSpritePath);
 
         CanvasGroup canvasGroup = panelObject.AddComponent<CanvasGroup>();
         InventoryPanel inventoryPanel = panelObject.AddComponent<InventoryPanel>();
@@ -184,8 +186,7 @@ public static class InventorySceneSetupBuilder
     private static InventorySlotView CreateSlotView(Transform gridTransform, int slotIndex)
     {
         GameObject slotObject = CreateUiObject($"Slot_{slotIndex + 1:00}", gridTransform);
-        Image slotBackgroundImage = slotObject.AddComponent<Image>();
-        slotBackgroundImage.color = new Color(0.18f, 0.18f, 0.22f, 0.75f);
+        Image slotBackgroundImage = SetSpriteBackground(slotObject, PanelSpritePath);
 
         InventorySlotView slotView = slotObject.AddComponent<InventorySlotView>();
 
@@ -231,8 +232,7 @@ public static class InventorySceneSetupBuilder
     private static InventoryItemDetailPanel CreateItemDetailPanel(Transform panelTransform)
     {
         GameObject detailObject = CreateUiObject(ItemDetailPanelName, panelTransform);
-        Image detailBackground = detailObject.AddComponent<Image>();
-        detailBackground.color = new Color(0.18f, 0.15f, 0.24f, 0.95f);
+        SetSpriteBackground(detailObject, BorderSpritePath);
 
         InventoryItemDetailPanel detailPanel = detailObject.AddComponent<InventoryItemDetailPanel>();
 
@@ -459,6 +459,30 @@ public static class InventorySceneSetupBuilder
     {
         SerializedObject serializedInput = new SerializedObject(inputController);
         Require(serializedInput.FindProperty("inventoryPanel").objectReferenceValue != null, "Inventory validation failed: input inventoryPanel is missing.");
+    }
+
+    private static Sprite LoadSprite(string assetPath)
+    {
+        Sprite sprite = AssetDatabase.LoadAssetAtPath<Sprite>(assetPath);
+        if (sprite == null)
+            Debug.LogWarning($"InventorySceneSetupBuilder: Could not load sprite at '{assetPath}'.");
+        return sprite;
+    }
+
+    private static Image SetSpriteBackground(GameObject target, string spritePath)
+    {
+        Image image = target.GetComponent<Image>();
+        if (image == null)
+            image = target.AddComponent<Image>();
+
+        Sprite sprite = LoadSprite(spritePath);
+        if (sprite != null)
+        {
+            image.sprite = sprite;
+            image.type = Image.Type.Sliced;
+            image.color = Color.white;
+        }
+        return image;
     }
 
     private static void Require(bool condition, string message)
