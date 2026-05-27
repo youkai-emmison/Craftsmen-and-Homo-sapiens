@@ -15,14 +15,24 @@ public class InventoryPanel : MonoBehaviour
     [Header("Tab Buttons")]
     [SerializeField] private Button backpackTabButton;
     [SerializeField] private Button craftingTabButton;
+    [SerializeField] private Button skillTreeTabButton;
+    [SerializeField] private Button settingsTabButton;
+
+    [Header("Tab Panels")]
     [SerializeField] private GameObject backpackContent;
     [SerializeField] private GameObject craftingContent;
+    [SerializeField] private GameObject skillTreeContent;
+    [SerializeField] private GameObject settingsContent;
 
     [Header("Backpack Slots")]
     [SerializeField] private InventorySlotView[] slotViews;
+    [SerializeField] private ScrollableInventoryList scrollableInventoryList;
 
     [Header("Equipment Slots")]
     [SerializeField] private EquipmentSlotView[] equipmentSlots;
+
+    [Header("Weapon Slots")]
+    [SerializeField] private EquipmentSlotView[] weaponSlotViews;
 
     [Header("Character Info")]
     [SerializeField] private CharacterInfoPanel characterInfoPanel;
@@ -33,7 +43,7 @@ public class InventoryPanel : MonoBehaviour
     public bool IsVisible { get; private set; }
 
     private PlayerStats playerStats;
-    private int currentTab; // 0=背包, 1=制作
+    private int currentTab; // 0=背包, 1=制作, 2=技能树, 3=设置
 
     private void Awake()
     {
@@ -84,6 +94,26 @@ public class InventoryPanel : MonoBehaviour
         if (IsVisible) RefreshAll();
     }
 
+    /// <summary>
+    /// 按快捷键时：如果面板未打开则打开并切到指定 Tab，如果已打开且就在该 Tab 则关闭面板，否则切到该 Tab。
+    /// </summary>
+    public void ToggleTab(int tab)
+    {
+        if (!IsVisible)
+        {
+            SetVisible(true);
+            SwitchTab(tab);
+        }
+        else if (currentTab == tab)
+        {
+            Close();
+        }
+        else
+        {
+            SwitchTab(tab);
+        }
+    }
+
     public void Close()
     {
         SetVisible(false);
@@ -107,7 +137,10 @@ public class InventoryPanel : MonoBehaviour
         currentTab = tab;
         if (backpackContent != null) backpackContent.SetActive(tab == 0);
         if (craftingContent != null) craftingContent.SetActive(tab == 1);
+        if (skillTreeContent != null) skillTreeContent.SetActive(tab == 2);
+        if (settingsContent != null) settingsContent.SetActive(tab == 3);
 
+        if (tab == 0) RefreshAll();
         if (tab == 1 && craftingPanel != null)
             craftingPanel.RefreshRecipeList();
     }
@@ -136,11 +169,25 @@ public class InventoryPanel : MonoBehaviour
             }
         }
 
+        // 武器槽
+        if (weaponSlotViews != null)
+        {
+            foreach (var wpnSlot in weaponSlotViews)
+            {
+                if (wpnSlot == null) continue;
+                wpnSlot.Initialize(inventory, equipment, tooltip);
+            }
+        }
+
         // Tab 按钮
         if (backpackTabButton != null)
             backpackTabButton.onClick.AddListener(() => SwitchTab(0));
         if (craftingTabButton != null)
             craftingTabButton.onClick.AddListener(() => SwitchTab(1));
+        if (skillTreeTabButton != null)
+            skillTreeTabButton.onClick.AddListener(() => SwitchTab(2));
+        if (settingsTabButton != null)
+            settingsTabButton.onClick.AddListener(() => SwitchTab(3));
     }
 
     private void RefreshAll()
@@ -152,12 +199,23 @@ public class InventoryPanel : MonoBehaviour
 
     private void RefreshBackpack()
     {
-        if (inventory == null || slotViews == null) return;
+        if (inventory == null) return;
+
+        // 新版：滚动列表
+        if (scrollableInventoryList != null)
+        {
+            scrollableInventoryList.Refresh(inventory, OnSlotClicked, OnSlotDiscard);
+            if (emptyMessageText != null)
+                emptyMessageText.enabled = inventory.EquipmentSlots.Count == 0 && inventory.MaterialDict.Count == 0;
+            return;
+        }
+
+        // 旧版：固定格子
+        if (slotViews == null) return;
 
         var equipmentSlots_data = inventory.EquipmentSlots;
         var materialDict = inventory.MaterialDict;
 
-        // 先显示装备
         int slotIdx = 0;
         for (int i = 0; i < equipmentSlots_data.Count && slotIdx < slotViews.Length; i++, slotIdx++)
         {
@@ -165,7 +223,6 @@ public class InventoryPanel : MonoBehaviour
                 slotViews[slotIdx].SetEquipment(equipmentSlots_data[i]);
         }
 
-        // 再显示材料
         foreach (var kvp in materialDict)
         {
             if (slotIdx >= slotViews.Length) break;
@@ -174,7 +231,6 @@ public class InventoryPanel : MonoBehaviour
             slotIdx++;
         }
 
-        // 剩余格子置空
         for (; slotIdx < slotViews.Length; slotIdx++)
         {
             if (slotViews[slotIdx] != null)
@@ -187,10 +243,19 @@ public class InventoryPanel : MonoBehaviour
 
     private void RefreshEquipment()
     {
-        if (equipmentSlots == null) return;
-        foreach (var eqSlot in equipmentSlots)
+        if (equipmentSlots != null)
         {
-            if (eqSlot != null) eqSlot.Refresh();
+            foreach (var eqSlot in equipmentSlots)
+            {
+                if (eqSlot != null) eqSlot.Refresh();
+            }
+        }
+        if (weaponSlotViews != null)
+        {
+            foreach (var wpnSlot in weaponSlotViews)
+            {
+                if (wpnSlot != null) wpnSlot.Refresh();
+            }
         }
     }
 

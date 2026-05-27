@@ -3,5 +3,6 @@ public enum EquipmentType
     Weapon,
     Armor,
     Amulet,
-    Flask
+    Flask,
+    Helmet
 }
