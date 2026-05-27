@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// 可滚动的背包物品列表，显示所有装备和材料。
@@ -17,7 +18,6 @@ public class ScrollableInventoryList : MonoBehaviour
 
     private void Awake()
     {
-        // 尝试从面板层级获取 tooltip
         tooltip = GetComponentInParent<InventoryPanel>()?.GetComponentInChildren<ItemTooltip>(true);
     }
 
@@ -26,7 +26,11 @@ public class ScrollableInventoryList : MonoBehaviour
     /// </summary>
     public void Refresh(Inventory inventory, Action<int> onClick, Action<int> onDiscard)
     {
-        if (inventory == null || contentParent == null || itemPrefab == null) return;
+        if (inventory == null || contentParent == null || itemPrefab == null)
+        {
+            Debug.LogWarning($"ScrollableInventoryList.Refresh 跳过: inventory={inventory != null}, contentParent={contentParent != null}, itemPrefab={itemPrefab != null}");
+            return;
+        }
 
         var equipmentList = inventory.EquipmentSlots;
         var materialDict = inventory.MaterialDict;
@@ -38,6 +42,7 @@ public class ScrollableInventoryList : MonoBehaviour
         {
             InventoryListItem newItem = Instantiate(itemPrefab, contentParent);
             spawnedItems.Add(newItem);
+            Debug.Log($"ScrollableInventoryList: 创建新 item #{spawnedItems.Count}, active={newItem.gameObject.activeSelf}");
         }
 
         // 填充装备
@@ -46,6 +51,7 @@ public class ScrollableInventoryList : MonoBehaviour
         {
             spawnedItems[idx].gameObject.SetActive(true);
             spawnedItems[idx].Setup(idx, equipmentList[i], onClick, onDiscard, tooltip);
+            Debug.Log($"ScrollableInventoryList: 装备 [{idx}] {equipmentList[i].itemName}, icon={equipmentList[i].icon != null}");
         }
 
         // 填充材料
@@ -53,6 +59,7 @@ public class ScrollableInventoryList : MonoBehaviour
         {
             spawnedItems[idx].gameObject.SetActive(true);
             spawnedItems[idx].Setup(idx, kvp.Key, kvp.Value, onClick, onDiscard, tooltip);
+            Debug.Log($"ScrollableInventoryList: 材料 [{idx}] {kvp.Key.itemName} x{kvp.Value}");
             idx++;
         }
 
@@ -61,5 +68,7 @@ public class ScrollableInventoryList : MonoBehaviour
         {
             spawnedItems[i].gameObject.SetActive(false);
         }
+
+        Debug.Log($"ScrollableInventoryList.Refresh 完成: total={totalItems}, spawned={spawnedItems.Count}");
     }
 }

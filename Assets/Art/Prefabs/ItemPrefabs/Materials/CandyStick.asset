@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2aa842dc05364384ba03ae0a19a32e2e, type: 3}
+  m_Name: CandyStick
+  m_EditorClassIdentifier: 
+  itemName: CandyStick
+  icon: {fileID: 1561874490, guid: 344320f96442aeb48982bf2be597734d, type: 3}
+  description: 'can Eat?No way.you can use it to make a candy cane(weapon)
+
+'
+  itemType: 0
+  dropRate: 0.5

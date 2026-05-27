@@ -47,12 +47,6 @@ public class InventoryPanel : MonoBehaviour
 
     private void Awake()
     {
-        if (inventory == null) inventory = GetComponentInParent<Inventory>();
-        if (equipment == null) equipment = GetComponentInParent<Equipment>();
-
-        if (inventory != null)
-            playerStats = inventory.GetComponentInParent<PlayerStats>();
-
         SetVisible(false);
     }
 
@@ -76,9 +70,32 @@ public class InventoryPanel : MonoBehaviour
 
     private void Start()
     {
+        ResolveReferences();
+
         InitializeSlots();
         SwitchTab(0);
         if (characterInfoPanel != null) characterInfoPanel.Initialize(playerStats);
+    }
+
+    private void ResolveReferences()
+    {
+        var player = GameObject.FindWithTag("Player");
+        if (player == null)
+        {
+            Debug.LogWarning("InventoryPanel: 找不到 tag=Player 的对象");
+            return;
+        }
+
+        if (inventory == null) inventory = player.GetComponent<Inventory>();
+        if (equipment == null) equipment = player.GetComponent<Equipment>();
+        if (playerStats == null) playerStats = player.GetComponent<PlayerStats>();
+
+        // 订阅事件（Start 中才拿到引用，所以在这里订阅）
+        if (inventory != null)
+        {
+            inventory.OnInventoryChanged += RefreshBackpack;
+            inventory.OnEquipmentChanged += RefreshEquipment;
+        }
     }
 
     private void Update()
@@ -199,7 +216,9 @@ public class InventoryPanel : MonoBehaviour
 
     private void RefreshBackpack()
     {
-        if (inventory == null) return;
+        if (inventory == null) { Debug.LogWarning("RefreshBackpack: inventory is null"); return; }
+
+        Debug.Log($"RefreshBackpack: equipment={inventory.EquipmentSlots.Count}, materials={inventory.MaterialDict.Count}, scrollableList={scrollableInventoryList != null}");
 
         // 新版：滚动列表
         if (scrollableInventoryList != null)
