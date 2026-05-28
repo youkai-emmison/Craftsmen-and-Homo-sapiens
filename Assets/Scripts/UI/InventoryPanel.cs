@@ -218,7 +218,6 @@ public class InventoryPanel : MonoBehaviour
     {
         if (inventory == null) { Debug.LogWarning("RefreshBackpack: inventory is null"); return; }
 
-        Debug.Log($"RefreshBackpack: equipment={inventory.EquipmentSlots.Count}, materials={inventory.MaterialDict.Count}, scrollableList={scrollableInventoryList != null}");
 
         // 新版：滚动列表
         if (scrollableInventoryList != null)
@@ -280,18 +279,12 @@ public class InventoryPanel : MonoBehaviour
 
     private void OnSlotClicked(int slotIndex)
     {
-        if (inventory == null) return;
+        if (inventory == null || equipment == null) return;
 
-        // 计算该 slotIndex 对应的是装备还是材料
         var equipmentList = inventory.EquipmentSlots;
         if (slotIndex < equipmentList.Count)
         {
-            // 点击装备 → 穿戴
-            equipment?.EquipFromSlot(slotIndex);
-        }
-        else
-        {
-            // 点击材料 → 无操作（或可扩展为使用）
+            equipment.EquipFromSlot(slotIndex);
         }
     }
 

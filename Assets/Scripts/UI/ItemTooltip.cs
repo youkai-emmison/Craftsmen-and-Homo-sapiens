@@ -1,12 +1,15 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class ItemTooltip : MonoBehaviour
 {
-    [SerializeField] private Text nameText;
-    [SerializeField] private Text typeText;
-    [SerializeField] private Text statsText;
-    [SerializeField] private Text effectsText;
+    [SerializeField] private Image iconImage;
+    [SerializeField] private TextMeshProUGUI nameText;
+    [SerializeField] private TextMeshProUGUI typeText;
+    [SerializeField] private TextMeshProUGUI descriptionText;
+    [SerializeField] private TextMeshProUGUI statsText;
+    [SerializeField] private TextMeshProUGUI effectsText;
     [SerializeField] private CanvasGroup canvasGroup;
 
     private RectTransform rectTransform;
@@ -23,8 +26,10 @@ public class ItemTooltip : MonoBehaviour
     {
         if (data == null) { Hide(); return; }
 
+        SetIcon(data.icon);
         SetName(data.itemName);
         SetType(data.equipmentType.ToString());
+        SetDescription(data.description);
         SetStats(data.modifiers);
         SetEffects(data.effects);
         PositionAtMouse();
@@ -35,8 +40,10 @@ public class ItemTooltip : MonoBehaviour
     {
         if (data == null) { Hide(); return; }
 
+        SetIcon(data.icon);
         SetName(data.itemName);
         SetType("Material");
+        SetDescription(data.description);
         ClearStats();
         ClearEffects();
         PositionAtMouse();
@@ -47,8 +54,10 @@ public class ItemTooltip : MonoBehaviour
     {
         if (recipe == null || recipe.result == null) { Hide(); return; }
 
+        SetIcon(recipe.result.icon);
         SetName(recipe.result.itemName);
         SetType(recipe.result.equipmentType.ToString() + " (Recipe)");
+        SetDescription(recipe.result.description);
         SetStats(recipe.result.modifiers);
         SetRecipeMaterials(recipe, canCraft);
         PositionAtMouse();
@@ -60,6 +69,21 @@ public class ItemTooltip : MonoBehaviour
         SetVisible(false);
     }
 
+    private void SetIcon(Sprite sprite)
+    {
+        if (iconImage == null) return;
+        if (sprite != null)
+        {
+            iconImage.enabled = true;
+            iconImage.sprite = sprite;
+            iconImage.color = Color.white;
+        }
+        else
+        {
+            iconImage.enabled = false;
+        }
+    }
+
     private void SetName(string name)
     {
         if (nameText != null) nameText.text = name;
@@ -68,6 +92,12 @@ public class ItemTooltip : MonoBehaviour
     private void SetType(string type)
     {
         if (typeText != null) typeText.text = type;
+    }
+
+    private void SetDescription(string desc)
+    {
+        if (descriptionText == null) return;
+        descriptionText.text = !string.IsNullOrEmpty(desc) ? desc : "";
     }
 
     private void SetStats(EquipmentModifier[] modifiers)
@@ -161,7 +191,7 @@ public class ItemTooltip : MonoBehaviour
         if (canvasGroup != null)
         {
             canvasGroup.alpha = visible ? 1f : 0f;
-            canvasGroup.blocksRaycasts = visible;
+            canvasGroup.blocksRaycasts = false;
         }
         else
         {
