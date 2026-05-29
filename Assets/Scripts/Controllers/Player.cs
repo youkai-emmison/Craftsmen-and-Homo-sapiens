@@ -70,7 +70,7 @@ public class Player : Entity
     private MaidVisualAnimatorDriver visualAnimatorDriver;
 
     // 装备特效
-    private MeleeHitDetector meleeHitDetector;
+    private PlayerAttackController playerAttackController;
     private ItemEffectManager itemEffectManager;
 
     #endregion
@@ -87,20 +87,20 @@ public class Player : Entity
         visualAnimatorDriver = GetComponentInChildren<MaidVisualAnimatorDriver>();
         groundCheck = GetComponentInChildren<GroundCheck>();
         wallCheck = GetComponentInChildren<WallCheck>();
-        meleeHitDetector = GetComponentInChildren<MeleeHitDetector>();
+        playerAttackController = GetComponent<PlayerAttackController>();
         itemEffectManager = GetComponent<ItemEffectManager>();
     }
 
     private void OnEnable()
     {
-        if (meleeHitDetector != null)
-            meleeHitDetector.OnHitTarget += OnMeleeHit;
+        if (playerAttackController != null)
+            playerAttackController.OnHitTarget += OnMeleeHit;
     }
 
     private void OnDisable()
     {
-        if (meleeHitDetector != null)
-            meleeHitDetector.OnHitTarget -= OnMeleeHit;
+        if (playerAttackController != null)
+            playerAttackController.OnHitTarget -= OnMeleeHit;
     }
 
     private void OnMeleeHit(Transform target)

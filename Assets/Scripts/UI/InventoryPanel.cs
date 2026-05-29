@@ -157,6 +157,10 @@ public class InventoryPanel : MonoBehaviour
         if (skillTreeContent != null) skillTreeContent.SetActive(tab == 2);
         if (settingsContent != null) settingsContent.SetActive(tab == 3);
 
+        // Hide tooltip when switching tabs.
+        if (tooltip != null) tooltip.Hide();
+        if (craftingPanel != null) craftingPanel.HideTooltip();
+
         if (tab == 0) RefreshAll();
         if (tab == 1 && craftingPanel != null)
             craftingPanel.RefreshRecipeList();
@@ -261,6 +265,9 @@ public class InventoryPanel : MonoBehaviour
 
     private void RefreshEquipment()
     {
+        // Hide tooltip when equipment changes (e.g., after equipping an item).
+        if (tooltip != null) tooltip.Hide();
+
         if (equipmentSlots != null)
         {
             foreach (var eqSlot in equipmentSlots)

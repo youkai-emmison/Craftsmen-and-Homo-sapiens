@@ -1,10 +1,8 @@
-// Script purpose: Detects damageable objects inside a melee circle.
+// Script purpose: Detects objects inside a melee circle.
 // Key Inspector variables:
 // - attackPoint: Center point of the melee check.
 // - attackRange: Radius of the melee check.
 // - hittableLayer: Layers that can be hit by the melee attack.
-// - damageAmount: Damage sent to each IDamageable found.
-using System;
 using UnityEngine;
 
 public class MeleeHitDetector : MonoBehaviour
@@ -18,32 +16,19 @@ public class MeleeHitDetector : MonoBehaviour
     // Layers considered valid attack targets.
     public LayerMask hittableLayer;
 
-    // Damage applied to each hit target.
-    public int damageAmount = 1;
-
-    /// <summary>每次命中目标时触发，用于装备特效等</summary>
-    public event Action<Transform> OnHitTarget;
-
-    public void DetectHit()
+    /// <summary>
+    /// Detect all colliders in attack range.
+    /// Returns empty array if no targets found.
+    /// </summary>
+    public Collider2D[] DetectTargets()
     {
         if (attackPoint == null)
         {
             Debug.LogError("MeleeHitDetector: Attack Point is not assigned.", this);
-            return;
+            return System.Array.Empty<Collider2D>();
         }
 
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, hittableLayer);
-
-        foreach (Collider2D hitCollider in hitColliders)
-        {
-            IDamageable damageable = hitCollider.GetComponent<IDamageable>();
-
-            if (damageable != null)
-            {
-                damageable.TakeDamage(damageAmount);
-                OnHitTarget?.Invoke(hitCollider.transform);
-            }
-        }
+        return Physics2D.OverlapCircleAll(attackPoint.position, attackRange, hittableLayer);
     }
 
     private void OnDrawGizmosSelected()

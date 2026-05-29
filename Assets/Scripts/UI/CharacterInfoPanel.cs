@@ -1,9 +1,9 @@
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 public class CharacterInfoPanel : MonoBehaviour
 {
-    [SerializeField] private Text statsText;
+    [SerializeField] private TextMeshProUGUI statsText;
 
     private PlayerStats playerStats;
 

@@ -22,7 +22,7 @@ MonoBehaviour:
   equipmentType: 0
   modifiers:
   - statType: 4
-    modifierType: 0
+    modifierType: 1
     value: 30
   - statType: 5
     modifierType: 1

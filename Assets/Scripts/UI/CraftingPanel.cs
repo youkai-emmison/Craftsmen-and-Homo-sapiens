@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Text;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,102 +8,211 @@ public class CraftingPanel : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private Crafting crafting;
+    [SerializeField] private Inventory inventory;
+
+    [Header("Recipe List (Left)")]
     [SerializeField] private Transform recipeListParent;
-    [SerializeField] private GameObject recipeButtonPrefab;
-    [SerializeField] private Text recipeNameText;
-    [SerializeField] private Text recipeMaterialsText;
+    [SerializeField] private CraftingRecipeListItem recipeItemPrefab;
+
+    [Header("Crafting Detail (Right)")]
+    [SerializeField] private Image resultIcon;
+    [SerializeField] private TextMeshProUGUI resultNameText;
+    [SerializeField] private TextMeshProUGUI resultDescText;
+    [SerializeField] private TextMeshProUGUI materialsText;
+    [SerializeField] private Slider quantitySlider;
+    [SerializeField] private TextMeshProUGUI quantityText;
     [SerializeField] private Button craftButton;
+    [SerializeField] private TextMeshProUGUI craftButtonText;
+
+    [Header("Tooltip")]
     [SerializeField] private ItemTooltip tooltip;
 
     private CraftingRecipe selectedRecipe;
-    private readonly List<GameObject> spawnedButtons = new List<GameObject>();
+    private int craftCount = 1;
+    private readonly List<CraftingRecipeListItem> spawnedItems = new List<CraftingRecipeListItem>();
 
     private void Start()
     {
+        if (crafting == null)
+        {
+            var player = GameObject.FindWithTag("Player");
+            if (player != null)
+            {
+                if (crafting == null) crafting = player.GetComponent<Crafting>();
+                if (inventory == null) inventory = player.GetComponent<Inventory>();
+            }
+        }
+
+        if (quantitySlider != null)
+        {
+            quantitySlider.wholeNumbers = true;
+            quantitySlider.minValue = 1;
+            quantitySlider.onValueChanged.AddListener(OnSliderChanged);
+        }
+
         if (craftButton != null)
             craftButton.onClick.AddListener(OnCraftClicked);
 
         RefreshRecipeList();
     }
 
-    public void RefreshRecipeList()
+    public void HideTooltip()
     {
-        if (crafting == null || recipeListParent == null || recipeButtonPrefab == null) return;
-
-        // 清除旧按钮
-        foreach (var btn in spawnedButtons)
-            if (btn != null) Destroy(btn);
-        spawnedButtons.Clear();
-
-        IReadOnlyList<CraftingRecipe> recipes = crafting.AllRecipes;
-        if (recipes == null) return;
-
-        for (int i = 0; i < recipes.Count; i++)
-        {
-            CraftingRecipe recipe = recipes[i];
-            if (recipe == null || recipe.result == null) continue;
-
-            GameObject btn = Instantiate(recipeButtonPrefab, recipeListParent);
-            btn.SetActive(true);
-
-            Text btnText = btn.GetComponentInChildren<Text>();
-            if (btnText != null) btnText.text = recipe.result.itemName;
-
-            Button btnComp = btn.GetComponent<Button>();
-            if (btnComp != null)
-            {
-                CraftingRecipe captured = recipe;
-                bool canCraft = crafting.CanCraft(captured);
-
-                // 按钮颜色提示
-                ColorBlock colors = btnComp.colors;
-                colors.normalColor = canCraft ? Color.white : new Color(0.6f, 0.6f, 0.6f);
-                btnComp.colors = colors;
-
-                btnComp.onClick.AddListener(() => SelectRecipe(captured));
-            }
-
-            spawnedButtons.Add(btn);
-        }
+        if (tooltip != null) tooltip.Hide();
     }
 
-    private void SelectRecipe(CraftingRecipe recipe)
+    public void RefreshRecipeList()
     {
-        selectedRecipe = recipe;
-        if (recipe == null || recipe.result == null) return;
+        if (crafting == null || recipeListParent == null || recipeItemPrefab == null) return;
 
-        if (recipeNameText != null)
-            recipeNameText.text = recipe.result.itemName;
+        var recipes = crafting.AllRecipes;
+        if (recipes == null) return;
 
-        if (recipeMaterialsText != null)
+        // 确保有足够的列表项
+        while (spawnedItems.Count < recipes.Count)
         {
-            System.Text.StringBuilder sb = new System.Text.StringBuilder();
-            foreach (var mat in recipe.materials)
-            {
-                if (mat.material == null) continue;
-                int owned = crafting != null ? 0 : 0;
-                // 通过 Crafting 组件获取材料数量 (需要 Inventory 引用)
-                sb.AppendLine($"{mat.material.itemName}: {mat.amount}");
-            }
-            recipeMaterialsText.text = sb.ToString();
+            var newItem = Instantiate(recipeItemPrefab, recipeListParent);
+            spawnedItems.Add(newItem);
         }
 
-        if (craftButton != null)
-            craftButton.interactable = crafting.CanCraft(recipe);
+        // 隐藏多余的
+        for (int i = recipes.Count; i < spawnedItems.Count; i++)
+            spawnedItems[i].gameObject.SetActive(false);
+
+        // 填充
+        for (int i = 0; i < recipes.Count; i++)
+        {
+            var recipe = recipes[i];
+            if (recipe == null || recipe.result == null)
+            {
+                spawnedItems[i].gameObject.SetActive(false);
+                continue;
+            }
+
+            spawnedItems[i].gameObject.SetActive(true);
+            bool canCraft = crafting.CanCraft(recipe);
+            bool isSelected = recipe == selectedRecipe;
+            spawnedItems[i].Setup(recipe, canCraft, isSelected, OnRecipeClicked);
+        }
+
+        // 如果当前选中的配方被刷新了，更新详情
+        if (selectedRecipe != null)
+            RefreshDetail();
+    }
+
+    private void OnRecipeClicked(CraftingRecipe recipe)
+    {
+        selectedRecipe = recipe;
+        craftCount = 1;
+
+        // 更新列表选中状态
+        for (int i = 0; i < spawnedItems.Count; i++)
+        {
+            if (!spawnedItems[i].gameObject.activeSelf) continue;
+            bool isSelected = spawnedItems[i].Recipe == recipe;
+            bool canCraft = crafting.CanCraft(spawnedItems[i].Recipe);
+            spawnedItems[i].UpdateSelection(isSelected, canCraft);
+        }
+
+        RefreshDetail();
 
         if (tooltip != null)
             tooltip.ShowRecipe(recipe, crafting.CanCraft(recipe));
+    }
+
+    private void RefreshDetail()
+    {
+        if (selectedRecipe == null || selectedRecipe.result == null) return;
+
+        var result = selectedRecipe.result;
+
+        // 产物信息
+        if (resultIcon != null)
+        {
+            resultIcon.enabled = result.icon != null;
+            resultIcon.sprite = result.icon;
+        }
+        if (resultNameText != null)
+            resultNameText.text = result.itemName;
+        if (resultDescText != null)
+            resultDescText.text = result.description ?? "";
+
+        // 材料列表
+        UpdateMaterialsText();
+
+        // 滑块
+        int maxCount = crafting.GetMaxCraftCount(selectedRecipe);
+        if (quantitySlider != null)
+        {
+            quantitySlider.maxValue = Mathf.Max(1, maxCount);
+            quantitySlider.value = 1;
+        }
+        craftCount = 1;
+        UpdateQuantityText();
+        UpdateCraftButton();
+    }
+
+    private void UpdateMaterialsText()
+    {
+        if (materialsText == null || selectedRecipe == null) return;
+
+        var sb = new StringBuilder();
+        foreach (var mat in selectedRecipe.materials)
+        {
+            if (mat.material == null) continue;
+            int owned = inventory != null ? inventory.GetMaterialCount(mat.material) : 0;
+            int required = mat.amount * craftCount;
+            string colorTag = owned >= required ? "green" : "red";
+            sb.AppendLine($"<color={colorTag}>{mat.material.itemName}: {owned}/{required}</color>");
+        }
+        materialsText.text = sb.ToString();
+    }
+
+    private void OnSliderChanged(float value)
+    {
+        craftCount = Mathf.Max(1, Mathf.RoundToInt(value));
+        UpdateQuantityText();
+        UpdateMaterialsText();
+        UpdateCraftButton();
+    }
+
+    private void UpdateQuantityText()
+    {
+        if (quantityText != null)
+            quantityText.text = craftCount.ToString();
+    }
+
+    private void UpdateCraftButton()
+    {
+        if (craftButton == null || crafting == null || selectedRecipe == null) return;
+        int maxCount = crafting.GetMaxCraftCount(selectedRecipe);
+        craftButton.interactable = craftCount <= maxCount && craftCount > 0;
+        if (craftButtonText != null)
+            craftButtonText.text = "Craft";
     }
 
     private void OnCraftClicked()
     {
         if (selectedRecipe == null || crafting == null) return;
 
-        if (crafting.Craft(selectedRecipe))
+        int made = crafting.Craft(selectedRecipe, craftCount);
+        if (made > 0)
         {
-            // 制作成功，刷新列表和详情
+            // 制作成功，刷新
+            int maxCount = crafting.GetMaxCraftCount(selectedRecipe);
+            if (quantitySlider != null)
+                quantitySlider.maxValue = Mathf.Max(1, maxCount);
+
+            // 如果剩余材料不够当前数量，调整滑块
+            if (craftCount > maxCount)
+            {
+                craftCount = Mathf.Max(1, maxCount);
+                if (quantitySlider != null) quantitySlider.value = craftCount;
+            }
+
+            UpdateMaterialsText();
+            UpdateCraftButton();
             RefreshRecipeList();
-            SelectRecipe(selectedRecipe);
         }
     }
 }

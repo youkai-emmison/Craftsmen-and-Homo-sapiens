@@ -23,8 +23,14 @@ public class PlayerAttackController : MonoBehaviour
     // Optional visual-only Animator driver. It does not control hit detection.
     public MaidVisualAnimatorDriver maidVisualAnimatorDriver;
 
+    // Player stats for damage calculation.
+    private PlayerStats playerStats;
+
     // Timestamp gate that prevents click-spam attacks.
     private float nextAttackAllowedTime;
+
+    /// <summary>每次命中目标时触发，用于装备特效等</summary>
+    public event System.Action<Transform> OnHitTarget;
 
     private void Awake()
     {
@@ -32,6 +38,7 @@ public class PlayerAttackController : MonoBehaviour
         {
             Debug.LogError("PlayerAttackController: MeleeHitDetector is not assigned.", this);
         }
+        playerStats = GetComponent<PlayerStats>();
     }
 
     private void Update()
@@ -55,7 +62,34 @@ public class PlayerAttackController : MonoBehaviour
         }
 
         nextAttackAllowedTime = Time.time + attackCooldown;
-        meleeHitDetector.DetectHit();
+
+        // Detect targets and deal damage.
+        Collider2D[] targets = meleeHitDetector.DetectTargets();
+        foreach (Collider2D target in targets)
+        {
+            Entity entity = target.GetComponent<Entity>();
+            if (entity != null)
+            {
+                // Calculate damage using PlayerStats.
+                float damage = playerStats != null ? playerStats.finalDamage : 1f;
+
+                // Check for crit.
+                bool isCrit = playerStats != null && Random.value < playerStats.finalCritRate;
+                if (isCrit)
+                {
+                    damage *= playerStats.finalCritDamage;
+                }
+
+                // Apply damage.
+                entity.TakeDamage(damage, transform.position);
+
+                // Trigger hit event.
+                OnHitTarget?.Invoke(target.transform);
+
+                Debug.Log($"Hit {target.name} for {damage:F1} damage" + (isCrit ? " (CRIT!)" : ""));
+            }
+        }
+
         PlayAttackAnimation();
         PlayAttackVisual();
     }

@@ -46,6 +46,16 @@ public class PlayerStats : CharacterStats
 
     #endregion
 
+    #region 生命周期
+
+    protected override void Awake()
+    {
+        base.Awake();
+        RecalculateStats();
+    }
+
+    #endregion
+
     #region 刷新派生属性
 
     public override void RecalculateStats()

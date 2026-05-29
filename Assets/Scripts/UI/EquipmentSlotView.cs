@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class EquipmentSlotView : MonoBehaviour, IDropHandler, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
+public class EquipmentSlotView : MonoBehaviour, IDropHandler, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [Header("装备类型")]
     [SerializeField] private EquipmentType slotType;
@@ -92,19 +92,29 @@ public class EquipmentSlotView : MonoBehaviour, IDropHandler, IPointerClickHandl
         }
     }
 
-    public void OnPointerClick(PointerEventData eventData)
+    public void OnPointerDown(PointerEventData eventData)
     {
+        Debug.Log($"OnPointerClick: button={eventData.button}, inventory={inventory != null}, equipment={equipment != null}");
         if (inventory == null || equipment == null) return;
+
+        // Right click to unequip.
+        if (eventData.button != PointerEventData.InputButton.Right)
+        {
+            Debug.Log("Not right click, ignoring.");
+            return;
+        }
 
         if (isWeaponSlot)
         {
             EquipmentData data = inventory.GetEquippedWeapon(weaponSlotIndex);
+            Debug.Log($"Weapon slot {weaponSlotIndex}: data={data?.itemName}");
             if (data != null)
                 equipment.UnequipWeaponSlot(weaponSlotIndex);
         }
         else
         {
             EquipmentData data = inventory.GetEquipped(slotType);
+            Debug.Log($"Slot {slotType}: data={data?.itemName}");
             if (data != null)
                 equipment.UnequipSlot(slotType);
         }

@@ -15,28 +15,41 @@ public class Crafting : MonoBehaviour
 
     public bool CanCraft(CraftingRecipe recipe)
     {
-        if (recipe == null || recipe.result == null || recipe.materials == null) return false;
-        foreach (var mat in recipe.materials)
-        {
-            if (mat.material == null || inventory.GetMaterialCount(mat.material) < mat.amount)
-                return false;
-        }
-        return true;
+        return GetMaxCraftCount(recipe) > 0;
     }
 
-    public bool Craft(CraftingRecipe recipe)
+    /// <summary>
+    /// 计算当前材料最多能合成多少次（不是产物个数，是合成次数）。
+    /// </summary>
+    public int GetMaxCraftCount(CraftingRecipe recipe)
     {
-        if (!CanCraft(recipe)) return false;
-
-        // 扣除材料
+        if (recipe == null || recipe.result == null || recipe.materials == null) return 0;
+        int max = int.MaxValue;
         foreach (var mat in recipe.materials)
-            inventory.RemoveMaterial(mat.material, mat.amount);
+        {
+            if (mat.material == null || mat.amount <= 0) return 0;
+            int owned = inventory.GetMaterialCount(mat.material);
+            max = Mathf.Min(max, owned / mat.amount);
+        }
+        return max == int.MaxValue ? 0 : max;
+    }
 
-        // 生成装备
-        for (int i = 0; i < recipe.resultAmount; i++)
+    /// <summary>
+    /// 合成指定次数。返回实际合成次数。
+    /// </summary>
+    public int Craft(CraftingRecipe recipe, int count)
+    {
+        if (recipe == null || count <= 0) return 0;
+        int max = GetMaxCraftCount(recipe);
+        int actual = Mathf.Min(count, max);
+        if (actual <= 0) return 0;
+
+        foreach (var mat in recipe.materials)
+            inventory.RemoveMaterial(mat.material, mat.amount * actual);
+
+        for (int i = 0; i < actual * recipe.resultAmount; i++)
             inventory.AddEquipment(recipe.result);
 
-        Debug.Log($"Crafting: 制作了 {recipe.result.itemName} x{recipe.resultAmount}");
-        return true;
+        return actual;
     }
 }
