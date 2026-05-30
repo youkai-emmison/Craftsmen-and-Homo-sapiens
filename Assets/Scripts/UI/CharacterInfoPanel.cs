@@ -1,15 +1,24 @@
 using UnityEngine;
 using TMPro;
 
+// Script purpose: Displays read-only player stats in the backpack character panel.
+// Key Inspector variables:
+// - statsText: TextMeshPro label that receives the formatted stat summary.
 public class CharacterInfoPanel : MonoBehaviour
 {
+    // Text target for the character stat summary.
     [SerializeField] private TextMeshProUGUI statsText;
 
+    // Player stat source assigned by InventoryPanel.
     private PlayerStats playerStats;
+
+    // Optional skill-energy source shown as SP in this panel.
+    private PlayerSkillEnergy skillEnergy;
 
     public void Initialize(PlayerStats stats)
     {
         playerStats = stats;
+        skillEnergy = playerStats != null ? playerStats.GetComponent<PlayerSkillEnergy>() : null;
     }
 
     public void Refresh()
@@ -23,6 +32,7 @@ INT: {playerStats.intelligence.Value:F0}  VIT: {playerStats.vitality.Value:F0}
 
 <b>Combat</b>
 HP: {playerStats.currentHealth:F0} / {playerStats.finalMaxHealth:F0}
+SP: {GetSkillEnergyText()}
 DMG: {playerStats.finalDamage:F1}  Crit: {playerStats.finalCritRate * 100:F1}%
 CritDmg: {playerStats.finalCritDamage * 100:F0}%
 
@@ -33,5 +43,15 @@ MagicResist: {playerStats.finalMagicResist * 100:F1}%
 <b>Magic</b>
 Fire: {playerStats.finalFireDamage:F0}  Ice: {playerStats.finalIceDamage:F0}
 Lightning: {playerStats.finalLightningDamage:F0}";
+    }
+
+    private string GetSkillEnergyText()
+    {
+        if (skillEnergy == null)
+        {
+            return "-";
+        }
+
+        return $"{skillEnergy.CurrentSkillEnergy} / {skillEnergy.MaxSkillEnergy}";
     }
 }
