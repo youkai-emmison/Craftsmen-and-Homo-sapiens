@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27dd0aa2839e4b6ca5f81a07a66a0d51, type: 3}
+  m_Name: OpeningGuideDialogue
+  m_EditorClassIdentifier: 
+  sequenceName: Opening Guide
+  lines:
+  - speakerName: "\u6863\u6848\u5458"
+    content: "\u6B22\u8FCE\u6765\u5230\u5F02\u5E38\u5730\u7262\u3002\u8FD9\u91CC\u7684\u89C4\u5219\u5F88\u7B80\u5355\uFF1A\u6D3B\u4E0B\u53BB\uFF0C\u8BB0\u5F55\u4E0B\u6765\uFF0C\u7136\u540E\u7EE7\u7EED\u524D\u8FDB\u3002"
+  - speakerName: "\u6863\u6848\u5458"
+    content: "A / D \u79FB\u52A8\uFF0CSpace \u8DF3\u8DC3\uFF0CJ \u6216\u9F20\u6807\u5DE6\u952E\u653B\u51FB\u3002\u9760\u8FD1\u6211\u8FD9\u6837\u7684\u89D2\u8272\u65F6\uFF0C\u6309
+      E \u53EF\u4EE5\u5BF9\u8BDD\u3002"
+  - speakerName: "\u6863\u6848\u5458"
+    content: "\u6309 B \u6253\u5F00\u80CC\u5305\uFF0C\u6309 N \u6253\u5F00\u5236\u4F5C\u9762\u677F\u3002\u73B0\u5728\u5148\u5411\u53F3\u8D70\uFF0C\u786E\u8BA4\u4F60\u7684\u6B66\u5668\u8FD8\u542C\u8BDD\u3002"
