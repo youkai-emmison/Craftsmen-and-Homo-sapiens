@@ -61,6 +61,8 @@ NPC 需要：
 6. 离开 NPC 后不能再触发对话。
 7. Player 移动、跳跃、攻击、技力条、背包和制作面板在非对话状态下仍正常。
 
+如果看不到 NPC 或提示，先在 Hierarchy 搜索 `NPC_ArchivistGuide`。它应该在玩家出生点右侧一点点，提示文字是 `E Talk`。如果场景里没有它，点击 `Tools > Dialogue > Create Demo NPC Dialogue Setup` 重新生成。
+
 ## 暂时不做
 
 - 分支剧情。

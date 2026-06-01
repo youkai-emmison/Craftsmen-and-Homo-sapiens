@@ -54,6 +54,18 @@ public class NpcDialogueTrigger : MonoBehaviour
         SetPromptVisible(true);
     }
 
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (!other.CompareTag("Player"))
+        {
+            return;
+        }
+
+        // This keeps the prompt reliable when the player starts inside the trigger.
+        playerInRange = true;
+        SetPromptVisible(dialoguePanel != null && !dialoguePanel.IsOpen);
+    }
+
     private void OnTriggerExit2D(Collider2D other)
     {
         if (!other.CompareTag("Player"))

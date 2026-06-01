@@ -46,7 +46,7 @@ public static class NpcDialogueSceneSetupBuilder
             });
 
         DialoguePanelController dialoguePanel = CreateOrUpdateDialoguePanel();
-        CreateOrUpdateNpc("NPC_ArchivistGuide", new Vector3(-10.6f, -1.25f, 0f), new Color(0.40f, 0.72f, 0.88f), openingDialogue, dialoguePanel);
+        CreateOrUpdateNpc("NPC_ArchivistGuide", new Vector3(-12.75f, -1.05f, 0f), new Color(0.40f, 0.72f, 0.88f), openingDialogue, dialoguePanel);
         CreateOrUpdateNpc("NPC_FieldTechnician", new Vector3(26.5f, -1.25f, 0f), new Color(0.94f, 0.62f, 0.28f), midRoomDialogue, dialoguePanel);
 
         EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
@@ -111,6 +111,7 @@ public static class NpcDialogueSceneSetupBuilder
         }
 
         GameObject panelObject = FindOrCreateChild(inventoryCanvas.transform, "DialoguePanel", typeof(RectTransform), typeof(CanvasRenderer), typeof(Image), typeof(CanvasGroup), typeof(DialoguePanelController), typeof(DialogueInputController));
+        panelObject.transform.SetAsLastSibling();
         ConfigureDialoguePanelRect(panelObject.GetComponent<RectTransform>());
 
         Image panelImage = panelObject.GetComponent<Image>();
@@ -179,16 +180,16 @@ public static class NpcDialogueSceneSetupBuilder
         }
 
         npcObject.transform.position = position;
-        npcObject.transform.localScale = new Vector3(0.8f, 1.25f, 1f);
+        npcObject.transform.localScale = new Vector3(1.15f, 1.7f, 1f);
 
         SpriteRenderer spriteRenderer = GetOrAdd<SpriteRenderer>(npcObject);
         spriteRenderer.sprite = AssetDatabase.LoadAssetAtPath<Sprite>(BlockoutSpritePath);
         spriteRenderer.color = color;
-        spriteRenderer.sortingOrder = 35;
+        spriteRenderer.sortingOrder = 70;
 
         BoxCollider2D triggerCollider = GetOrAdd<BoxCollider2D>(npcObject);
         triggerCollider.isTrigger = true;
-        triggerCollider.size = new Vector2(2.2f, 2.2f);
+        triggerCollider.size = new Vector2(4f, 2.8f);
         triggerCollider.offset = Vector2.zero;
 
         GameObject promptObject = CreateOrUpdatePrompt(npcObject.transform);
@@ -203,20 +204,20 @@ public static class NpcDialogueSceneSetupBuilder
     private static GameObject CreateOrUpdatePrompt(Transform npcTransform)
     {
         GameObject promptObject = FindOrCreateChild(npcTransform, "InteractPrompt", typeof(RectTransform), typeof(TextMeshPro));
-        promptObject.transform.localPosition = new Vector3(0f, 1.25f, 0f);
+        promptObject.transform.localPosition = new Vector3(0f, 1.45f, 0f);
         promptObject.transform.localRotation = Quaternion.identity;
         promptObject.transform.localScale = Vector3.one;
 
         TextMeshPro promptText = promptObject.GetComponent<TextMeshPro>();
-        promptText.text = "Press E";
-        promptText.fontSize = 3f;
+        promptText.text = "E Talk";
+        promptText.fontSize = 2.6f;
         promptText.alignment = TextAlignmentOptions.Center;
         promptText.color = Color.white;
 
         MeshRenderer promptRenderer = promptObject.GetComponent<MeshRenderer>();
         if (promptRenderer != null)
         {
-            promptRenderer.sortingOrder = 80;
+            promptRenderer.sortingOrder = 120;
         }
 
         promptObject.SetActive(false);
