@@ -42,6 +42,12 @@ public class Entity : MonoBehaviour, IDamageable
 
     public event Action OnDeath;         // 死亡事件，供外部系统（如房间、掉落）订阅
 
+    /// <summary>
+    /// 死亡前回调。返回 true 则拦截死亡（不播放死亡动画、不销毁）。
+    /// 用于技能系统（如神圣光环复活）。
+    /// </summary>
+    public event System.Func<bool> OnBeforeDeath;
+
     protected void RaiseOnDeath() { OnDeath?.Invoke(); }
 
     #endregion
@@ -161,7 +167,12 @@ public class Entity : MonoBehaviour, IDamageable
         SafeSetTrigger("Hit");
 
         if (currentHealth <= 0f)
+        {
+            // 死亡前拦截检查：若外部系统（如技能）返回 true 则取消死亡
+            if (OnBeforeDeath != null && OnBeforeDeath.Invoke())
+                return;
             Die();
+        }
     }
 
     /// <summary>
