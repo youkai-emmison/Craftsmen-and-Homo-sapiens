@@ -1,8 +1,16 @@
+// Script purpose: Reads keyboard shortcuts for opening and closing the inventory panels.
+// Key Inspector variables:
+// - inventoryPanel: UI panel that owns backpack, crafting, skill tree, and settings tabs.
+// - backpackKey / craftingKey / skillTreeKey / settingsKey: Tab toggle shortcuts.
+// - closeKey: Shortcut used to close the visible panel.
 using UnityEngine;
 
 public class InventoryInputController : MonoBehaviour
 {
+    // Panel controlled by these shortcuts.
     [SerializeField] private InventoryPanel inventoryPanel;
+
+    // Keyboard shortcuts kept serialized so they can be changed in the Inspector.
     [SerializeField] private KeyCode backpackKey = KeyCode.B;
     [SerializeField] private KeyCode craftingKey = KeyCode.N;
     [SerializeField] private KeyCode skillTreeKey = KeyCode.M;
@@ -12,6 +20,11 @@ public class InventoryInputController : MonoBehaviour
     private void Update()
     {
         if (inventoryPanel == null) return;
+
+        if (DialoguePanelController.IsAnyDialogueOpen)
+        {
+            return;
+        }
 
         if (Input.GetKeyDown(backpackKey))
             inventoryPanel.ToggleTab(0);

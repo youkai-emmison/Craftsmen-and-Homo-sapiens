@@ -43,6 +43,11 @@ public class PlayerAttackController : MonoBehaviour
 
     private void Update()
     {
+        if (DialoguePanelController.IsAnyDialogueOpen)
+        {
+            return;
+        }
+
         if (Input.GetKeyDown(KeyCode.J) || Input.GetMouseButtonDown(0))
         {
             TryAttack();
