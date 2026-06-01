@@ -2,7 +2,7 @@
 // Key generated objects:
 // - OpeningGuideDialogue / MidRoomWarningDialogue: ScriptableObject dialogue data.
 // - DialoguePanel: Bottom popup UI under InventoryCanvas.
-// - NPC_ArchivistGuide / NPC_FieldTechnician: Demo NPC trigger objects.
+// - NPC_ArchivistGuide / NPC_FieldTechnician: Demo NPC trigger objects with animated sprite frames.
 using TMPro;
 using UnityEditor;
 using UnityEditor.SceneManagement;
@@ -18,6 +18,8 @@ public static class NpcDialogueSceneSetupBuilder
     private const string MidDialoguePath = DialogueAssetFolder + "/MidRoomWarningDialogue.asset";
     private const string BlockoutSpritePath = "Assets/Art/Generated/Environment/blockout_square.png";
     private const string PanelSpritePath = "Assets/Art/Kenney/FantasyUIBorders/PNG/Default/Panel/panel-001.png";
+    private const string ArchivistFramePrefix = "Assets/Art/Generated/NPC/archivist_guide/archivist_guide_idle_";
+    private const string TechnicianFramePrefix = "Assets/Art/Generated/NPC/field_technician/field_technician_idle_";
 
     [MenuItem("Tools/Dialogue/Create Demo NPC Dialogue Setup")]
     public static void CreateDemoNpcDialogueSetup()
@@ -30,9 +32,9 @@ public static class NpcDialogueSceneSetupBuilder
             "Opening Guide",
             new[]
             {
-                CreateLine("档案员", "欢迎来到异常地牢。这里的规则很简单：活下去，记录下来，然后继续前进。"),
-                CreateLine("档案员", "A / D 移动，Space 跳跃，J 或鼠标左键攻击。靠近我这样的角色时，按 E 可以对话。"),
-                CreateLine("档案员", "按 B 打开背包，按 N 打开制作面板。现在先向右走，确认你的武器还听话。")
+                CreateLine("Archivist", "Hey, you're finally here. Welcome to the dungeon shift. Not fancy, but hey, it keeps things interesting."),
+                CreateLine("Archivist", "A / D to move, Space to jump, J or Left Mouse to hit. Easy enough, yeah?"),
+                CreateLine("Archivist", "B opens the backpack, N opens crafting. Go right when you're ready, and uh... don't hug every weird monster.")
             });
 
         DialogueSequence midRoomDialogue = CreateOrUpdateSequence(
@@ -40,14 +42,14 @@ public static class NpcDialogueSceneSetupBuilder
             "Mid Room Warning",
             new[]
             {
-                CreateLine("场地技师", "前面是更深的房间。怪物不会等你整理背包，所以记得先看清楚自己的状态。"),
-                CreateLine("场地技师", "蓝色技力条会自动恢复。以后技能会消耗技力，现在先把它当成战斗节奏提示。"),
-                CreateLine("场地技师", "如果门还锁着，就先清掉房间里的敌人。Boss 房前不要贪刀。")
+                CreateLine("Field Tech", "Yo, quick heads-up. The next room hits harder, so don't just mash buttons and pray."),
+                CreateLine("Field Tech", "That blue skill-energy bar comes back on its own. Spend it when it matters, then chill for a sec."),
+                CreateLine("Field Tech", "If a door is locked, clear the room first. Boss room is ahead, so uh... breathe before you swing.")
             });
 
         DialoguePanelController dialoguePanel = CreateOrUpdateDialoguePanel();
-        CreateOrUpdateNpc("NPC_ArchivistGuide", new Vector3(-12.75f, -1.05f, 0f), new Color(0.40f, 0.72f, 0.88f), openingDialogue, dialoguePanel);
-        CreateOrUpdateNpc("NPC_FieldTechnician", new Vector3(26.5f, -1.25f, 0f), new Color(0.94f, 0.62f, 0.28f), midRoomDialogue, dialoguePanel);
+        CreateOrUpdateNpc("NPC_ArchivistGuide", new Vector3(-12.75f, -1.05f, 0f), Color.white, openingDialogue, dialoguePanel, LoadFrameSprites(ArchivistFramePrefix));
+        CreateOrUpdateNpc("NPC_FieldTechnician", new Vector3(26.5f, -1.25f, 0f), Color.white, midRoomDialogue, dialoguePanel, LoadFrameSprites(TechnicianFramePrefix));
 
         EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
         EditorSceneManager.SaveScene(SceneManager.GetActiveScene());
@@ -132,6 +134,7 @@ public static class NpcDialogueSceneSetupBuilder
         panelController.speakerNameText = speakerNameText;
         panelController.contentText = contentText;
         panelController.continueHintText = continueHintText;
+        panelController.continueHint = "E / Space / Enter: Next     Esc: Close";
 
         DialogueInputController inputController = panelObject.GetComponent<DialogueInputController>();
         inputController.dialoguePanel = panelController;
@@ -171,7 +174,7 @@ public static class NpcDialogueSceneSetupBuilder
         rectTransform.localScale = Vector3.one;
     }
 
-    private static void CreateOrUpdateNpc(string objectName, Vector3 position, Color color, DialogueSequence dialogueSequence, DialoguePanelController dialoguePanel)
+    private static void CreateOrUpdateNpc(string objectName, Vector3 position, Color color, DialogueSequence dialogueSequence, DialoguePanelController dialoguePanel, Sprite[] animationFrames)
     {
         GameObject npcObject = GameObject.Find(objectName);
         if (npcObject == null)
@@ -180,12 +183,17 @@ public static class NpcDialogueSceneSetupBuilder
         }
 
         npcObject.transform.position = position;
-        npcObject.transform.localScale = new Vector3(1.15f, 1.7f, 1f);
+        npcObject.transform.localScale = Vector3.one;
 
         SpriteRenderer spriteRenderer = GetOrAdd<SpriteRenderer>(npcObject);
-        spriteRenderer.sprite = AssetDatabase.LoadAssetAtPath<Sprite>(BlockoutSpritePath);
+        spriteRenderer.sprite = animationFrames != null && animationFrames.Length > 0 ? animationFrames[0] : AssetDatabase.LoadAssetAtPath<Sprite>(BlockoutSpritePath);
         spriteRenderer.color = color;
         spriteRenderer.sortingOrder = 70;
+
+        SimpleNpcSpriteAnimator npcAnimator = GetOrAdd<SimpleNpcSpriteAnimator>(npcObject);
+        npcAnimator.targetRenderer = spriteRenderer;
+        npcAnimator.frames = animationFrames;
+        npcAnimator.framesPerSecond = 6f;
 
         BoxCollider2D triggerCollider = GetOrAdd<BoxCollider2D>(npcObject);
         triggerCollider.isTrigger = true;
@@ -199,6 +207,17 @@ public static class NpcDialogueSceneSetupBuilder
         dialogueTrigger.dialoguePanel = dialoguePanel;
         dialogueTrigger.interactPrompt = promptObject;
         dialogueTrigger.closeWhenPlayerLeaves = true;
+    }
+
+    private static Sprite[] LoadFrameSprites(string framePrefix)
+    {
+        Sprite[] frames = new Sprite[8];
+        for (int frameIndex = 0; frameIndex < frames.Length; frameIndex++)
+        {
+            frames[frameIndex] = AssetDatabase.LoadAssetAtPath<Sprite>($"{framePrefix}{frameIndex:00}.png");
+        }
+
+        return frames;
     }
 
     private static GameObject CreateOrUpdatePrompt(Transform npcTransform)

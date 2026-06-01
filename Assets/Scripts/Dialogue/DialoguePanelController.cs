@@ -23,7 +23,7 @@ public class DialoguePanelController : MonoBehaviour
     public TextMeshProUGUI continueHintText;
 
     // Prompt text shown while a dialogue is active.
-    public string continueHint = "E / Space / Enter  Continue     Esc  Close";
+    public string continueHint = "E / Space / Enter: Next     Esc: Close";
 
     private DialogueSequence activeSequence;
     private int currentLineIndex;

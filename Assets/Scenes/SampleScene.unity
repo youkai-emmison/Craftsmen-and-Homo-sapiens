@@ -8408,6 +8408,7 @@ GameObject:
   - component: {fileID: 840190936}
   - component: {fileID: 840190935}
   - component: {fileID: 840190934}
+  - component: {fileID: 240610001}
   m_Layer: 0
   m_Name: NPC_FieldTechnician
   m_TagString: Untagged
@@ -8518,8 +8519,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 70
-  m_Sprite: {fileID: 21300000, guid: 89844e9b3aa268749afac02952bf3737, type: 3}
-  m_Color: {r: 0.94, g: 0.62, b: 0.28, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 9b3c98a9cf4d4776ad6891d455e57f7b, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -8539,7 +8540,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 26.5, y: -1.25, z: 0}
-  m_LocalScale: {x: 1.15, y: 1.7, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1351712854}
@@ -11254,7 +11255,7 @@ MonoBehaviour:
   speakerNameText: {fileID: 348610589}
   contentText: {fileID: 77453762}
   continueHintText: {fileID: 2077184971}
-  continueHint: E / Space / Enter  Continue     Esc  Close
+  continueHint: "E / Space / Enter: Next     Esc: Close"
 --- !u!224 &1208547787
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11387,6 +11388,7 @@ GameObject:
   - component: {fileID: 1238938116}
   - component: {fileID: 1238938115}
   - component: {fileID: 1238938114}
+  - component: {fileID: 240610002}
   m_Layer: 0
   m_Name: NPC_ArchivistGuide
   m_TagString: Untagged
@@ -11497,8 +11499,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 70
-  m_Sprite: {fileID: 21300000, guid: 89844e9b3aa268749afac02952bf3737, type: 3}
-  m_Color: {r: 0.4, g: 0.72, b: 0.88, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 6f5d13293f05434989a0f48832db4720, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -11518,7 +11520,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -12.75, y: -1.05, z: 0}
-  m_LocalScale: {x: 1.15, y: 1.7, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 602065575}
@@ -22481,3 +22483,51 @@ SceneRoots:
   - {fileID: 2265968569985861261}
   - {fileID: 1238938117}
   - {fileID: 840190937}
+
+--- !u!114 &240610001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 840190933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6b1a9d7f4804fb9ae3e844829c0ac83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetRenderer: {fileID: 840190936}
+  frames:
+  - {fileID: 21300000, guid: 9b3c98a9cf4d4776ad6891d455e57f7b, type: 3}
+  - {fileID: 21300000, guid: 425339d3cfbe494380bf41dad9d178b7, type: 3}
+  - {fileID: 21300000, guid: 44c91f205fed4bc18da7263bbc16a8c5, type: 3}
+  - {fileID: 21300000, guid: 10e95f81973749aba74b8ebf3020b4ae, type: 3}
+  - {fileID: 21300000, guid: c1e151bc04434e0bb7f69253e3792d86, type: 3}
+  - {fileID: 21300000, guid: c610e10aa6f44e75a830a948af6ac159, type: 3}
+  - {fileID: 21300000, guid: 1e21bcd0d69c4e4fbd6c5f576dca645f, type: 3}
+  - {fileID: 21300000, guid: 8b2d2c7a46b247ebb823694b79fc8818, type: 3}
+  framesPerSecond: 6
+
+--- !u!114 &240610002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1238938113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6b1a9d7f4804fb9ae3e844829c0ac83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetRenderer: {fileID: 1238938116}
+  frames:
+  - {fileID: 21300000, guid: 6f5d13293f05434989a0f48832db4720, type: 3}
+  - {fileID: 21300000, guid: 678ecf3777d0405ca0c86bafb46c0f9a, type: 3}
+  - {fileID: 21300000, guid: 2561b248c00f4d1cb009c51a8f260a46, type: 3}
+  - {fileID: 21300000, guid: a4a265efda8741c1bf05a421621e9cf8, type: 3}
+  - {fileID: 21300000, guid: a92f3185bbda4885b51cf49c95393a9f, type: 3}
+  - {fileID: 21300000, guid: f809c7229d434f63a573285c6e9cd29a, type: 3}
+  - {fileID: 21300000, guid: 404b668c3357495e97bb1a21d60a8148, type: 3}
+  - {fileID: 21300000, guid: 4927a231a3d84cff81887dbc586edb35, type: 3}
+  framesPerSecond: 6

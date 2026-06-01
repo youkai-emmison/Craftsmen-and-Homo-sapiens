@@ -53,7 +53,7 @@ NPC 需要：
 
 ## 测试清单
 
-1. Play 后靠近出生区 NPC，能看到 `Press E`。
+1. Play 后靠近出生区 NPC，能看到 `E Talk`。
 2. 按 `E` 后底部对话框出现。
 3. 按 `E` / `Space` / `Enter` 能逐句推进。
 4. 最后一行后对话框自动关闭。
@@ -62,6 +62,17 @@ NPC 需要：
 7. Player 移动、跳跃、攻击、技力条、背包和制作面板在非对话状态下仍正常。
 
 如果看不到 NPC 或提示，先在 Hierarchy 搜索 `NPC_ArchivistGuide`。它应该在玩家出生点右侧一点点，提示文字是 `E Talk`。如果场景里没有它，点击 `Tools > Dialogue > Create Demo NPC Dialogue Setup` 重新生成。
+
+## NPC 占位图
+
+本次 NPC 使用原创生成的像素风帧序列，占位资源在：
+
+- `Assets/Art/Generated/NPC/archivist_guide/`
+- `Assets/Art/Generated/NPC/field_technician/`
+
+每个 NPC 保留一张完整 sprite sheet，并额外拆出 8 张 idle 帧。场景里的 `SimpleNpcSpriteAnimator` 会循环播放这些帧，让 NPC 不再是纯色块。
+
+当前 Unity 对中文字体和编码比较容易出问题，所以实际对话内容先使用英文口语版。后续如果要换回中文，需要先确认 TextMeshPro 中文字体资产可用。
 
 ## 暂时不做
 
