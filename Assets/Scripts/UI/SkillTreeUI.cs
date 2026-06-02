@@ -28,6 +28,7 @@ public class SkillTreeUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI infoPrereqText;
     [SerializeField] private Button infoLearnButton;
     [SerializeField] private TextMeshProUGUI infoLearnButtonText;
+    [SerializeField] private TextMeshProUGUI infoEquipStatusText; // 装备状态文本
     [SerializeField] private TextMeshProUGUI skillPointsText;
 
     // 运行时生成的节点列表
@@ -202,7 +203,8 @@ public class SkillTreeUI : MonoBehaviour
             var view = new SkillNodeView
             {
                 root = instance,
-                iconImage = instance.GetComponentInChildren<Image>(),
+                iconImage = instance.transform.Find("Icon")?.GetComponent<Image>()
+                           ?? instance.GetComponentInChildren<Image>(),
                 nameText = instance.GetComponentInChildren<TextMeshProUGUI>(),
                 button = instance.GetComponent<Button>(),
                 // 这些需要按命名约定查找子对象
@@ -238,7 +240,7 @@ public class SkillTreeUI : MonoBehaviour
     private void RefreshPointsDisplay()
     {
         if (skillPointsText == null || skillManager == null) return;
-        skillPointsText.text = $"技能点: {skillManager.CurrentSkillPoints} / {skillManager.MaxSkillPoints}";
+        skillPointsText.text = $"Skill Points: {skillManager.CurrentSkillPoints} / {skillManager.MaxSkillPoints}";
     }
 
     private void RefreshInfoPanel()
@@ -263,7 +265,7 @@ public class SkillTreeUI : MonoBehaviour
             infoDescText.text = selectedSkill.description;
 
         if (infoCostText != null)
-            infoCostText.text = $"消耗: {selectedSkill.energyCost} 技力 | 冷却: {selectedSkill.cooldown}s";
+            infoCostText.text = $"Cost: {selectedSkill.energyCost} EP | Cooldown: {selectedSkill.cooldown}s";
 
         if (infoPrereqText != null)
         {
@@ -278,11 +280,11 @@ public class SkillTreeUI : MonoBehaviour
                         prereqNames.Add(met ? $"<color=green>{prereq.skillName}</color>" : $"<color=red>{prereq.skillName}</color>");
                     }
                 }
-                infoPrereqText.text = $"前置: {string.Join(", ", prereqNames)}";
+                infoPrereqText.text = $"Prerequisites: {string.Join(", ", prereqNames)}";
             }
             else
             {
-                infoPrereqText.text = "前置: 无";
+                infoPrereqText.text = "Prerequisites: None";
             }
         }
 
@@ -299,7 +301,38 @@ public class SkillTreeUI : MonoBehaviour
                     && skillManager.CurrentSkillPoints >= selectedSkill.learnCost;
                 infoLearnButton.interactable = canLearn;
                 if (infoLearnButtonText != null)
-                    infoLearnButtonText.text = canLearn ? $"学习 ({selectedSkill.learnCost}点)" : "条件不满足";
+                    infoLearnButtonText.text = canLearn ? $"Learn ({selectedSkill.learnCost} pts)" : "Requirements Not Met";
+            }
+        }
+
+        // 显示装备状态
+        if (infoEquipStatusText != null)
+        {
+            if (!learned)
+            {
+                infoEquipStatusText.text = "";
+            }
+            else
+            {
+                int equippedSlot = -1;
+                for (int i = 0; i < SkillManager.SlotCount; i++)
+                {
+                    if (skillManager.GetEquipped(i) == selectedSkill)
+                    {
+                        equippedSlot = i;
+                        break;
+                    }
+                }
+
+                if (equippedSlot >= 0)
+                {
+                    string[] keyLabels = { "Y", "U", "I", "O" };
+                    infoEquipStatusText.text = $"Equipped to [{keyLabels[equippedSlot]}] - Click slot to unequip";
+                }
+                else
+                {
+                    infoEquipStatusText.text = "Not equipped - Click a slot to equip";
+                }
             }
         }
     }
@@ -325,10 +358,17 @@ public class SkillTreeUI : MonoBehaviour
 
     private void OnEquipSlotClicked(int slotIndex)
     {
+        if (skillManager == null) return;
+
         // 如果有选中的已学技能，装备到该槽位
-        if (selectedSkill != null && skillManager != null && skillManager.HasSkill(selectedSkill))
+        if (selectedSkill != null && skillManager.HasSkill(selectedSkill))
         {
             skillManager.EquipSkill(slotIndex, selectedSkill);
+        }
+        // 否则，如果该槽位已有技能，卸下
+        else if (skillManager.GetEquipped(slotIndex) != null)
+        {
+            skillManager.EquipSkill(slotIndex, null);
         }
     }
 

@@ -45,6 +45,7 @@ public class Enemy : Entity
     [SerializeField] protected Transform attackPoint;           // 攻击判定中心点
     [SerializeField] protected float attackRadius = 1f;         // 攻击判定范围
     [SerializeField] protected LayerMask playerLayer;           // 玩家所在层
+    [SerializeField] protected LayerMask deviceLayer;           // 装置所在层
     [SerializeField] protected float attackDamage = 10f;        // 攻击伤害
 
     [Header("眩晕")]
@@ -64,6 +65,9 @@ public class Enemy : Entity
 
     // 玩家引用（运行时查找）
     protected Transform playerTransform;                    // 玩家 Transform 缓存
+
+    // 装置目标
+    protected Transform deviceTarget;                       // 当前检测到的装置目标
 
     // 攻击
     protected float attackCooldownTimer;                    // 攻击冷却计时器
@@ -197,33 +201,30 @@ public class Enemy : Entity
     }
 
     /// <summary>
-    /// 追击状态：以 1.5 倍速向玩家移动，进入攻击范围则切换到攻击。
-    /// 玩家脱离检测范围或到达平台边缘则返回巡逻。
+    /// 追击状态：以 1.5 倍速向目标移动，进入攻击范围则切换到攻击。
+    /// 优先攻击玩家，玩家不在范围内时攻击附近的装置。
     /// </summary>
     protected virtual void UpdateChase()
     {
-        if (playerTransform == null)
-        {
-            SwitchState(EnemyState.Idle);
-            return;
-        }
+        // 确定追击目标：优先玩家，其次装置
+        Transform chaseTarget = GetChaseTarget();
 
-        // 玩家脱离检测范围
-        if (!IsPlayerInRange(detectionRange))
+        if (chaseTarget == null)
         {
             SwitchState(EnemyState.Patrol);
             return;
         }
 
         // 进入攻击范围
-        if (IsPlayerInRange(attackRange) && !isAttackOnCooldown)
+        float distToTarget = Vector2.Distance(transform.position, chaseTarget.position);
+        if (distToTarget <= attackRange && !isAttackOnCooldown)
         {
             SwitchState(EnemyState.Attack);
             return;
         }
 
         // 追击方向（重叠时保持当前朝向，避免疯狂翻转）
-        float diffX = playerTransform.position.x - transform.position.x;
+        float diffX = chaseTarget.position.x - transform.position.x;
         float directionX = Mathf.Abs(diffX) < 0.1f ? facingDirection : Mathf.Sign(diffX);
 
         // 前方没有地面（平台边缘），放弃追击
@@ -233,7 +234,7 @@ public class Enemy : Entity
             return;
         }
 
-        // 向玩家移动（1.5 倍速）
+        // 向目标移动（1.5 倍速）
         SetVelocity(directionX * moveSpeed * chaseSpeedMultiplier);
         FlipController(directionX);
     }
@@ -348,20 +349,32 @@ public class Enemy : Entity
     #region 攻击判定
 
     /// <summary>
-    /// 执行攻击判定：在攻击点范围内检测玩家并造成伤害。
+    /// 执行攻击判定：在攻击点范围内检测玩家或装置并造成伤害。
     /// 由动画事件或子类调用。
     /// </summary>
     protected virtual void PerformAttack()
     {
         if (attackPoint == null) return;
 
-        Collider2D[] hits = Physics2D.OverlapCircleAll(attackPoint.position, attackRadius, playerLayer);
-        foreach (Collider2D hit in hits)
+        // 攻击玩家
+        Collider2D[] playerHits = Physics2D.OverlapCircleAll(attackPoint.position, attackRadius, playerLayer);
+        foreach (Collider2D hit in playerHits)
         {
             Entity target = hit.GetComponent<Entity>();
             if (target != null)
             {
                 target.TakeDamage(attackDamage, transform.position);
+            }
+        }
+
+        // 攻击装置
+        Collider2D[] deviceHits = Physics2D.OverlapCircleAll(attackPoint.position, attackRadius, deviceLayer);
+        foreach (Collider2D hit in deviceHits)
+        {
+            IDamageable target = hit.GetComponent<IDamageable>();
+            if (target != null)
+            {
+                target.TakeDamage(1); // 装置每次受击扣1点耐久
             }
         }
     }
@@ -440,6 +453,49 @@ public class Enemy : Entity
             + Vector2.right * directionX * edgeCheckDistance
             + Vector2.down * 0.5f;
         return Physics2D.Raycast(origin, Vector2.down, edgeCheckDepth, groundLayer);
+    }
+
+    /// <summary>
+    /// 获取追击目标：优先玩家，其次附近装置。
+    /// </summary>
+    protected Transform GetChaseTarget()
+    {
+        // 优先攻击玩家（攻击优先级更高）
+        if (playerTransform != null && IsPlayerInRange(detectionRange))
+            return playerTransform;
+
+        // 其次检测附近的装置
+        Transform nearestDevice = FindNearbyDevice(detectionRange);
+        if (nearestDevice != null)
+            return nearestDevice;
+
+        return null;
+    }
+
+    /// <summary>
+    /// 查找范围内最近的装置。
+    /// </summary>
+    protected Transform FindNearbyDevice(float range)
+    {
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, range, deviceLayer);
+        float closestDist = float.MaxValue;
+        Transform closest = null;
+
+        foreach (var hit in hits)
+        {
+            // 只检测 DeviceController 组件
+            if (hit.GetComponent<DeviceController>() == null) continue;
+
+            float dist = Vector2.Distance(transform.position, hit.transform.position);
+            if (dist < closestDist)
+            {
+                closestDist = dist;
+                closest = hit.transform;
+            }
+        }
+
+        deviceTarget = closest;
+        return closest;
     }
 
     #endregion
