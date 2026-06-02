@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 500d73f063e159b44a55bd2ab23bc9f1, type: 3}
+  m_Name: ArcaneBoltTurret
+  m_EditorClassIdentifier:
+  itemName: Arcane Bolt Turret
+  icon: {fileID: 21300000, guid: 4f5f37012ecf4f26b7c9d4c5c799325a, type: 3}
+  description: Click to equip and deploy a short-lived turret that shoots nearby enemies.
+  itemType: 1
+  dropRate: 0
+  equipmentType: 5
+  modifiers: []
+  effects:
+  - {fileID: 11400000, guid: 6cd5f53ab7bb4032b7d32177ce85fe15, type: 2}
+  recipes:
+  - {fileID: 11400000, guid: 692bb28e4ed4415f870b81029ac35161, type: 2}
+  deviceData: {fileID: 11400000, guid: 2195d66e6fa943ef9e207e2ba6071c07, type: 2}

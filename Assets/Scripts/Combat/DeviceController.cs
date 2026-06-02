@@ -130,8 +130,8 @@ public class DeviceController : MonoBehaviour, IDamageable
 
         foreach (var hit in hits)
         {
-            // 只攻击敌人
-            if (!hit.CompareTag("Enemy")) continue;
+            // Enemy prefabs in this demo may use either an Enemy tag or Enemy layer.
+            if (!IsValidTarget(hit)) continue;
 
             float dist = Vector2.Distance(transform.position, hit.transform.position);
             if (dist < closestDist)
@@ -142,6 +142,17 @@ public class DeviceController : MonoBehaviour, IDamageable
         }
 
         currentTarget = closest;
+    }
+
+    private bool IsValidTarget(Collider2D hit)
+    {
+        if (hit == null) return false;
+        if (hit.GetComponent<DeviceController>() != null) return false;
+
+        int enemyLayer = LayerMask.NameToLayer("Enemy");
+        bool isEnemyLayer = enemyLayer >= 0 && hit.gameObject.layer == enemyLayer;
+
+        return hit.CompareTag("Enemy") || isEnemyLayer;
     }
 
     /// <summary>

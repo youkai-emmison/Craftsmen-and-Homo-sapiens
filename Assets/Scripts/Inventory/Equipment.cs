@@ -1,6 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Script purpose: Equips backpack items, applies stat modifiers, and runs simple equipment effects.
+// Key variables:
+// - inventory: Source backpack and equipped-slot data.
+// - playerStats: Runtime stats receiving equipment modifiers.
 public class Equipment : MonoBehaviour
 {
     [SerializeField] private Inventory inventory;
@@ -60,6 +64,7 @@ public class Equipment : MonoBehaviour
             if (inventory.Equip(data))
             {
                 ApplyModifiers(data);
+                ApplyEquipmentEffects(data);
             }
         }
     }
@@ -74,6 +79,7 @@ public class Equipment : MonoBehaviour
         if (data == null) return;
 
         RemoveModifiers(data);
+        CancelEquipmentEffects(data);
         inventory.Unequip(slotType);
     }
 
@@ -112,6 +118,27 @@ public class Equipment : MonoBehaviour
                 stat.RemoveAllModifiersFromSource(data);
         }
         playerStats.RecalculateStats();
+    }
+
+    private void ApplyEquipmentEffects(EquipmentData data)
+    {
+        if (data == null || data.effects == null) return;
+
+        // Device equipment deploys its runtime device when equipped.
+        if (data.equipmentType != EquipmentType.Device) return;
+
+        foreach (var effect in data.effects)
+            if (effect != null) effect.ExecuteEffect(transform);
+    }
+
+    private void CancelEquipmentEffects(EquipmentData data)
+    {
+        if (data == null || data.effects == null) return;
+
+        if (data.equipmentType != EquipmentType.Device) return;
+
+        foreach (var effect in data.effects)
+            if (effect != null) effect.CancelEffect(transform);
     }
 
     private void RefreshAllModifiers()

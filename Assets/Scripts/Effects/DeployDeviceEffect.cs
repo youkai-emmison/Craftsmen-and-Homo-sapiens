@@ -41,8 +41,8 @@ public class DeployDeviceEffect : ItemEffect
             return;
         }
 
-        // 计算部署位置（玩家前方）
-        float facingDir = target.localScale.x > 0 ? 1f : -1f;
+        // Use the attack-facing controller because the player root is not always flipped.
+        float facingDir = GetFacingDirection(target);
         Vector2 deployPos = (Vector2)target.position + new Vector2(deployOffset.x * facingDir, deployOffset.y);
 
         // 实例化装置
@@ -60,5 +60,16 @@ public class DeployDeviceEffect : ItemEffect
     {
         // 装备卸下时，可以选择销毁已部署的装置或保留
         // 这里选择保留，装置会自然到期销毁
+    }
+
+    private float GetFacingDirection(Transform target)
+    {
+        PlayerAttackFacingController facingController = target.GetComponent<PlayerAttackFacingController>();
+        if (facingController != null)
+        {
+            return facingController.FacingDirectionX >= 0f ? 1f : -1f;
+        }
+
+        return target.localScale.x >= 0f ? 1f : -1f;
     }
 }
