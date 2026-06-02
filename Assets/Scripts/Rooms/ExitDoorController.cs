@@ -1,8 +1,9 @@
-// Script purpose: Handles locked/unlocked door feedback and room-clear trigger logs.
+// Script purpose: Handles locked/unlocked door feedback and notifies demo flow when the player enters.
 // Key Inspector variables:
 // - IsUnlocked: Whether the door currently allows room exit.
 // - doorSpriteRenderer: Optional renderer tinted by locked/unlocked color.
 // - lockedColor / unlockedColor: Door colors for prototype feedback.
+using System;
 using UnityEngine;
 
 public class ExitDoorController : MonoBehaviour
@@ -18,6 +19,12 @@ public class ExitDoorController : MonoBehaviour
 
     // Color shown after the room is cleared.
     public Color unlockedColor = new Color(0.75f, 0.12f, 0.16f, 1f);
+
+    // DemoStageController listens for this instead of the door controlling stage logic itself.
+    public event Action<ExitDoorController> OnUnlockedDoorEntered;
+
+    // Prevents a player standing inside the trigger from firing the same exit repeatedly.
+    private bool hasBeenEntered;
 
     private void Awake()
     {
@@ -43,13 +50,35 @@ public class ExitDoorController : MonoBehaviour
             return;
         }
 
-        if (IsUnlocked)
+        if (!IsUnlocked)
         {
-            Debug.Log("Room Cleared / Next Room Unlocked", this);
+            Debug.Log("Door is locked.", this);
             return;
         }
 
-        Debug.Log("Door is locked.", this);
+        EnterDoor();
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (!IsUnlocked || !other.CompareTag("Player"))
+        {
+            return;
+        }
+
+        EnterDoor();
+    }
+
+    private void EnterDoor()
+    {
+        if (hasBeenEntered)
+        {
+            return;
+        }
+
+        hasBeenEntered = true;
+        Debug.Log("Room Cleared / Next Room Unlocked", this);
+        OnUnlockedDoorEntered?.Invoke(this);
     }
 
     private void ApplyDoorColor()
