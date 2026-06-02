@@ -1,32 +1,39 @@
+// Script purpose: Reads keyboard shortcuts for opening and closing the inventory panels.
+// Key Inspector variables:
+// - inventoryPanel: UI panel that owns backpack, crafting, skill tree, and settings tabs.
+// - backpackKey / craftingKey / skillTreeKey / settingsKey: Tab toggle shortcuts.
+// - closeKey: Shortcut used to close the visible panel.
 using UnityEngine;
 
-/// <summary>
-/// InventoryInputController reads the backpack hotkey and toggles the inventory panel.
-/// It only handles input, keeping inventory data and UI rendering in separate scripts.
-/// Press I to toggle the panel, and press Escape to close it when it is already open.
-/// </summary>
 public class InventoryInputController : MonoBehaviour
 {
-    [Header("References")]
-    [SerializeField] private InventoryPanel inventoryPanel; // UI panel controlled by keyboard input.
+    // Panel controlled by these shortcuts.
+    [SerializeField] private InventoryPanel inventoryPanel;
 
-    [Header("Input")]
-    [SerializeField] private KeyCode toggleKey = KeyCode.I; // Key used to open or close the backpack.
-    [SerializeField] private KeyCode closeKey = KeyCode.Escape; // Key used only to close the backpack.
-
-    private void Awake()
-    {
-        if (inventoryPanel == null)
-            Debug.LogError("InventoryInputController: inventoryPanel is not assigned.");
-    }
+    // Keyboard shortcuts kept serialized so they can be changed in the Inspector.
+    [SerializeField] private KeyCode backpackKey = KeyCode.B;
+    [SerializeField] private KeyCode craftingKey = KeyCode.N;
+    [SerializeField] private KeyCode skillTreeKey = KeyCode.M;
+    [SerializeField] private KeyCode settingsKey = KeyCode.P;
+    [SerializeField] private KeyCode closeKey = KeyCode.Escape;
 
     private void Update()
     {
-        if (inventoryPanel == null)
-            return;
+        if (inventoryPanel == null) return;
 
-        if (Input.GetKeyDown(toggleKey))
-            inventoryPanel.Toggle();
+        if (DialoguePanelController.IsAnyDialogueOpen)
+        {
+            return;
+        }
+
+        if (Input.GetKeyDown(backpackKey))
+            inventoryPanel.ToggleTab(0);
+        if (Input.GetKeyDown(craftingKey))
+            inventoryPanel.ToggleTab(1);
+        if (Input.GetKeyDown(skillTreeKey))
+            inventoryPanel.ToggleTab(2);
+        if (Input.GetKeyDown(settingsKey))
+            inventoryPanel.ToggleTab(3);
 
         if (Input.GetKeyDown(closeKey) && inventoryPanel.IsVisible)
             inventoryPanel.Close();

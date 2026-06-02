@@ -73,7 +73,7 @@ public class Enemy_Skeleton : Enemy
 
         // 执行攻击
         if (anim != null)
-            anim.SetTrigger("Attack");
+            SafeSetTrigger("Attack");
 
         // 连击计数
         attackComboCount++;

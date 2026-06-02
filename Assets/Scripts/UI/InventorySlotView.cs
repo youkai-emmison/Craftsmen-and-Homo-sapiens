@@ -3,138 +3,151 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-/// <summary>
-/// InventorySlotView renders one backpack slot.
-/// It receives item data from InventoryPanel and never changes inventory contents directly.
-/// Click handling reports the current item back to InventoryPanel for detail display.
-/// </summary>
-public class InventorySlotView : MonoBehaviour, IPointerClickHandler
+public class InventorySlotView : MonoBehaviour,
+    IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler,
+    IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     [Header("References")]
-    [SerializeField] private Image slotBackgroundImage; // Slot background image.
-    [SerializeField] private Image iconImage;           // Item icon or color swatch.
-    [SerializeField] private Text itemNameText;         // Item display name.
-    [SerializeField] private Text quantityText;         // Stack count text.
+    [SerializeField] private Image slotBackgroundImage;
+    [SerializeField] private Image iconImage;
+    [SerializeField] private Text quantityText;
 
     [Header("Colors")]
-    [SerializeField] private Color emptyColor = new Color(0.18f, 0.18f, 0.22f, 0.75f); // Empty slot background.
-    [SerializeField] private Color filledColor = new Color(0.42f, 0.30f, 0.52f, 0.90f); // Filled slot background.
+    [SerializeField] private Color emptyColor = new Color(0.18f, 0.18f, 0.22f, 0.75f);
+    [SerializeField] private Color filledColor = new Color(0.42f, 0.30f, 0.52f, 0.90f);
 
-    private const string EmptySlotText = "Empty";
+    public int SlotIndex { get; set; }
+    public EquipmentData CurrentEquipmentData { get; private set; }
+    public MaterialData CurrentMaterialData { get; private set; }
+    public bool IsEmpty => CurrentEquipmentData == null && CurrentMaterialData == null;
 
-    private InventoryItem currentItem;                 // Runtime item shown by this slot.
-    private Action<InventoryItem> itemClickedCallback; // Callback owned by InventoryPanel.
+    private Action<int> onClickCallback;
+    private Action<int> onDiscardCallback;
+    private ItemTooltip tooltip;
+    private bool isDragging;
 
     private void Awake()
     {
-        ValidateReferences();
         DisableChildRaycasts();
     }
 
-    /// <summary>
-    /// Displays an item in this slot.
-    /// </summary>
-    public void SetItem(InventoryItem item)
+    public void SetTooltip(ItemTooltip t) { tooltip = t; }
+
+    public void SetCallbacks(Action<int> onClick, Action<int> onDiscard)
     {
-        if (item == null)
+        onClickCallback = onClick;
+        onDiscardCallback = onDiscard;
+    }
+
+    public void SetEquipment(EquipmentData data)
+    {
+        CurrentEquipmentData = data;
+        CurrentMaterialData = null;
+        if (data == null) { SetEmpty(); return; }
+
+        SetBackground(filledColor);
+        if (iconImage != null)
         {
-            SetEmpty();
+            iconImage.enabled = true;
+            iconImage.sprite = data.icon;
+            iconImage.color = data.icon != null ? Color.white : Color.gray;
+        }
+        if (quantityText != null) quantityText.text = "";
+    }
+
+    public void SetMaterial(MaterialData data, int amount)
+    {
+        CurrentEquipmentData = null;
+        CurrentMaterialData = data;
+        if (data == null) { SetEmpty(); return; }
+
+        SetBackground(filledColor);
+        if (iconImage != null)
+        {
+            iconImage.enabled = true;
+            iconImage.sprite = data.icon;
+            iconImage.color = data.icon != null ? Color.white : Color.gray;
+        }
+        if (quantityText != null) quantityText.text = amount > 1 ? amount.ToString() : "";
+    }
+
+    public void SetEmpty()
+    {
+        CurrentEquipmentData = null;
+        CurrentMaterialData = null;
+        SetBackground(emptyColor);
+        if (iconImage != null) iconImage.enabled = false;
+        if (quantityText != null) quantityText.text = "";
+    }
+
+    // ── Click ──
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (isDragging) return;
+
+        // Ctrl+Click 丢弃
+        if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
+        {
+            onDiscardCallback?.Invoke(SlotIndex);
             return;
         }
 
-        currentItem = item;
-        SetBackground(filledColor);
-        SetIcon(item);
-        SetName(item.displayName);
-        SetQuantity(item.quantity);
+        onClickCallback?.Invoke(SlotIndex);
     }
 
-    /// <summary>
-    /// Displays the empty slot state.
-    /// </summary>
-    public void SetEmpty()
+    // ── Tooltip ──
+
+    public void OnPointerEnter(PointerEventData eventData)
     {
-        currentItem = null;
-        SetBackground(emptyColor);
-
-        if (iconImage != null)
-            iconImage.enabled = false;
-
-        SetName(EmptySlotText);
-        SetQuantity(0);
+        if (tooltip == null || isDragging) return;
+        if (CurrentEquipmentData != null)
+            tooltip.ShowEquipment(CurrentEquipmentData);
+        else if (CurrentMaterialData != null)
+            tooltip.ShowMaterial(CurrentMaterialData);
     }
 
-    /// <summary>
-    /// Stores the callback used when this slot is clicked.
-    /// </summary>
-    public void SetClickCallback(Action<InventoryItem> callback)
+    public void OnPointerExit(PointerEventData eventData)
     {
-        itemClickedCallback = callback;
+        if (tooltip != null) tooltip.Hide();
     }
 
-    /// <summary>
-    /// Sends the currently displayed item to InventoryPanel. Null means the slot is empty.
-    /// </summary>
-    public void OnPointerClick(PointerEventData eventData)
+    // ── Drag ──
+
+    public void OnBeginDrag(PointerEventData eventData)
     {
-        itemClickedCallback?.Invoke(currentItem);
+        if (IsEmpty) { eventData.pointerDrag = null; return; }
+        isDragging = true;
+        if (tooltip != null) tooltip.Hide();
+
+        // 通知全局 DragHandler
+        if (DragHandler.Instance != null)
+            DragHandler.Instance.OnBeginDrag(eventData);
     }
 
-    private void SetBackground(Color targetColor)
+    public void OnDrag(PointerEventData eventData)
     {
-        if (slotBackgroundImage != null)
-            slotBackgroundImage.color = targetColor;
+        if (DragHandler.Instance != null)
+            DragHandler.Instance.OnDrag(eventData);
     }
 
-    private void SetIcon(InventoryItem item)
+    public void OnEndDrag(PointerEventData eventData)
     {
-        if (iconImage == null)
-            return;
-
-        iconImage.enabled = true;
-        iconImage.sprite = item.icon;
-        iconImage.color = item.icon != null ? Color.white : item.itemColor;
+        isDragging = false;
+        if (DragHandler.Instance != null)
+            DragHandler.Instance.OnEndDrag(eventData);
     }
 
-    private void SetName(string itemName)
+    // ── Helpers ──
+
+    private void SetBackground(Color c)
     {
-        if (itemNameText != null)
-            itemNameText.text = itemName;
-    }
-
-    private void SetQuantity(int quantity)
-    {
-        if (quantityText == null)
-            return;
-
-        quantityText.text = quantity > 1 ? quantity.ToString() : string.Empty;
-    }
-
-    private void ValidateReferences()
-    {
-        if (slotBackgroundImage == null)
-            Debug.LogError("InventorySlotView: slotBackgroundImage is not assigned.");
-
-        if (iconImage == null)
-            Debug.LogError("InventorySlotView: iconImage is not assigned.");
-
-        if (itemNameText == null)
-            Debug.LogError("InventorySlotView: itemNameText is not assigned.");
-
-        if (quantityText == null)
-            Debug.LogError("InventorySlotView: quantityText is not assigned.");
+        if (slotBackgroundImage != null) slotBackgroundImage.color = c;
     }
 
     private void DisableChildRaycasts()
     {
-        // The slot background receives clicks; child visuals should not steal pointer events.
-        if (iconImage != null)
-            iconImage.raycastTarget = false;
-
-        if (itemNameText != null)
-            itemNameText.raycastTarget = false;
-
-        if (quantityText != null)
-            quantityText.raycastTarget = false;
+        if (iconImage != null) iconImage.raycastTarget = false;
+        if (quantityText != null) quantityText.raycastTarget = false;
     }
 }

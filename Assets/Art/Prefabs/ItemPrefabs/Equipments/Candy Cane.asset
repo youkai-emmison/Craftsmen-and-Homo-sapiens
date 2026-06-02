@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a7d7c7e846b1a14286a9a6262e919b1, type: 3}
+  m_Name: Candy Cane
+  m_EditorClassIdentifier: 
+  itemName: Candy Cane
+  icon: {fileID: -1498753627, guid: 344320f96442aeb48982bf2be597734d, type: 3}
+  description: 'cos like a santa,then use Candy Cane hit enemy!
+
+'
+  itemType: 1
+  dropRate: 0
+  equipmentType: 0
+  modifiers:
+  - statType: 0
+    modifierType: 0
+    value: 20
+  effects: []
+  recipes:
+  - {fileID: 11400000, guid: c0efe254385d794428f7ab046caa7072, type: 2}

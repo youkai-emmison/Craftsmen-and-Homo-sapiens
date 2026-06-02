@@ -21,6 +21,7 @@ public class Player : Entity
     [SerializeField] private float jumpForce = 12f;      // 跳跃初速度
     [SerializeField] private float coyoteTime = 0.1f;    // 土狼时间：离开地面后仍可跳跃的宽限时间
     [SerializeField] private float jumpBufferTime = 0.1f; // 跳跃缓冲：提前按下跳跃键的缓存时间
+    [SerializeField] private float jumpGroundGraceTime = 0.15f; // 起跳后忽略地面检测的宽限时间
 
     #endregion
 
@@ -33,15 +34,10 @@ public class Player : Entity
 
     #endregion
 
-    #region 地面检测
-
-    [Header("地面检测")]
-    [SerializeField] private LayerMask groundLayer;       // 地面所在的 Layer
-    [SerializeField] private float groundCheckDistance = 0.1f; // 地面检测射线长度
+    #region 滑墙参数
 
     [Header("滑墙")]
     [SerializeField] private float wallSlideSpeed = 2f;       // 滑墙时的下落速度
-    [SerializeField] private float wallCheckDistance = 0.3f;   // 墙面检测射线长度
 
     #endregion
 
@@ -54,6 +50,7 @@ public class Player : Entity
     // 跳跃状态
     private float coyoteTimer;             // 土狼时间计时器
     private float jumpBufferTimer;         // 跳跃缓冲计时器
+    private float jumpGroundGraceTimer;    // 起跳宽限计时器
     private bool isGrounded;               // 是否站在地面上
 
     // 冲刺状态
@@ -65,6 +62,17 @@ public class Player : Entity
     private bool isTouchingWall;           // 本帧是否接触墙面
     private bool isWallSliding;            // 是否正在滑墙
 
+    // 检测组件
+    private GroundCheck groundCheck;
+    private WallCheck wallCheck;
+
+    // 动画驱动
+    private MaidVisualAnimatorDriver visualAnimatorDriver;
+
+    // 装备特效
+    private PlayerAttackController playerAttackController;
+    private ItemEffectManager itemEffectManager;
+
     #endregion
 
     #region 生命周期
@@ -72,13 +80,60 @@ public class Player : Entity
     protected override void Awake()
     {
         base.Awake();
+        // Visual-only child animators use their own driver, so Player movement does not push missing parameters into imported controllers.
+        anim = null;
         rb = GetComponent<Rigidbody2D>();
         rb.sharedMaterial = new PhysicsMaterial2D("NoFriction") { friction = 0f };
+        visualAnimatorDriver = GetComponentInChildren<MaidVisualAnimatorDriver>();
+        groundCheck = GetComponentInChildren<GroundCheck>();
+        wallCheck = GetComponentInChildren<WallCheck>();
+        playerAttackController = GetComponent<PlayerAttackController>();
+        itemEffectManager = GetComponent<ItemEffectManager>();
+    }
+
+    private void OnEnable()
+    {
+        if (playerAttackController != null)
+            playerAttackController.OnHitTarget += OnMeleeHit;
+    }
+
+    private void OnDisable()
+    {
+        if (playerAttackController != null)
+            playerAttackController.OnHitTarget -= OnMeleeHit;
+    }
+
+    private void OnMeleeHit(Transform target)
+    {
+        if (itemEffectManager != null)
+            itemEffectManager.OnAttackHit(target);
     }
 
     protected override void Start()
     {
         base.Start();
+    }
+
+    public override void TakeDamage(float damage, Vector2 damageSource)
+    {
+        base.TakeDamage(damage, damageSource);
+
+        if (visualAnimatorDriver != null)
+            visualAnimatorDriver.PlayHurt();
+
+        // 触发护甲特效
+        if (itemEffectManager != null)
+            itemEffectManager.OnDamaged(transform);
+    }
+
+    protected override void Die()
+    {
+        RaiseOnDeath();
+
+        if (visualAnimatorDriver != null)
+            visualAnimatorDriver.PlayDie();
+
+        Destroy(gameObject, 0.5f);
     }
 
     /// <summary>
@@ -94,10 +149,11 @@ public class Player : Entity
         jumpPressed = Input.GetKeyDown(KeyCode.Space);
 
         // ── 地面检测 ──
-        isGrounded = IsGrounded();
+        jumpGroundGraceTimer -= Time.deltaTime;
+        isGrounded = jumpGroundGraceTimer > 0f ? false : groundCheck != null && groundCheck.IsGrounded();
 
         // ── 墙面检测与滑墙 ──
-        isTouchingWall = IsWallDetected();
+        isTouchingWall = wallCheck != null && wallCheck.IsWallDetected(facingDirection);
         isWallSliding = isTouchingWall && !isGrounded && rb.velocity.y < 0;
 
         // ── 更新土狼时间 ──
@@ -160,6 +216,22 @@ public class Player : Entity
 
     #endregion
 
+    #region 朝向翻转
+
+    /// <summary>
+    /// 禁用 Entity 基类的 spriteRenderer.flipX 翻转。
+    /// MaidVisual 的翻转由 PlayerAttackFacingController 通过 localScale.x 控制，
+    /// 两套机制同时运行会互相覆盖导致翻转失效。
+    /// </summary>
+    protected override void Flip()
+    {
+        // 仅更新朝向状态，不操作 spriteRenderer.flipX
+        facingDirection *= -1;
+        isFacingRight = !isFacingRight;
+    }
+
+    #endregion
+
     #region 跳跃
 
     /// <summary>
@@ -169,9 +241,10 @@ public class Player : Entity
     {
         // 先清空 Y 轴速度，确保从地面起跳时高度一致
         SetVelocity(rb.velocity.x, jumpForce);
+        jumpGroundGraceTimer = jumpGroundGraceTime;
 
-        if (anim != null)
-            anim.SetTrigger("Jump");
+        if (visualAnimatorDriver != null)
+            visualAnimatorDriver.PlayJump();
     }
 
     #endregion
@@ -207,29 +280,6 @@ public class Player : Entity
 
     #endregion
 
-    #region 地面检测
-
-    /// <summary>
-    /// 从实体底部向下发射射线，判断是否站在地面上。
-    /// </summary>
-    private bool IsGrounded()
-    {
-        Vector2 origin = (Vector2)transform.position + Vector2.down * 0.5f;
-        RaycastHit2D hit = Physics2D.Raycast(origin, Vector2.down, groundCheckDistance, groundLayer);
-        return hit.collider != null;
-    }
-
-    /// <summary>
-    /// 从玩家中心向朝向方向发射水平射线，判断是否接触墙面。
-    /// </summary>
-    private bool IsWallDetected()
-    {
-        Vector2 origin = (Vector2)transform.position;
-        RaycastHit2D hit = Physics2D.Raycast(origin, Vector2.right * facingDirection, wallCheckDistance, groundLayer);
-        return hit.collider != null;
-    }
-
-    #endregion
 
     #region 动画
 
@@ -238,33 +288,12 @@ public class Player : Entity
     /// </summary>
     private void UpdateAnimations()
     {
-        if (anim == null) return;
+        if (visualAnimatorDriver == null) return;
 
-        anim.SetFloat("MoveSpeed", GetCurrentMoveSpeed());
-        anim.SetBool("IsGrounded", isGrounded);
-        anim.SetFloat("YVelocity", rb.velocity.y);
-        anim.SetBool("IsDashing", isDashing);
-        anim.SetBool("IsWallSliding", isWallSliding);
+        visualAnimatorDriver.SetGrounded(isGrounded);
+        visualAnimatorDriver.SetWallSliding(isWallSliding);
     }
 
     #endregion
 
-    #region Gizmos 辅助
-
-    protected override void OnDrawGizmos()
-    {
-        base.OnDrawGizmos();
-
-        // 绘制地面检测射线（Scene 视图中可视化）
-        Gizmos.color = Color.green;
-        Vector2 origin = (Vector2)transform.position + Vector2.down * 0.5f;
-        Gizmos.DrawLine(origin, origin + Vector2.down * groundCheckDistance);
-
-        // 绘制墙面检测射线（Scene 视图中可视化）
-        Gizmos.color = Color.red;
-        Vector2 wallOrigin = (Vector2)transform.position;
-        Gizmos.DrawLine(wallOrigin, wallOrigin + Vector2.right * facingDirection * wallCheckDistance);
-    }
-
-    #endregion
 }

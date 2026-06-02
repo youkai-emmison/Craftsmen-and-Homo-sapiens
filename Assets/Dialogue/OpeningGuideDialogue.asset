@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27dd0aa2839e4b6ca5f81a07a66a0d51, type: 3}
+  m_Name: OpeningGuideDialogue
+  m_EditorClassIdentifier: 
+  sequenceName: Opening Guide
+  lines:
+  - speakerName: Archivist
+    content: "Hey, you're finally here. Welcome to the dungeon shift. Not fancy, but hey, it keeps things interesting."
+  - speakerName: Archivist
+    content: "A / D to move, Space to jump, J or Left Mouse to hit. Easy enough, yeah?"
+  - speakerName: Archivist
+    content: "B opens the backpack, N opens crafting. Go right when you're ready, and uh... don't hug every weird monster."

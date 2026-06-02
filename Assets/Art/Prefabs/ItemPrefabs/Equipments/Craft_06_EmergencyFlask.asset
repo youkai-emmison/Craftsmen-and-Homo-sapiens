@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa924a09606b79e4e986dfba0012ad54, type: 3}
+  m_Name: Craft_06_EmergencyFlask
+  m_EditorClassIdentifier:
+  result: {fileID: 11400000, guid: 15fadc7ad63648dfa4be8562ace06535, type: 2}
+  resultAmount: 1
+  materials:
+  - material: {fileID: 11400000, guid: e0f454a178704660a754e4e9f27473bc, type: 2}
+    amount: 2
+  - material: {fileID: 11400000, guid: da40611a9b2c4cb6aa769b23fa0b6258, type: 2}
+    amount: 1
+  - material: {fileID: 11400000, guid: 5d8fadb1e48d4a68acc4f6b4de0832c9, type: 2}
+    amount: 1

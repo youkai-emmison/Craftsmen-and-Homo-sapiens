@@ -1,0 +1,47 @@
+# Third Party Assets
+
+This file records candidate or locally imported third-party assets. Do not treat an asset as cleared for public repository commits until its license and package files have been checked.
+
+## Current Policy
+
+- If the GitHub repository is public, do not commit Unity Asset Store raw files.
+- Raw files include PNG, sprite sheets, animations, animator controllers, prefabs, demo scenes, audio, and package samples.
+- Use third-party assets as local placeholders unless the team confirms that the repository is private and the license permits the workflow.
+- Current scene setup may reference locally imported Asset Store files by their Unity package GUIDs. Teammates should import the same packages from Package Manager before testing the polished scene.
+- Local third-party art packages should live under `Assets/Art/ThirdParty/`. This folder is ignored while the repository is public.
+
+## Unity 2022.3 Meta Compatibility Rule
+
+- This project targets Unity 2022.3.53f1 / 2022.3.53f1c1 compatibility.
+- Committed TextureImporter `.meta` files for public art assets should use `serializedVersion: 12`.
+- Do not commit Unity 6 TextureImporter-only fields such as `flipGreenChannel`, `ignoreMipmapLimit`, `swizzle`, `ignorePngGamma`, `applyGammaDecoding`, `cookieLightType`, `mipmapLimitGroupName`, or `pSDRemoveMatte`.
+- Kenney 16 px tile sprites should use `spritePixelsToUnits: 32`. Scene builders can scale tile objects if one tile needs to remain one Unity world unit.
+- If Unity regenerates Kenney `.meta` files with a newer format, normalize them before committing.
+
+## Asset Records
+
+| Asset Name | Asset Store URL | Publisher | Price | License | Status | Used In | Raw Asset Committed To Repository | License File Checked | Notes |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Bringer Of Death (free) | Unity Asset Store package page | Clembod | Free | Package license says personal/commercial use is allowed, but redistribution/resale is not allowed | Imported Locally / Used In Demo | DemoBoss visual placeholder | No, ignored while repository is public | Yes, package License.txt checked | Local path: `Assets/Art/ThirdParty/Bringer Of Death/`. Use as a temporary dark boss visual only. |
+| Enemy Galore 1 - Pixel Art | Unity Asset Store package page | Admurin | Free | Check Unity Asset Store page and package files | Imported Locally / Used In Demo | BasicEnemy visual placeholder | No, ignored while repository is public | No package license file found locally | Local path: `Assets/Art/ThirdParty/Enemy Galore 1 - Pixel Art/`. Used for Early Room and Mid Room enemy placeholders. |
+| [FW]2D Animated Cute Girl Full & SD Character | Unity Asset Store package page | freeworkStudio | Free | Check Unity Asset Store page and package files | Imported Locally / Superseded | Earlier Player visual placeholder | No, ignored while repository is public | Readme PDF present, license still needs manual confirmation | Local path: `Assets/Art/ThirdParty/FW_MIHO/`. Current Player uses generated original maid sprite instead. |
+| Free 2D Cartoon Parallax Background | Unity Asset Store package page | CPasteGame | Free | Check Unity Asset Store page and package files | Imported Locally / Used In Demo | SampleScene backdrop | No, ignored while repository is public | No package license file found locally | Local path: `Assets/Art/ThirdParty/Free 2D Cartoon Parallax Background/`. |
+| Free Casual GUI | Unity Asset Store package page | Sky Den Games | Free | Check Unity Asset Store page and package files | Imported Locally / Not Used Yet | Future UI polish candidate | No, ignored while repository is public | Not checked | Local path: `Assets/Art/ThirdParty/Skyden_Games/`. |
+| Kenney Pixel Platformer: Food Expansion | https://kenney.nl/assets/pixel-platformer-food-expansion | Kenney | Free | CC0 1.0 | Used In Demo | SampleScene bright adventure map | Yes | Yes | Local path: `Assets/Art/Kenney/PixelPlatformerFoodExpansion/`. CC0 license allows public repository use. |
+| Kenney Fantasy UI Borders | https://kenney.nl/assets/fantasy-ui-borders | Kenney | Free | CC0 1.0 | Used In Demo | Inventory panel, slots, and detail frame | Yes | Yes | Local path: `Assets/Art/Kenney/FantasyUIBorders/`. PNG files are committed; Vector files and web shortcuts were not imported. |
+| FREE - RPG Fantasy Spell Icons | https://assetstore.unity.com/packages/2d/gui/icons/free-rpg-fantasy-spell-icons-200511 | Blink | Free | Check Unity Asset Store page and package files | Imported Locally / Not Used Yet | Future spell, skill, and inventory icon candidate | Yes, committed after team confirmation | Not checked | Local path: `Assets/Art/ThirdParty/AssetStore/Blink_FREE_RPG_Fantasy_Spell_Icons/`. |
+| 500 Free Skill Icons | https://assetstore.unity.com/packages/2d/gui/icons/500-free-skill-icons-344112 | CatRabbit | Free | Check Unity Asset Store page and package files | Imported Locally / Not Used Yet | Future skill tree and action icon candidate | Yes, committed after team confirmation | Not checked | Local path: `Assets/Art/ThirdParty/AssetStore/CatRabbit_500_Free_Skill_Icons/`. |
+| 2D Pixel Art Icons \| Swords | https://assetstore.unity.com/packages/2d/gui/icons/2d-pixel-art-icons-swords-259620 | Superposition Principle | Free | Check Unity Asset Store page and package files | Imported Locally / Not Used Yet | Future weapon icon candidate | Yes, committed after team confirmation | Not checked | Local path: `Assets/Art/ThirdParty/AssetStore/Superposition_2D_Pixel_Art_Icons_Swords/`. |
+| Evil Wizard 2 | https://assetstore.unity.com/packages/2d/characters/evil-wizard-2-284501 | Luiz Melo | Free | Check Unity Asset Store page and package files | Imported Locally / Not Used Yet | Future caster enemy visual candidate | Yes, committed after team confirmation | Not checked | Local path: `Assets/Art/ThirdParty/AssetStore/LuizMelo_Evil_Wizard_2/`. |
+| Pixel Art RPG VFX Lite | https://assetstore.unity.com/packages/vfx/particles/pixel-art-rpg-vfx-lite-311145 | Pixogen | Free | Check Unity Asset Store page and package files | Imported Locally / Not Used Yet | Future attack, spell, and hit VFX candidate | Yes, committed after team confirmation | Not checked | Local path: `Assets/Art/ThirdParty/AssetStore/Pixogen_Pixel_Art_RPG_VFX_Lite/`. |
+
+## Update Rule
+
+When an asset is actually used in the main scene, add:
+
+- Exact Asset Store URL.
+- Publisher name.
+- Imported date.
+- Which scene or prefab uses it.
+- Whether raw files are committed.
+- Whether the license file was checked.
