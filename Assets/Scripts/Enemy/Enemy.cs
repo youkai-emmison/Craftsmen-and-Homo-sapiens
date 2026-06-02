@@ -398,6 +398,12 @@ public class Enemy : Entity
 
     protected override void Die()
     {
+        currentState = EnemyState.Dead;
+        SetVelocity(0f);
+
+        // Room clear and drop systems listen for this before the enemy is removed.
+        RaiseOnDeath();
+
         // 停止所有协程，避免死后仍执行反击窗口等逻辑
         StopAllCoroutines();
 

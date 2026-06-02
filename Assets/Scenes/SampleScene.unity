@@ -197,8 +197,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 86818bbd37806984baf92d486c500b73, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   fillTransform: {fileID: 13941174}
   entity: {fileID: 0}
 --- !u!1 &13941173
@@ -3034,6 +3034,22 @@ MonoBehaviour:
   startingMaterials:
   - {fileID: 11400000, guid: 0736a3f79c0563b4eab0f4e86197a660, type: 2}
   - {fileID: 11400000, guid: 0736a3f79c0563b4eab0f4e86197a660, type: 2}
+  - {fileID: 11400000, guid: a66a0a6f553345038f6f8034ce694fd4, type: 2}
+  - {fileID: 11400000, guid: a66a0a6f553345038f6f8034ce694fd4, type: 2}
+  - {fileID: 11400000, guid: a66a0a6f553345038f6f8034ce694fd4, type: 2}
+  - {fileID: 11400000, guid: da40611a9b2c4cb6aa769b23fa0b6258, type: 2}
+  - {fileID: 11400000, guid: da40611a9b2c4cb6aa769b23fa0b6258, type: 2}
+  - {fileID: 11400000, guid: da40611a9b2c4cb6aa769b23fa0b6258, type: 2}
+  - {fileID: 11400000, guid: 474708a48c134a74a20cfe1efdfd1c58, type: 2}
+  - {fileID: 11400000, guid: 474708a48c134a74a20cfe1efdfd1c58, type: 2}
+  - {fileID: 11400000, guid: 474708a48c134a74a20cfe1efdfd1c58, type: 2}
+  - {fileID: 11400000, guid: 5d8fadb1e48d4a68acc4f6b4de0832c9, type: 2}
+  - {fileID: 11400000, guid: 5d8fadb1e48d4a68acc4f6b4de0832c9, type: 2}
+  - {fileID: 11400000, guid: 5d8fadb1e48d4a68acc4f6b4de0832c9, type: 2}
+  - {fileID: 11400000, guid: 5d8fadb1e48d4a68acc4f6b4de0832c9, type: 2}
+  - {fileID: 11400000, guid: e0f454a178704660a754e4e9f27473bc, type: 2}
+  - {fileID: 11400000, guid: e0f454a178704660a754e4e9f27473bc, type: 2}
+  - {fileID: 11400000, guid: e0f454a178704660a754e4e9f27473bc, type: 2}
 --- !u!114 &305952438
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3063,6 +3079,11 @@ MonoBehaviour:
   inventory: {fileID: 0}
   allRecipes:
   - {fileID: 11400000, guid: c0efe254385d794428f7ab046caa7072, type: 2}
+  - {fileID: 11400000, guid: 68a987b9e2e9438ea05fc9e969cd9130, type: 2}
+  - {fileID: 11400000, guid: 67414412c8974c22a32db70bc12dae84, type: 2}
+  - {fileID: 11400000, guid: eab11309c9304d0db946e22291b5cf1d, type: 2}
+  - {fileID: 11400000, guid: edc30a25f30a42c4ba5985d8275a0e56, type: 2}
+  - {fileID: 11400000, guid: e30afb37a2874e76b6e3691e8573295b, type: 2}
 --- !u!114 &305952440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14154,6 +14175,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1181426861}
+  - component: {fileID: 1181426862}
   m_Layer: 0
   m_Name: DemoStageController
   m_TagString: Untagged
@@ -14227,8 +14249,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
@@ -14255,6 +14277,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1190020166}
   m_CullTransparentMesh: 1
+--- !u!114 &1181426862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1181426859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38cebf4453da40aca8122975dd284126, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  currentStage: 0
+  earlyRoom: {fileID: 1243274121}
+  midRoom: {fileID: 445245158}
+  bossRoom: {fileID: 612862781}
+  earlyExitDoor: {fileID: 409351801}
+  midExitDoor: {fileID: 1292718067}
+  bossExitDoor: {fileID: 1439428637}
 --- !u!1 &1192184636
 GameObject:
   m_ObjectHideFlags: 0
