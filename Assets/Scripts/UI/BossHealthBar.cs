@@ -1,99 +1,98 @@
+// Script purpose: Shows a top-screen Boss health bar after the Boss is active or damaged.
+// Key Inspector variables:
+// - bossTag: Tag used to locate the Boss GameObject in the scene.
+// - bossName: Text shown above the bar.
+// - barWidth / barHeight: Screen-space size of the top Boss health bar.
 using UnityEngine;
 using UnityEngine.UI;
 
-/// <summary>
-/// Boss 血条 UI —— 屏幕顶部显示，血量减少时从右往左缩。
-/// 通过 Tag "Boss" 查找目标。
-/// </summary>
 public class BossHealthBar : MonoBehaviour
 {
-    #region Inspector
+    [Header("Boss Lookup")]
+    [SerializeField] private string bossTag = "Boss";
+    [SerializeField] private bool showOnlyWhenBossActivated = true;
 
-    [Header("样式")]
+    [Header("Style")]
     [SerializeField] private string bossName = "Evil Wizard";
     [SerializeField] private float barWidth = 600f;
     [SerializeField] private float barHeight = 28f;
     [SerializeField] private Color fillColor = new Color(0.85f, 0.08f, 0.12f, 1f);
-    [SerializeField] private Color bgColor = new Color(0.12f, 0.10f, 0.10f, 1f);
-
-    #endregion
-
-    #region 运行时状态
+    [SerializeField] private Color backgroundColor = new Color(0.12f, 0.10f, 0.10f, 1f);
 
     private Entity bossEntity;
+    private Enemy_EvilWizard evilWizardBoss;
     private RectTransform fillRect;
     private GameObject canvasRoot;
-
-    #endregion
-
-    #region 生命周期
 
     private void Awake()
     {
         CreateUI();
-        if (canvasRoot != null)
-            canvasRoot.SetActive(false);
+        SetVisible(false);
     }
 
     private void Update()
     {
-        // 持续尝试查找 Boss
+        if (bossEntity == null)
+            TryFindBossByTag();
+
         if (bossEntity == null)
         {
-            TryFindBoss();
-            if (bossEntity == null) return;
+            SetVisible(false);
+            return;
         }
 
-        // 显示血条
-        if (canvasRoot != null && !canvasRoot.activeSelf)
-            canvasRoot.SetActive(true);
+        bool shouldShowBar = ShouldShowBar();
+        SetVisible(shouldShowBar);
+
+        if (!shouldShowBar) return;
 
         UpdateFill();
     }
 
-    #endregion
-
-    #region 查找 Boss
-
-    private void TryFindBoss()
+    private void TryFindBossByTag()
     {
-        try
-        {
-            GameObject bossObj = GameObject.FindGameObjectWithTag("Boss");
-            if (bossObj != null)
-            {
-                bossEntity = bossObj.GetComponent<Entity>();
-                Debug.Log($"BossHealthBar: 找到 Boss: {bossObj.name}");
-            }
-        }
-        catch (System.Exception)
-        {
-            // Tag "Boss" 不存在，静默忽略
-        }
+        GameObject bossObject = GameObject.FindGameObjectWithTag(bossTag);
+        if (bossObject == null) return;
+
+        bossEntity = bossObject.GetComponent<Entity>();
+        evilWizardBoss = bossObject.GetComponent<Enemy_EvilWizard>();
+
+        if (bossEntity == null)
+            Debug.LogError("BossHealthBar: Boss tagged object does not have an Entity component.", bossObject);
     }
 
-    #endregion
+    private bool ShouldShowBar()
+    {
+        if (bossEntity.currentHealth <= 0f) return false;
+        if (!showOnlyWhenBossActivated) return true;
 
-    #region 血条更新
+        if (evilWizardBoss != null)
+            return evilWizardBoss.IsBossActivated || bossEntity.currentHealth < bossEntity.maxHealth;
+
+        return bossEntity.currentHealth < bossEntity.maxHealth;
+    }
+
+    private void SetVisible(bool isVisible)
+    {
+        if (canvasRoot != null && canvasRoot.activeSelf != isVisible)
+            canvasRoot.SetActive(isVisible);
+    }
 
     private void UpdateFill()
     {
         if (fillRect == null || bossEntity == null) return;
 
-        float ratio = bossEntity.maxHealth > 0f
+        float healthRatio = bossEntity.maxHealth > 0f
             ? Mathf.Clamp01(bossEntity.currentHealth / bossEntity.maxHealth)
             : 0f;
 
-        fillRect.anchorMax = new Vector2(ratio, 1f);
+        fillRect.sizeDelta = new Vector2(barWidth * healthRatio, barHeight);
     }
-
-    #endregion
-
-    #region UI 自动生成
 
     private void CreateUI()
     {
         canvasRoot = new GameObject("BossHealthBarCanvas");
+
         Canvas canvas = canvasRoot.AddComponent<Canvas>();
         canvas.renderMode = RenderMode.ScreenSpaceOverlay;
         canvas.sortingOrder = 200;
@@ -115,41 +114,58 @@ public class BossHealthBar : MonoBehaviour
         panelRect.anchoredPosition = new Vector2(0f, -40f);
         panelRect.sizeDelta = new Vector2(barWidth + 8f, barHeight + 8f);
 
-        GameObject bg = new GameObject("Background");
-        bg.transform.SetParent(panel.transform, false);
-        RectTransform bgRect = bg.AddComponent<RectTransform>();
-        bgRect.anchorMin = Vector2.zero;
-        bgRect.anchorMax = Vector2.one;
-        bgRect.offsetMin = Vector2.zero;
-        bgRect.offsetMax = Vector2.zero;
-        bg.AddComponent<Image>().color = bgColor;
+        CreateBackground(panel.transform);
+        CreateFill(panel.transform);
+        CreateNameText(panel.transform);
+    }
 
+    private void CreateBackground(Transform parent)
+    {
+        GameObject background = new GameObject("Background");
+        background.transform.SetParent(parent, false);
+
+        RectTransform backgroundRect = background.AddComponent<RectTransform>();
+        backgroundRect.anchorMin = Vector2.zero;
+        backgroundRect.anchorMax = Vector2.one;
+        backgroundRect.offsetMin = Vector2.zero;
+        backgroundRect.offsetMax = Vector2.zero;
+
+        background.AddComponent<Image>().color = backgroundColor;
+    }
+
+    private void CreateFill(Transform parent)
+    {
         GameObject fill = new GameObject("Fill");
-        fill.transform.SetParent(panel.transform, false);
-        fillRect = fill.AddComponent<RectTransform>();
-        fillRect.anchorMin = new Vector2(0f, 0f);
-        fillRect.anchorMax = new Vector2(1f, 1f);
-        fillRect.pivot = new Vector2(0f, 0.5f);
-        fillRect.offsetMin = new Vector2(4f, 4f);
-        fillRect.offsetMax = new Vector2(-4f, -4f);
-        fill.AddComponent<Image>().color = fillColor;
+        fill.transform.SetParent(parent, false);
 
-        GameObject nameObj = new GameObject("BossName");
-        nameObj.transform.SetParent(panel.transform, false);
-        Text nameText = nameObj.AddComponent<Text>();
+        fillRect = fill.AddComponent<RectTransform>();
+        fillRect.anchorMin = new Vector2(0f, 0.5f);
+        fillRect.anchorMax = new Vector2(0f, 0.5f);
+        fillRect.pivot = new Vector2(0f, 0.5f);
+        fillRect.anchoredPosition = new Vector2(4f, 0f);
+        fillRect.sizeDelta = new Vector2(barWidth, barHeight);
+
+        fill.AddComponent<Image>().color = fillColor;
+    }
+
+    private void CreateNameText(Transform parent)
+    {
+        GameObject nameObject = new GameObject("BossName");
+        nameObject.transform.SetParent(parent, false);
+
+        Text nameText = nameObject.AddComponent<Text>();
         nameText.text = bossName;
         nameText.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
         nameText.fontSize = 16;
         nameText.fontStyle = FontStyle.Bold;
         nameText.color = new Color(0.92f, 0.85f, 0.72f, 1f);
         nameText.alignment = TextAnchor.MiddleCenter;
-        RectTransform nameRect = nameObj.GetComponent<RectTransform>();
+
+        RectTransform nameRect = nameObject.GetComponent<RectTransform>();
         nameRect.anchorMin = new Vector2(0f, 1f);
         nameRect.anchorMax = new Vector2(1f, 1f);
         nameRect.pivot = new Vector2(0.5f, 0f);
         nameRect.anchoredPosition = new Vector2(0f, 4f);
         nameRect.sizeDelta = new Vector2(0f, 22f);
     }
-
-    #endregion
 }
