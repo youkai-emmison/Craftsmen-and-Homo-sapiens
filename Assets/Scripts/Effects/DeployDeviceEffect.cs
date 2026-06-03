@@ -1,64 +1,108 @@
+// Script purpose: Deploys a configured Device prefab on the ground near the player.
+// Key Inspector variables:
+// - deviceData: Device data containing the turret prefab, projectile, and combat numbers.
+// - groundLayer: Layer mask used by the downward raycast that finds the landing point.
+// - deployOffset: Horizontal/vertical offset from the player before snapping to ground.
 using UnityEngine;
 
-/// <summary>
-/// 部署装置效果 —— 装备武器时在玩家位置部署装置。
-/// 作为 ItemEffect 附加到 DeviceEquipmentData 的 effects 数组。
-/// </summary>
 [CreateAssetMenu(fileName = "DeployDevice", menuName = "Item Effects/Deploy Device")]
 public class DeployDeviceEffect : ItemEffect
 {
-    [Header("部署配置")]
+    [Header("Deploy Config")]
     public DeviceData deviceData;
 
-    [Header("部署偏移")]
-    public Vector2 deployOffset = new Vector2(1f, 0f); // 相对玩家的部署偏移
+    [Header("Ground Snap")]
+    public LayerMask groundLayer;
+    public Vector2 deployOffset = new Vector2(1f, 0f);
+    public float raycastStartHeight = 1.5f;
+    public float raycastDistance = 5f;
+    public float groundYOffset = 0.28f;
 
     private GameObject deployedDevice;
 
     public override void ExecuteEffect(Transform target)
     {
-        if (deviceData == null || deviceData.devicePrefab == null)
+        if (target == null)
         {
-            Debug.LogWarning("DeployDeviceEffect: deviceData 或 devicePrefab 为空");
+            Debug.LogWarning("DeployDeviceEffect: target is null.");
             return;
         }
 
-        // 检查是否可以部署
-        if (DeviceManager.Instance != null)
+        if (deviceData == null || deviceData.devicePrefab == null)
         {
-            if (!DeviceManager.Instance.CanDeploy(deviceData.deviceName, deviceData.maxSameType))
-            {
-                Debug.Log($"无法部署 {deviceData.deviceName}：达到数量上限");
-                return;
-            }
+            Debug.LogWarning("DeployDeviceEffect: deviceData or devicePrefab is not assigned.");
+            return;
         }
 
-        // 获取玩家属性
+        if (!CanDeployDevice())
+        {
+            Debug.Log($"DeployDeviceEffect: cannot deploy {deviceData.deviceName}; device limit reached.");
+            return;
+        }
+
         PlayerStats playerStats = target.GetComponent<PlayerStats>();
         if (playerStats == null)
         {
-            Debug.LogWarning("DeployDeviceEffect: 找不到 PlayerStats");
+            Debug.LogWarning("DeployDeviceEffect: PlayerStats is not found on the target.");
             return;
         }
 
-        // 计算部署位置（玩家前方）
-        float facingDir = target.localScale.x > 0 ? 1f : -1f;
-        Vector2 deployPos = (Vector2)target.position + new Vector2(deployOffset.x * facingDir, deployOffset.y);
-
-        // 实例化装置
-        deployedDevice = Instantiate(deviceData.devicePrefab, deployPos, Quaternion.identity);
-
-        // 初始化装置控制器
-        DeviceController controller = deployedDevice.GetComponent<DeviceController>();
-        if (controller != null)
+        if (!TryGetGroundDeployPosition(target, out Vector2 deployPosition))
         {
-            controller.Initialize(deviceData, playerStats);
+            Debug.LogWarning("DeployDeviceEffect: no ground found below the deploy point.");
+            return;
         }
+
+        deployedDevice = Instantiate(deviceData.devicePrefab, deployPosition, Quaternion.identity);
+        InitializeDevice(playerStats);
     }
 
     public override void CancelEffect(Transform target)
     {
-        // 装备卸下时，可以选择销毁已部署的装置或保留
-        // 这里选择保留，装置会自然到期销毁
+        // Deployed devices keep running until their duration or durability ends.
+    }
+
+    private bool CanDeployDevice()
+    {
+        if (DeviceManager.Instance == null)
+        {
+            Debug.LogWarning("DeployDeviceEffect: DeviceManager is missing in the scene.");
+            return false;
+        }
+
+        return DeviceManager.Instance.CanDeploy(deviceData.deviceName, deviceData.maxSameType);
+    }
+
+    private bool TryGetGroundDeployPosition(Transform target, out Vector2 deployPosition)
+    {
+        float facingDirection = GetFacingDirection(target);
+        Vector2 castOrigin = (Vector2)target.position
+            + new Vector2(deployOffset.x * facingDirection, deployOffset.y + raycastStartHeight);
+
+        RaycastHit2D hit = Physics2D.Raycast(castOrigin, Vector2.down, raycastDistance, groundLayer);
+        if (hit.collider == null)
+        {
+            deployPosition = Vector2.zero;
+            return false;
+        }
+
+        deployPosition = hit.point + Vector2.up * groundYOffset;
+        return true;
+    }
+
+    private float GetFacingDirection(Transform target)
+    {
+        PlayerAttackFacingController facingController = target.GetComponent<PlayerAttackFacingController>();
+        if (facingController != null)
+            return facingController.FacingDirectionX;
+
+        return target.localScale.x >= 0f ? 1f : -1f;
+    }
+
+    private void InitializeDevice(PlayerStats playerStats)
+    {
+        DeviceController controller = deployedDevice.GetComponent<DeviceController>();
+        if (controller != null)
+            controller.Initialize(deviceData, playerStats);
     }
 }

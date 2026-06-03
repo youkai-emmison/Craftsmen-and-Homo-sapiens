@@ -1,3 +1,7 @@
+// Script purpose: Moves equipment between backpack slots and equipped slots, then applies stats.
+// Key Inspector variables:
+// - inventory: Source inventory that owns backpack and equipped slot data.
+// - playerStats: Stats component receiving equipment modifiers.
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -35,9 +39,9 @@ public class Equipment : MonoBehaviour
 
         EquipmentData data = slots[slotIndex];
 
-        if (data.equipmentType == EquipmentType.Weapon)
+        if (inventory.CanUseWeaponSlot(data))
         {
-            // 武器 → 找一个空的武器槽位
+            // Weapons and deployable devices share the hot weapon slots.
             int targetSlot = -1;
             for (int i = 0; i < inventory.MaxWeaponSlots; i++)
             {

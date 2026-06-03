@@ -1,3 +1,8 @@
+// Script purpose: Stores backpack items, equipped gear, and weapon-slot equipment.
+// Key Inspector variables:
+// - startingEquipment: Demo equipment inserted into the backpack at scene start.
+// - startingMaterials: Demo materials inserted into the backpack at scene start.
+// - maxWeaponSlots: Number of hot weapon/device slots.
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -142,7 +147,7 @@ public class Inventory : MonoBehaviour
 
     public bool EquipWeapon(EquipmentData data, int slotIndex)
     {
-        if (data == null || data.equipmentType != EquipmentType.Weapon) return false;
+        if (data == null || !CanUseWeaponSlot(data)) return false;
         if (slotIndex < 0 || slotIndex >= maxWeaponSlots) return false;
 
         // 该槽位已有武器 → 卸下
@@ -181,6 +186,12 @@ public class Inventory : MonoBehaviour
     {
         if (slotIndex < 0 || slotIndex >= equippedWeapons.Count) return null;
         return equippedWeapons[slotIndex];
+    }
+
+    public bool CanUseWeaponSlot(EquipmentData data)
+    {
+        return data != null
+            && (data.equipmentType == EquipmentType.Weapon || data.equipmentType == EquipmentType.Device);
     }
 
     // ── 丢弃 ──

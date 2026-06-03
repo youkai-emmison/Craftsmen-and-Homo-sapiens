@@ -1,3 +1,8 @@
+// Script purpose: Displays one equipped item slot and handles drag/drop or unequip clicks.
+// Key Inspector variables:
+// - slotType: Normal equipment slot type.
+// - isWeaponSlot / weaponSlotIndex: Hot slot mode used by weapons and deployable devices.
+// - iconImage / slotBackgroundImage: UI visuals refreshed from Inventory data.
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -75,7 +80,7 @@ public class EquipmentSlotView : MonoBehaviour, IDropHandler, IPointerDownHandle
 
         if (isWeaponSlot)
         {
-            if (draggedData.equipmentType != EquipmentType.Weapon) return;
+            if (!inventory.CanUseWeaponSlot(draggedData)) return;
 
             // 卸下旧武器（触发 RefreshAllModifiers）
             EquipmentData oldWeapon = inventory.GetEquippedWeapon(weaponSlotIndex);

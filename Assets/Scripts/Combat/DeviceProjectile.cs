@@ -1,3 +1,7 @@
+// Script purpose: Moves a device projectile and applies damage when it hits Enemy or Boss targets.
+// Key runtime variables:
+// - damage: Damage assigned by DeviceController when the projectile is spawned.
+// - lifetime: Safety timer that destroys missed shots.
 using UnityEngine;
 
 /// <summary>
@@ -61,8 +65,7 @@ public class DeviceProjectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // 命中敌人
-        if (other.CompareTag("Enemy"))
+        if (IsDamageTarget(other))
         {
             IDamageable damageable = other.GetComponent<IDamageable>();
             if (damageable != null)
@@ -73,23 +76,26 @@ public class DeviceProjectile : MonoBehaviour
             return;
         }
 
-        // 命中障碍物（地面、墙壁等）
-        if (other.CompareTag("Ground") || other.CompareTag("Wall"))
+        if (IsBlockingLayer(other))
         {
             Destroy(gameObject);
-            return;
         }
+    }
 
-        // 命中其他实体层（如 Boss）
-        if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
-        {
-            IDamageable damageable = other.GetComponent<IDamageable>();
-            if (damageable != null)
-            {
-                damageable.TakeDamage(damage);
-            }
-            Destroy(gameObject);
-        }
+    private bool IsDamageTarget(Collider2D other)
+    {
+        if (other == null) return false;
+        if (other.CompareTag("Enemy") || other.CompareTag("Boss")) return true;
+
+        return other.gameObject.layer == LayerMask.NameToLayer("Enemy");
+    }
+
+    private bool IsBlockingLayer(Collider2D other)
+    {
+        if (other == null) return false;
+
+        int groundLayer = LayerMask.NameToLayer("Ground");
+        return groundLayer >= 0 && other.gameObject.layer == groundLayer;
     }
 
     #endregion

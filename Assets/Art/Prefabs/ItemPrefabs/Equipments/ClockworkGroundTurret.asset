@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 500d73f063e159b44a55bd2ab23bc9f1, type: 3}
+  m_Name: ClockworkGroundTurret
+  m_EditorClassIdentifier:
+  itemName: Clockwork Ground Turret
+  icon: {fileID: 21300000, guid: f6a81651710947c38f32baa5e28f8066, type: 3}
+  description: Press 5 after equipping this device in a weapon slot to deploy a ground turret. Deployment also grants a short damage buff.
+  itemType: 1
+  dropRate: 0
+  equipmentType: 5
+  modifiers: []
+  effects:
+  - {fileID: 11400000, guid: 66c8b090fbeb4db4b1e655d20bdde1a1, type: 2}
+  - {fileID: 11400000, guid: a9ffebbe312a4cf48a41c8cb9eab9486, type: 2}
+  recipes: []
+  deviceData: {fileID: 11400000, guid: e92a2fdb4f9344879809db92a5202106, type: 2}

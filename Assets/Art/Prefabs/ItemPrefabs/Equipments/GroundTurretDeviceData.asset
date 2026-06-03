@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a1cb9d6aa938be4eac5841bdbcc72ad, type: 3}
+  m_Name: GroundTurretDeviceData
+  m_EditorClassIdentifier:
+  deviceName: Clockwork Ground Turret
+  description: A demo deployable turret. Place it on the ground, then it auto-targets nearby enemies.
+  icon: {fileID: 21300000, guid: f6a81651710947c38f32baa5e28f8066, type: 3}
+  maxDurability: 6
+  duration: 28
+  attackInterval: 0.65
+  attackRange: 6
+  projectileSpeed: 9
+  baseDamagePercent: 0.45
+  maxSameType: 2
+  devicePrefab: {fileID: 100100000, guid: 876460259269464598fb90e6ec874214, type: 3}
+  projectilePrefab: {fileID: 100100000, guid: 1b1514afa53141d4b5a98e0d29d8a8eb, type: 3}

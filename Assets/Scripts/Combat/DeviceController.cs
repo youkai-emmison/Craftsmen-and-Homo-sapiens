@@ -1,3 +1,8 @@
+// Script purpose: Controls a deployed device, including lifetime, targeting, and shooting.
+// Key runtime variables:
+// - data: DeviceData assigned when the device is deployed.
+// - ownerStats: Player stats used to scale device attack range and damage.
+// - currentTarget: Current Enemy or Boss target selected by range checks.
 using UnityEngine;
 
 /// <summary>
@@ -130,8 +135,7 @@ public class DeviceController : MonoBehaviour, IDamageable
 
         foreach (var hit in hits)
         {
-            // 只攻击敌人
-            if (!hit.CompareTag("Enemy")) continue;
+            if (!IsValidTarget(hit)) continue;
 
             float dist = Vector2.Distance(transform.position, hit.transform.position);
             if (dist < closestDist)
@@ -142,6 +146,14 @@ public class DeviceController : MonoBehaviour, IDamageable
         }
 
         currentTarget = closest;
+    }
+
+    private bool IsValidTarget(Collider2D hit)
+    {
+        if (hit == null) return false;
+        if (hit.CompareTag("Enemy") || hit.CompareTag("Boss")) return true;
+
+        return hit.gameObject.layer == LayerMask.NameToLayer("Enemy");
     }
 
     /// <summary>
