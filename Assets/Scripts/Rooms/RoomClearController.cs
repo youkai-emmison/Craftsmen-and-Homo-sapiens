@@ -24,13 +24,14 @@ public class RoomClearController : MonoBehaviour
         if (exitDoor == null)
             Debug.LogError("RoomClearController: Exit Door is not assigned.", this);
 
-        SubscribeToEnemies();
-
-        if (enemiesInRoom == null || enemiesInRoom.Length == 0)
+        if (!HasAnyValidEnemy())
         {
-            Debug.Log("RoomClearController: No enemies assigned, unlocking exit door.", this);
+            Debug.LogWarning("RoomClearController: enemiesInRoom 为空或全为 null，自动解锁出口。请在 Inspector 中拖入敌人引用。", this);
             UnlockExitDoor();
+            return;
         }
+
+        SubscribeToEnemies();
     }
 
     private void OnDestroy()
@@ -47,6 +48,20 @@ public class RoomClearController : MonoBehaviour
             if (enemy != null)
                 enemy.OnDeath += HandleEnemyDefeated;
         }
+    }
+
+    /// <summary>
+    /// 检查 enemiesInRoom 是否包含至少一个有效（非 null）的敌人引用。
+    /// </summary>
+    private bool HasAnyValidEnemy()
+    {
+        if (enemiesInRoom == null) return false;
+
+        foreach (Enemy enemy in enemiesInRoom)
+        {
+            if (enemy != null) return true;
+        }
+        return false;
     }
 
     private void UnsubscribeFromEnemies()

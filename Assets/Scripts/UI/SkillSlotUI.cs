@@ -20,6 +20,7 @@ public class SkillSlotUI : MonoBehaviour
         public Image iconImage;           // 技能图标
         public Image cooldownOverlay;     // 冷却遮罩（Filled 类型，从上到下填充）
         public TextMeshProUGUI keyLabel;  // 按键提示文字
+        public TextMeshProUGUI cooldownText; // 冷却倒计时文本（左下角）
         public GameObject emptyIndicator; // 无技能时显示的占位符
     }
 
@@ -107,8 +108,18 @@ public class SkillSlotUI : MonoBehaviour
         // 冷却遮罩初始状态
         if (slot.cooldownOverlay != null)
         {
+            slot.cooldownOverlay.type = Image.Type.Filled;
+            slot.cooldownOverlay.fillMethod = Image.FillMethod.Vertical;
+            slot.cooldownOverlay.fillOrigin = 1; // 0=Bottom, 1=Top
+            slot.cooldownOverlay.color = new Color(0f, 0f, 0f, 0.7f); // 半透明黑色遮罩
             slot.cooldownOverlay.fillAmount = 0f;
-            slot.cooldownOverlay.enabled = hasSkill;
+            slot.cooldownOverlay.enabled = false; // 初始失活，冷却时才激活
+        }
+
+        // 冷却文本初始状态
+        if (slot.cooldownText != null)
+        {
+            slot.cooldownText.enabled = false;
         }
     }
 
@@ -116,9 +127,29 @@ public class SkillSlotUI : MonoBehaviour
     {
         if (slotIndex >= slots.Length || slots[slotIndex] == null) return;
 
-        float progress = skillManager.GetCooldownProgress(slotIndex);
-        if (slots[slotIndex].cooldownOverlay != null)
-            slots[slotIndex].cooldownOverlay.fillAmount = progress;
+        var slot = slots[slotIndex];
+        float remaining = skillManager.GetCooldownRemaining(slotIndex);
+        bool isCooling = remaining > 0f;
+
+        // 冷却遮罩
+        if (slot.cooldownOverlay != null)
+        {
+            slot.cooldownOverlay.enabled = isCooling;
+            if (isCooling)
+            {
+                var skill = skillManager.GetEquipped(slotIndex);
+                float progress = (skill != null && skill.cooldown > 0f) ? remaining / skill.cooldown : 0f;
+                slot.cooldownOverlay.fillAmount = progress;
+            }
+        }
+
+        // 冷却倒计时文本
+        if (slot.cooldownText != null)
+        {
+            slot.cooldownText.enabled = isCooling;
+            if (isCooling)
+                slot.cooldownText.text = $"{remaining:F1}s";
+        }
     }
 
     private void HandleEquippedChanged(int slot, SkillData skill)

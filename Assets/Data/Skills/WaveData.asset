@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c438758cda1d2e4a9feae23b4eeccb6, type: 3}
+  m_Name: WaveData
+  m_EditorClassIdentifier: 
+  skillName: Tides turn the sky
+  description: Release a massive wave in the forward direction, first knocking back
+    enemies by a certain distance, then dealing physical damage based on player attributes.
+    Costs 2 skill points, with a 15-second cooldown.
+  icon: {fileID: 21300000, guid: d59ce47b22d721a4d9ae6256b153ce7d, type: 3}
+  energyCost: 2
+  cooldown: 15
+  learnCost: 2
+  prerequisites: []
+  effect: {fileID: 11400000, guid: 8aaed1dbd135c56e3f2fcb3daf059fea, type: 2}

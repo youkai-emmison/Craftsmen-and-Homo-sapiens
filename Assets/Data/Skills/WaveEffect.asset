@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f210618114c3a216842b328b6a2bfcc5, type: 3}
+  m_Name: WaveEffect
+  m_EditorClassIdentifier: 
+  effectName: Tides turn the sky
+  description: Release a massive wave in the forward direction, first repelling enemies
+    before dealing damage.
+  spawnForwardOffset: 1.2
+  waveSpeed: 12
+  lifetime: 0.7
+  hitBoxSize: {x: 2, y: 2.5}
+  knockbackForce: 15
+  knockbackDelay: 0.3
+  skillDamageMultiplier: 1.5
+  frames:
+  - {fileID: 259538753, guid: aed99eadee49e5d4d857c4283e64a40a, type: 3}
+  - {fileID: 539053932, guid: aed99eadee49e5d4d857c4283e64a40a, type: 3}
+  - {fileID: -1883572016, guid: aed99eadee49e5d4d857c4283e64a40a, type: 3}
+  - {fileID: 698808654, guid: aed99eadee49e5d4d857c4283e64a40a, type: 3}
+  - {fileID: 1366909064, guid: aed99eadee49e5d4d857c4283e64a40a, type: 3}
+  - {fileID: -1421726030, guid: aed99eadee49e5d4d857c4283e64a40a, type: 3}
+  frameInterval: 0.1
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  spriteScale: 2.5
+  sortingOrder: 10

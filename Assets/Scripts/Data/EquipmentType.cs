@@ -4,5 +4,6 @@ public enum EquipmentType
     Armor,
     Amulet,
     Flask,
-    Helmet
+    Helmet,
+    Device  // 机械装置
 }

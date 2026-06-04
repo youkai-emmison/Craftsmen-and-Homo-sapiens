@@ -192,6 +192,28 @@ public class Entity : MonoBehaviour, IDamageable
     }
 
     /// <summary>
+    /// 外部施加击退（供技能系统使用）。
+    /// 允许自定义击退方向、力度和持续时间。
+    /// </summary>
+    /// <param name="direction">击退方向（会被 normalized）</param>
+    /// <param name="force">击退力度</param>
+    /// <param name="duration">击退持续时间（秒）</param>
+    public void ApplyKnockback(Vector2 direction, float force, float duration)
+    {
+        isKnockedBack = true;
+        rb.velocity = Vector2.zero;
+        rb.AddForce(direction.normalized * force, ForceMode2D.Impulse);
+        StartCoroutine(ReleaseKnockback(duration));
+    }
+
+    private IEnumerator ReleaseKnockback(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        rb.velocity = Vector2.zero;
+        isKnockedBack = false;
+    }
+
+    /// <summary>
     /// 死亡处理。默认行为：播放死亡动画后销毁物体。
     /// 子类应重写以实现各自的死亡逻辑（如掉落物、经验等）。
     /// </summary>
