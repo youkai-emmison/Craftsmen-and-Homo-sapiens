@@ -43,6 +43,9 @@
 - `submissions/SUBMISSION_RISK_REGISTER_ZH.md`
   - 最终提交风险登记表，集中列出 WebGL、视频、CodeBuddy、链接、PPT、素材授权等风险兜底。
 
+- `submissions/PLACEHOLDER_CLEANUP_CHECKLIST_ZH.md`
+  - 最终占位符清理清单，用于区分模板里可保留的 `TODO` 和最终提交前必须替换的占位内容。
+
 - `submissions/UPLOAD_PACKAGE_README_ZH.md`
   - 最终上传包说明，用于准备附件包、网盘包或老师审核包。
 

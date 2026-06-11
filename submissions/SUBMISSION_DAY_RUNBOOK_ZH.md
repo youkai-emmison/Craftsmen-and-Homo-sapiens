@@ -119,6 +119,7 @@ CodeBuddy 记录是证明 AI 编程助手参与的重要材料。
 - [ ] 项目书 PDF 可打开。
 - [ ] 团队成员信息已填真实内容。
 - [ ] 提交问卷中没有 `TODO`、本地路径或 `localhost`。
+- [ ] 已按 `submissions/PLACEHOLDER_CLEANUP_CHECKLIST_ZH.md` 扫过最终材料和上传包。
 - [ ] `submissions/FINAL_SUBMISSION_INFO.md` 与提交问卷内容一致。
 - [ ] `submissions/JUDGE_QUICK_START.md` 中的链接和问卷一致。
 

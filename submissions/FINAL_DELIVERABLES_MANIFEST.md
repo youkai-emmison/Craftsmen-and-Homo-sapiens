@@ -25,6 +25,7 @@
 | 最终提交当天执行手册 | `submissions/SUBMISSION_DAY_RUNBOOK_ZH.md` | 按顺序处理 WebGL、视频、CodeBuddy、PPT 和问卷回填 |
 | 外部动作负责人看板 | `submissions/EXTERNAL_ACTION_OWNER_BOARD_ZH.md` | 分配 WebGL、视频、CodeBuddy、团队信息、PPT 和最终提交负责人 |
 | 最终提交风险登记表 | `submissions/SUBMISSION_RISK_REGISTER_ZH.md` | 集中列出 WebGL、视频、CodeBuddy、链接、PPT 和素材授权等风险兜底 |
+| 最终占位符清理清单 | `submissions/PLACEHOLDER_CLEANUP_CHECKLIST_ZH.md` | 区分哪些模板占位符可以留在仓库，哪些必须在提交材料中替换 |
 | 最终上传包说明 | `submissions/UPLOAD_PACKAGE_README_ZH.md` | 准备附件包、网盘包或老师审核包 |
 | 上传包先看我 | `submissions/00_README_FIRST_ZH.md` | 可复制到最终压缩包根目录，指导评委查看材料 |
 | 上传包链接模板 | `submissions/package_templates/` | 最终压缩包中 WebGL、视频、PPT、CodeBuddy、GitHub 链接 txt 模板 |
@@ -65,6 +66,7 @@
 - [ ] CodeBuddy 历史记录已导出并能访问。
 - [ ] `FINAL_SUBMISSION_INFO.md` 中没有必填 `TODO`。
 - [ ] 提交问卷中的链接和 `LINKS_TO_FILL.md` 一致。
+- [ ] 已按 `PLACEHOLDER_CLEANUP_CHECKLIST_ZH.md` 扫过 `TODO`、`待回填`、本地路径和 `localhost`。
 
 ## 当前还缺的外部动作
 

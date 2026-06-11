@@ -89,6 +89,8 @@
   - 外部动作负责人看板，用于认领 WebGL、视频、CodeBuddy、团队信息和最终提交任务。
 - `submissions/SUBMISSION_RISK_REGISTER_ZH.md`
   - 最终提交风险登记表，集中列出 WebGL、视频、CodeBuddy、链接和素材等风险兜底。
+- `submissions/PLACEHOLDER_CLEANUP_CHECKLIST_ZH.md`
+  - 最终占位符清理清单，避免把 `TODO`、本地路径或 `localhost` 填进正式材料。
 - `submissions/UPLOAD_PACKAGE_README_ZH.md`
   - 最终上传包说明，用于准备附件包、网盘包或老师审核包。
 - `submissions/00_README_FIRST_ZH.md`
