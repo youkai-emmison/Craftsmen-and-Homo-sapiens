@@ -26,6 +26,7 @@
 | 最终链接回填表 | Ready | `submissions/LINKS_TO_FILL.md` 已准备 | 拿到外部链接后先填入此表，再同步到各提交材料 |
 | 最终提交当天执行手册 | Ready | `submissions/SUBMISSION_DAY_RUNBOOK_ZH.md` 已准备 | 提交当天按顺序处理 WebGL、视频、CodeBuddy、PPT 和问卷回填 |
 | 外部动作负责人看板 | Ready | `submissions/EXTERNAL_ACTION_OWNER_BOARD_ZH.md` 已准备 | 最终分工时认领外部动作和产物 |
+| 最终提交风险登记表 | Ready | `submissions/SUBMISSION_RISK_REGISTER_ZH.md` 已准备 | 最后一天按高优先级风险逐项兜底 |
 | 最终上传包说明 | Ready | `submissions/UPLOAD_PACKAGE_README_ZH.md` 已准备 | 如果平台要求附件包或网盘包，按此文件组织 |
 | 上传包先看我 | Ready | `submissions/00_README_FIRST_ZH.md` 已准备 | 可复制到最终压缩包根目录 |
 | 上传包链接模板 | Ready | `submissions/package_templates/` 已准备 | 最终打包时复制并替换 `TODO` |

@@ -87,6 +87,8 @@
   - 最终提交当天执行手册，按顺序处理 WebGL、视频、CodeBuddy、PPT 和问卷回填。
 - `submissions/EXTERNAL_ACTION_OWNER_BOARD_ZH.md`
   - 外部动作负责人看板，用于认领 WebGL、视频、CodeBuddy、团队信息和最终提交任务。
+- `submissions/SUBMISSION_RISK_REGISTER_ZH.md`
+  - 最终提交风险登记表，集中列出 WebGL、视频、CodeBuddy、链接和素材等风险兜底。
 - `submissions/UPLOAD_PACKAGE_README_ZH.md`
   - 最终上传包说明，用于准备附件包、网盘包或老师审核包。
 - `submissions/00_README_FIRST_ZH.md`
