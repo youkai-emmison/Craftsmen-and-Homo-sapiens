@@ -57,6 +57,10 @@
   - 路演口播稿。
   - 包含 30 秒版、60 秒版、Demo 视频开头版和答辩收尾版。
 
+- `submissions/ROADSHOW_QA_CHEATSHEET_ZH.md`
+  - 路演答辩速查卡。
+  - 把常见评委问题压缩成短答案，适合现场排练和临时补位。
+
 - `submissions/TEAM_INFO_TEMPLATE.md`
   - 团队成员信息模板。
   - 用于补报名表、PPT 最后一页、视频片尾和作品页。
@@ -114,6 +118,7 @@
 13. 按 `CODEBUDDY_SUBMISSION_CHECKLIST.md` 导出 CodeBuddy 历史记录。
 14. 先把所有外部链接填进 `LINKS_TO_FILL.md`。
 15. 用 `ROADSHOW_PITCH_SCRIPT.md` 排练 30 秒和 60 秒介绍。
-16. 把 `JUDGE_QUICK_START.md` 中的 WebGL、视频、团队信息占位替换掉。
-17. 打开 `SUBMISSION_READINESS_AUDIT.md` 确认所有必交项状态。
-18. 优先按 `FINAL_SUBMISSION_INFO.md` 填提交表，再参考 `docs/SUBMISSION_FORM_DRAFT.md` 补充长文案。
+16. 用 `ROADSHOW_QA_CHEATSHEET_ZH.md` 准备常见评委问题。
+17. 把 `JUDGE_QUICK_START.md` 中的 WebGL、视频、团队信息占位替换掉。
+18. 打开 `SUBMISSION_READINESS_AUDIT.md` 确认所有必交项状态。
+19. 优先按 `FINAL_SUBMISSION_INFO.md` 填提交表，再参考 `docs/SUBMISSION_FORM_DRAFT.md` 补充长文案。

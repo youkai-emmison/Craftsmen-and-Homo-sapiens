@@ -97,6 +97,8 @@
   - 评委单页摘要，方便快速理解项目、AI 用法和评审看点。
 - `submissions/JUDGE_ONE_PAGE_BRIEF_ZH.pdf`
   - 评委单页摘要 PDF 版，可直接转发或上传。
+- `submissions/ROADSHOW_QA_CHEATSHEET_ZH.md`
+  - 路演答辩速查卡，适合现场快速回答评委常见问题。
 - `submissions/SUBMISSION_READINESS_AUDIT.md`
   - 最终提交前的就绪审计表。
 - `submissions/WEBGL_UPLOAD_RUNBOOK.md`

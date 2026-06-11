@@ -33,6 +33,7 @@
 | 团队信息模板 | `submissions/TEAM_INFO_TEMPLATE.md` | 填成员、学校、分工、联系方式 |
 | 团队交接消息 | `submissions/TEAM_HANDOFF_MESSAGE_ZH.md` | 可直接发给队友或老师，说明材料状态和剩余动作 |
 | 路演口播稿 | `submissions/ROADSHOW_PITCH_SCRIPT.md` | 答辩、视频开头或现场展示时使用 |
+| 路演答辩速查卡 | `submissions/ROADSHOW_QA_CHEATSHEET_ZH.md` | 现场快速回答评委常见问题 |
 | 提交就绪审计 | `submissions/SUBMISSION_READINESS_AUDIT.md` | 最终提交前逐项确认 Ready / Needs External Action |
 
 ## 推荐上传顺序

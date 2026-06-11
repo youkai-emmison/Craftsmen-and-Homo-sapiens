@@ -49,6 +49,7 @@
 - 评委单页摘要：`submissions/JUDGE_ONE_PAGE_BRIEF_ZH.md`
 - 评委单页摘要 PDF：`submissions/JUDGE_ONE_PAGE_BRIEF_ZH.pdf`
 - 路演口播稿：`submissions/ROADSHOW_PITCH_SCRIPT.md`
+- 路演答辩速查卡：`submissions/ROADSHOW_QA_CHEATSHEET_ZH.md`
 - 团队信息模板：`submissions/TEAM_INFO_TEMPLATE.md`
 - 团队交接消息模板：`submissions/TEAM_HANDOFF_MESSAGE_ZH.md`
 - 路演 Q&A：`docs/ROADSHOW_QA.md`

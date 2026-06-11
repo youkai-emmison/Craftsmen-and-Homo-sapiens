@@ -52,6 +52,9 @@
 - `submissions/ROADSHOW_PITCH_SCRIPT.md`
   - 路演口播稿，包含 30 秒版、60 秒版、Demo 视频开头版和答辩收尾版。
 
+- `submissions/ROADSHOW_QA_CHEATSHEET_ZH.md`
+  - 路演答辩速查卡，把常见评委问题压缩成短答案，适合现场排练和临时补位。
+
 - `submissions/TEAM_INFO_TEMPLATE.md`
   - 团队成员信息模板，用于补报名表、PPT 最后一页、视频片尾和作品页。
 
