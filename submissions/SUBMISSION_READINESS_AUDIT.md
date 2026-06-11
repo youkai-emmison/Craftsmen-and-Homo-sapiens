@@ -34,6 +34,7 @@
 | 上传包先看我 | Ready | `submissions/00_README_FIRST_ZH.md` 已准备 | 可复制到最终压缩包根目录 |
 | 上传包链接模板 | Ready | `submissions/package_templates/` 已准备 | 最终打包时复制并替换 `TODO` |
 | 提交平台字段映射表 | Ready | `submissions/SUBMISSION_PORTAL_FIELD_MAP_ZH.md` 已准备 | 最终填问卷时按字段定位可复制文案 |
+| 链接统一回填工具 | Ready | `submissions/LINK_BACKFILL_TOOL_ZH.md`、`submissions/Apply-LinkBackfill.ps1` 和 `submissions/link_backfill_values.example.json` 已准备 | 外部链接齐后可批量回填常用文本材料 |
 | 评委快速打开指南 | Ready | `submissions/JUDGE_QUICK_START.md` 已准备 | 填入 WebGL 和 Demo 视频链接 |
 | 评分项证据映射表 | Ready | `submissions/SCORING_EVIDENCE_MAP_ZH.md` 已准备 | 视频、PPT 和答辩前检查评分点是否覆盖 |
 | 路演口播稿 | Ready | `submissions/ROADSHOW_PITCH_SCRIPT.md` 已准备 | 答辩或视频录制前按真实链接微调 |
@@ -60,10 +61,11 @@
 6. 打开 `submissions/JUDGE_QUICK_START.md`，补 WebGL、视频和团队信息。
 7. 打开 `submissions/TEAM_INFO_TEMPLATE.md`，补真实团队成员和分工。
 8. 打开 `submissions/LINKS_TO_FILL.md`，集中填写所有外部链接。
-9. 打开 `submissions/FINAL_SUBMISSION_INFO.md`，替换所有 `TODO`。
-10. 打开 `submissions/PLACEHOLDER_CLEANUP_CHECKLIST_ZH.md`，确认最终材料没有占位符和本地路径。
-11. 按 `submissions/FINAL_SUBMISSION_AUTOCHECK_ZH.md` 运行自动自检脚本。
-12. 按 `docs/SUBMISSION_FORM_DRAFT.md` 和最终链接填写比赛提交问卷。
+9. 可按 `submissions/LINK_BACKFILL_TOOL_ZH.md` 批量回填常用链接字段。
+10. 打开 `submissions/FINAL_SUBMISSION_INFO.md`，替换所有 `TODO`。
+11. 打开 `submissions/PLACEHOLDER_CLEANUP_CHECKLIST_ZH.md`，确认最终材料没有占位符和本地路径。
+12. 按 `submissions/FINAL_SUBMISSION_AUTOCHECK_ZH.md` 运行自动自检脚本。
+13. 按 `docs/SUBMISSION_FORM_DRAFT.md` 和最终链接填写比赛提交问卷。
 
 ## 不应提交或上传为公开仓库原始文件的内容
 

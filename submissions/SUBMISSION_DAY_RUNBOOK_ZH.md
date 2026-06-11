@@ -93,6 +93,11 @@ CodeBuddy 记录是证明 AI 编程助手参与的重要材料。
 - WebGL、视频、PPT、CodeBuddy 链接在无痕窗口能打开。
 - PPT 和问卷里的链接一致。
 
+可选自动回填：
+
+- 如果外部链接已经全部拿到，可以按 `submissions/LINK_BACKFILL_TOOL_ZH.md` 使用 `Apply-LinkBackfill.ps1` 批量回填常用 Markdown 和 txt 链接模板。
+- 脚本不会改 PPT、PDF 或提交问卷网页，这些仍要人工检查。
+
 ## 5. 更新 PPT 和附件
 
 执行：
@@ -151,3 +156,4 @@ CodeBuddy 记录是证明 AI 编程助手参与的重要材料。
 7. `submissions/FORM_ANSWERS_COPYPASTE_ZH.md`
 8. `submissions/FINAL_SUBMISSION_AUTOCHECK_ZH.md`
 9. `submissions/FINAL_UPLOAD_PACKAGE_BUILDER_ZH.md`
+10. `submissions/LINK_BACKFILL_TOOL_ZH.md`

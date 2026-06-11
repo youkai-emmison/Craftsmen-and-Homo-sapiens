@@ -76,6 +76,15 @@
 - `submissions/LINKS_TO_FILL.md`
   - 最终链接回填表，用于集中填写 WebGL、Demo 视频、PPT、CodeBuddy 和社交媒体链接。
 
+- `submissions/LINK_BACKFILL_TOOL_ZH.md`
+  - 最终链接统一回填工具说明，记录如何从本地 JSON 批量回填常用提交材料。
+
+- `submissions/Apply-LinkBackfill.ps1`
+  - 最终链接统一回填脚本，用于减少 WebGL、Demo、PPT、CodeBuddy 链接漏填。
+
+- `submissions/link_backfill_values.example.json`
+  - 链接回填 JSON 模板，复制成本地文件后填写真实外部链接。
+
 - `submissions/JUDGE_QUICK_START.md`
   - 评委快速打开指南，集中说明试玩链接、操作键位、推荐路线和备用材料。
 

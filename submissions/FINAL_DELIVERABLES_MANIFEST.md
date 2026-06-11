@@ -32,6 +32,7 @@
 | 上传包先看我 | `submissions/00_README_FIRST_ZH.md` | 可复制到最终压缩包根目录，指导评委查看材料 |
 | 上传包链接模板 | `submissions/package_templates/` | 最终压缩包中 WebGL、视频、PPT、CodeBuddy、GitHub 链接 txt 模板 |
 | 提交平台字段映射表 | `submissions/SUBMISSION_PORTAL_FIELD_MAP_ZH.md` | 按平台字段定位可复制文案和验证标准 |
+| 链接统一回填工具 | `submissions/LINK_BACKFILL_TOOL_ZH.md`、`submissions/Apply-LinkBackfill.ps1` | 外部链接齐后批量回填常用 Markdown 和 txt 链接模板 |
 | 评委快速打开指南 | `submissions/JUDGE_QUICK_START.md` | 和作品链接一起给评委，说明怎么玩、看什么 |
 | 评委单页摘要 | `submissions/JUDGE_ONE_PAGE_BRIEF_ZH.md` | 用一页说明项目定位、AI 用法、演示流程和评审看点 |
 | 评委单页摘要 PDF | `submissions/JUDGE_ONE_PAGE_BRIEF_ZH.pdf` | 可直接转发、上传或给老师快速预览 |
@@ -54,11 +55,12 @@
 3. 录制 Demo 视频，并按 `DEMO_VIDEO_UPLOAD_COPY.md` 填写视频标题、简介和标签。
 4. 导出 CodeBuddy 历史记录，上传或整理成可访问文件。
 5. 打开 `LINKS_TO_FILL.md`，集中回填 WebGL、视频、PPT、CodeBuddy 链接。
-6. 打开 `FINAL_SUBMISSION_INFO.md` 和 `FORM_ANSWERS_COPYPASTE_ZH.md`，替换所有外部链接占位。
-7. 按 `FINAL_SUBMISSION_AUTOCHECK_ZH.md` 跑一次自动自检，确认最终面对评委的材料没有占位符红旗。
-8. 如需附件包，按 `FINAL_UPLOAD_PACKAGE_BUILDER_ZH.md` 生成上传包目录，并替换其中链接模板。
-9. 打开 PPT，补团队信息、试玩链接、视频链接。
-10. 最后按提交问卷要求上传 PPT、项目书 PDF、视频链接、试玩链接和 CodeBuddy 记录。
+6. 如需减少手动漏改，按 `LINK_BACKFILL_TOOL_ZH.md` 批量回填常用文本材料。
+7. 打开 `FINAL_SUBMISSION_INFO.md` 和 `FORM_ANSWERS_COPYPASTE_ZH.md`，检查所有外部链接占位是否替换。
+8. 按 `FINAL_SUBMISSION_AUTOCHECK_ZH.md` 跑一次自动自检，确认最终面对评委的材料没有占位符红旗。
+9. 如需附件包，按 `FINAL_UPLOAD_PACKAGE_BUILDER_ZH.md` 生成上传包目录，并替换其中链接模板。
+10. 打开 PPT，补团队信息、试玩链接、视频链接。
+11. 最后按提交问卷要求上传 PPT、项目书 PDF、视频链接、试玩链接和 CodeBuddy 记录。
 
 ## 最后 10 分钟检查
 

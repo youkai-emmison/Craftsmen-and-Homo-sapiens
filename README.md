@@ -101,6 +101,8 @@
   - 可直接放进最终附件包根目录的“先看我”说明文件。
 - `submissions/package_templates/`
   - 最终上传包可用的 WebGL、Demo 视频、PPT、CodeBuddy、GitHub 链接模板。
+- `submissions/LINK_BACKFILL_TOOL_ZH.md`
+  - 最终链接统一回填工具说明，可在外部链接齐后批量更新常用文本材料。
 - `submissions/FORM_ANSWERS_COPYPASTE_ZH.md`
   - 最终提交问卷复制稿。
 - `submissions/SUBMISSION_PORTAL_FIELD_MAP_ZH.md`

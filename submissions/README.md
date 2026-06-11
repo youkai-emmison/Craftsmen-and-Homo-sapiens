@@ -89,6 +89,18 @@
   - 最终链接回填表。
   - 用于集中填写 WebGL、Demo 视频、PPT、CodeBuddy、社交媒体等外部链接。
 
+- `submissions/LINK_BACKFILL_TOOL_ZH.md`
+  - 最终链接统一回填工具说明。
+  - 说明如何用 `Apply-LinkBackfill.ps1` 从本地 JSON 一次性回填常用提交材料。
+
+- `submissions/Apply-LinkBackfill.ps1`
+  - 最终链接统一回填脚本。
+  - 读取 `link_backfill_values.local.json`，更新常用 Markdown 和链接模板；不会修改 PPT/PDF。
+
+- `submissions/link_backfill_values.example.json`
+  - 链接回填 JSON 模板。
+  - 复制为 `link_backfill_values.local.json` 后填写真实外部链接，本地文件已被 `.gitignore` 忽略。
+
 - `submissions/JUDGE_QUICK_START.md`
   - 评委快速打开指南。
   - 集中说明试玩链接、操作键位、推荐路线、评审看点和打不开时的备用材料。
@@ -178,9 +190,10 @@
 21. 上传视频时复制 `DEMO_VIDEO_UPLOAD_COPY.md` 的标题、简介和标签。
 22. 按 `CODEBUDDY_SUBMISSION_CHECKLIST.md` 导出 CodeBuddy 历史记录。
 23. 先把所有外部链接填进 `LINKS_TO_FILL.md`。
-24. 用 `ROADSHOW_PITCH_SCRIPT.md` 排练 30 秒和 60 秒介绍。
-25. 用 `ROADSHOW_QA_CHEATSHEET_ZH.md` 准备常见评委问题。
-26. 用 `SCORING_EVIDENCE_MAP_ZH.md` 检查视频、PPT 和答辩是否覆盖评分点。
-27. 把 `JUDGE_QUICK_START.md` 中的 WebGL、视频、团队信息占位替换掉。
-28. 打开 `SUBMISSION_READINESS_AUDIT.md` 确认所有必交项状态。
-29. 优先按 `FINAL_SUBMISSION_INFO.md` 填提交表，再参考 `docs/SUBMISSION_FORM_DRAFT.md` 补充长文案。
+24. 如果想减少手动漏改，按 `LINK_BACKFILL_TOOL_ZH.md` 运行统一回填脚本。
+25. 用 `ROADSHOW_PITCH_SCRIPT.md` 排练 30 秒和 60 秒介绍。
+26. 用 `ROADSHOW_QA_CHEATSHEET_ZH.md` 准备常见评委问题。
+27. 用 `SCORING_EVIDENCE_MAP_ZH.md` 检查视频、PPT 和答辩是否覆盖评分点。
+28. 把 `JUDGE_QUICK_START.md` 中的 WebGL、视频、团队信息占位替换掉。
+29. 打开 `SUBMISSION_READINESS_AUDIT.md` 确认所有必交项状态。
+30. 优先按 `FINAL_SUBMISSION_INFO.md` 填提交表，再参考 `docs/SUBMISSION_FORM_DRAFT.md` 补充长文案。

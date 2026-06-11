@@ -93,13 +93,14 @@ powershell -ExecutionPolicy Bypass -File submissions\Run-FinalSubmissionAudit.ps
 ## 手工检查顺序
 
 1. 打开 `submissions/LINKS_TO_FILL.md`，把所有外部链接先集中填完。
-2. 打开 `submissions/FINAL_SUBMISSION_INFO.md`，替换 WebGL、视频、PPT、CodeBuddy 和团队信息。
-3. 打开 `submissions/FORM_ANSWERS_COPYPASTE_ZH.md`，替换链接区。
-4. 打开 `submissions/JUDGE_QUICK_START.md`，替换评委入口链接。
-5. 打开 `submissions/WEBGL_PAGE_COPY.md` 和 `submissions/DEMO_VIDEO_UPLOAD_COPY.md`，替换对外展示链接。
-6. 打开 PPT，补最后一页团队信息和真实链接。
-7. 如果生成压缩包，按 `submissions/UPLOAD_PACKAGE_README_ZH.md` 组织文件，不放本地缓存。
-8. 最后把提交问卷里的每个链接复制到无痕窗口打开一次。
+2. 可按 `submissions/LINK_BACKFILL_TOOL_ZH.md` 使用脚本批量回填常用文本材料。
+3. 打开 `submissions/FINAL_SUBMISSION_INFO.md`，替换 WebGL、视频、PPT、CodeBuddy 和团队信息。
+4. 打开 `submissions/FORM_ANSWERS_COPYPASTE_ZH.md`，替换链接区。
+5. 打开 `submissions/JUDGE_QUICK_START.md`，替换评委入口链接。
+6. 打开 `submissions/WEBGL_PAGE_COPY.md` 和 `submissions/DEMO_VIDEO_UPLOAD_COPY.md`，替换对外展示链接。
+7. 打开 PPT，补最后一页团队信息和真实链接。
+8. 如果生成压缩包，按 `submissions/UPLOAD_PACKAGE_README_ZH.md` 组织文件，不放本地缓存。
+9. 最后把提交问卷里的每个链接复制到无痕窗口打开一次。
 
 ## 最终验收
 
