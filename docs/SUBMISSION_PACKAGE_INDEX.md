@@ -43,6 +43,9 @@
 - `submissions/00_README_FIRST_ZH.md`
   - 可直接放进最终附件包根目录的“先看我”说明文件。
 
+- `submissions/package_templates/`
+  - 最终上传包可用的 WebGL、Demo 视频、PPT、CodeBuddy、GitHub 和社交媒体链接模板。
+
 - `submissions/FORM_ANSWERS_COPYPASTE_ZH.md`
   - 最终提交问卷复制稿，按常见字段整理短版、长版、AI 使用说明、技术实现和链接区。
 

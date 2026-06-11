@@ -1,0 +1,15 @@
+CodeBuddy 历史记录链接或附件说明：
+TODO
+
+推荐文件名：
+CodeBuddy_History_Craftsmen_and_Homo_sapiens.zip
+
+内容要求：
+1. 能看到 CodeBuddy / AI 编程助手参与项目开发。
+2. 能看到项目名或 Unity / C# / 提交材料相关上下文。
+3. 能证明 AI 用于代码协作、调试、文档或提交准备。
+
+验证方式：
+1. 文件或链接可以打开。
+2. 不要用 Codex 记录替代 CodeBuddy 记录。
+3. 如果平台只能上传附件，就在提交问卷中写“CodeBuddy 历史记录见附件”。

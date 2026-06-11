@@ -89,6 +89,8 @@
   - 最终上传包说明，用于准备附件包、网盘包或老师审核包。
 - `submissions/00_README_FIRST_ZH.md`
   - 可直接放进最终附件包根目录的“先看我”说明文件。
+- `submissions/package_templates/`
+  - 最终上传包可用的 WebGL、Demo 视频、PPT、CodeBuddy、GitHub 链接模板。
 - `submissions/FORM_ANSWERS_COPYPASTE_ZH.md`
   - 最终提交问卷复制稿。
 - `submissions/SUBMISSION_PORTAL_FIELD_MAP_ZH.md`

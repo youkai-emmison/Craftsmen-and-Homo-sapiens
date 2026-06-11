@@ -1,0 +1,10 @@
+GitHub 仓库链接：
+https://github.com/youkai-emmison/Craftsmen-and-Homo-sapiens/tree/master
+
+说明：
+仓库包含 Unity 项目、C# 脚本、项目文档、提交材料、PPT 初稿、项目书、WebGL 部署说明和 CodeBuddy 提交检查清单。
+
+验证方式：
+1. 链接可以公开打开。
+2. 指向 master 分支。
+3. 不要填旧分支链接。

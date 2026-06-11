@@ -1,0 +1,12 @@
+WebGL 在线试玩链接：
+TODO
+
+验证方式：
+1. 用无痕窗口打开。
+2. 不需要登录。
+3. 不是 localhost。
+4. 不是本地 file 路径。
+5. 能进入游戏页面，并能看到作品《能工智人 / Craftsmen and Homo sapiens》。
+
+备用说明：
+如果 WebGL 链接受托管平台影响暂时不可用，请优先查看 Demo_Video_Link.txt、项目书 PDF 和 GitHub 仓库。

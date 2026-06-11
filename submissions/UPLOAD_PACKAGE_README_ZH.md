@@ -65,7 +65,22 @@ Craftsmen_and_Homo_sapiens_Submission/
 
 ## 需要手动生成的链接文件
 
-最终上传包里建议放 3 个小文本文件：
+最终上传包里建议放多个小文本文件。仓库已经准备好模板目录：
+
+`submissions/package_templates/`
+
+打包时复制这些文件，并把每个文件里的 `TODO` 替换为真实链接。
+
+### 推荐复制关系
+
+| 模板文件 | 推荐放入最终上传包的位置 |
+| --- | --- |
+| `submissions/package_templates/WebGL_Link.txt` | `03_Demo/WebGL_Link.txt` |
+| `submissions/package_templates/Demo_Video_Link.txt` | `03_Demo/Demo_Video_Link.txt` |
+| `submissions/package_templates/GitHub_Link.txt` | `05_Source/GitHub_Link.txt` |
+| `submissions/package_templates/PPT_File_Link.txt` | `06_BackupDocs/PPT_File_Link.txt` |
+| `submissions/package_templates/CodeBuddy_History_Link.txt` | `04_CodeBuddy/CodeBuddy_History_Link.txt` |
+| `submissions/package_templates/Social_Media_Link_Optional.txt` | `06_BackupDocs/Social_Media_Link_Optional.txt` |
 
 ### WebGL_Link.txt
 

@@ -1,0 +1,14 @@
+PPT 文件链接：
+TODO
+
+本地文件：
+submissions/Craftsmen_Hackathon_Deck.pptx
+
+PDF 预览：
+submissions/Craftsmen_Hackathon_Deck_Preview.pdf
+
+验证方式：
+1. 链接可公开访问。
+2. 文件不是空白。
+3. 文件是最终版本。
+4. PPT 中的 WebGL、Demo 视频、GitHub、CodeBuddy 信息与最终提交问卷一致。
