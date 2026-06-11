@@ -26,6 +26,7 @@
 | 评委快速打开指南 | `submissions/JUDGE_QUICK_START.md` | 和作品链接一起给评委，说明怎么玩、看什么 |
 | 评委单页摘要 | `submissions/JUDGE_ONE_PAGE_BRIEF_ZH.md` | 用一页说明项目定位、AI 用法、演示流程和评审看点 |
 | 评委单页摘要 PDF | `submissions/JUDGE_ONE_PAGE_BRIEF_ZH.pdf` | 可直接转发、上传或给老师快速预览 |
+| 评分项证据映射表 | `submissions/SCORING_EVIDENCE_MAP_ZH.md` | 对齐主题契合度、AI 工具使用和游戏品质评分点 |
 | WebGL 上传清单 | `submissions/WEBGL_UPLOAD_RUNBOOK.md` | 构建、上传、检查在线试玩链接 |
 | WebGL 页面文案 | `submissions/WEBGL_PAGE_COPY.md` | 粘贴到 itch.io、GitHub Pages、静态站点或作品页 |
 | Demo 录屏清单 | `submissions/DEMO_RECORDING_RUNBOOK.md` | 录视频时防止漏掉 AI 叙事、成长、Boss 和胜利 |

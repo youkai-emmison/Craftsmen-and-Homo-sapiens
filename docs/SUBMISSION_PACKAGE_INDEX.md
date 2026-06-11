@@ -52,6 +52,9 @@
 - `submissions/JUDGE_ONE_PAGE_BRIEF_ZH.pdf`
   - 评委单页摘要 PDF 版，适合直接转发、上传或给老师快速预览。
 
+- `submissions/SCORING_EVIDENCE_MAP_ZH.md`
+  - 评分项证据映射表，把主题契合度、AI 工具使用和游戏品质对应到证据文件与 Demo 画面。
+
 - `submissions/ROADSHOW_PITCH_SCRIPT.md`
   - 路演口播稿，包含 30 秒版、60 秒版、Demo 视频开头版和答辩收尾版。
 

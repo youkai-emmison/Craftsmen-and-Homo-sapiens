@@ -57,6 +57,10 @@
   - 评委单页摘要 PDF 版。
   - 适合直接转发、上传或给老师快速预览。
 
+- `submissions/SCORING_EVIDENCE_MAP_ZH.md`
+  - 评分项证据映射表。
+  - 把主题契合度、AI 工具使用和游戏品质对应到证据文件与 Demo 画面。
+
 - `submissions/ROADSHOW_PITCH_SCRIPT.md`
   - 路演口播稿。
   - 包含 30 秒版、60 秒版、Demo 视频开头版和答辩收尾版。
@@ -124,6 +128,7 @@
 15. 先把所有外部链接填进 `LINKS_TO_FILL.md`。
 16. 用 `ROADSHOW_PITCH_SCRIPT.md` 排练 30 秒和 60 秒介绍。
 17. 用 `ROADSHOW_QA_CHEATSHEET_ZH.md` 准备常见评委问题。
-18. 把 `JUDGE_QUICK_START.md` 中的 WebGL、视频、团队信息占位替换掉。
-19. 打开 `SUBMISSION_READINESS_AUDIT.md` 确认所有必交项状态。
-20. 优先按 `FINAL_SUBMISSION_INFO.md` 填提交表，再参考 `docs/SUBMISSION_FORM_DRAFT.md` 补充长文案。
+18. 用 `SCORING_EVIDENCE_MAP_ZH.md` 检查视频、PPT 和答辩是否覆盖评分点。
+19. 把 `JUDGE_QUICK_START.md` 中的 WebGL、视频、团队信息占位替换掉。
+20. 打开 `SUBMISSION_READINESS_AUDIT.md` 确认所有必交项状态。
+21. 优先按 `FINAL_SUBMISSION_INFO.md` 填提交表，再参考 `docs/SUBMISSION_FORM_DRAFT.md` 补充长文案。

@@ -99,6 +99,8 @@
   - 评委单页摘要，方便快速理解项目、AI 用法和评审看点。
 - `submissions/JUDGE_ONE_PAGE_BRIEF_ZH.pdf`
   - 评委单页摘要 PDF 版，可直接转发或上传。
+- `submissions/SCORING_EVIDENCE_MAP_ZH.md`
+  - 评分项证据映射表，把主题契合度、AI 工具使用和游戏品质对应到文件与 Demo 画面。
 - `submissions/ROADSHOW_QA_CHEATSHEET_ZH.md`
   - 路演答辩速查卡，适合现场快速回答评委常见问题。
 - `submissions/SUBMISSION_READINESS_AUDIT.md`
