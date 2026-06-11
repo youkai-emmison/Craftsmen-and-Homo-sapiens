@@ -43,6 +43,12 @@
 - `submissions/JUDGE_QUICK_START.md`
   - 评委快速打开指南，集中说明试玩链接、操作键位、推荐路线和备用材料。
 
+- `submissions/JUDGE_ONE_PAGE_BRIEF_ZH.md`
+  - 评委单页摘要，用一页说明项目定位、AI 用法、演示流程和评审看点。
+
+- `submissions/JUDGE_ONE_PAGE_BRIEF_ZH.pdf`
+  - 评委单页摘要 PDF 版，适合直接转发、上传或给老师快速预览。
+
 - `submissions/ROADSHOW_PITCH_SCRIPT.md`
   - 路演口播稿，包含 30 秒版、60 秒版、Demo 视频开头版和答辩收尾版。
 

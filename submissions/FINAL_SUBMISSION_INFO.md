@@ -45,6 +45,8 @@
 - PPT 初稿：`submissions/Craftsmen_Hackathon_Deck.pptx`
 - PPT PDF 预览版：`submissions/Craftsmen_Hackathon_Deck_Preview.pdf`
 - 评委快速打开指南：`submissions/JUDGE_QUICK_START.md`
+- 评委单页摘要：`submissions/JUDGE_ONE_PAGE_BRIEF_ZH.md`
+- 评委单页摘要 PDF：`submissions/JUDGE_ONE_PAGE_BRIEF_ZH.pdf`
 - 路演口播稿：`submissions/ROADSHOW_PITCH_SCRIPT.md`
 - 团队信息模板：`submissions/TEAM_INFO_TEMPLATE.md`
 - 路演 Q&A：`docs/ROADSHOW_QA.md`

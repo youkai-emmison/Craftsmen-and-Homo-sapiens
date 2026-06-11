@@ -93,6 +93,10 @@
   - 最终项目书 PDF 版，可直接上传或转发预览。
 - `submissions/JUDGE_QUICK_START.md`
   - 评委快速打开指南。
+- `submissions/JUDGE_ONE_PAGE_BRIEF_ZH.md`
+  - 评委单页摘要，方便快速理解项目、AI 用法和评审看点。
+- `submissions/JUDGE_ONE_PAGE_BRIEF_ZH.pdf`
+  - 评委单页摘要 PDF 版，可直接转发或上传。
 - `submissions/SUBMISSION_READINESS_AUDIT.md`
   - 最终提交前的就绪审计表。
 - `submissions/WEBGL_UPLOAD_RUNBOOK.md`
