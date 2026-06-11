@@ -38,6 +38,10 @@
   - 可复制版本：`docs/SUBMISSION_FORM_DRAFT.md`
   - 最终信息总表：`submissions/FINAL_SUBMISSION_INFO.md`
 
+- [x] 评委快速打开指南
+  - 文件：`submissions/JUDGE_QUICK_START.md`
+  - 仍需补齐 WebGL 在线试玩链接和 Demo 视频链接。
+
 - [ ] 团队成员信息
   - 模板：`submissions/TEAM_INFO_TEMPLATE.md`
   - 需要填入真实团队名称、学校、成员和分工。
