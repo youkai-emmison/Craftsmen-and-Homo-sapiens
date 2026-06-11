@@ -39,6 +39,7 @@
 - PPT 初稿：`submissions/Craftsmen_Hackathon_Deck.pptx`
 - PPT PDF 预览版：`submissions/Craftsmen_Hackathon_Deck_Preview.pdf`
 - 评委快速打开指南：`submissions/JUDGE_QUICK_START.md`
+- 路演口播稿：`submissions/ROADSHOW_PITCH_SCRIPT.md`
 - 团队信息模板：`submissions/TEAM_INFO_TEMPLATE.md`
 - 路演 Q&A：`docs/ROADSHOW_QA.md`
 - CodeBuddy 导出说明：`docs/CODEBUDDY_EXPORT_GUIDE.md`

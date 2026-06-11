@@ -21,6 +21,10 @@
   - 评委快速打开指南。
   - 集中说明试玩链接、操作键位、推荐路线、评审看点和打不开时的备用材料。
 
+- `submissions/ROADSHOW_PITCH_SCRIPT.md`
+  - 路演口播稿。
+  - 包含 30 秒版、60 秒版、Demo 视频开头版和答辩收尾版。
+
 - `submissions/TEAM_INFO_TEMPLATE.md`
   - 团队成员信息模板。
   - 用于补报名表、PPT 最后一页、视频片尾和作品页。
@@ -58,6 +62,7 @@
 5. 按 `WEBGL_UPLOAD_RUNBOOK.md` 构建、上传并检查 WebGL 在线试玩链接。
 6. 按 `DEMO_RECORDING_RUNBOOK.md` 录制并上传 Demo 视频。
 7. 按 `CODEBUDDY_SUBMISSION_CHECKLIST.md` 导出 CodeBuddy 历史记录。
-8. 把 `JUDGE_QUICK_START.md` 中的 WebGL、视频、团队信息占位替换掉。
-9. 打开 `SUBMISSION_READINESS_AUDIT.md` 确认所有必交项状态。
-10. 优先按 `FINAL_SUBMISSION_INFO.md` 填提交表，再参考 `docs/SUBMISSION_FORM_DRAFT.md` 补充长文案。
+8. 用 `ROADSHOW_PITCH_SCRIPT.md` 排练 30 秒和 60 秒介绍。
+9. 把 `JUDGE_QUICK_START.md` 中的 WebGL、视频、团队信息占位替换掉。
+10. 打开 `SUBMISSION_READINESS_AUDIT.md` 确认所有必交项状态。
+11. 优先按 `FINAL_SUBMISSION_INFO.md` 填提交表，再参考 `docs/SUBMISSION_FORM_DRAFT.md` 补充长文案。

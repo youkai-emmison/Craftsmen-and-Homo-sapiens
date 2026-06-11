@@ -19,6 +19,7 @@
 | GitHub 仓库链接 | Ready | `https://github.com/youkai-emmison/Craftsmen-and-Homo-sapiens/tree/master` 已写入提交信息表 | 最终确认仓库可访问 |
 | 报名表文案 | Ready | `docs/SUBMISSION_FORM_DRAFT.md` 和 `submissions/FINAL_SUBMISSION_INFO.md` 已准备 | 填表时复制，并替换所有 `TODO` |
 | 评委快速打开指南 | Ready | `submissions/JUDGE_QUICK_START.md` 已准备 | 填入 WebGL 和 Demo 视频链接 |
+| 路演口播稿 | Ready | `submissions/ROADSHOW_PITCH_SCRIPT.md` 已准备 | 答辩或视频录制前按真实链接微调 |
 | 团队成员信息 | Needs External Action | `submissions/TEAM_INFO_TEMPLATE.md` 已准备 | 填入真实团队名称、学校、成员和分工 |
 
 ## 评分点材料审计
