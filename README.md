@@ -109,6 +109,8 @@
   - CodeBuddy 历史记录导出检查清单。
 - `submissions/TEAM_INFO_TEMPLATE.md`
   - 团队成员信息模板。
+- `submissions/TEAM_HANDOFF_MESSAGE_ZH.md`
+  - 最终提交团队交接消息模板，可直接发给队友或老师。
 
 仍需在最终提交前外部补齐：
 

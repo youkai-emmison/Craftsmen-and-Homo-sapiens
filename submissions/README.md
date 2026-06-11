@@ -61,6 +61,10 @@
   - 团队成员信息模板。
   - 用于补报名表、PPT 最后一页、视频片尾和作品页。
 
+- `submissions/TEAM_HANDOFF_MESSAGE_ZH.md`
+  - 最终提交团队交接消息模板。
+  - 可直接复制到 QQ / 微信 / 飞书，告诉队友还缺哪些外部动作。
+
 - `submissions/WEBGL_UPLOAD_RUNBOOK.md`
   - WebGL 在线试玩链接执行清单。
   - 用于从 Unity 构建 WebGL、上传静态网页、检查公开试玩链接。
@@ -101,14 +105,15 @@
 4. 填报名表时优先使用 `FORM_ANSWERS_COPYPASTE_ZH.md`。
 5. 如需正式项目书，优先使用 `PROJECT_BOOK_FINAL_ZH.pdf`；需要可编辑版本时使用 `PROJECT_BOOK_FINAL_ZH.docx`，需要复制内容时再看 `PROJECT_BOOK_FINAL_ZH.md`。
 6. 按 `TEAM_INFO_TEMPLATE.md` 补齐团队成员和分工。
-7. 把团队成员、试玩链接、视频链接补进最后一页或备注里。
-8. 按 `WEBGL_UPLOAD_RUNBOOK.md` 构建、上传并检查 WebGL 在线试玩链接。
-9. 上传试玩页时复制 `WEBGL_PAGE_COPY.md` 的页面文案。
-10. 按 `DEMO_RECORDING_RUNBOOK.md` 录制 Demo 视频。
-11. 上传视频时复制 `DEMO_VIDEO_UPLOAD_COPY.md` 的标题、简介和标签。
-12. 按 `CODEBUDDY_SUBMISSION_CHECKLIST.md` 导出 CodeBuddy 历史记录。
-13. 先把所有外部链接填进 `LINKS_TO_FILL.md`。
-14. 用 `ROADSHOW_PITCH_SCRIPT.md` 排练 30 秒和 60 秒介绍。
-15. 把 `JUDGE_QUICK_START.md` 中的 WebGL、视频、团队信息占位替换掉。
-16. 打开 `SUBMISSION_READINESS_AUDIT.md` 确认所有必交项状态。
-17. 优先按 `FINAL_SUBMISSION_INFO.md` 填提交表，再参考 `docs/SUBMISSION_FORM_DRAFT.md` 补充长文案。
+7. 如果要交接给队友，直接复制 `TEAM_HANDOFF_MESSAGE_ZH.md` 的群消息模板。
+8. 把团队成员、试玩链接、视频链接补进最后一页或备注里。
+9. 按 `WEBGL_UPLOAD_RUNBOOK.md` 构建、上传并检查 WebGL 在线试玩链接。
+10. 上传试玩页时复制 `WEBGL_PAGE_COPY.md` 的页面文案。
+11. 按 `DEMO_RECORDING_RUNBOOK.md` 录制 Demo 视频。
+12. 上传视频时复制 `DEMO_VIDEO_UPLOAD_COPY.md` 的标题、简介和标签。
+13. 按 `CODEBUDDY_SUBMISSION_CHECKLIST.md` 导出 CodeBuddy 历史记录。
+14. 先把所有外部链接填进 `LINKS_TO_FILL.md`。
+15. 用 `ROADSHOW_PITCH_SCRIPT.md` 排练 30 秒和 60 秒介绍。
+16. 把 `JUDGE_QUICK_START.md` 中的 WebGL、视频、团队信息占位替换掉。
+17. 打开 `SUBMISSION_READINESS_AUDIT.md` 确认所有必交项状态。
+18. 优先按 `FINAL_SUBMISSION_INFO.md` 填提交表，再参考 `docs/SUBMISSION_FORM_DRAFT.md` 补充长文案。

@@ -31,6 +31,7 @@
 | Demo 视频上传文案 | `submissions/DEMO_VIDEO_UPLOAD_COPY.md` | 上传视频时复制标题、简介、标签和置顶评论 |
 | CodeBuddy 检查清单 | `submissions/CODEBUDDY_SUBMISSION_CHECKLIST.md` | 导出 CodeBuddy 历史前做最终检查 |
 | 团队信息模板 | `submissions/TEAM_INFO_TEMPLATE.md` | 填成员、学校、分工、联系方式 |
+| 团队交接消息 | `submissions/TEAM_HANDOFF_MESSAGE_ZH.md` | 可直接发给队友或老师，说明材料状态和剩余动作 |
 | 路演口播稿 | `submissions/ROADSHOW_PITCH_SCRIPT.md` | 答辩、视频开头或现场展示时使用 |
 | 提交就绪审计 | `submissions/SUBMISSION_READINESS_AUDIT.md` | 最终提交前逐项确认 Ready / Needs External Action |
 

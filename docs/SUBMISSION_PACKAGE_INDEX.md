@@ -55,6 +55,9 @@
 - `submissions/TEAM_INFO_TEMPLATE.md`
   - 团队成员信息模板，用于补报名表、PPT 最后一页、视频片尾和作品页。
 
+- `submissions/TEAM_HANDOFF_MESSAGE_ZH.md`
+  - 最终提交团队交接消息模板，可复制到 QQ / 微信 / 飞书给队友或老师。
+
 - `submissions/SUBMISSION_READINESS_AUDIT.md`
   - 最终提交前的就绪审计表，标出已完成材料和仍需外部生成的链接。
 
