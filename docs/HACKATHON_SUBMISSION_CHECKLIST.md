@@ -7,6 +7,7 @@
 - [ ] 项目名称：能工智人 / Craftsmen and Homo sapiens
 - [ ] 一句话介绍已准备
 - [ ] 项目书已准备：`docs/PROJECT_PROPOSAL_ZH.md`
+- [ ] 最终项目书提交版已准备：`submissions/PROJECT_BOOK_FINAL_ZH.md`
 
 ## 必交材料
 

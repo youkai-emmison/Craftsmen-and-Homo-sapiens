@@ -17,6 +17,10 @@
   - 最终提交问卷用的信息总表。
   - 把作品简介、AI 使用说明、材料路径和待补链接集中到一个文件里。
 
+- `submissions/PROJECT_BOOK_FINAL_ZH.md`
+  - 最终项目书提交版。
+  - 比 `docs/PROJECT_PROPOSAL_ZH.md` 更适合直接交给评委、报名表或老师审核。
+
 - `submissions/LINKS_TO_FILL.md`
   - 最终链接回填表。
   - 用于集中填写 WebGL、Demo 视频、PPT、CodeBuddy、社交媒体等外部链接。
@@ -65,14 +69,15 @@
 
 1. 先打开 `Craftsmen_Hackathon_Deck.pptx` 检查文字和版式。
 2. 需要快速预览或上传时，可以使用 `Craftsmen_Hackathon_Deck_Preview.pdf`。
-3. 按 `TEAM_INFO_TEMPLATE.md` 补齐团队成员和分工。
-4. 把团队成员、试玩链接、视频链接补进最后一页或备注里。
-5. 按 `WEBGL_UPLOAD_RUNBOOK.md` 构建、上传并检查 WebGL 在线试玩链接。
-6. 上传试玩页时复制 `WEBGL_PAGE_COPY.md` 的页面文案。
-7. 按 `DEMO_RECORDING_RUNBOOK.md` 录制并上传 Demo 视频。
-8. 按 `CODEBUDDY_SUBMISSION_CHECKLIST.md` 导出 CodeBuddy 历史记录。
-9. 先把所有外部链接填进 `LINKS_TO_FILL.md`。
-10. 用 `ROADSHOW_PITCH_SCRIPT.md` 排练 30 秒和 60 秒介绍。
-11. 把 `JUDGE_QUICK_START.md` 中的 WebGL、视频、团队信息占位替换掉。
-12. 打开 `SUBMISSION_READINESS_AUDIT.md` 确认所有必交项状态。
-13. 优先按 `FINAL_SUBMISSION_INFO.md` 填提交表，再参考 `docs/SUBMISSION_FORM_DRAFT.md` 补充长文案。
+3. 如需正式项目书，优先使用 `PROJECT_BOOK_FINAL_ZH.md`。
+4. 按 `TEAM_INFO_TEMPLATE.md` 补齐团队成员和分工。
+5. 把团队成员、试玩链接、视频链接补进最后一页或备注里。
+6. 按 `WEBGL_UPLOAD_RUNBOOK.md` 构建、上传并检查 WebGL 在线试玩链接。
+7. 上传试玩页时复制 `WEBGL_PAGE_COPY.md` 的页面文案。
+8. 按 `DEMO_RECORDING_RUNBOOK.md` 录制并上传 Demo 视频。
+9. 按 `CODEBUDDY_SUBMISSION_CHECKLIST.md` 导出 CodeBuddy 历史记录。
+10. 先把所有外部链接填进 `LINKS_TO_FILL.md`。
+11. 用 `ROADSHOW_PITCH_SCRIPT.md` 排练 30 秒和 60 秒介绍。
+12. 把 `JUDGE_QUICK_START.md` 中的 WebGL、视频、团队信息占位替换掉。
+13. 打开 `SUBMISSION_READINESS_AUDIT.md` 确认所有必交项状态。
+14. 优先按 `FINAL_SUBMISSION_INFO.md` 填提交表，再参考 `docs/SUBMISSION_FORM_DRAFT.md` 补充长文案。

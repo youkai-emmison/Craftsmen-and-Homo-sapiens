@@ -81,6 +81,8 @@
   - PPT 的 10 页 PDF 预览版。
 - `submissions/FINAL_SUBMISSION_INFO.md`
   - 最终提交问卷用的信息总表。
+- `submissions/PROJECT_BOOK_FINAL_ZH.md`
+  - 最终项目书提交版。
 - `submissions/JUDGE_QUICK_START.md`
   - 评委快速打开指南。
 - `submissions/SUBMISSION_READINESS_AUDIT.md`

@@ -10,6 +10,9 @@
 - `docs/PROJECT_PROPOSAL_ZH.md`
   - 中文项目书，可复制到报名表、项目介绍文档或 PPT 备注。
 
+- `submissions/PROJECT_BOOK_FINAL_ZH.md`
+  - 最终项目书提交版，适合交给评委、报名表、老师审核或转成 Word / PDF。
+
 - `docs/HACKATHON_SUBMISSION_CHECKLIST.md`
   - 提交前检查清单。
 
