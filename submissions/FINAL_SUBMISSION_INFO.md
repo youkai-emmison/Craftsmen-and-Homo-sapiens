@@ -42,6 +42,7 @@
 - 最终链接回填表：`submissions/LINKS_TO_FILL.md`
 - Demo 视频脚本：`docs/DEMO_VIDEO_SCRIPT.md`
 - Demo 录屏执行清单：`submissions/DEMO_RECORDING_RUNBOOK.md`
+- Demo 视频上传文案：`submissions/DEMO_VIDEO_UPLOAD_COPY.md`
 - PPT 初稿：`submissions/Craftsmen_Hackathon_Deck.pptx`
 - PPT PDF 预览版：`submissions/Craftsmen_Hackathon_Deck_Preview.pdf`
 - 评委快速打开指南：`submissions/JUDGE_QUICK_START.md`

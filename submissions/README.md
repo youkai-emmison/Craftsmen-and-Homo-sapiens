@@ -73,6 +73,10 @@
   - Demo 录屏时逐项检查的执行清单。
   - 用来控制 3 分钟视频节奏，避免漏掉 AI 叙事、成长、Boss 和胜利。
 
+- `submissions/DEMO_VIDEO_UPLOAD_COPY.md`
+  - Demo 视频上传文案。
+  - 包含视频标题、简介、标签、置顶评论和上传后检查项。
+
 - `submissions/CODEBUDDY_SUBMISSION_CHECKLIST.md`
   - CodeBuddy 历史记录导出前的检查清单。
   - 包含可直接复制给 CodeBuddy 的最终检查提示词。
@@ -100,10 +104,11 @@
 7. 把团队成员、试玩链接、视频链接补进最后一页或备注里。
 8. 按 `WEBGL_UPLOAD_RUNBOOK.md` 构建、上传并检查 WebGL 在线试玩链接。
 9. 上传试玩页时复制 `WEBGL_PAGE_COPY.md` 的页面文案。
-10. 按 `DEMO_RECORDING_RUNBOOK.md` 录制并上传 Demo 视频。
-11. 按 `CODEBUDDY_SUBMISSION_CHECKLIST.md` 导出 CodeBuddy 历史记录。
-12. 先把所有外部链接填进 `LINKS_TO_FILL.md`。
-13. 用 `ROADSHOW_PITCH_SCRIPT.md` 排练 30 秒和 60 秒介绍。
-14. 把 `JUDGE_QUICK_START.md` 中的 WebGL、视频、团队信息占位替换掉。
-15. 打开 `SUBMISSION_READINESS_AUDIT.md` 确认所有必交项状态。
-16. 优先按 `FINAL_SUBMISSION_INFO.md` 填提交表，再参考 `docs/SUBMISSION_FORM_DRAFT.md` 补充长文案。
+10. 按 `DEMO_RECORDING_RUNBOOK.md` 录制 Demo 视频。
+11. 上传视频时复制 `DEMO_VIDEO_UPLOAD_COPY.md` 的标题、简介和标签。
+12. 按 `CODEBUDDY_SUBMISSION_CHECKLIST.md` 导出 CodeBuddy 历史记录。
+13. 先把所有外部链接填进 `LINKS_TO_FILL.md`。
+14. 用 `ROADSHOW_PITCH_SCRIPT.md` 排练 30 秒和 60 秒介绍。
+15. 把 `JUDGE_QUICK_START.md` 中的 WebGL、视频、团队信息占位替换掉。
+16. 打开 `SUBMISSION_READINESS_AUDIT.md` 确认所有必交项状态。
+17. 优先按 `FINAL_SUBMISSION_INFO.md` 填提交表，再参考 `docs/SUBMISSION_FORM_DRAFT.md` 补充长文案。

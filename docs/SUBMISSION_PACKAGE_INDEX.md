@@ -72,6 +72,9 @@
 - `submissions/DEMO_RECORDING_RUNBOOK.md`
   - Demo 录屏执行清单，用来逐项确认录屏画面、旁白节奏和上传后检查。
 
+- `submissions/DEMO_VIDEO_UPLOAD_COPY.md`
+  - Demo 视频上传文案，包含标题、简介、标签、置顶评论和上传后检查项。
+
 - `docs/PPT_OUTLINE.md`
   - 作品介绍 PPT 大纲。
 

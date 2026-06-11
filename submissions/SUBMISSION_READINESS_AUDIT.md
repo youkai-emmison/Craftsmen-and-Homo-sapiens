@@ -14,6 +14,7 @@
 | --- | --- | --- | --- |
 | 作品网页链接 | Needs External Action | `docs/WEBGL_DEPLOYMENT.md`、`submissions/WEBGL_UPLOAD_RUNBOOK.md` 和 `submissions/WEBGL_PAGE_COPY.md` 已准备 | 构建 WebGL，上传到可公开访问的平台，把链接填入 `submissions/FINAL_SUBMISSION_INFO.md` |
 | 游戏 Demo 视频 | Needs External Action | `docs/DEMO_VIDEO_SCRIPT.md` 和 `submissions/DEMO_RECORDING_RUNBOOK.md` 已准备 | 录制 3 分钟以内视频，上传后填写视频链接 |
+| Demo 视频上传文案 | Ready | `submissions/DEMO_VIDEO_UPLOAD_COPY.md` 已准备 | 上传视频时复制标题、简介、标签和置顶评论 |
 | 作品介绍 PPT | Ready | `submissions/Craftsmen_Hackathon_Deck.pptx` 和 `submissions/Craftsmen_Hackathon_Deck_Preview.pdf` 已生成 | 提交前补团队信息、试玩链接、视频链接 |
 | CodeBuddy 历史对话 | Needs External Action | `docs/CODEBUDDY_EXPORT_GUIDE.md` 和 `submissions/CODEBUDDY_SUBMISSION_CHECKLIST.md` 已准备 | 用 CodeBuddy 做最终检查并导出历史记录 |
 | GitHub 仓库链接 | Ready | `https://github.com/youkai-emmison/Craftsmen-and-Homo-sapiens/tree/master` 已写入提交信息表 | 最终确认仓库可访问 |

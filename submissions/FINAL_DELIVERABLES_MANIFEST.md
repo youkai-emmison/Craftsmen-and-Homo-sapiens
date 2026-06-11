@@ -28,6 +28,7 @@
 | WebGL 上传清单 | `submissions/WEBGL_UPLOAD_RUNBOOK.md` | 构建、上传、检查在线试玩链接 |
 | WebGL 页面文案 | `submissions/WEBGL_PAGE_COPY.md` | 粘贴到 itch.io、GitHub Pages、静态站点或作品页 |
 | Demo 录屏清单 | `submissions/DEMO_RECORDING_RUNBOOK.md` | 录视频时防止漏掉 AI 叙事、成长、Boss 和胜利 |
+| Demo 视频上传文案 | `submissions/DEMO_VIDEO_UPLOAD_COPY.md` | 上传视频时复制标题、简介、标签和置顶评论 |
 | CodeBuddy 检查清单 | `submissions/CODEBUDDY_SUBMISSION_CHECKLIST.md` | 导出 CodeBuddy 历史前做最终检查 |
 | 团队信息模板 | `submissions/TEAM_INFO_TEMPLATE.md` | 填成员、学校、分工、联系方式 |
 | 路演口播稿 | `submissions/ROADSHOW_PITCH_SCRIPT.md` | 答辩、视频开头或现场展示时使用 |
@@ -37,7 +38,7 @@
 
 1. 先确认 Unity Demo 能 Play，避免录屏和 WebGL 链接出现基础问题。
 2. 构建并上传 WebGL，拿到在线试玩链接。
-3. 录制 Demo 视频，视频简介里放 WebGL 链接和 GitHub 链接。
+3. 录制 Demo 视频，并按 `DEMO_VIDEO_UPLOAD_COPY.md` 填写视频标题、简介和标签。
 4. 导出 CodeBuddy 历史记录，上传或整理成可访问文件。
 5. 打开 `LINKS_TO_FILL.md`，集中回填 WebGL、视频、PPT、CodeBuddy 链接。
 6. 打开 `FINAL_SUBMISSION_INFO.md` 和 `FORM_ANSWERS_COPYPASTE_ZH.md`，替换所有外部链接占位。

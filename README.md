@@ -103,6 +103,8 @@
   - WebGL 在线试玩链接执行清单。
 - `submissions/DEMO_RECORDING_RUNBOOK.md`
   - Demo 录屏执行清单。
+- `submissions/DEMO_VIDEO_UPLOAD_COPY.md`
+  - Demo 视频上传标题、简介、标签和置顶评论文案。
 - `submissions/CODEBUDDY_SUBMISSION_CHECKLIST.md`
   - CodeBuddy 历史记录导出检查清单。
 - `submissions/TEAM_INFO_TEMPLATE.md`
