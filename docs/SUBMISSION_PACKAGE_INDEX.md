@@ -30,6 +30,9 @@
 - `docs/PPT_OUTLINE.md`
   - 作品介绍 PPT 大纲。
 
+- `submissions/Craftsmen_Hackathon_Deck.pptx`
+  - 已生成的 10 页作品介绍 PPT 初稿，可继续补团队信息、试玩链接和 Demo 视频链接。
+
 - `docs/WEBGL_DEPLOYMENT.md`
   - WebGL 构建与部署说明。
 
@@ -60,6 +63,6 @@
 
 - 在线 WebGL 试玩链接。
 - Demo 视频链接。
-- PPT 文件。
+- PPT 文件中的团队信息、试玩链接和视频链接。
 - CodeBuddy 历史对话导出文件。
 - 社交媒体发布链接，可选加分项。

@@ -36,3 +36,8 @@ Thumbs.db
 # Unity Asset Store raw assets kept local for the public repository
 /Assets/Art/ThirdParty/
 /Assets/Art/ThirdParty.meta
+
+# Local presentation build scratch
+/outputs/
+/package.json
+/submissions/artifact-build-manifest.json

@@ -19,9 +19,11 @@
   - 建议时长：3 分钟以内。
   - 脚本参考：`docs/DEMO_VIDEO_SCRIPT.md`
 
-- [ ] 作品介绍 PPT
+- [x] 作品介绍 PPT
   - 内容：作品简介、赛题方向、AI 场景创作说明、团队成员信息等。
   - 大纲参考：`docs/PPT_OUTLINE.md`
+  - 当前初稿：`submissions/Craftsmen_Hackathon_Deck.pptx`
+  - 仍需补齐：团队成员、试玩链接、Demo 视频链接。
 
 - [ ] CodeBuddy 历史对话记录
   - 要求：导出作品构建过程中使用 CodeBuddy 的历史对话。
@@ -65,7 +67,7 @@
 - [ ] CodeBuddy 历史记录已导出
   - 操作说明：`docs/CODEBUDDY_EXPORT_GUIDE.md`
 - [ ] AI 创作说明文档已完成：`docs/AI_CREATION_LOG.md`
-- [ ] PPT 中说明 AI 用于世界观、角色、视觉、代码或调试
+- [x] PPT 中说明 AI 用于世界观、角色、视觉、代码或调试
 - [ ] 若有 AI 生成图片或文本，已说明来源和用途
 
 ### 游戏品质 30 分
