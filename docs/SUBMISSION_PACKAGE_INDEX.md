@@ -25,6 +25,9 @@
 - `submissions/FINAL_SUBMISSION_INFO.md`
   - 最终提交问卷用的信息总表，集中记录作品简介、材料路径和待补链接。
 
+- `submissions/FORM_ANSWERS_COPYPASTE_ZH.md`
+  - 最终提交问卷复制稿，按常见字段整理短版、长版、AI 使用说明、技术实现和链接区。
+
 - `submissions/LINKS_TO_FILL.md`
   - 最终链接回填表，用于集中填写 WebGL、Demo 视频、PPT、CodeBuddy 和社交媒体链接。
 

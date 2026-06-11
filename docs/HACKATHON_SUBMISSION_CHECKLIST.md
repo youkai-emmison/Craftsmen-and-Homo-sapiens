@@ -39,6 +39,7 @@
 
 - [x] 报名表文案
   - 可复制版本：`docs/SUBMISSION_FORM_DRAFT.md`
+  - 最终问卷复制稿：`submissions/FORM_ANSWERS_COPYPASTE_ZH.md`
   - 最终信息总表：`submissions/FINAL_SUBMISSION_INFO.md`
 
 - [x] 评委快速打开指南
