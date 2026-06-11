@@ -41,6 +41,7 @@
 - AI 创作说明：`docs/AI_CREATION_LOG.md`
 - 最终链接回填表：`submissions/LINKS_TO_FILL.md`
 - 最终提交当天执行手册：`submissions/SUBMISSION_DAY_RUNBOOK_ZH.md`
+- 最终上传包说明：`submissions/UPLOAD_PACKAGE_README_ZH.md`
 - Demo 视频脚本：`docs/DEMO_VIDEO_SCRIPT.md`
 - Demo 录屏执行清单：`submissions/DEMO_RECORDING_RUNBOOK.md`
 - Demo 视频上传文案：`submissions/DEMO_VIDEO_UPLOAD_COPY.md`

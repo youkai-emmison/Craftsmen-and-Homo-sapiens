@@ -102,6 +102,7 @@ CodeBuddy 记录是证明 AI 编程助手参与的重要材料。
 3. 如页面有旧截图，优先换成最新 Demo 截图。
 4. 重新导出 PDF 预览版。
 5. 本地打开 PPT 和 PDF，确认不是空白、乱码或旧版本。
+6. 如果平台要求附件或网盘包，按 `submissions/UPLOAD_PACKAGE_README_ZH.md` 组织最终上传包。
 
 如果时间不够：
 

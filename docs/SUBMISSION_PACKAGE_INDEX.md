@@ -37,6 +37,9 @@
 - `submissions/SUBMISSION_DAY_RUNBOOK_ZH.md`
   - 最终提交当天执行手册，按顺序处理 WebGL、Demo 视频、CodeBuddy、PPT 和问卷回填。
 
+- `submissions/UPLOAD_PACKAGE_README_ZH.md`
+  - 最终上传包说明，用于准备附件包、网盘包或老师审核包。
+
 - `submissions/FORM_ANSWERS_COPYPASTE_ZH.md`
   - 最终提交问卷复制稿，按常见字段整理短版、长版、AI 使用说明、技术实现和链接区。
 
