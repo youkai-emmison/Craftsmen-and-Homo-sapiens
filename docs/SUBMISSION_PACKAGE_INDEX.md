@@ -31,6 +31,9 @@
 - `submissions/FINAL_SUBMISSION_INFO.md`
   - 最终提交问卷用的信息总表，集中记录作品简介、材料路径和待补链接。
 
+- `submissions/FINAL_DELIVERABLES_MANIFEST.md`
+  - 最终交付包清单，集中说明最小提交包、辅助材料、上传顺序和最后 10 分钟检查。
+
 - `submissions/FORM_ANSWERS_COPYPASTE_ZH.md`
   - 最终提交问卷复制稿，按常见字段整理短版、长版、AI 使用说明、技术实现和链接区。
 

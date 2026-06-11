@@ -33,6 +33,7 @@
 ## 已准备好的本地材料
 
 - 项目书：`docs/PROJECT_PROPOSAL_ZH.md`
+- 最终交付包清单：`submissions/FINAL_DELIVERABLES_MANIFEST.md`
 - 最终提交问卷复制稿：`submissions/FORM_ANSWERS_COPYPASTE_ZH.md`
 - 最终项目书提交版：`submissions/PROJECT_BOOK_FINAL_ZH.md`
 - 最终项目书 Word 版：`submissions/PROJECT_BOOK_FINAL_ZH.docx`
