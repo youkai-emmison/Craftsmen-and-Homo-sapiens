@@ -22,6 +22,9 @@
 - `submissions/FINAL_SUBMISSION_INFO.md`
   - 最终提交问卷用的信息总表，集中记录作品简介、材料路径和待补链接。
 
+- `submissions/LINKS_TO_FILL.md`
+  - 最终链接回填表，用于集中填写 WebGL、Demo 视频、PPT、CodeBuddy 和社交媒体链接。
+
 - `submissions/JUDGE_QUICK_START.md`
   - 评委快速打开指南，集中说明试玩链接、操作键位、推荐路线和备用材料。
 

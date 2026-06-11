@@ -34,6 +34,7 @@
 
 - 项目书：`docs/PROJECT_PROPOSAL_ZH.md`
 - AI 创作说明：`docs/AI_CREATION_LOG.md`
+- 最终链接回填表：`submissions/LINKS_TO_FILL.md`
 - Demo 视频脚本：`docs/DEMO_VIDEO_SCRIPT.md`
 - Demo 录屏执行清单：`submissions/DEMO_RECORDING_RUNBOOK.md`
 - PPT 初稿：`submissions/Craftsmen_Hackathon_Deck.pptx`

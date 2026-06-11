@@ -17,6 +17,10 @@
   - 最终提交问卷用的信息总表。
   - 把作品简介、AI 使用说明、材料路径和待补链接集中到一个文件里。
 
+- `submissions/LINKS_TO_FILL.md`
+  - 最终链接回填表。
+  - 用于集中填写 WebGL、Demo 视频、PPT、CodeBuddy、社交媒体等外部链接。
+
 - `submissions/JUDGE_QUICK_START.md`
   - 评委快速打开指南。
   - 集中说明试玩链接、操作键位、推荐路线、评审看点和打不开时的备用材料。
@@ -67,7 +71,8 @@
 6. 上传试玩页时复制 `WEBGL_PAGE_COPY.md` 的页面文案。
 7. 按 `DEMO_RECORDING_RUNBOOK.md` 录制并上传 Demo 视频。
 8. 按 `CODEBUDDY_SUBMISSION_CHECKLIST.md` 导出 CodeBuddy 历史记录。
-9. 用 `ROADSHOW_PITCH_SCRIPT.md` 排练 30 秒和 60 秒介绍。
-10. 把 `JUDGE_QUICK_START.md` 中的 WebGL、视频、团队信息占位替换掉。
-11. 打开 `SUBMISSION_READINESS_AUDIT.md` 确认所有必交项状态。
-12. 优先按 `FINAL_SUBMISSION_INFO.md` 填提交表，再参考 `docs/SUBMISSION_FORM_DRAFT.md` 补充长文案。
+9. 先把所有外部链接填进 `LINKS_TO_FILL.md`。
+10. 用 `ROADSHOW_PITCH_SCRIPT.md` 排练 30 秒和 60 秒介绍。
+11. 把 `JUDGE_QUICK_START.md` 中的 WebGL、视频、团队信息占位替换掉。
+12. 打开 `SUBMISSION_READINESS_AUDIT.md` 确认所有必交项状态。
+13. 优先按 `FINAL_SUBMISSION_INFO.md` 填提交表，再参考 `docs/SUBMISSION_FORM_DRAFT.md` 补充长文案。

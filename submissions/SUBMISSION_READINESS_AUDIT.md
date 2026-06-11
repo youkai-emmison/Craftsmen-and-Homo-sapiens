@@ -18,6 +18,7 @@
 | CodeBuddy 历史对话 | Needs External Action | `docs/CODEBUDDY_EXPORT_GUIDE.md` 和 `submissions/CODEBUDDY_SUBMISSION_CHECKLIST.md` 已准备 | 用 CodeBuddy 做最终检查并导出历史记录 |
 | GitHub 仓库链接 | Ready | `https://github.com/youkai-emmison/Craftsmen-and-Homo-sapiens/tree/master` 已写入提交信息表 | 最终确认仓库可访问 |
 | 报名表文案 | Ready | `docs/SUBMISSION_FORM_DRAFT.md` 和 `submissions/FINAL_SUBMISSION_INFO.md` 已准备 | 填表时复制，并替换所有 `TODO` |
+| 最终链接回填表 | Ready | `submissions/LINKS_TO_FILL.md` 已准备 | 拿到外部链接后先填入此表，再同步到各提交材料 |
 | 评委快速打开指南 | Ready | `submissions/JUDGE_QUICK_START.md` 已准备 | 填入 WebGL 和 Demo 视频链接 |
 | 路演口播稿 | Ready | `submissions/ROADSHOW_PITCH_SCRIPT.md` 已准备 | 答辩或视频录制前按真实链接微调 |
 | 团队成员信息 | Needs External Action | `submissions/TEAM_INFO_TEMPLATE.md` 已准备 | 填入真实团队名称、学校、成员和分工 |
@@ -41,8 +42,9 @@
 5. 打开 `submissions/Craftsmen_Hackathon_Deck.pptx`，补团队信息、试玩链接和视频链接。
 6. 打开 `submissions/JUDGE_QUICK_START.md`，补 WebGL、视频和团队信息。
 7. 打开 `submissions/TEAM_INFO_TEMPLATE.md`，补真实团队成员和分工。
-8. 打开 `submissions/FINAL_SUBMISSION_INFO.md`，替换所有 `TODO`。
-9. 按 `docs/SUBMISSION_FORM_DRAFT.md` 和最终链接填写比赛提交问卷。
+8. 打开 `submissions/LINKS_TO_FILL.md`，集中填写所有外部链接。
+9. 打开 `submissions/FINAL_SUBMISSION_INFO.md`，替换所有 `TODO`。
+10. 按 `docs/SUBMISSION_FORM_DRAFT.md` 和最终链接填写比赛提交问卷。
 
 ## 不应提交或上传为公开仓库原始文件的内容
 
