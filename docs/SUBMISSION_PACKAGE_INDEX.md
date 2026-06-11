@@ -16,6 +16,12 @@
 - `docs/AI_CREATION_LOG.md`
   - AI 创作说明，用于解释 CodeBuddy / AI 在项目中的作用。
 
+- `docs/SUBMISSION_FORM_DRAFT.md`
+  - 报名表、问卷、作品页可直接复制的中文文案。
+
+- `docs/CODEBUDDY_EXPORT_GUIDE.md`
+  - CodeBuddy 历史对话导出和最后一轮检查提示词。
+
 ## 展示材料
 
 - `docs/DEMO_VIDEO_SCRIPT.md`
@@ -26,6 +32,12 @@
 
 - `docs/WEBGL_DEPLOYMENT.md`
   - WebGL 构建与部署说明。
+
+- `docs/ROADSHOW_QA.md`
+  - 路演答辩可能被问到的问题和回答。
+
+- `docs/SOCIAL_MEDIA_POST_DRAFTS.md`
+  - 小红书、视频号、X、YouTube 等社交媒体发布文案草稿。
 
 ## 现有项目说明
 
