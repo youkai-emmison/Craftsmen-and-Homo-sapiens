@@ -91,6 +91,8 @@
   - 可直接放进最终附件包根目录的“先看我”说明文件。
 - `submissions/FORM_ANSWERS_COPYPASTE_ZH.md`
   - 最终提交问卷复制稿。
+- `submissions/SUBMISSION_PORTAL_FIELD_MAP_ZH.md`
+  - 提交平台字段映射表，说明每个字段从哪个材料复制、如何验证。
 - `submissions/PROJECT_BOOK_FINAL_ZH.md`
   - 最终项目书提交版。
 - `submissions/PROJECT_BOOK_FINAL_ZH.docx`

@@ -27,6 +27,7 @@
 | 最终提交当天执行手册 | Ready | `submissions/SUBMISSION_DAY_RUNBOOK_ZH.md` 已准备 | 提交当天按顺序处理 WebGL、视频、CodeBuddy、PPT 和问卷回填 |
 | 最终上传包说明 | Ready | `submissions/UPLOAD_PACKAGE_README_ZH.md` 已准备 | 如果平台要求附件包或网盘包，按此文件组织 |
 | 上传包先看我 | Ready | `submissions/00_README_FIRST_ZH.md` 已准备 | 可复制到最终压缩包根目录 |
+| 提交平台字段映射表 | Ready | `submissions/SUBMISSION_PORTAL_FIELD_MAP_ZH.md` 已准备 | 最终填问卷时按字段定位可复制文案 |
 | 评委快速打开指南 | Ready | `submissions/JUDGE_QUICK_START.md` 已准备 | 填入 WebGL 和 Demo 视频链接 |
 | 评分项证据映射表 | Ready | `submissions/SCORING_EVIDENCE_MAP_ZH.md` 已准备 | 视频、PPT 和答辩前检查评分点是否覆盖 |
 | 路演口播稿 | Ready | `submissions/ROADSHOW_PITCH_SCRIPT.md` 已准备 | 答辩或视频录制前按真实链接微调 |

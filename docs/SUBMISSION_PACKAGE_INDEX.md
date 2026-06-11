@@ -46,6 +46,9 @@
 - `submissions/FORM_ANSWERS_COPYPASTE_ZH.md`
   - 最终提交问卷复制稿，按常见字段整理短版、长版、AI 使用说明、技术实现和链接区。
 
+- `submissions/SUBMISSION_PORTAL_FIELD_MAP_ZH.md`
+  - 提交平台字段映射表，说明每个字段从哪个材料复制、哪些链接要回填、如何验证。
+
 - `submissions/LINKS_TO_FILL.md`
   - 最终链接回填表，用于集中填写 WebGL、Demo 视频、PPT、CodeBuddy 和社交媒体链接。
 
