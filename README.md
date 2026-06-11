@@ -87,6 +87,8 @@
   - 最终项目书提交版。
 - `submissions/PROJECT_BOOK_FINAL_ZH.docx`
   - 最终项目书 Word 版，可直接上传或转 PDF。
+- `submissions/PROJECT_BOOK_FINAL_ZH.pdf`
+  - 最终项目书 PDF 版，可直接上传或转发预览。
 - `submissions/JUDGE_QUICK_START.md`
   - 评委快速打开指南。
 - `submissions/SUBMISSION_READINESS_AUDIT.md`

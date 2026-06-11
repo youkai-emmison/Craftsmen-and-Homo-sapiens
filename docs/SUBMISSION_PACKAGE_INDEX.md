@@ -16,6 +16,9 @@
 - `submissions/PROJECT_BOOK_FINAL_ZH.docx`
   - 最终项目书 Word 版，可直接上传或手动另存为 PDF。
 
+- `submissions/PROJECT_BOOK_FINAL_ZH.pdf`
+  - 最终项目书 PDF 版，可直接上传、转发或给评委预览。
+
 - `docs/HACKATHON_SUBMISSION_CHECKLIST.md`
   - 提交前检查清单。
 
