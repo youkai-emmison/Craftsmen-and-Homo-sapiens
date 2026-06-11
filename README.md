@@ -87,6 +87,8 @@
   - 最终提交当天执行手册，按顺序处理 WebGL、视频、CodeBuddy、PPT 和问卷回填。
 - `submissions/UPLOAD_PACKAGE_README_ZH.md`
   - 最终上传包说明，用于准备附件包、网盘包或老师审核包。
+- `submissions/00_README_FIRST_ZH.md`
+  - 可直接放进最终附件包根目录的“先看我”说明文件。
 - `submissions/FORM_ANSWERS_COPYPASTE_ZH.md`
   - 最终提交问卷复制稿。
 - `submissions/PROJECT_BOOK_FINAL_ZH.md`

@@ -24,6 +24,7 @@
 | 最终链接回填表 | `submissions/LINKS_TO_FILL.md` | 集中填写 WebGL、视频、PPT、CodeBuddy、社交媒体链接 |
 | 最终提交当天执行手册 | `submissions/SUBMISSION_DAY_RUNBOOK_ZH.md` | 按顺序处理 WebGL、视频、CodeBuddy、PPT 和问卷回填 |
 | 最终上传包说明 | `submissions/UPLOAD_PACKAGE_README_ZH.md` | 准备附件包、网盘包或老师审核包 |
+| 上传包先看我 | `submissions/00_README_FIRST_ZH.md` | 可复制到最终压缩包根目录，指导评委查看材料 |
 | 评委快速打开指南 | `submissions/JUDGE_QUICK_START.md` | 和作品链接一起给评委，说明怎么玩、看什么 |
 | 评委单页摘要 | `submissions/JUDGE_ONE_PAGE_BRIEF_ZH.md` | 用一页说明项目定位、AI 用法、演示流程和评审看点 |
 | 评委单页摘要 PDF | `submissions/JUDGE_ONE_PAGE_BRIEF_ZH.pdf` | 可直接转发、上传或给老师快速预览 |

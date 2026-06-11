@@ -39,27 +39,15 @@ Craftsmen_and_Homo_sapiens_Submission/
     ROADSHOW_QA_CHEATSHEET_ZH.md
 ```
 
-## 00_README_先看我.md 建议内容
+## 00_README_先看我.md
 
-可以直接复制下面这段：
+仓库中已经准备好可直接使用的版本：
 
-```text
-项目名称：能工智人 / Craftsmen and Homo sapiens
-参赛赛题：赛题三，叙事类游戏 / AI 重塑叙事体验
+`submissions/00_README_FIRST_ZH.md`
 
-推荐查看顺序：
-1. 先打开 PROJECT_BOOK_FINAL_ZH.pdf 理解项目。
-2. 再打开 Craftsmen_Hackathon_Deck_Preview.pdf 快速浏览 PPT。
-3. 打开 WebGL_Link.txt 进入在线试玩。
-4. 打开 Demo_Video_Link.txt 查看 3 分钟演示视频。
-5. 如需验证 AI 编程协作，请查看 CodeBuddy 历史记录。
+打包时把它复制到最终压缩包根目录，并重命名为：
 
-GitHub 仓库：
-https://github.com/youkai-emmison/Craftsmen-and-Homo-sapiens/tree/master
-
-说明：
-当前 Demo 是 Unity 2D 横版地牢游戏原型，重点展示 AI 叙事、战斗成长、房间推进和 Boss 收束闭环。
-```
+`00_README_先看我.md`
 
 ## 必放文件
 
