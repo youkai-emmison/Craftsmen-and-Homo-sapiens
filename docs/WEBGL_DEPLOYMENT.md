@@ -4,6 +4,8 @@
 
 比赛要求作品提供可在浏览器中直接在线体验的网页地址。因此最终需要把 Unity 项目构建为 WebGL，并部署到静态网页托管平台。
 
+最终上传当天可以直接按照 `submissions/WEBGL_UPLOAD_RUNBOOK.md` 执行。
+
 ## 推荐 Unity 版本
 
 - Unity `2022.3.53f1`

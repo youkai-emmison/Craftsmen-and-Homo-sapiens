@@ -13,6 +13,7 @@
 - [ ] 作品网页链接
   - 要求：可在浏览器中直接在线体验。
   - 当前占位：待 WebGL 部署后填写。
+  - 执行清单：`submissions/WEBGL_UPLOAD_RUNBOOK.md`
 
 - [ ] 游戏 Demo 视频
   - 要求：完整展示核心玩法、AI 功能演示及亮点说明。
@@ -60,6 +61,7 @@
 - [ ] UI 至少能显示血量、目标、提示或对话
 - [ ] WebGL 构建流程已验证或说明清楚
   - 部署说明：`docs/WEBGL_DEPLOYMENT.md`
+  - 上传执行清单：`submissions/WEBGL_UPLOAD_RUNBOOK.md`
   - 就绪审计：`submissions/SUBMISSION_READINESS_AUDIT.md`
 
 ## 评分点对应

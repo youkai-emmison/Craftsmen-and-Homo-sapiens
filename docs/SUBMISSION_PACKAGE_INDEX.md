@@ -54,6 +54,9 @@
 - `docs/WEBGL_DEPLOYMENT.md`
   - WebGL 构建与部署说明。
 
+- `submissions/WEBGL_UPLOAD_RUNBOOK.md`
+  - WebGL 在线试玩链接执行清单，用于构建、上传并检查公开试玩链接。
+
 - `docs/ROADSHOW_QA.md`
   - 路演答辩可能被问到的问题和回答。
 

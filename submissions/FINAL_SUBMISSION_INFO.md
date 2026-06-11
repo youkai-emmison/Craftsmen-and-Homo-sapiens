@@ -43,6 +43,7 @@
 - CodeBuddy 导出说明：`docs/CODEBUDDY_EXPORT_GUIDE.md`
 - CodeBuddy 提交检查清单：`submissions/CODEBUDDY_SUBMISSION_CHECKLIST.md`
 - WebGL 部署说明：`docs/WEBGL_DEPLOYMENT.md`
+- WebGL 上传执行清单：`submissions/WEBGL_UPLOAD_RUNBOOK.md`
 - 社交媒体文案草稿：`docs/SOCIAL_MEDIA_POST_DRAFTS.md`
 
 ## 最终提交链接
