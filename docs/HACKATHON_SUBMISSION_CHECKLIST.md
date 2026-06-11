@@ -23,6 +23,7 @@
   - 内容：作品简介、赛题方向、AI 场景创作说明、团队成员信息等。
   - 大纲参考：`docs/PPT_OUTLINE.md`
   - 当前初稿：`submissions/Craftsmen_Hackathon_Deck.pptx`
+  - PDF 预览版：`submissions/Craftsmen_Hackathon_Deck_Preview.pdf`
   - 仍需补齐：团队成员、试玩链接、Demo 视频链接。
 
 - [ ] CodeBuddy 历史对话记录

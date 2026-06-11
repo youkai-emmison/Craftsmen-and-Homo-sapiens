@@ -14,7 +14,7 @@
 | --- | --- | --- | --- |
 | 作品网页链接 | Needs External Action | `docs/WEBGL_DEPLOYMENT.md` 已说明部署流程 | 构建 WebGL，上传到可公开访问的平台，把链接填入 `submissions/FINAL_SUBMISSION_INFO.md` |
 | 游戏 Demo 视频 | Needs External Action | `docs/DEMO_VIDEO_SCRIPT.md` 和 `submissions/DEMO_RECORDING_RUNBOOK.md` 已准备 | 录制 3 分钟以内视频，上传后填写视频链接 |
-| 作品介绍 PPT | Ready | `submissions/Craftsmen_Hackathon_Deck.pptx` 已生成 | 提交前补团队信息、试玩链接、视频链接 |
+| 作品介绍 PPT | Ready | `submissions/Craftsmen_Hackathon_Deck.pptx` 和 `submissions/Craftsmen_Hackathon_Deck_Preview.pdf` 已生成 | 提交前补团队信息、试玩链接、视频链接 |
 | CodeBuddy 历史对话 | Needs External Action | `docs/CODEBUDDY_EXPORT_GUIDE.md` 和 `submissions/CODEBUDDY_SUBMISSION_CHECKLIST.md` 已准备 | 用 CodeBuddy 做最终检查并导出历史记录 |
 | GitHub 仓库链接 | Ready | `https://github.com/youkai-emmison/Craftsmen-and-Homo-sapiens/tree/master` 已写入提交信息表 | 最终确认仓库可访问 |
 | 报名表文案 | Ready | `docs/SUBMISSION_FORM_DRAFT.md` 和 `submissions/FINAL_SUBMISSION_INFO.md` 已准备 | 填表时复制，并替换所有 `TODO` |
@@ -48,7 +48,7 @@
 
 ## 结论
 
-当前仓库已经准备好了提交文案、PPT 初稿、录屏脚本、CodeBuddy 导出清单和 WebGL 部署说明。最终提交尚未完成，因为缺少三个外部产物：
+当前仓库已经准备好了提交文案、PPT 初稿、PPT PDF 预览版、录屏脚本、CodeBuddy 导出清单和 WebGL 部署说明。最终提交尚未完成，因为缺少三个外部产物：
 
 - WebGL 在线试玩链接。
 - Demo 视频链接。

@@ -45,6 +45,9 @@
 - `submissions/Craftsmen_Hackathon_Deck.pptx`
   - 已生成的 10 页作品介绍 PPT 初稿，可继续补团队信息、试玩链接和 Demo 视频链接。
 
+- `submissions/Craftsmen_Hackathon_Deck_Preview.pdf`
+  - 已生成的 10 页作品介绍 PDF 预览版，适合快速上传或转发查看。
+
 - `docs/WEBGL_DEPLOYMENT.md`
   - WebGL 构建与部署说明。
 
