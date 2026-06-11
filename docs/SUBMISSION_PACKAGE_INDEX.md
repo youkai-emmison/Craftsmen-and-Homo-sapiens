@@ -19,6 +19,9 @@
 - `docs/SUBMISSION_FORM_DRAFT.md`
   - 报名表、问卷、作品页可直接复制的中文文案。
 
+- `submissions/FINAL_SUBMISSION_INFO.md`
+  - 最终提交问卷用的信息总表，集中记录作品简介、材料路径和待补链接。
+
 - `docs/CODEBUDDY_EXPORT_GUIDE.md`
   - CodeBuddy 历史对话导出和最后一轮检查提示词。
 

@@ -68,7 +68,7 @@
 
 - WebGL 在线试玩链接。
 - 3 分钟 Demo 视频。
-- 作品介绍 PPT。
+- 作品介绍 PPT：已生成初稿 `submissions/Craftsmen_Hackathon_Deck.pptx`，提交前需要补团队成员、试玩链接和视频链接。
 - CodeBuddy 历史对话记录。
 - 可选社交媒体发布链接。
 
@@ -77,7 +77,7 @@
 - WebGL 试玩链接：待填写
 - Demo 视频链接：待填写
 - GitHub 仓库链接：待填写
-- PPT 链接：待填写
+- PPT 链接：待上传后填写；本地初稿为 `submissions/Craftsmen_Hackathon_Deck.pptx`
 - CodeBuddy 历史记录：待导出
 - 社交媒体链接：待填写
 
