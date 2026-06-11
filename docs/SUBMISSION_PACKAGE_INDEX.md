@@ -55,6 +55,12 @@
 - `submissions/UPLOAD_PACKAGE_README_ZH.md`
   - 最终上传包说明，用于准备附件包、网盘包或老师审核包。
 
+- `submissions/FINAL_UPLOAD_PACKAGE_BUILDER_ZH.md`
+  - 最终上传包组装脚本说明，记录如何生成带时间戳的最终上传包目录。
+
+- `submissions/Build-FinalUploadPackage.ps1`
+  - 最终上传包组装脚本，用于按推荐目录结构复制项目书、PPT、链接模板和备用材料。
+
 - `submissions/00_README_FIRST_ZH.md`
   - 可直接放进最终附件包根目录的“先看我”说明文件。
 

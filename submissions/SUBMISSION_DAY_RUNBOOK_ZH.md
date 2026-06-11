@@ -103,6 +103,7 @@ CodeBuddy 记录是证明 AI 编程助手参与的重要材料。
 4. 重新导出 PDF 预览版。
 5. 本地打开 PPT 和 PDF，确认不是空白、乱码或旧版本。
 6. 如果平台要求附件或网盘包，按 `submissions/UPLOAD_PACKAGE_README_ZH.md` 组织最终上传包。
+7. 可以按 `submissions/FINAL_UPLOAD_PACKAGE_BUILDER_ZH.md` 运行脚本，自动生成推荐目录结构。
 
 如果时间不够：
 
@@ -149,3 +150,4 @@ CodeBuddy 记录是证明 AI 编程助手参与的重要材料。
 6. `submissions/FINAL_SUBMISSION_INFO.md`
 7. `submissions/FORM_ANSWERS_COPYPASTE_ZH.md`
 8. `submissions/FINAL_SUBMISSION_AUTOCHECK_ZH.md`
+9. `submissions/FINAL_UPLOAD_PACKAGE_BUILDER_ZH.md`

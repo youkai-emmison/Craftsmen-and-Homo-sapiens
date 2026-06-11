@@ -30,6 +30,7 @@
 | 最终占位符清理清单 | Ready | `submissions/PLACEHOLDER_CLEANUP_CHECKLIST_ZH.md` 已准备 | 最终提交前清理 `TODO`、`待回填`、本地路径和 `localhost` |
 | 最终提交自动自检 | Ready | `submissions/FINAL_SUBMISSION_AUTOCHECK_ZH.md` 和 `submissions/Run-FinalSubmissionAudit.ps1` 已准备 | 最终链接回填后运行一次，检查明显红旗 |
 | 最终上传包说明 | Ready | `submissions/UPLOAD_PACKAGE_README_ZH.md` 已准备 | 如果平台要求附件包或网盘包，按此文件组织 |
+| 最终上传包组装脚本 | Ready | `submissions/FINAL_UPLOAD_PACKAGE_BUILDER_ZH.md` 和 `submissions/Build-FinalUploadPackage.ps1` 已准备 | 最终链接回填后生成上传包目录 |
 | 上传包先看我 | Ready | `submissions/00_README_FIRST_ZH.md` 已准备 | 可复制到最终压缩包根目录 |
 | 上传包链接模板 | Ready | `submissions/package_templates/` 已准备 | 最终打包时复制并替换 `TODO` |
 | 提交平台字段映射表 | Ready | `submissions/SUBMISSION_PORTAL_FIELD_MAP_ZH.md` 已准备 | 最终填问卷时按字段定位可复制文案 |

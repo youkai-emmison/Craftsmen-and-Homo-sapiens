@@ -95,6 +95,8 @@
   - 最终提交自动自检说明，可按说明运行 `submissions/Run-FinalSubmissionAudit.ps1` 扫描明显红旗。
 - `submissions/UPLOAD_PACKAGE_README_ZH.md`
   - 最终上传包说明，用于准备附件包、网盘包或老师审核包。
+- `submissions/FINAL_UPLOAD_PACKAGE_BUILDER_ZH.md`
+  - 最终上传包组装说明，可按说明运行 `submissions/Build-FinalUploadPackage.ps1` 生成推荐目录结构。
 - `submissions/00_README_FIRST_ZH.md`
   - 可直接放进最终附件包根目录的“先看我”说明文件。
 - `submissions/package_templates/`

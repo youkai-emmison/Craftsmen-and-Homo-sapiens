@@ -4,6 +4,14 @@
 
 如果提交平台只要求填写链接，不要求上传压缩包，也可以把本文件作为备用包说明。
 
+仓库还提供了自动组装脚本：
+
+`submissions/Build-FinalUploadPackage.ps1`
+
+运行方法见：
+
+`submissions/FINAL_UPLOAD_PACKAGE_BUILDER_ZH.md`
+
 ## 推荐压缩包名称
 
 `Craftsmen_and_Homo_sapiens_TencentCloudHackathon_Submission.zip`

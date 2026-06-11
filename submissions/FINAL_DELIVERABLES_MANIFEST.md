@@ -28,6 +28,7 @@
 | 最终占位符清理清单 | `submissions/PLACEHOLDER_CLEANUP_CHECKLIST_ZH.md` | 区分哪些模板占位符可以留在仓库，哪些必须在提交材料中替换 |
 | 最终提交自动自检 | `submissions/FINAL_SUBMISSION_AUTOCHECK_ZH.md`、`submissions/Run-FinalSubmissionAudit.ps1` | 自动扫描必备文件、占位符、本地路径和 Git 风险项 |
 | 最终上传包说明 | `submissions/UPLOAD_PACKAGE_README_ZH.md` | 准备附件包、网盘包或老师审核包 |
+| 最终上传包组装脚本 | `submissions/FINAL_UPLOAD_PACKAGE_BUILDER_ZH.md`、`submissions/Build-FinalUploadPackage.ps1` | 按推荐目录结构复制提交材料，生成带时间戳的上传包目录 |
 | 上传包先看我 | `submissions/00_README_FIRST_ZH.md` | 可复制到最终压缩包根目录，指导评委查看材料 |
 | 上传包链接模板 | `submissions/package_templates/` | 最终压缩包中 WebGL、视频、PPT、CodeBuddy、GitHub 链接 txt 模板 |
 | 提交平台字段映射表 | `submissions/SUBMISSION_PORTAL_FIELD_MAP_ZH.md` | 按平台字段定位可复制文案和验证标准 |
@@ -55,8 +56,9 @@
 5. 打开 `LINKS_TO_FILL.md`，集中回填 WebGL、视频、PPT、CodeBuddy 链接。
 6. 打开 `FINAL_SUBMISSION_INFO.md` 和 `FORM_ANSWERS_COPYPASTE_ZH.md`，替换所有外部链接占位。
 7. 按 `FINAL_SUBMISSION_AUTOCHECK_ZH.md` 跑一次自动自检，确认最终面对评委的材料没有占位符红旗。
-8. 打开 PPT，补团队信息、试玩链接、视频链接。
-9. 最后按提交问卷要求上传 PPT、项目书 PDF、视频链接、试玩链接和 CodeBuddy 记录。
+8. 如需附件包，按 `FINAL_UPLOAD_PACKAGE_BUILDER_ZH.md` 生成上传包目录，并替换其中链接模板。
+9. 打开 PPT，补团队信息、试玩链接、视频链接。
+10. 最后按提交问卷要求上传 PPT、项目书 PDF、视频链接、试玩链接和 CodeBuddy 记录。
 
 ## 最后 10 分钟检查
 

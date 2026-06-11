@@ -49,6 +49,14 @@
   - 最终上传包说明。
   - 用于准备附件包、网盘包或老师审核包，明确哪些文件要放、哪些 Unity 本地目录不要放。
 
+- `submissions/FINAL_UPLOAD_PACKAGE_BUILDER_ZH.md`
+  - 最终上传包组装脚本说明。
+  - 说明如何运行 `Build-FinalUploadPackage.ps1`，自动按推荐目录结构复制项目书、PPT、链接模板和备用材料。
+
+- `submissions/Build-FinalUploadPackage.ps1`
+  - 最终上传包组装脚本。
+  - 每次生成带时间戳的新目录，不删除旧包、不覆盖已有文件；生成目录已被 `.gitignore` 忽略。
+
 - `submissions/00_README_FIRST_ZH.md`
   - 最终附件包根目录“先看我”说明文件。
   - 打包时可复制成 `00_README_先看我.md` 放在压缩包根目录。
@@ -156,8 +164,8 @@
 7. 用 `PLACEHOLDER_CLEANUP_CHECKLIST_ZH.md` 检查哪些占位符可以保留、哪些必须清空。
 8. 用 `FINAL_SUBMISSION_AUTOCHECK_ZH.md` 里的命令跑一次自动自检。
 9. 如果平台要求附件或网盘包，按 `UPLOAD_PACKAGE_README_ZH.md` 组织文件。
-10. 打包时把 `00_README_FIRST_ZH.md` 复制为 `00_README_先看我.md` 放在压缩包根目录。
-11. 打包时把 `package_templates/` 里的链接模板复制到对应目录，并替换 `TODO`。
+10. 用 `FINAL_UPLOAD_PACKAGE_BUILDER_ZH.md` 里的命令生成最终上传包目录。
+11. 打包时把生成目录里的链接模板替换成真实链接。
 12. 填报名表时优先使用 `FORM_ANSWERS_COPYPASTE_ZH.md`。
 13. 如果平台字段很多，用 `SUBMISSION_PORTAL_FIELD_MAP_ZH.md` 对照字段逐项复制。
 14. 如需正式项目书，优先使用 `PROJECT_BOOK_FINAL_ZH.pdf`；需要可编辑版本时使用 `PROJECT_BOOK_FINAL_ZH.docx`，需要复制内容时再看 `PROJECT_BOOK_FINAL_ZH.md`。
