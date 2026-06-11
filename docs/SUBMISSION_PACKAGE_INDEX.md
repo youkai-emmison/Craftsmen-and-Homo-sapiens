@@ -63,6 +63,9 @@
 - `submissions/WEBGL_UPLOAD_RUNBOOK.md`
   - WebGL 在线试玩链接执行清单，用于构建、上传并检查公开试玩链接。
 
+- `submissions/WEBGL_PAGE_COPY.md`
+  - WebGL 作品页可复制文案，用于填写试玩页面标题、简介、操作说明和标签。
+
 - `docs/ROADSHOW_QA.md`
   - 路演答辩可能被问到的问题和回答。
 

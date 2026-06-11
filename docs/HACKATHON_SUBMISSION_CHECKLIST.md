@@ -14,6 +14,7 @@
   - 要求：可在浏览器中直接在线体验。
   - 当前占位：待 WebGL 部署后填写。
   - 执行清单：`submissions/WEBGL_UPLOAD_RUNBOOK.md`
+  - 页面文案：`submissions/WEBGL_PAGE_COPY.md`
 
 - [ ] 游戏 Demo 视频
   - 要求：完整展示核心玩法、AI 功能演示及亮点说明。

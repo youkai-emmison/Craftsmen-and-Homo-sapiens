@@ -89,6 +89,7 @@ http://localhost:8000
 - [ ] WebGL 链接已填入 `submissions/FINAL_SUBMISSION_INFO.md`。
 - [ ] WebGL 链接已填入 PPT 最后一页或备注。
 - [ ] WebGL 链接已放进 Demo 视频简介或片尾。
+- [ ] 试玩页面标题、简介、操作说明已参考 `submissions/WEBGL_PAGE_COPY.md` 填写。
 
 ## 常见问题排查
 
