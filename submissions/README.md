@@ -21,6 +21,10 @@
   - CodeBuddy 历史记录导出前的检查清单。
   - 包含可直接复制给 CodeBuddy 的最终检查提示词。
 
+- `submissions/SUBMISSION_READINESS_AUDIT.md`
+  - 最终提交前的就绪审计表。
+  - 用 Ready / Needs External Action 标出哪些材料已存在、哪些还必须外部生成。
+
 ## 还需要手动补齐
 
 - WebGL 在线试玩链接。
@@ -35,4 +39,5 @@
 2. 把团队成员、试玩链接、视频链接补进最后一页或备注里。
 3. 按 `DEMO_RECORDING_RUNBOOK.md` 录制并上传 Demo 视频。
 4. 按 `CODEBUDDY_SUBMISSION_CHECKLIST.md` 导出 CodeBuddy 历史记录。
-5. 优先按 `FINAL_SUBMISSION_INFO.md` 填提交表，再参考 `docs/SUBMISSION_FORM_DRAFT.md` 补充长文案。
+5. 打开 `SUBMISSION_READINESS_AUDIT.md` 确认所有必交项状态。
+6. 优先按 `FINAL_SUBMISSION_INFO.md` 填提交表，再参考 `docs/SUBMISSION_FORM_DRAFT.md` 补充长文案。

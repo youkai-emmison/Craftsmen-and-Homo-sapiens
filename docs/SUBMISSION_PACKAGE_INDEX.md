@@ -22,6 +22,9 @@
 - `submissions/FINAL_SUBMISSION_INFO.md`
   - 最终提交问卷用的信息总表，集中记录作品简介、材料路径和待补链接。
 
+- `submissions/SUBMISSION_READINESS_AUDIT.md`
+  - 最终提交前的就绪审计表，标出已完成材料和仍需外部生成的链接。
+
 - `submissions/CODEBUDDY_SUBMISSION_CHECKLIST.md`
   - CodeBuddy 历史记录导出前的检查清单，包含可直接复制的最终检查提示词。
 

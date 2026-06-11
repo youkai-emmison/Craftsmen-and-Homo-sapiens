@@ -29,11 +29,12 @@
   - 要求：导出作品构建过程中使用 CodeBuddy 的历史对话。
   - 注意：Codex 可以辅助开发，但提交材料必须补齐 CodeBuddy 记录。
 
-- [ ] GitHub / 代码仓库链接
-  - 填写最终可访问仓库地址。
+- [x] GitHub / 代码仓库链接
+  - 最终可访问仓库地址：`https://github.com/youkai-emmison/Craftsmen-and-Homo-sapiens/tree/master`
 
-- [ ] 报名表文案
+- [x] 报名表文案
   - 可复制版本：`docs/SUBMISSION_FORM_DRAFT.md`
+  - 最终信息总表：`submissions/FINAL_SUBMISSION_INFO.md`
 
 ## 加分材料
 
@@ -53,20 +54,22 @@
 - [ ] Boss 或最终目标能触发胜利反馈
 - [ ] UI 至少能显示血量、目标、提示或对话
 - [ ] WebGL 构建流程已验证或说明清楚
+  - 部署说明：`docs/WEBGL_DEPLOYMENT.md`
+  - 就绪审计：`submissions/SUBMISSION_READINESS_AUDIT.md`
 
 ## 评分点对应
 
 ### 主题契合度 30 分
 
-- [ ] 文档明确选择赛题三
+- [x] 文档明确选择赛题三
 - [ ] 游戏内或视频中能看到 AI 叙事包装
-- [ ] 世界观、房间日志、敌人设定与玩法目标一致
+- [x] 世界观、房间日志、敌人设定与玩法目标一致
 
 ### AI 工具使用情况 40 分
 
 - [ ] CodeBuddy 历史记录已导出
   - 操作说明：`docs/CODEBUDDY_EXPORT_GUIDE.md`
-- [ ] AI 创作说明文档已完成：`docs/AI_CREATION_LOG.md`
+- [x] AI 创作说明文档已完成：`docs/AI_CREATION_LOG.md`
 - [x] PPT 中说明 AI 用于世界观、角色、视觉、代码或调试
 - [ ] 若有 AI 生成图片或文本，已说明来源和用途
 
