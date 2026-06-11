@@ -22,6 +22,9 @@
 - `submissions/FINAL_SUBMISSION_INFO.md`
   - 最终提交问卷用的信息总表，集中记录作品简介、材料路径和待补链接。
 
+- `submissions/TEAM_INFO_TEMPLATE.md`
+  - 团队成员信息模板，用于补报名表、PPT 最后一页、视频片尾和作品页。
+
 - `submissions/SUBMISSION_READINESS_AUDIT.md`
   - 最终提交前的就绪审计表，标出已完成材料和仍需外部生成的链接。
 

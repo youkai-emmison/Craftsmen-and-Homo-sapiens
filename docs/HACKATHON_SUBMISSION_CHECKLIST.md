@@ -37,6 +37,10 @@
   - 可复制版本：`docs/SUBMISSION_FORM_DRAFT.md`
   - 最终信息总表：`submissions/FINAL_SUBMISSION_INFO.md`
 
+- [ ] 团队成员信息
+  - 模板：`submissions/TEAM_INFO_TEMPLATE.md`
+  - 需要填入真实团队名称、学校、成员和分工。
+
 ## 加分材料
 
 - [ ] 社交媒体发布链接

@@ -18,6 +18,7 @@
 | CodeBuddy 历史对话 | Needs External Action | `docs/CODEBUDDY_EXPORT_GUIDE.md` 和 `submissions/CODEBUDDY_SUBMISSION_CHECKLIST.md` 已准备 | 用 CodeBuddy 做最终检查并导出历史记录 |
 | GitHub 仓库链接 | Ready | `https://github.com/youkai-emmison/Craftsmen-and-Homo-sapiens/tree/master` 已写入提交信息表 | 最终确认仓库可访问 |
 | 报名表文案 | Ready | `docs/SUBMISSION_FORM_DRAFT.md` 和 `submissions/FINAL_SUBMISSION_INFO.md` 已准备 | 填表时复制，并替换所有 `TODO` |
+| 团队成员信息 | Needs External Action | `submissions/TEAM_INFO_TEMPLATE.md` 已准备 | 填入真实团队名称、学校、成员和分工 |
 
 ## 评分点材料审计
 
@@ -36,8 +37,9 @@
 3. 按 `submissions/DEMO_RECORDING_RUNBOOK.md` 录制并上传 Demo 视频。
 4. 按 `submissions/CODEBUDDY_SUBMISSION_CHECKLIST.md` 用 CodeBuddy 做最终检查并导出历史记录。
 5. 打开 `submissions/Craftsmen_Hackathon_Deck.pptx`，补团队信息、试玩链接和视频链接。
-6. 打开 `submissions/FINAL_SUBMISSION_INFO.md`，替换所有 `TODO`。
-7. 按 `docs/SUBMISSION_FORM_DRAFT.md` 和最终链接填写比赛提交问卷。
+6. 打开 `submissions/TEAM_INFO_TEMPLATE.md`，补真实团队成员和分工。
+7. 打开 `submissions/FINAL_SUBMISSION_INFO.md`，替换所有 `TODO`。
+8. 按 `docs/SUBMISSION_FORM_DRAFT.md` 和最终链接填写比赛提交问卷。
 
 ## 不应提交或上传为公开仓库原始文件的内容
 

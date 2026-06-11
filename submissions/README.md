@@ -17,6 +17,10 @@
   - 最终提交问卷用的信息总表。
   - 把作品简介、AI 使用说明、材料路径和待补链接集中到一个文件里。
 
+- `submissions/TEAM_INFO_TEMPLATE.md`
+  - 团队成员信息模板。
+  - 用于补报名表、PPT 最后一页、视频片尾和作品页。
+
 - `submissions/DEMO_RECORDING_RUNBOOK.md`
   - Demo 录屏时逐项检查的执行清单。
   - 用来控制 3 分钟视频节奏，避免漏掉 AI 叙事、成长、Boss 和胜利。
@@ -41,8 +45,9 @@
 
 1. 先打开 `Craftsmen_Hackathon_Deck.pptx` 检查文字和版式。
 2. 需要快速预览或上传时，可以使用 `Craftsmen_Hackathon_Deck_Preview.pdf`。
-3. 把团队成员、试玩链接、视频链接补进最后一页或备注里。
-4. 按 `DEMO_RECORDING_RUNBOOK.md` 录制并上传 Demo 视频。
-5. 按 `CODEBUDDY_SUBMISSION_CHECKLIST.md` 导出 CodeBuddy 历史记录。
-6. 打开 `SUBMISSION_READINESS_AUDIT.md` 确认所有必交项状态。
-7. 优先按 `FINAL_SUBMISSION_INFO.md` 填提交表，再参考 `docs/SUBMISSION_FORM_DRAFT.md` 补充长文案。
+3. 按 `TEAM_INFO_TEMPLATE.md` 补齐团队成员和分工。
+4. 把团队成员、试玩链接、视频链接补进最后一页或备注里。
+5. 按 `DEMO_RECORDING_RUNBOOK.md` 录制并上传 Demo 视频。
+6. 按 `CODEBUDDY_SUBMISSION_CHECKLIST.md` 导出 CodeBuddy 历史记录。
+7. 打开 `SUBMISSION_READINESS_AUDIT.md` 确认所有必交项状态。
+8. 优先按 `FINAL_SUBMISSION_INFO.md` 填提交表，再参考 `docs/SUBMISSION_FORM_DRAFT.md` 补充长文案。

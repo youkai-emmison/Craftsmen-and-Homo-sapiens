@@ -38,6 +38,7 @@
 - Demo 录屏执行清单：`submissions/DEMO_RECORDING_RUNBOOK.md`
 - PPT 初稿：`submissions/Craftsmen_Hackathon_Deck.pptx`
 - PPT PDF 预览版：`submissions/Craftsmen_Hackathon_Deck_Preview.pdf`
+- 团队信息模板：`submissions/TEAM_INFO_TEMPLATE.md`
 - 路演 Q&A：`docs/ROADSHOW_QA.md`
 - CodeBuddy 导出说明：`docs/CODEBUDDY_EXPORT_GUIDE.md`
 - CodeBuddy 提交检查清单：`submissions/CODEBUDDY_SUBMISSION_CHECKLIST.md`
