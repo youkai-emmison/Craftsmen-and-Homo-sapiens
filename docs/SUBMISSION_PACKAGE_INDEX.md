@@ -46,6 +46,12 @@
 - `submissions/PLACEHOLDER_CLEANUP_CHECKLIST_ZH.md`
   - 最终占位符清理清单，用于区分模板里可保留的 `TODO` 和最终提交前必须替换的占位内容。
 
+- `submissions/FINAL_SUBMISSION_AUTOCHECK_ZH.md`
+  - 最终提交自动自检说明，记录如何运行脚本检查必备文件、占位符、本地路径和 Git 风险项。
+
+- `submissions/Run-FinalSubmissionAudit.ps1`
+  - 最终提交自检脚本，用于本地扫描提交材料是否仍有明显红旗。
+
 - `submissions/UPLOAD_PACKAGE_README_ZH.md`
   - 最终上传包说明，用于准备附件包、网盘包或老师审核包。
 

@@ -28,6 +28,7 @@
 | 外部动作负责人看板 | Ready | `submissions/EXTERNAL_ACTION_OWNER_BOARD_ZH.md` 已准备 | 最终分工时认领外部动作和产物 |
 | 最终提交风险登记表 | Ready | `submissions/SUBMISSION_RISK_REGISTER_ZH.md` 已准备 | 最后一天按高优先级风险逐项兜底 |
 | 最终占位符清理清单 | Ready | `submissions/PLACEHOLDER_CLEANUP_CHECKLIST_ZH.md` 已准备 | 最终提交前清理 `TODO`、`待回填`、本地路径和 `localhost` |
+| 最终提交自动自检 | Ready | `submissions/FINAL_SUBMISSION_AUTOCHECK_ZH.md` 和 `submissions/Run-FinalSubmissionAudit.ps1` 已准备 | 最终链接回填后运行一次，检查明显红旗 |
 | 最终上传包说明 | Ready | `submissions/UPLOAD_PACKAGE_README_ZH.md` 已准备 | 如果平台要求附件包或网盘包，按此文件组织 |
 | 上传包先看我 | Ready | `submissions/00_README_FIRST_ZH.md` 已准备 | 可复制到最终压缩包根目录 |
 | 上传包链接模板 | Ready | `submissions/package_templates/` 已准备 | 最终打包时复制并替换 `TODO` |
@@ -60,7 +61,8 @@
 8. 打开 `submissions/LINKS_TO_FILL.md`，集中填写所有外部链接。
 9. 打开 `submissions/FINAL_SUBMISSION_INFO.md`，替换所有 `TODO`。
 10. 打开 `submissions/PLACEHOLDER_CLEANUP_CHECKLIST_ZH.md`，确认最终材料没有占位符和本地路径。
-11. 按 `docs/SUBMISSION_FORM_DRAFT.md` 和最终链接填写比赛提交问卷。
+11. 按 `submissions/FINAL_SUBMISSION_AUTOCHECK_ZH.md` 运行自动自检脚本。
+12. 按 `docs/SUBMISSION_FORM_DRAFT.md` 和最终链接填写比赛提交问卷。
 
 ## 不应提交或上传为公开仓库原始文件的内容
 

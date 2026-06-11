@@ -26,6 +26,7 @@
 | 外部动作负责人看板 | `submissions/EXTERNAL_ACTION_OWNER_BOARD_ZH.md` | 分配 WebGL、视频、CodeBuddy、团队信息、PPT 和最终提交负责人 |
 | 最终提交风险登记表 | `submissions/SUBMISSION_RISK_REGISTER_ZH.md` | 集中列出 WebGL、视频、CodeBuddy、链接、PPT 和素材授权等风险兜底 |
 | 最终占位符清理清单 | `submissions/PLACEHOLDER_CLEANUP_CHECKLIST_ZH.md` | 区分哪些模板占位符可以留在仓库，哪些必须在提交材料中替换 |
+| 最终提交自动自检 | `submissions/FINAL_SUBMISSION_AUTOCHECK_ZH.md`、`submissions/Run-FinalSubmissionAudit.ps1` | 自动扫描必备文件、占位符、本地路径和 Git 风险项 |
 | 最终上传包说明 | `submissions/UPLOAD_PACKAGE_README_ZH.md` | 准备附件包、网盘包或老师审核包 |
 | 上传包先看我 | `submissions/00_README_FIRST_ZH.md` | 可复制到最终压缩包根目录，指导评委查看材料 |
 | 上传包链接模板 | `submissions/package_templates/` | 最终压缩包中 WebGL、视频、PPT、CodeBuddy、GitHub 链接 txt 模板 |
@@ -53,8 +54,9 @@
 4. 导出 CodeBuddy 历史记录，上传或整理成可访问文件。
 5. 打开 `LINKS_TO_FILL.md`，集中回填 WebGL、视频、PPT、CodeBuddy 链接。
 6. 打开 `FINAL_SUBMISSION_INFO.md` 和 `FORM_ANSWERS_COPYPASTE_ZH.md`，替换所有外部链接占位。
-7. 打开 PPT，补团队信息、试玩链接、视频链接。
-8. 最后按提交问卷要求上传 PPT、项目书 PDF、视频链接、试玩链接和 CodeBuddy 记录。
+7. 按 `FINAL_SUBMISSION_AUTOCHECK_ZH.md` 跑一次自动自检，确认最终面对评委的材料没有占位符红旗。
+8. 打开 PPT，补团队信息、试玩链接、视频链接。
+9. 最后按提交问卷要求上传 PPT、项目书 PDF、视频链接、试玩链接和 CodeBuddy 记录。
 
 ## 最后 10 分钟检查
 
@@ -67,6 +69,7 @@
 - [ ] `FINAL_SUBMISSION_INFO.md` 中没有必填 `TODO`。
 - [ ] 提交问卷中的链接和 `LINKS_TO_FILL.md` 一致。
 - [ ] 已按 `PLACEHOLDER_CLEANUP_CHECKLIST_ZH.md` 扫过 `TODO`、`待回填`、本地路径和 `localhost`。
+- [ ] 已运行 `Run-FinalSubmissionAudit.ps1`，并理解所有失败或警告。
 
 ## 当前还缺的外部动作
 

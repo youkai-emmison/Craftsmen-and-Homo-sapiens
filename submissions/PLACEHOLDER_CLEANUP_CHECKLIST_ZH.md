@@ -74,6 +74,14 @@
 rg -n "TODO|待回填|待补|PLACEHOLDER|localhost|file://|127\.0\.0\.1|C:\\Users" submissions docs README.md
 ```
 
+也可以运行仓库提供的自动自检脚本：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File submissions\Run-FinalSubmissionAudit.ps1
+```
+
+脚本说明见 `submissions/FINAL_SUBMISSION_AUTOCHECK_ZH.md`。
+
 看到结果后按下面规则处理：
 
 - 出现在模板文件里：确认它确实只是模板，不要复制到最终表单。
