@@ -45,7 +45,7 @@
 
 - WebGL 在线试玩链接：TODO
 - Demo 视频链接：TODO
-- GitHub 仓库链接：TODO
+- GitHub 仓库链接：https://github.com/youkai-emmison/Craftsmen-and-Homo-sapiens/tree/master
 - PPT 文件链接：TODO
 - CodeBuddy 历史对话导出文件链接：TODO
 - 社交媒体发布链接：TODO，可选

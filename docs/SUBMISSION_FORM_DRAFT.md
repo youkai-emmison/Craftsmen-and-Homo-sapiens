@@ -76,7 +76,7 @@
 
 - WebGL 试玩链接：待填写
 - Demo 视频链接：待填写
-- GitHub 仓库链接：待填写
+- GitHub 仓库链接：https://github.com/youkai-emmison/Craftsmen-and-Homo-sapiens/tree/master
 - PPT 链接：待上传后填写；本地初稿为 `submissions/Craftsmen_Hackathon_Deck.pptx`
 - CodeBuddy 历史记录：待导出
 - 社交媒体链接：待填写
