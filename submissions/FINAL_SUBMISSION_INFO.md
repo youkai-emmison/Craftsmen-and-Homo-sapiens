@@ -41,6 +41,7 @@
 - AI 创作说明：`docs/AI_CREATION_LOG.md`
 - 最终链接回填表：`submissions/LINKS_TO_FILL.md`
 - 最终提交当天执行手册：`submissions/SUBMISSION_DAY_RUNBOOK_ZH.md`
+- 外部动作负责人看板：`submissions/EXTERNAL_ACTION_OWNER_BOARD_ZH.md`
 - 最终上传包说明：`submissions/UPLOAD_PACKAGE_README_ZH.md`
 - 上传包先看我：`submissions/00_README_FIRST_ZH.md`
 - 上传包链接模板：`submissions/package_templates/`

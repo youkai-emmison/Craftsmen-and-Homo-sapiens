@@ -25,6 +25,10 @@
   - 最终提交当天执行手册。
   - 按顺序处理 WebGL、Demo 视频、CodeBuddy 历史记录、PPT 更新和提交问卷回填。
 
+- `submissions/EXTERNAL_ACTION_OWNER_BOARD_ZH.md`
+  - 外部动作负责人看板。
+  - 用于团队认领 WebGL、Demo 视频、CodeBuddy 导出、团队信息、PPT 回填和最终提交问卷。
+
 - `submissions/UPLOAD_PACKAGE_README_ZH.md`
   - 最终上传包说明。
   - 用于准备附件包、网盘包或老师审核包，明确哪些文件要放、哪些 Unity 本地目录不要放。
@@ -131,24 +135,25 @@
 2. 需要快速预览或上传时，可以使用 `Craftsmen_Hackathon_Deck_Preview.pdf`。
 3. 最终提交前先看 `FINAL_DELIVERABLES_MANIFEST.md`，确认最小提交包是否齐。
 4. 最后一天按 `SUBMISSION_DAY_RUNBOOK_ZH.md` 的顺序执行，不要分散回填链接。
-5. 如果平台要求附件或网盘包，按 `UPLOAD_PACKAGE_README_ZH.md` 组织文件。
-6. 打包时把 `00_README_FIRST_ZH.md` 复制为 `00_README_先看我.md` 放在压缩包根目录。
-7. 打包时把 `package_templates/` 里的链接模板复制到对应目录，并替换 `TODO`。
-8. 填报名表时优先使用 `FORM_ANSWERS_COPYPASTE_ZH.md`。
-9. 如果平台字段很多，用 `SUBMISSION_PORTAL_FIELD_MAP_ZH.md` 对照字段逐项复制。
-10. 如需正式项目书，优先使用 `PROJECT_BOOK_FINAL_ZH.pdf`；需要可编辑版本时使用 `PROJECT_BOOK_FINAL_ZH.docx`，需要复制内容时再看 `PROJECT_BOOK_FINAL_ZH.md`。
-11. 按 `TEAM_INFO_TEMPLATE.md` 补齐团队成员和分工。
-12. 如果要交接给队友，直接复制 `TEAM_HANDOFF_MESSAGE_ZH.md` 的群消息模板。
-13. 把团队成员、试玩链接、视频链接补进最后一页或备注里。
-14. 按 `WEBGL_UPLOAD_RUNBOOK.md` 构建、上传并检查 WebGL 在线试玩链接。
-15. 上传试玩页时复制 `WEBGL_PAGE_COPY.md` 的页面文案。
-16. 按 `DEMO_RECORDING_RUNBOOK.md` 录制 Demo 视频。
-17. 上传视频时复制 `DEMO_VIDEO_UPLOAD_COPY.md` 的标题、简介和标签。
-18. 按 `CODEBUDDY_SUBMISSION_CHECKLIST.md` 导出 CodeBuddy 历史记录。
-19. 先把所有外部链接填进 `LINKS_TO_FILL.md`。
-20. 用 `ROADSHOW_PITCH_SCRIPT.md` 排练 30 秒和 60 秒介绍。
-21. 用 `ROADSHOW_QA_CHEATSHEET_ZH.md` 准备常见评委问题。
-22. 用 `SCORING_EVIDENCE_MAP_ZH.md` 检查视频、PPT 和答辩是否覆盖评分点。
-23. 把 `JUDGE_QUICK_START.md` 中的 WebGL、视频、团队信息占位替换掉。
-24. 打开 `SUBMISSION_READINESS_AUDIT.md` 确认所有必交项状态。
-25. 优先按 `FINAL_SUBMISSION_INFO.md` 填提交表，再参考 `docs/SUBMISSION_FORM_DRAFT.md` 补充长文案。
+5. 用 `EXTERNAL_ACTION_OWNER_BOARD_ZH.md` 给 WebGL、视频、CodeBuddy、团队信息和提交问卷分配负责人。
+6. 如果平台要求附件或网盘包，按 `UPLOAD_PACKAGE_README_ZH.md` 组织文件。
+7. 打包时把 `00_README_FIRST_ZH.md` 复制为 `00_README_先看我.md` 放在压缩包根目录。
+8. 打包时把 `package_templates/` 里的链接模板复制到对应目录，并替换 `TODO`。
+9. 填报名表时优先使用 `FORM_ANSWERS_COPYPASTE_ZH.md`。
+10. 如果平台字段很多，用 `SUBMISSION_PORTAL_FIELD_MAP_ZH.md` 对照字段逐项复制。
+11. 如需正式项目书，优先使用 `PROJECT_BOOK_FINAL_ZH.pdf`；需要可编辑版本时使用 `PROJECT_BOOK_FINAL_ZH.docx`，需要复制内容时再看 `PROJECT_BOOK_FINAL_ZH.md`。
+12. 按 `TEAM_INFO_TEMPLATE.md` 补齐团队成员和分工。
+13. 如果要交接给队友，直接复制 `TEAM_HANDOFF_MESSAGE_ZH.md` 的群消息模板。
+14. 把团队成员、试玩链接、视频链接补进最后一页或备注里。
+15. 按 `WEBGL_UPLOAD_RUNBOOK.md` 构建、上传并检查 WebGL 在线试玩链接。
+16. 上传试玩页时复制 `WEBGL_PAGE_COPY.md` 的页面文案。
+17. 按 `DEMO_RECORDING_RUNBOOK.md` 录制 Demo 视频。
+18. 上传视频时复制 `DEMO_VIDEO_UPLOAD_COPY.md` 的标题、简介和标签。
+19. 按 `CODEBUDDY_SUBMISSION_CHECKLIST.md` 导出 CodeBuddy 历史记录。
+20. 先把所有外部链接填进 `LINKS_TO_FILL.md`。
+21. 用 `ROADSHOW_PITCH_SCRIPT.md` 排练 30 秒和 60 秒介绍。
+22. 用 `ROADSHOW_QA_CHEATSHEET_ZH.md` 准备常见评委问题。
+23. 用 `SCORING_EVIDENCE_MAP_ZH.md` 检查视频、PPT 和答辩是否覆盖评分点。
+24. 把 `JUDGE_QUICK_START.md` 中的 WebGL、视频、团队信息占位替换掉。
+25. 打开 `SUBMISSION_READINESS_AUDIT.md` 确认所有必交项状态。
+26. 优先按 `FINAL_SUBMISSION_INFO.md` 填提交表，再参考 `docs/SUBMISSION_FORM_DRAFT.md` 补充长文案。

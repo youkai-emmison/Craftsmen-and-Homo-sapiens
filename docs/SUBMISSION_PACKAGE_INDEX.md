@@ -37,6 +37,9 @@
 - `submissions/SUBMISSION_DAY_RUNBOOK_ZH.md`
   - 最终提交当天执行手册，按顺序处理 WebGL、Demo 视频、CodeBuddy、PPT 和问卷回填。
 
+- `submissions/EXTERNAL_ACTION_OWNER_BOARD_ZH.md`
+  - 外部动作负责人看板，用于认领 WebGL、Demo 视频、CodeBuddy、团队信息、PPT 回填和最终提交问卷。
+
 - `submissions/UPLOAD_PACKAGE_README_ZH.md`
   - 最终上传包说明，用于准备附件包、网盘包或老师审核包。
 

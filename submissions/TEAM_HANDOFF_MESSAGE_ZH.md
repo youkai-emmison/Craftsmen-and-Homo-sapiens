@@ -10,10 +10,11 @@
 最重要先看这几个：
 1. submissions/FINAL_DELIVERABLES_MANIFEST.md：最终交付包总清单
 2. submissions/LINKS_TO_FILL.md：WebGL、视频、PPT、CodeBuddy 链接回填表
-3. submissions/FORM_ANSWERS_COPYPASTE_ZH.md：提交问卷复制稿
-4. submissions/PROJECT_BOOK_FINAL_ZH.pdf：最终项目书 PDF
-5. submissions/Craftsmen_Hackathon_Deck.pptx：作品介绍 PPT
-6. submissions/JUDGE_ONE_PAGE_BRIEF_ZH.pdf：评委一页摘要
+3. submissions/EXTERNAL_ACTION_OWNER_BOARD_ZH.md：外部动作负责人看板
+4. submissions/FORM_ANSWERS_COPYPASTE_ZH.md：提交问卷复制稿
+5. submissions/PROJECT_BOOK_FINAL_ZH.pdf：最终项目书 PDF
+6. submissions/Craftsmen_Hackathon_Deck.pptx：作品介绍 PPT
+7. submissions/JUDGE_ONE_PAGE_BRIEF_ZH.pdf：评委一页摘要
 
 现在仓库内文案、PPT、项目书、评委摘要都已准备。
 还缺外部动作：
@@ -33,18 +34,19 @@
 
 请按这个顺序处理：
 1. 打开 submissions/FINAL_DELIVERABLES_MANIFEST.md，确认最小提交包。
-2. 用 Unity 构建并上传 WebGL，拿到在线试玩链接。
-3. 按 submissions/DEMO_RECORDING_RUNBOOK.md 录 Demo 视频。
-4. 上传视频时复制 submissions/DEMO_VIDEO_UPLOAD_COPY.md 的标题、简介和标签。
-5. 导出 CodeBuddy 历史记录。
-6. 把 WebGL / 视频 / PPT / CodeBuddy 链接统一填进 submissions/LINKS_TO_FILL.md。
-7. 再把链接同步到：
+2. 打开 submissions/EXTERNAL_ACTION_OWNER_BOARD_ZH.md，先认领外部动作负责人。
+3. 用 Unity 构建并上传 WebGL，拿到在线试玩链接。
+4. 按 submissions/DEMO_RECORDING_RUNBOOK.md 录 Demo 视频。
+5. 上传视频时复制 submissions/DEMO_VIDEO_UPLOAD_COPY.md 的标题、简介和标签。
+6. 导出 CodeBuddy 历史记录。
+7. 把 WebGL / 视频 / PPT / CodeBuddy 链接统一填进 submissions/LINKS_TO_FILL.md。
+8. 再把链接同步到：
    - submissions/FINAL_SUBMISSION_INFO.md
    - submissions/FORM_ANSWERS_COPYPASTE_ZH.md
    - submissions/JUDGE_QUICK_START.md
    - PPT 最后一页
    - 最终提交问卷
-8. 按 submissions/SUBMISSION_READINESS_AUDIT.md 做最后检查。
+9. 按 submissions/SUBMISSION_READINESS_AUDIT.md 做最后检查。
 
 可直接上传或转发的文件：
 - submissions/PROJECT_BOOK_FINAL_ZH.pdf
