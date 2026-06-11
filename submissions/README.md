@@ -21,6 +21,10 @@
   - 最终交付包清单。
   - 集中说明哪些文件能直接上传、哪些只是辅助材料、哪些还缺外部链接。
 
+- `submissions/SUBMISSION_DAY_RUNBOOK_ZH.md`
+  - 最终提交当天执行手册。
+  - 按顺序处理 WebGL、Demo 视频、CodeBuddy 历史记录、PPT 更新和提交问卷回填。
+
 - `submissions/FORM_ANSWERS_COPYPASTE_ZH.md`
   - 最终提交问卷复制稿。
   - 按作品名称、简介、AI 使用说明、技术实现、链接区等常见字段整理。
@@ -106,19 +110,20 @@
 1. 先打开 `Craftsmen_Hackathon_Deck.pptx` 检查文字和版式。
 2. 需要快速预览或上传时，可以使用 `Craftsmen_Hackathon_Deck_Preview.pdf`。
 3. 最终提交前先看 `FINAL_DELIVERABLES_MANIFEST.md`，确认最小提交包是否齐。
-4. 填报名表时优先使用 `FORM_ANSWERS_COPYPASTE_ZH.md`。
-5. 如需正式项目书，优先使用 `PROJECT_BOOK_FINAL_ZH.pdf`；需要可编辑版本时使用 `PROJECT_BOOK_FINAL_ZH.docx`，需要复制内容时再看 `PROJECT_BOOK_FINAL_ZH.md`。
-6. 按 `TEAM_INFO_TEMPLATE.md` 补齐团队成员和分工。
-7. 如果要交接给队友，直接复制 `TEAM_HANDOFF_MESSAGE_ZH.md` 的群消息模板。
-8. 把团队成员、试玩链接、视频链接补进最后一页或备注里。
-9. 按 `WEBGL_UPLOAD_RUNBOOK.md` 构建、上传并检查 WebGL 在线试玩链接。
-10. 上传试玩页时复制 `WEBGL_PAGE_COPY.md` 的页面文案。
-11. 按 `DEMO_RECORDING_RUNBOOK.md` 录制 Demo 视频。
-12. 上传视频时复制 `DEMO_VIDEO_UPLOAD_COPY.md` 的标题、简介和标签。
-13. 按 `CODEBUDDY_SUBMISSION_CHECKLIST.md` 导出 CodeBuddy 历史记录。
-14. 先把所有外部链接填进 `LINKS_TO_FILL.md`。
-15. 用 `ROADSHOW_PITCH_SCRIPT.md` 排练 30 秒和 60 秒介绍。
-16. 用 `ROADSHOW_QA_CHEATSHEET_ZH.md` 准备常见评委问题。
-17. 把 `JUDGE_QUICK_START.md` 中的 WebGL、视频、团队信息占位替换掉。
-18. 打开 `SUBMISSION_READINESS_AUDIT.md` 确认所有必交项状态。
-19. 优先按 `FINAL_SUBMISSION_INFO.md` 填提交表，再参考 `docs/SUBMISSION_FORM_DRAFT.md` 补充长文案。
+4. 最后一天按 `SUBMISSION_DAY_RUNBOOK_ZH.md` 的顺序执行，不要分散回填链接。
+5. 填报名表时优先使用 `FORM_ANSWERS_COPYPASTE_ZH.md`。
+6. 如需正式项目书，优先使用 `PROJECT_BOOK_FINAL_ZH.pdf`；需要可编辑版本时使用 `PROJECT_BOOK_FINAL_ZH.docx`，需要复制内容时再看 `PROJECT_BOOK_FINAL_ZH.md`。
+7. 按 `TEAM_INFO_TEMPLATE.md` 补齐团队成员和分工。
+8. 如果要交接给队友，直接复制 `TEAM_HANDOFF_MESSAGE_ZH.md` 的群消息模板。
+9. 把团队成员、试玩链接、视频链接补进最后一页或备注里。
+10. 按 `WEBGL_UPLOAD_RUNBOOK.md` 构建、上传并检查 WebGL 在线试玩链接。
+11. 上传试玩页时复制 `WEBGL_PAGE_COPY.md` 的页面文案。
+12. 按 `DEMO_RECORDING_RUNBOOK.md` 录制 Demo 视频。
+13. 上传视频时复制 `DEMO_VIDEO_UPLOAD_COPY.md` 的标题、简介和标签。
+14. 按 `CODEBUDDY_SUBMISSION_CHECKLIST.md` 导出 CodeBuddy 历史记录。
+15. 先把所有外部链接填进 `LINKS_TO_FILL.md`。
+16. 用 `ROADSHOW_PITCH_SCRIPT.md` 排练 30 秒和 60 秒介绍。
+17. 用 `ROADSHOW_QA_CHEATSHEET_ZH.md` 准备常见评委问题。
+18. 把 `JUDGE_QUICK_START.md` 中的 WebGL、视频、团队信息占位替换掉。
+19. 打开 `SUBMISSION_READINESS_AUDIT.md` 确认所有必交项状态。
+20. 优先按 `FINAL_SUBMISSION_INFO.md` 填提交表，再参考 `docs/SUBMISSION_FORM_DRAFT.md` 补充长文案。

@@ -19,6 +19,7 @@
   - 执行清单：`submissions/WEBGL_UPLOAD_RUNBOOK.md`
   - 页面文案：`submissions/WEBGL_PAGE_COPY.md`
   - 链接回填：`submissions/LINKS_TO_FILL.md`
+  - 提交当天顺序：`submissions/SUBMISSION_DAY_RUNBOOK_ZH.md`
 
 - [ ] 游戏 Demo 视频
   - 要求：完整展示核心玩法、AI 功能演示及亮点说明。
@@ -100,11 +101,12 @@
 
 ## 提交前最后一步
 
-1. 用 CodeBuddy 打开项目做最后检查。
-2. 导出 CodeBuddy 历史对话。
-3. 确认 WebGL 链接可打开。
-4. 确认视频链接和 PPT 链接可访问。
-5. 再提交报名问卷。
+1. 按 `submissions/SUBMISSION_DAY_RUNBOOK_ZH.md` 处理最终提交当天流程。
+2. 用 CodeBuddy 打开项目做最后检查。
+3. 导出 CodeBuddy 历史对话。
+4. 确认 WebGL 链接可打开。
+5. 确认视频链接和 PPT 链接可访问。
+6. 再提交报名问卷。
 
 ## 路演准备
 

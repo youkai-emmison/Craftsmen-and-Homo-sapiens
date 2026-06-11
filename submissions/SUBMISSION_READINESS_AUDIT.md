@@ -24,6 +24,7 @@
 | 评委单页摘要 | Ready | `submissions/JUDGE_ONE_PAGE_BRIEF_ZH.md` 和 `submissions/JUDGE_ONE_PAGE_BRIEF_ZH.pdf` 已准备 | 可和试玩链接一起发给评委或老师 |
 | 团队交接消息 | Ready | `submissions/TEAM_HANDOFF_MESSAGE_ZH.md` 已准备 | 可直接发给队友或老师，说明材料状态和剩余动作 |
 | 最终链接回填表 | Ready | `submissions/LINKS_TO_FILL.md` 已准备 | 拿到外部链接后先填入此表，再同步到各提交材料 |
+| 最终提交当天执行手册 | Ready | `submissions/SUBMISSION_DAY_RUNBOOK_ZH.md` 已准备 | 提交当天按顺序处理 WebGL、视频、CodeBuddy、PPT 和问卷回填 |
 | 评委快速打开指南 | Ready | `submissions/JUDGE_QUICK_START.md` 已准备 | 填入 WebGL 和 Demo 视频链接 |
 | 路演口播稿 | Ready | `submissions/ROADSHOW_PITCH_SCRIPT.md` 已准备 | 答辩或视频录制前按真实链接微调 |
 | 路演答辩速查卡 | Ready | `submissions/ROADSHOW_QA_CHEATSHEET_ZH.md` 已准备 | 现场答辩前快速排练 |

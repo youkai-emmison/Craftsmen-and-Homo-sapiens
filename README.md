@@ -83,6 +83,8 @@
   - 最终提交问卷用的信息总表。
 - `submissions/FINAL_DELIVERABLES_MANIFEST.md`
   - 最终交付包清单，集中说明哪些文件能直接上传、哪些还缺外部链接。
+- `submissions/SUBMISSION_DAY_RUNBOOK_ZH.md`
+  - 最终提交当天执行手册，按顺序处理 WebGL、视频、CodeBuddy、PPT 和问卷回填。
 - `submissions/FORM_ANSWERS_COPYPASTE_ZH.md`
   - 最终提交问卷复制稿。
 - `submissions/PROJECT_BOOK_FINAL_ZH.md`
