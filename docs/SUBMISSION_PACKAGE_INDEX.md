@@ -22,6 +22,9 @@
 - `submissions/FINAL_SUBMISSION_INFO.md`
   - 最终提交问卷用的信息总表，集中记录作品简介、材料路径和待补链接。
 
+- `submissions/CODEBUDDY_SUBMISSION_CHECKLIST.md`
+  - CodeBuddy 历史记录导出前的检查清单，包含可直接复制的最终检查提示词。
+
 - `docs/CODEBUDDY_EXPORT_GUIDE.md`
   - CodeBuddy 历史对话导出和最后一轮检查提示词。
 
@@ -29,6 +32,9 @@
 
 - `docs/DEMO_VIDEO_SCRIPT.md`
   - 3 分钟 Demo 视频脚本。
+
+- `submissions/DEMO_RECORDING_RUNBOOK.md`
+  - Demo 录屏执行清单，用来逐项确认录屏画面、旁白节奏和上传后检查。
 
 - `docs/PPT_OUTLINE.md`
   - 作品介绍 PPT 大纲。
