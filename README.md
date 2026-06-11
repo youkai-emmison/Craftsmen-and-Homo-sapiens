@@ -67,13 +67,40 @@
 
 `docs/WEBGL_DEPLOYMENT.md`
 
-## 提交材料占位
+## 黑客松提交包
 
-- 在线试玩链接：待部署后填写
-- Demo 视频链接：待录制后填写
-- PPT 文件：根据 `docs/PPT_OUTLINE.md` 制作
-- CodeBuddy 历史对话：提交前从 CodeBuddy 导出
-- 社交媒体链接：可选加分项，建议带话题 `#CodeBuddy #腾讯云黑客松`
+最终提交材料集中放在：
+
+`submissions/README.md`
+
+已准备好的材料包括：
+
+- `submissions/Craftsmen_Hackathon_Deck.pptx`
+  - 10 页作品介绍 PPT 初稿。
+- `submissions/Craftsmen_Hackathon_Deck_Preview.pdf`
+  - PPT 的 10 页 PDF 预览版。
+- `submissions/FINAL_SUBMISSION_INFO.md`
+  - 最终提交问卷用的信息总表。
+- `submissions/JUDGE_QUICK_START.md`
+  - 评委快速打开指南。
+- `submissions/SUBMISSION_READINESS_AUDIT.md`
+  - 最终提交前的就绪审计表。
+- `submissions/WEBGL_UPLOAD_RUNBOOK.md`
+  - WebGL 在线试玩链接执行清单。
+- `submissions/DEMO_RECORDING_RUNBOOK.md`
+  - Demo 录屏执行清单。
+- `submissions/CODEBUDDY_SUBMISSION_CHECKLIST.md`
+  - CodeBuddy 历史记录导出检查清单。
+- `submissions/TEAM_INFO_TEMPLATE.md`
+  - 团队成员信息模板。
+
+仍需在最终提交前外部补齐：
+
+- 在线试玩链接。
+- Demo 视频链接。
+- CodeBuddy 历史对话导出文件或链接。
+- 团队成员姓名、学校和分工。
+- PPT 最后一页中的真实链接与团队信息。
 
 ## 重要说明
 
