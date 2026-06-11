@@ -35,6 +35,7 @@
 - 项目书：`docs/PROJECT_PROPOSAL_ZH.md`
 - 最终提交问卷复制稿：`submissions/FORM_ANSWERS_COPYPASTE_ZH.md`
 - 最终项目书提交版：`submissions/PROJECT_BOOK_FINAL_ZH.md`
+- 最终项目书 Word 版：`submissions/PROJECT_BOOK_FINAL_ZH.docx`
 - AI 创作说明：`docs/AI_CREATION_LOG.md`
 - 最终链接回填表：`submissions/LINKS_TO_FILL.md`
 - Demo 视频脚本：`docs/DEMO_VIDEO_SCRIPT.md`

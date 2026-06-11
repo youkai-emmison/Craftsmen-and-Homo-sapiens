@@ -8,6 +8,7 @@
 - [ ] 一句话介绍已准备
 - [ ] 项目书已准备：`docs/PROJECT_PROPOSAL_ZH.md`
 - [ ] 最终项目书提交版已准备：`submissions/PROJECT_BOOK_FINAL_ZH.md`
+- [ ] 最终项目书 Word 版已准备：`submissions/PROJECT_BOOK_FINAL_ZH.docx`
 
 ## 必交材料
 

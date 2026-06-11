@@ -25,6 +25,10 @@
   - 最终项目书提交版。
   - 比 `docs/PROJECT_PROPOSAL_ZH.md` 更适合直接交给评委、报名表或老师审核。
 
+- `submissions/PROJECT_BOOK_FINAL_ZH.docx`
+  - 最终项目书 Word 版。
+  - 可直接作为附件上传，或手动另存为 PDF。
+
 - `submissions/LINKS_TO_FILL.md`
   - 最终链接回填表。
   - 用于集中填写 WebGL、Demo 视频、PPT、CodeBuddy、社交媒体等外部链接。
@@ -74,7 +78,7 @@
 1. 先打开 `Craftsmen_Hackathon_Deck.pptx` 检查文字和版式。
 2. 需要快速预览或上传时，可以使用 `Craftsmen_Hackathon_Deck_Preview.pdf`。
 3. 填报名表时优先使用 `FORM_ANSWERS_COPYPASTE_ZH.md`。
-4. 如需正式项目书，优先使用 `PROJECT_BOOK_FINAL_ZH.md`。
+4. 如需正式项目书，优先使用 `PROJECT_BOOK_FINAL_ZH.docx`，需要复制内容时再看 `PROJECT_BOOK_FINAL_ZH.md`。
 5. 按 `TEAM_INFO_TEMPLATE.md` 补齐团队成员和分工。
 6. 把团队成员、试玩链接、视频链接补进最后一页或备注里。
 7. 按 `WEBGL_UPLOAD_RUNBOOK.md` 构建、上传并检查 WebGL 在线试玩链接。
