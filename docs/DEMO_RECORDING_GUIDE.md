@@ -8,16 +8,17 @@
 
 ## Timeline
 
-和新版 PPT 第 6 页保持一致：
+和新版 PPT 第 6 页保持一致。当前已经有 6 张清理后的真实截图用于 PPT 和海报：
 
 | Time | Shot | What To Show |
 | --- | --- | --- |
-| 0:00 | 开场 | 项目名、出生点、主角画面 |
-| 0:30 | NPC / 日志 | NPC 对话或工坊记忆日志 |
-| 1:00 | 移动战斗 | 移动、跳跃、近战攻击、普通怪 |
-| 2:00 | 成长反馈 | 经验、制作、技力、背包或成长反馈 |
-| 3:00 | Boss | Boss 房或最终异常体 |
-| 4:00 | Victory | Demo Complete / Victory / 结局文本 |
+| 0:00 | 移动 / 开场 | 主角移动、跳跃、攻击，参考 `01_move_jump_attack_clean.png` |
+| 0:30 | NPC / 日志 | NPC 对话和叙事提示，参考 `02_npc_dialogue_clean.png` |
+| 1:30 | 背包 | 背包、装备说明、角色属性，参考 `03_backpack_clean.png` |
+| 2:00 | 合成 | 材料和 Craft 按钮，参考 `04_crafting_clean.png` |
+| 2:30 | 技能树 | 技能图标、技能说明和成长反馈，参考 `05_skilltree_clean.png` |
+| 3:30 | Boss | Boss 战斗高潮，参考 `06_boss_combat_clean.png` |
+| 4:00 | Victory | Demo Complete / Victory / 结局文本，最终录屏时补拍 |
 
 ## Must-Capture 7 Shots
 
@@ -50,6 +51,26 @@ Submission/screenshots/
 ```text
 docs/SCREENSHOT_CAPTURE_GUIDE.md
 ```
+
+## Current Clean Screenshots
+
+这些图片已经进入 `Submission/clean_screenshots/`，可直接用于海报和 PPT：
+
+1. `01_move_jump_attack_clean.png`
+2. `02_npc_dialogue_clean.png`
+3. `03_backpack_clean.png`
+4. `04_crafting_clean.png`
+5. `05_skilltree_clean.png`
+6. `06_boss_combat_clean.png`
+7. `06_boss_combat_hero_crop.png`
+
+清理脚本：
+
+```text
+tools/clean_submission_screenshots.py
+```
+
+清理只删除录屏提示、视频字幕和无关边缘，不伪造游戏 UI。
 
 ## Recording Checklist
 

@@ -1,6 +1,6 @@
-// Generate a cleaner editable hackathon PPTX with fewer boxes and no status page.
+// Generate an editable screenshot-driven hackathon PPTX.
 // Key variables:
-// - finalPptx: editable PowerPoint output.
+// - cleanDir: cleaned real gameplay screenshots used as primary visuals.
 // - previewDir: rendered slide PNGs used for visual QA.
 
 const fs = require("node:fs/promises");
@@ -9,11 +9,13 @@ const { Presentation, PresentationFile } = require("@oai/artifact-tool");
 
 const root = path.resolve(__dirname, "..");
 const outputDir = path.join(root, "Submission");
+const cleanDir = path.join(outputDir, "clean_screenshots");
+const visualDir = path.join(outputDir, "visual_assets");
 const previewDir = path.join(outputDir, "project_deck_assets");
 const finalPptx = path.join(outputDir, "project_deck.pptx");
-const visualDir = path.join(outputDir, "visual_assets");
 const deckNotesPath = path.join(outputDir, "project_deck_notes.md");
 const deckMarkdownPath = path.join(outputDir, "project_deck.md");
+const layoutPlanPath = path.join(outputDir, "layout_plan_v3.md");
 const speakerNotesPath = path.join(root, "docs", "PPT_SPEAKER_NOTES.md");
 
 const W = 1280;
@@ -23,69 +25,71 @@ const COLORS = {
   cream: "#FFF4E4",
   pink: "#FF80B8",
   blue: "#74CDFF",
-  mint: "#CBF0E5",
   purple: "#634893",
-  dark: "#322853",
+  dark: "#2C2348",
+  darker: "#211B33",
   muted: "#695F84",
   white: "#FFFFFF",
 };
 
+const screenshots = {
+  move: "01_move_jump_attack_clean.png",
+  npc: "02_npc_dialogue_clean.png",
+  backpack: "03_backpack_clean.png",
+  craft: "04_crafting_clean.png",
+  skill: "05_skilltree_clean.png",
+  boss: "06_boss_combat_clean.png",
+  bossHero: "06_boss_combat_hero_crop.png",
+};
+
 const slides = [
   {
-    title: "能工智人：遗忘工坊",
-    subtitle: "Craftsmen and Homo Sapiens: The Forgotten Forge",
-    label: "Title",
-    layout: "主视觉封面",
-    assets: ["hero_stage.png"],
-    purpose: "用主角、NPC、怪物和工坊场景建立第一眼游戏感。",
+    title: "封面：Boss 战主视觉",
+    layout: "全屏截图 + 左侧标题",
+    assets: [screenshots.bossHero],
+    purpose: "让评委第一眼看到真实游戏画面，而不是素材拼贴。",
   },
   {
     title: "游戏是什么",
-    subtitle: "AI 叙事驱动的横版动作冒险。",
-    label: "Game",
-    layout: "左图右文",
-    assets: ["player_lineup.png"],
-    purpose: "用主角动作展示和短文本解释游戏类型。",
-  },
-  {
-    title: "核心玩法循环",
-    subtitle: "进入房间、读日志、战斗、成长、开门、Boss、结局。",
-    label: "Loop",
-    layout: "横向流程图",
-    assets: ["gameplay_loop_route.png"],
-    purpose: "把核心闭环画成路线，不用大段文字解释。",
-  },
-  {
-    title: "角色与怪物",
-    subtitle: "主角、NPC、普通怪、精英怪和 Boss 占位都有真实素材。",
-    label: "Cast",
-    layout: "双图阵容展示",
-    assets: ["player_lineup.png", "enemy_lineup.png"],
-    purpose: "展示真实项目素材，不堆文字。",
+    layout: "左侧大截图 + 右侧关键词",
+    assets: [screenshots.move],
+    purpose: "用移动、跳跃、攻击画面解释横版动作和房间推进。",
   },
   {
     title: "AI 叙事进入游戏",
-    subtitle: "AI 生成内容会进入工坊记忆日志和 NPC 对话。",
-    label: "Narrative",
-    layout: "日志 UI 展示",
-    assets: ["memory_log_mock.png"],
-    purpose: "证明 AI 内容和游戏流程有关，而不是只在项目书里。",
+    layout: "NPC 对话截图 + 叙事说明",
+    assets: [screenshots.npc],
+    purpose: "证明 AI 叙事不是只写在文档中，而是进入 NPC 对话和记忆日志。",
+  },
+  {
+    title: "背包、装备与成长",
+    layout: "背包 UI 大截图 + 系统说明",
+    assets: [screenshots.backpack],
+    purpose: "展示背包、装备说明和属性成长。",
+  },
+  {
+    title: "合成与技能树",
+    layout: "上下双截图 + 成长路线",
+    assets: [screenshots.craft, screenshots.skill],
+    purpose: "展示材料、合成、技能学习如何连接战斗成长。",
   },
   {
     title: "Demo 录屏路线",
-    subtitle: "开场、日志、战斗、成长、Boss、Victory。",
-    label: "Demo",
-    layout: "时间轴",
-    assets: ["demo_timeline.png"],
-    purpose: "让录屏路线清楚，不讲额外状态。",
+    layout: "六截图时间轴",
+    assets: [screenshots.move, screenshots.npc, screenshots.backpack, screenshots.craft, screenshots.skill, screenshots.boss],
+    purpose: "把 3-5 分钟演示路线讲清楚。",
   },
   {
-    title: "技术结构",
-    subtitle: "Unity 2D 原型拆成 Player、Combat、Enemy、Rooms、UI、Dialogue、WebGL。",
-    label: "Tech",
-    layout: "模块图",
-    assets: ["tech_architecture.png"],
-    purpose: "简洁展示工程结构。",
+    title: "技术结构与部署准备",
+    layout: "模块节点图 + Boss 小截图",
+    assets: [screenshots.boss, "tech_architecture.png"],
+    purpose: "说明 Unity 2D 模块拆分和 WebGL 静态部署准备。",
+  },
+  {
+    title: "亮点与交付材料",
+    layout: "真实截图条 + 亮点摘要",
+    assets: [screenshots.move, screenshots.npc, screenshots.craft, screenshots.skill, screenshots.boss],
+    purpose: "收束作品亮点与提交材料，不再做一页“我们没做什么”。",
   },
 ];
 
@@ -98,14 +102,22 @@ async function readImageBlob(filePath) {
   return bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength);
 }
 
-function addText(slide, text, x, y, w, h, style = {}) {
+function screenshotPath(fileName) {
+  return path.join(cleanDir, fileName);
+}
+
+function visualPath(fileName) {
+  return path.join(visualDir, fileName);
+}
+
+function text(slide, value, x, y, w, h, style = {}) {
   const box = slide.shapes.add({
     geometry: "textbox",
     position: { left: x, top: y, width: w, height: h },
     fill: "none",
     line: { style: "solid", fill: "none", width: 0 },
   });
-  box.text = text;
+  box.text = value;
   box.text.style = {
     fontFace: "Microsoft YaHei",
     color: COLORS.dark,
@@ -114,43 +126,26 @@ function addText(slide, text, x, y, w, h, style = {}) {
   return box;
 }
 
-function addPanel(slide, x, y, w, h, fill = COLORS.white, stroke = COLORS.pink, radius = "rounded-xl", width = 1.5) {
-  return slide.shapes.add({
+function panel(slide, x, y, w, h, fill = COLORS.white, line = "none", width = 0, radius = "rounded-xl") {
+  slide.shapes.add({
     geometry: "roundRect",
     position: { left: x, top: y, width: w, height: h },
     fill,
-    line: { style: "solid", fill: stroke, width },
+    line: { style: "solid", fill: line, width },
     borderRadius: radius,
   });
 }
 
-function addSubtleShape(slide, x, y, w, h, fill) {
+function rectangle(slide, x, y, w, h, fill, line = "none", width = 0) {
   slide.shapes.add({
-    geometry: "ellipse",
+    geometry: "rect",
     position: { left: x, top: y, width: w, height: h },
     fill,
-    line: { style: "solid", fill: "none", width: 0 },
+    line: { style: "solid", fill: line, width },
   });
 }
 
-function addSlideChrome(slide, number, label) {
-  slide.background.fill = COLORS.paper;
-  addSubtleShape(slide, -52, 54, 120, 120, "#DDF4FF");
-  addSubtleShape(slide, 1180, -52, 140, 140, "#FFE0EF");
-  addText(slide, `${String(number).padStart(2, "0")} / 07`, 64, 34, 90, 22, {
-    fontSize: 12,
-    bold: true,
-    color: COLORS.pink,
-  });
-  addText(slide, label, 160, 34, 220, 22, {
-    fontSize: 12,
-    bold: true,
-    color: COLORS.muted,
-  });
-}
-
-async function addImage(slide, fileName, x, y, w, h, alt, fit = "contain") {
-  const filePath = path.join(visualDir, fileName);
+async function image(slide, filePath, x, y, w, h, alt, fit = "contain") {
   const blob = await readImageBlob(filePath);
   slide.images.add({
     blob,
@@ -162,180 +157,277 @@ async function addImage(slide, fileName, x, y, w, h, alt, fit = "contain") {
   });
 }
 
-function addFooter(slide) {
-  addText(slide, "能工智人：遗忘工坊", 64, 684, 250, 22, {
-    fontSize: 12,
-    color: COLORS.muted,
-  });
-  addText(slide, "叙事类游戏 / Narrative Games", 900, 684, 260, 22, {
-    fontSize: 12,
-    color: COLORS.muted,
-  });
+function footer(slide, number) {
+  text(slide, `0${number} / 08`, 56, 684, 84, 22, { fontSize: 12, bold: true, color: COLORS.pink });
+  text(slide, "能工智人：遗忘工坊 | Narrative Games", 150, 684, 360, 22, { fontSize: 12, color: COLORS.muted });
+}
+
+function bullet(slide, value, x, y, color = COLORS.pink) {
+  rectangle(slide, x, y + 8, 10, 10, color);
+  text(slide, value, x + 24, y, 340, 34, { fontSize: 24, bold: true, color: COLORS.dark });
 }
 
 async function slideCover(presentation) {
   const slide = presentation.slides.add();
-  addSlideChrome(slide, 1, "Title");
-  await addImage(slide, "hero_stage.png", 500, 96, 660, 500, "Hero stage", "contain");
-  addPanel(slide, 72, 118, 470, 300, COLORS.white, COLORS.pink, "rounded-2xl", 2);
-  addText(slide, "能工智人：遗忘工坊", 104, 154, 410, 62, { fontSize: 39, bold: true });
-  addText(slide, "Craftsmen and Homo Sapiens:\nThe Forgotten Forge", 106, 224, 380, 58, {
+  slide.background.fill = COLORS.darker;
+  await image(slide, screenshotPath(screenshots.bossHero), 0, 0, W, H, "Boss combat hero crop", "cover");
+  rectangle(slide, 0, 0, 500, H, "#211B33");
+  text(slide, "能工智人：遗忘工坊", 58, 104, 405, 120, { fontSize: 48, bold: true, color: COLORS.white });
+  text(slide, "Craftsmen and Homo Sapiens:\nThe Forgotten Forge", 60, 236, 390, 78, {
     fontSize: 22,
     bold: true,
-    color: COLORS.purple,
+    color: "#DDF4FF",
   });
-  addText(slide, "叙事类游戏 / Narrative Games", 106, 304, 360, 28, {
-    fontSize: 21,
-    bold: true,
-    color: COLORS.pink,
+  text(slide, "叙事类游戏 / Narrative Games", 62, 340, 350, 32, { fontSize: 22, bold: true, color: "#FFB4D1" });
+  text(slide, "AI 叙事驱动的横版动作冒险，在地下工坊的记忆日志中揭开文明冲突真相。", 62, 402, 370, 90, {
+    fontSize: 22,
+    color: COLORS.white,
   });
-  addText(slide, "AI 叙事 + 横版动作 + 工坊记忆日志", 106, 350, 360, 30, {
-    fontSize: 20,
-    color: COLORS.dark,
-  });
-  addFooter(slide);
+  text(slide, "Team / Demo Link：待回填", 62, 604, 350, 26, { fontSize: 18, color: "#FFF4E4" });
 }
 
-async function slideWhatGame(presentation) {
+async function slideGame(presentation) {
   const slide = presentation.slides.add();
-  addSlideChrome(slide, 2, "Game");
-  await addImage(slide, "player_lineup.png", 66, 120, 560, 420, "Player action lineup", "contain");
-  addText(slide, "游戏是什么", 700, 120, 360, 54, { fontSize: 43, bold: true });
-  addText(slide, "玩家进入一座会留下记忆的地下工坊，在轻量动作战斗中拼合文明冲突的真相。", 702, 190, 420, 78, {
-    fontSize: 23,
-    color: COLORS.muted,
-  });
-  addText(slide, "横版动作", 704, 318, 220, 30, { fontSize: 27, bold: true, color: COLORS.pink });
-  addText(slide, "房间推进", 704, 382, 220, 30, { fontSize: 27, bold: true, color: COLORS.blue });
-  addText(slide, "AI 记忆日志", 704, 446, 260, 30, { fontSize: 27, bold: true, color: COLORS.purple });
-  addFooter(slide);
-}
-
-async function slideLoop(presentation) {
-  const slide = presentation.slides.add();
-  addSlideChrome(slide, 3, "Loop");
-  addText(slide, "核心玩法循环", 76, 84, 400, 54, { fontSize: 43, bold: true });
-  addText(slide, "一条路线讲清楚 Demo：读日志、战斗、成长、开门、Boss、结局。", 78, 150, 760, 36, {
+  slide.background.fill = COLORS.paper;
+  await image(slide, screenshotPath(screenshots.move), 54, 96, 700, 480, "Move jump attack screenshot", "cover");
+  text(slide, "游戏是什么", 820, 110, 320, 58, { fontSize: 44, bold: true });
+  text(slide, "玩家进入一座会留下记忆的地下工坊，在房间推进和动作战斗中拼合文明冲突的真相。", 822, 184, 340, 98, {
     fontSize: 22,
     color: COLORS.muted,
   });
-  await addImage(slide, "gameplay_loop_route.png", 96, 218, 1060, 370, "Gameplay route", "contain");
-  addFooter(slide);
-}
-
-async function slideCast(presentation) {
-  const slide = presentation.slides.add();
-  addSlideChrome(slide, 4, "Cast");
-  addText(slide, "角色与怪物", 76, 84, 360, 54, { fontSize: 43, bold: true });
-  addText(slide, "用真实素材展示主角、NPC、普通怪、精英怪和 Boss 占位。", 78, 150, 720, 36, {
-    fontSize: 22,
-    color: COLORS.muted,
-  });
-  await addImage(slide, "player_lineup.png", 70, 220, 540, 350, "Player lineup", "contain");
-  await addImage(slide, "enemy_lineup.png", 670, 220, 520, 350, "Enemy lineup", "contain");
-  addFooter(slide);
+  bullet(slide, "横版动作", 824, 330, COLORS.pink);
+  bullet(slide, "房间推进", 824, 392, COLORS.blue);
+  bullet(slide, "AI 记忆日志", 824, 454, COLORS.purple);
+  footer(slide, 2);
 }
 
 async function slideNarrative(presentation) {
   const slide = presentation.slides.add();
-  addSlideChrome(slide, 5, "Narrative");
-  await addImage(slide, "memory_log_mock.png", 74, 126, 680, 430, "Memory log mock", "contain");
-  addText(slide, "AI 叙事进入游戏", 820, 126, 350, 54, { fontSize: 38, bold: true });
-  addText(slide, "AI 辅助生成世界观、房间日志、Boss 背景和结局文本，并通过工坊记忆日志与 NPC 对话进入流程。", 822, 196, 350, 112, {
-    fontSize: 22,
+  slide.background.fill = "#F6F2FF";
+  text(slide, "AI 叙事进入游戏", 68, 56, 500, 56, { fontSize: 42, bold: true });
+  text(slide, "真实 NPC 对话截图说明：AI 生成内容进入 UI 与流程，而不是只停留在文档里。", 70, 116, 760, 34, {
+    fontSize: 20,
     color: COLORS.muted,
   });
-  addText(slide, "世界观", 824, 360, 180, 30, { fontSize: 26, bold: true, color: COLORS.pink });
-  addText(slide, "房间日志", 824, 420, 180, 30, { fontSize: 26, bold: true, color: COLORS.blue });
-  addText(slide, "Boss 背景与结局", 824, 480, 260, 30, { fontSize: 26, bold: true, color: COLORS.purple });
-  addFooter(slide);
+  await image(slide, screenshotPath(screenshots.npc), 64, 178, 760, 430, "NPC dialogue screenshot", "cover");
+  panel(slide, 876, 178, 328, 430, "#FFFFFF", "#FF80B8", 2, "rounded-2xl");
+  text(slide, "AI 生成内容", 910, 218, 250, 36, { fontSize: 28, bold: true, color: COLORS.purple });
+  bullet(slide, "世界观与势力关系", 910, 292, COLORS.pink);
+  bullet(slide, "房间记忆日志", 910, 354, COLORS.blue);
+  bullet(slide, "Boss 背景", 910, 416, COLORS.purple);
+  bullet(slide, "结局文本", 910, 478, COLORS.pink);
+  footer(slide, 3);
+}
+
+async function slideBackpack(presentation) {
+  const slide = presentation.slides.add();
+  slide.background.fill = COLORS.paper;
+  text(slide, "背包、装备与成长", 70, 64, 500, 56, { fontSize: 42, bold: true });
+  await image(slide, screenshotPath(screenshots.backpack), 64, 148, 720, 430, "Backpack screenshot", "cover");
+  text(slide, "系统在 Demo 中承担“变强”的可见反馈。", 840, 156, 340, 64, {
+    fontSize: 24,
+    bold: true,
+    color: COLORS.dark,
+  });
+  bullet(slide, "装备说明", 842, 260, COLORS.pink);
+  bullet(slide, "角色属性", 842, 322, COLORS.blue);
+  bullet(slide, "道具与材料", 842, 384, COLORS.purple);
+  bullet(slide, "战斗数值成长", 842, 446, COLORS.pink);
+  footer(slide, 4);
+}
+
+async function slideCraftSkill(presentation) {
+  const slide = presentation.slides.add();
+  slide.background.fill = "#FFF4E4";
+  text(slide, "合成与技能树", 70, 52, 430, 54, { fontSize: 42, bold: true });
+  text(slide, "材料掉落 -> 合成道具 -> 学习技能 -> 强化战斗", 72, 112, 740, 32, {
+    fontSize: 22,
+    bold: true,
+    color: COLORS.purple,
+  });
+  await image(slide, screenshotPath(screenshots.craft), 66, 174, 520, 370, "Crafting screenshot", "cover");
+  text(slide, "Crafting", 224, 562, 180, 28, { fontSize: 24, bold: true, color: COLORS.purple });
+  text(slide, "➜", 610, 330, 50, 50, { fontSize: 42, bold: true, color: COLORS.pink });
+  await image(slide, screenshotPath(screenshots.skill), 690, 174, 520, 370, "Skill tree screenshot", "cover");
+  text(slide, "Skill Tree", 850, 562, 180, 28, { fontSize: 24, bold: true, color: COLORS.purple });
+  footer(slide, 5);
 }
 
 async function slideTimeline(presentation) {
   const slide = presentation.slides.add();
-  addSlideChrome(slide, 6, "Demo");
-  addText(slide, "Demo 录屏路线", 76, 84, 420, 54, { fontSize: 43, bold: true });
-  addText(slide, "开场、日志、战斗、成长、Boss、Victory。", 78, 150, 620, 36, {
-    fontSize: 22,
-    color: COLORS.muted,
-  });
-  await addImage(slide, "demo_timeline.png", 110, 218, 1000, 380, "Demo timeline", "contain");
-  addFooter(slide);
+  slide.background.fill = COLORS.paper;
+  text(slide, "Demo 录屏路线", 64, 48, 430, 54, { fontSize: 42, bold: true });
+  text(slide, "按这个顺序录，评委 3–5 分钟可以看懂完整闭环。", 66, 108, 680, 32, { fontSize: 21, color: COLORS.muted });
+  const shots = [
+    ["0:00 移动", screenshots.move],
+    ["0:30 对话", screenshots.npc],
+    ["1:30 背包", screenshots.backpack],
+    ["2:00 合成", screenshots.craft],
+    ["2:30 技能", screenshots.skill],
+    ["3:30 Boss", screenshots.boss],
+  ];
+  for (let index = 0; index < shots.length; index += 1) {
+    const [label, fileName] = shots[index];
+    const col = index % 3;
+    const row = Math.floor(index / 3);
+    const x = 66 + col * 398;
+    const y = 170 + row * 226;
+    await image(slide, screenshotPath(fileName), x, y, 348, 174, label, "cover");
+    text(slide, label, x, y + 184, 220, 26, { fontSize: 19, bold: true, color: COLORS.dark });
+  }
+  footer(slide, 6);
 }
 
 async function slideTech(presentation) {
   const slide = presentation.slides.add();
-  addSlideChrome(slide, 7, "Tech");
-  addText(slide, "技术结构", 76, 84, 320, 54, { fontSize: 43, bold: true });
-  addText(slide, "Unity 2D 原型模块保持拆分：玩家、战斗、敌人、房间、UI、对话与 WebGL。", 78, 150, 780, 36, {
-    fontSize: 22,
+  slide.background.fill = "#F6F2FF";
+  text(slide, "技术结构与部署准备", 68, 56, 520, 54, { fontSize: 40, bold: true });
+  await image(slide, visualPath("tech_architecture.png"), 60, 150, 600, 420, "Tech architecture", "contain");
+  await image(slide, screenshotPath(screenshots.boss), 716, 158, 470, 270, "Boss combat screenshot", "cover");
+  text(slide, "Unity 2D 模块", 730, 468, 260, 30, { fontSize: 26, bold: true, color: COLORS.purple });
+  text(slide, "Player / Combat / Enemy / Rooms / UI / Dialogue / Craft / Skill", 730, 510, 430, 54, {
+    fontSize: 20,
     color: COLORS.muted,
   });
-  await addImage(slide, "tech_architecture.png", 130, 218, 960, 380, "Tech architecture", "contain");
-  addFooter(slide);
+  text(slide, "WebGL Build 可部署到 Render、Cloudflare Pages 或 GitHub Pages。", 730, 582, 420, 42, {
+    fontSize: 18,
+    color: COLORS.dark,
+  });
+  footer(slide, 7);
 }
 
-async function writeDeckDocs() {
-  const slideList = slides
+async function slideHighlights(presentation) {
+  const slide = presentation.slides.add();
+  slide.background.fill = COLORS.paper;
+  text(slide, "亮点与交付材料", 68, 56, 460, 54, { fontSize: 42, bold: true });
+  text(slide, "真实截图已经进入海报和 PPT，提交材料更像一个可玩的游戏作品。", 70, 116, 760, 32, {
+    fontSize: 21,
+    color: COLORS.muted,
+  });
+  const strip = [screenshots.move, screenshots.npc, screenshots.craft, screenshots.skill, screenshots.boss];
+  for (let index = 0; index < strip.length; index += 1) {
+    await image(slide, screenshotPath(strip[index]), 64 + index * 230, 170, 196, 112, `Highlight ${index + 1}`, "cover");
+  }
+  const highlights = [
+    "AI 叙事驱动",
+    "真实可玩 Demo",
+    "背包 / 合成 / 技能树",
+    "Boss 战高潮",
+    "WebGL 部署准备",
+  ];
+  for (let index = 0; index < highlights.length; index += 1) {
+    const x = 96 + (index % 3) * 360;
+    const y = 350 + Math.floor(index / 3) * 84;
+    bullet(slide, highlights[index], x, y, index % 2 === 0 ? COLORS.pink : COLORS.blue);
+  }
+  text(slide, "回填位：Team / Demo Link / Video Link / CodeBuddy Export", 94, 594, 760, 28, {
+    fontSize: 18,
+    color: COLORS.muted,
+  });
+  footer(slide, 8);
+}
+
+async function writeTextArtifacts() {
+  const slideRows = slides
     .map((slide, index) => `| ${index + 1} | ${slide.title} | ${slide.layout} | ${slide.assets.join(", ")} | ${slide.purpose} |`)
     .join("\n");
 
   await fs.writeFile(
+    layoutPlanPath,
+    `# Submission Layout Plan V3\n\n` +
+      `V3 的核心原则是以真实游戏截图为主视觉，不再把截图硬塞进模板框里。\n\n` +
+      `## Poster Layout\n\n` +
+      `- 主视觉：使用 \`Submission/clean_screenshots/06_boss_combat_hero_crop.png\` 作为大背景。\n` +
+      `- 叙事证明：使用 \`02_npc_dialogue_clean.png\` 做“工坊记忆日志 / NPC 对话”区域。\n` +
+      `- 底部截图条：使用 01、02、03、04、05、06 六张 clean 图。\n` +
+      `- 标题区：左上深色遮罩，避免文字压在复杂截图上。\n` +
+      `- Team / Demo Link：保留待回填位置，不伪造链接。\n\n` +
+      `## PPT Layouts\n\n` +
+      `| # | Page | Layout | Screenshots / Assets | Purpose |\n| - | - | - | - | - |\n${slideRows}\n\n` +
+      `## Screenshot Usage\n\n` +
+      `- 01：基础操作 / Slide 2 / Slide 6 / Slide 8。\n` +
+      `- 02：NPC 对话与 AI 叙事 / Slide 3 / Slide 6 / Poster。\n` +
+      `- 03：背包与成长 / Slide 4 / Slide 6。\n` +
+      `- 04：合成系统 / Slide 5 / Slide 6 / Slide 8。\n` +
+      `- 05：技能树 / Slide 5 / Slide 6 / Slide 8。\n` +
+      `- 06：Boss 战 / Poster / Slide 1 / Slide 6 / Slide 7 / Slide 8。\n\n` +
+      `## Anti-Overlap Rules\n\n` +
+      `- 文字不直接压在复杂截图上；封面使用深色侧栏。\n` +
+      `- 每页保留大图，最多 4 个短文本块。\n` +
+      `- 图片全部等比例缩放或裁剪，不拉伸。\n` +
+      `- 装饰减少到最低，不再堆随机圆点和多层框。\n`,
+    "utf8",
+  );
+
+  await fs.writeFile(
     deckNotesPath,
-    `# Project Deck Notes V3\n\n` +
-      `新版 PPT 删除了“提交状态/待完成事项”页面，减少边框、圆点和框套框，重点修复重叠问题。\n\n` +
+    `# Project Deck Notes V4\n\n` +
+      `本版 PPT 使用 6 张真实游戏截图重做，重点修复“模板感、重叠、框太多”的问题。\n\n` +
       `## Slide Layouts\n\n` +
-      `| # | Title | Layout | Real Assets | Purpose |\n| - | - | - | - | - |\n${slideList}\n\n` +
-      `## QA Notes\n\n` +
-      `- 总页数从 8 页调整为 7 页。\n` +
-      `- 删除了“亮点与提交状态”页面，PPT 不再专门讲未完成事项。\n` +
-      `- 图片外层不再额外套粗边框，避免框套框。\n` +
-      `- 装饰圆点减少到页面边缘，避免遮挡标题、正文和图片。\n` +
-      `- PPTX 已导出到 \`Submission/project_deck.pptx\`，PNG 预览导出到 \`Submission/project_deck_assets/\`。\n`,
+      `| # | Page | Layout | Screenshot / Asset | Purpose |\n| - | - | - | - | - |\n${slideRows}\n\n` +
+      `## Export Notes\n\n` +
+      `- PPTX: \`Submission/project_deck.pptx\`\n` +
+      `- PDF: \`Submission/project_deck.pdf\`\n` +
+      `- Slide previews: \`Submission/project_deck_assets/slide-01.png\` 到 \`slide-08.png\`\n` +
+      `- Clean screenshots: \`Submission/clean_screenshots/\`\n\n` +
+      `## Manual Check\n\n` +
+      `- 最终答辩前请检查 Team、Demo Link、Video Link、CodeBuddy Export 是否已经回填。\n`,
     "utf8",
   );
 
   await fs.writeFile(
     deckMarkdownPath,
-    `# 能工智人：遗忘工坊 - Project Deck V3\n\n` +
-      `## 1. 封面\n能工智人：遗忘工坊 / Craftsmen and Homo Sapiens: The Forgotten Forge。\n\n` +
-      `## 2. 游戏是什么\nAI 叙事驱动的横版动作冒险：横版动作、房间推进、AI 记忆日志。\n\n` +
-      `## 3. 核心玩法循环\n进入房间 -> 读记忆日志 -> 战斗 -> 获得成长 -> 解锁下一房间 -> Boss -> 结局。\n\n` +
-      `## 4. 角色与怪物\n展示主角、NPC、普通怪、精英怪和 Boss 占位素材。\n\n` +
-      `## 5. AI 叙事进入游戏\nAI 生成世界观、房间日志、Boss 背景和结局文本，并通过 UI/对话进入游戏流程。\n\n` +
-      `## 6. Demo 录屏路线\n开场、日志、战斗、成长、Boss、Victory。\n\n` +
-      `## 7. 技术结构\nUnity 2D、Player、Combat、Enemy、Rooms、UI、Dialogue、WebGL。\n`,
+    `# 能工智人：遗忘工坊 - Project Deck V4\n\n` +
+      `## 1. 封面\n真实 Boss 战主视觉，展示游戏高潮。\n\n` +
+      `## 2. 游戏是什么\n基础移动、跳跃、攻击和横版场景。\n\n` +
+      `## 3. AI 叙事进入游戏\nNPC 对话截图证明 AI 叙事进入 UI 与流程。\n\n` +
+      `## 4. 背包、装备与成长\n展示背包、装备说明和角色属性。\n\n` +
+      `## 5. 合成与技能树\n展示材料、合成、技能学习和战斗成长的连接。\n\n` +
+      `## 6. Demo 录屏路线\n六张真实截图组成 3-5 分钟录屏时间轴。\n\n` +
+      `## 7. 技术结构与部署准备\nUnity 2D 模块和 WebGL 静态部署准备。\n\n` +
+      `## 8. 亮点与交付材料\n总结 AI 叙事、真实可玩 Demo、Boss 战和提交材料。\n`,
     "utf8",
   );
 
   await fs.writeFile(
     speakerNotesPath,
-    `# PPT Speaker Notes V3\n\n` +
+    `# PPT Speaker Notes V4\n\n` +
       `目标时长：3 到 5 分钟。\n\n` +
-      `## Slide 1\n用一句话介绍项目：这是一个 AI 叙事驱动的横版动作冒险原型，玩家进入被遗忘的地下工坊，通过战斗和记忆日志拼合真相。\n\n` +
-      `## Slide 2\n说明游戏短闭环：移动、跳跃、战斗、房间推进和叙事日志串在一起。\n\n` +
-      `## Slide 3\n按路线图讲流程：进入房间、读日志、战斗、成长、开门、Boss、结局。\n\n` +
-      `## Slide 4\n展示真实素材：主角、NPC、怪物和 Boss 占位。\n\n` +
-      `## Slide 5\n讲 AI 的核心价值：AI 生成世界观、房间日志、Boss 背景和结局文本，然后进入游戏 UI/对话。\n\n` +
-      `## Slide 6\n按时间轴说明 Demo 视频应该录什么：开场、日志、战斗、成长、Boss、Victory。\n\n` +
-      `## Slide 7\n用模块图说明 Unity 2D 技术结构：玩家、战斗、敌人、房间、UI、对话和 WebGL。\n`,
+      `## Slide 1\n用 Boss 战真实画面开场：这是一个 AI 叙事驱动的 2D 横版动作冒险原型，玩家进入遗忘工坊并挑战最终异常体。\n\n` +
+      `## Slide 2\n说明基础玩法：移动、跳跃、攻击和房间推进已经形成可录屏的横版动作体验。\n\n` +
+      `## Slide 3\n强调赛题契合度：AI 生成的世界观、房间日志、Boss 背景和结局文本通过 NPC 对话与记忆日志进入游戏流程。\n\n` +
+      `## Slide 4\n说明成长反馈：玩家可以通过背包看到装备、道具、属性和战斗数值变化。\n\n` +
+      `## Slide 5\n说明系统深度：材料掉落后可以合成道具，技能树提供进一步成长，最后服务于战斗表现。\n\n` +
+      `## Slide 6\n按时间轴讲 Demo 视频：开场移动、NPC 对话、背包、合成、技能树、Boss 战。Victory 画面由最终录屏补上。\n\n` +
+      `## Slide 7\n说明工程结构：Unity 2D 模块拆分清楚，WebGL 构建和静态部署文档已经准备。\n\n` +
+      `## Slide 8\n收束亮点：AI 叙事、真实可玩流程、系统成长、Boss 战高潮和提交材料准备。\n`,
     "utf8",
   );
 }
 
+async function verifySources() {
+  const required = Object.values(screenshots);
+  for (const fileName of required) {
+    await fs.access(screenshotPath(fileName));
+  }
+  await fs.access(visualPath("tech_architecture.png"));
+}
+
 async function main() {
+  await verifySources();
   await fs.mkdir(outputDir, { recursive: true });
   await fs.rm(previewDir, { recursive: true, force: true });
   await fs.mkdir(previewDir, { recursive: true });
 
   const presentation = Presentation.create({ slideSize: { width: W, height: H } });
   await slideCover(presentation);
-  await slideWhatGame(presentation);
-  await slideLoop(presentation);
-  await slideCast(presentation);
+  await slideGame(presentation);
   await slideNarrative(presentation);
+  await slideBackpack(presentation);
+  await slideCraftSkill(presentation);
   await slideTimeline(presentation);
   await slideTech(presentation);
+  await slideHighlights(presentation);
 
   for (const [index, slide] of presentation.slides.items.entries()) {
     const stem = `slide-${String(index + 1).padStart(2, "0")}`;
@@ -343,11 +435,11 @@ async function main() {
     const layout = await slide.export({ format: "layout" });
     await fs.writeFile(path.join(previewDir, `${stem}.layout.json`), await layout.text(), "utf8");
   }
-  await writeBlob(path.join(previewDir, "deck-montage.webp"), await presentation.export({ format: "webp", montage: true, scale: 1 }));
 
+  await writeBlob(path.join(previewDir, "deck-montage.webp"), await presentation.export({ format: "webp", montage: true, scale: 1 }));
   const pptx = await PresentationFile.exportPptx(presentation);
   await pptx.save(finalPptx);
-  await writeDeckDocs();
+  await writeTextArtifacts();
   console.log(`Generated PPTX: ${finalPptx}`);
 }
 

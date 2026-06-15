@@ -98,5 +98,5 @@ Submission/Craftsmen-and-Homo-sapiens_Source.zip
 WebGL 在线链接：尚未实际部署，等待人工部署后回填。
 Demo 视频：尚未最终录制，等待队友录屏后回填。
 CodeBuddy 历史记录：尚未导出，等待最终提交前回填。
-Unity 实机截图：可通过 Tools/Hackathon/Capture Submission Screenshots 生成；当前海报/PPT 中缺失位置已明确标注为截图占位。
+Unity 实机截图：已有 6 张真实运行截图用于海报和 PPT；Victory / 最终视频仍需人工录屏后回填。
 ```

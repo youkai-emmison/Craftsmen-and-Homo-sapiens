@@ -1,13 +1,23 @@
 # Poster Notes
 
-V2 海报按照 `Submission/layout_plan_v2.md` 重做，目标是更像游戏海报而不是文档封面。
+This screenshot-driven poster replaces the earlier asset-collage style.
 
-使用的真实素材：
+## Real Screenshots Used
 
-- Player: `Assets/Art/Generated/Characters/cat_maid_magic_wand_spritesheet.png`
-- Enemies: `Assets/Art/Generated/Enemies/*.png`
-- NPC: `Assets/Art/Generated/NPC/`
-- Items / Devices: `Assets/Art/Generated/Items/`, `Assets/Art/Generated/Devices/`
-- Tiles: `Assets/Art/Tiles/`
+- `Submission/clean_screenshots/06_boss_combat_hero_crop.png`: main poster background and gameplay climax.
+- `Submission/clean_screenshots/02_npc_dialogue_clean.png`: AI narrative / NPC dialogue proof panel.
+- `Submission/clean_screenshots/01_move_jump_attack_clean.png`: bottom screenshot strip, movement and combat.
+- `Submission/clean_screenshots/03_backpack_clean.png`: bottom screenshot strip, backpack and equipment.
+- `Submission/clean_screenshots/04_crafting_clean.png`: bottom screenshot strip, crafting.
+- `Submission/clean_screenshots/05_skilltree_clean.png`: bottom screenshot strip, skill growth.
+- `Submission/clean_screenshots/06_boss_combat_clean.png`: bottom screenshot strip, Boss combat.
 
-海报仍然保留诚实截图占位。真实 Unity 截图需要后续放入 `Submission/screenshots/` 后重新生成。
+## Cleanup Notes
+
+The source screenshots were cleaned by `tools/clean_submission_screenshots.py`.
+Video subtitles, the NVIDIA prompt, and irrelevant margins were removed. No gameplay UI was fabricated.
+
+## Honest Submission Notes
+
+- Demo Link and Team are still placeholders until humans fill them in.
+- This poster does not claim that deployment, video recording, or CodeBuddy export has already happened.

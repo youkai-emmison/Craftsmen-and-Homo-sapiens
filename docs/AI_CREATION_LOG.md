@@ -99,6 +99,25 @@ Submission/project_deck.pdf
 - 没有声称已经部署或已经录制最终视频。
 - 缺失的实机截图位置会明确标注为“等待 Unity 截图回填”。
 
+### Real Screenshot Cleanup
+
+团队提供了 6 张项目实际运行截图，Codex 辅助清理录屏遮挡并用于提交材料：
+
+```text
+Submission/raw_screenshots/
+Submission/clean_screenshots/
+tools/clean_submission_screenshots.py
+```
+
+清理内容包括：
+
+- 裁掉视频字幕区域。
+- 遮掉 NVIDIA 录屏提示。
+- 裁剪背包、合成、技能树等 UI 局部，让 PPT 更清楚。
+- 为 Boss 战生成海报和封面用的 16:9 主视觉裁切。
+
+这些处理只去除非游戏内容，不伪造不存在的 UI、角色、关卡或胜利画面。
+
 ### Development Assistance
 
 AI / Codex 辅助完成：
