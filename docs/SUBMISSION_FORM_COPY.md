@@ -31,21 +31,21 @@ AI 叙事驱动的横版动作冒险，在地下工坊的记忆日志中揭开�
 ## Project Description
 
 ```text
-《能工智人：遗忘工坊》是一款 AI 叙事驱动的 2D 横版动作游戏原型。玩家扮演一名进入地下工坊遗迹的探索者，在被遗忘的工匠文明与智人文明冲突中寻找真相。游戏流程包含开场叙事、房间探索、近战战斗、经验成长、Boss 战与结局文本。AI 生成的世界观、角色设定、房间档案与结局记录会在游戏中以“工坊记忆日志”的形式呈现，使玩家在战斗推进中逐步拼合剧情。
+《能工智人：遗忘工坊》是一款 AI 叙事驱动的 2D 横版动作游戏原型。玩家扮演进入地下工坊遗迹的探索者，在房间推进、近战战斗、经验成长、制作与 Boss 挑战中逐步接近被遗忘的文明真相。游戏把 AI 辅助生成的世界观、角色设定、房间档案、Boss 背景与结局文本嵌入为“工坊记忆日志”和 NPC 对话，让玩家在实际游玩流程中拼合剧情，而不是只在说明文档里阅读设定。
 ```
 
 ## AI-Assisted Modules
 
 ```text
 - 世界观与剧情 Worldbuilding & Story
-- 游戏原画 Game Key Art（海报与部分占位视觉由 AI/Codex 辅助生成）
-- Unity Demo、构建脚本与提交材料整理
+- 游戏视觉资产整理与展示 Game Visual Asset Presentation
+- Unity Demo、构建脚本、部署文档与提交材料整理
 ```
 
 ## AI Usage Description
 
 ```text
-使用 AI 辅助生成游戏世界观、角色势力、房间记忆日志、Boss 背景与结局文本，并将其嵌入游戏 UI 作为核心叙事内容。Codex/AI 辅助完成 Unity Demo 场景、战斗流程、WebGL 构建脚本、部署文档与展示材料生成。
+使用 AI 辅助生成游戏世界观、角色势力、房间记忆日志、Boss 背景与结局文本，并将其嵌入游戏 UI 与 NPC 对话作为核心叙事内容。Codex/AI 辅助完成 Unity Demo 场景、战斗流程、WebGL 构建脚本、部署文档、海报、PPT 和提交文案整理。当前项目没有在运行时接入实时 AI API。
 ```
 
 ## Playable Demo Link
@@ -75,6 +75,8 @@ Submission/project_deck.pdf
 
 ## Source Package
 
+本地生成，不推送 zip 到 GitHub：
+
 ```text
 Submission/Craftsmen-and-Homo-sapiens_Source.zip
 ```
@@ -87,4 +89,13 @@ Submission/Craftsmen-and-Homo-sapiens_Source.zip
 队长：待回填
 成员与分工：待回填
 联系方式：待回填
+```
+
+## Current Honesty Notes
+
+```text
+WebGL 在线链接：尚未实际部署，等待人工部署后回填。
+Demo 视频：尚未最终录制，等待队友录屏后回填。
+CodeBuddy 历史记录：尚未导出，等待最终提交前回填。
+Unity 实机截图：可通过 Tools/Hackathon/Capture Submission Screenshots 生成，当前海报/PPT 中缺失位置已明确标注为截图占位。
 ```

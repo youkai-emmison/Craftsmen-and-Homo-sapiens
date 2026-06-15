@@ -1,81 +1,83 @@
-# Project Deck Source
+# 能工智人：遗忘工坊 - Project Deck
 
-## 1. 能工智人：遗忘工坊
+这份 Markdown 与 `Submission/project_deck.pptx` 保持同一页结构，用于快速改稿。
 
-**AI 叙事驱动的横版动作冒险**
+## Slide 1. 能工智人：遗忘工坊
+
+AI 叙事驱动的横版动作冒险
 
 - 叙事类游戏 / Narrative Games
-- 地下工坊、记忆日志、可爱风横版战斗
+- 可爱工坊美术 + 地下遗迹探索
 - Demo Link / Team：待回填
 
-## 2. 创意背景
+Visual: `C:/Users/qintian/Desktop/腾讯比赛/Craftsmen-and-Homo-sapiens-master/Submission/visual_assets/character_cards.png`
 
-**一座会说话的遗忘工坊**
+## Slide 2. 游戏是什么
 
-- 玩家进入地下工坊遗迹
-- 通过房间记忆日志拼合文明冲突
-- 可爱画面包裹一点点神秘感
+玩家进入一座会留下记忆的地下工坊
 
-## 3. 核心循环
+- 横版动作：移动、跳跃、近战攻击
+- 房间推进：清敌、解锁门、进入下一段
+- AI 记忆日志：战斗中逐步补全世界观
 
-**走、跳、打、成长、读日志**
+Visual: `C:/Users/qintian/Desktop/腾讯比赛/Craftsmen-and-Homo-sapiens-master/Submission/visual_assets/player_lineup.png`
 
-- NPC 引导进入房间
-- 近战战斗与房间推进
-- 经验成长后挑战 Boss
+## Slide 3. 核心玩法循环
 
-## 4. AI 叙事亮点
+3-5 分钟能讲清楚的闭环
 
-**AI 生成内容进入游戏体验**
+- 进入房间 -> 读记忆日志
+- 战斗 -> 获得经验 / 道具 / 制作材料
+- 解锁下一房间 -> Boss -> 结局文本
 
-- 世界观与势力设定
-- 房间记忆日志与 Boss 背景
-- 结局文本和展示材料由 AI 辅助整理
+Visual: `C:/Users/qintian/Desktop/腾讯比赛/Craftsmen-and-Homo-sapiens-master/Submission/visual_assets/asset_contact_sheet.png`
 
-## 5. 技术结构
+## Slide 4. 角色与怪物
 
-**Unity 2D + 模块化脚本**
+用真实 spritesheet 做阵容展示
+
+- 主角：猫耳女仆探索者
+- NPC：档案员与技术员引导玩法
+- 敌人：普通怪、精英怪、Boss 占位体
+
+Visual: `C:/Users/qintian/Desktop/腾讯比赛/Craftsmen-and-Homo-sapiens-master/Submission/visual_assets/enemy_lineup.png`
+
+## Slide 5. AI 叙事如何进入游戏
+
+不是只写在文档里，而是变成工坊记忆日志
+
+- AI 生成世界观、势力关系、房间档案
+- NPC 对话把操作提示包装进剧情
+- Boss 背景与结局文本用于演示闭环
+
+Visual: `C:/Users/qintian/Desktop/腾讯比赛/Craftsmen-and-Homo-sapiens-master/Submission/visual_assets/npc_lineup.png`
+
+## Slide 6. Demo 录屏路线
+
+这些镜头需要用 Unity 截图/录屏补齐
+
+- 开场 + NPC 对话
+- 早期战斗 + 成长反馈
+- Boss 房 + Victory / Demo Complete
+
+Visual: `C:/Users/qintian/Desktop/腾讯比赛/Craftsmen-and-Homo-sapiens-master/Submission/visual_assets/screenshot_placeholders.png`
+
+## Slide 7. 技术结构
+
+Unity 2D 原型，系统保持轻量拆分
 
 - Player / Combat / Enemy / Rooms
 - Dialogue / Craft / Inventory / Skill Energy
-- WebGL 构建与静态部署准备
+- WebGL Build + 静态部署准备
 
-## 6. Demo 流程
+Visual: `C:/Users/qintian/Desktop/腾讯比赛/Craftsmen-and-Homo-sapiens-master/Submission/visual_assets/asset_contact_sheet.png`
 
-**评委 3–5 分钟能看懂**
+## Slide 8. 提交状态与下一步
 
-- 出生区：NPC 和操作引导
-- 中段房：战斗、成长、制作/技力
-- Boss 房：最终挑战和结局反馈
+材料已经可编辑，真实截图和在线链接等待人工回填
 
-## 7. 提交材料
+- 已准备：海报、PPT、部署文档、提交文案
+- 待人工：WebGL 部署、Demo 视频、CodeBuddy 导出
+- 下一步：用截图工具补齐真实游戏画面
 
-**先准备，不实际部署**
-
-- 海报、PPT、源码包脚本
-- Render / Cloudflare / GitHub Pages 文档
-- 视频和在线试玩链接后续回填
-
-## 8. 竞争亮点
-
-**小而完整，叙事明确**
-
-- AI 内容不是摆设，是房间日志
-- 玩法闭环短，适合录屏展示
-- 材料结构清楚，评委容易打开
-
-## 9. 后续计划
-
-**继续打磨，不盲目堆系统**
-
-- 更多房间日志
-- 更多敌人和技能内容
-- 更统一的美术、音效和 UI
-
-## 10. 谢谢观看
-
-**Craftsmen and Homo Sapiens: The Forgotten Forge**
-
-- Demo Link：待回填
-- Video Link：待回填
-- Team / Contact：待回填
+Visual: `C:/Users/qintian/Desktop/腾讯比赛/Craftsmen-and-Homo-sapiens-master/Submission/visual_assets/character_cards.png`

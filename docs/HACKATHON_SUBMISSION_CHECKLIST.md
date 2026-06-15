@@ -1,11 +1,12 @@
 # Hackathon Submission Checklist
 
-最终提交前按此清单检查。Codex 本次只准备材料，不实际部署，不录制最终视频。
+最终提交前按此清单检查。Codex 本次只准备材料，不实际部署，不录制最终视频，不伪造 CodeBuddy 历史。
 
 ## Required Materials
 
 - [ ] Poster: `Submission/poster_1920x1080.png`
 - [ ] Poster source: `Submission/poster_source.svg`
+- [ ] Poster HTML source: `Submission/poster_source.html`
 - [ ] Project deck: `Submission/project_deck.pptx`
 - [ ] Project deck PDF: `Submission/project_deck.pdf`
 - [ ] Source package: `Submission/Craftsmen-and-Homo-sapiens_Source.zip`
@@ -14,6 +15,14 @@
 - [ ] CodeBuddy / AI conversation history
 - [ ] GitHub repository link
 - [ ] Team / school / captain information
+
+## Visual Proof
+
+- [x] Real project asset lineup generated under `Submission/visual_assets/`.
+- [x] Poster uses project player, enemy, NPC, item, device, and tile visuals.
+- [x] PPT uses real visual assets on each slide.
+- [ ] Real Unity screenshots captured under `Submission/screenshots/`.
+- [ ] Poster / PPT screenshot placeholders replaced after real captures if time allows.
 
 ## Ready-To-Paste Copy
 
@@ -55,6 +64,7 @@ The video should show:
 - [ ] AI worldbuilding described.
 - [ ] AI-generated room memory logs described.
 - [ ] Boss lore and ending text described.
+- [ ] AI-assisted visual asset presentation described.
 - [ ] Codex/AI development assistance described.
 - [ ] CodeBuddy export placeholder filled later.
 

@@ -1,14 +1,10 @@
 # Poster Notes
 
-- File: `Submission/poster_1920x1080.png`
-- Source: `Submission/poster_source.svg` and `Submission/poster_source.html`
-- Aspect ratio: 16:9
-- Target size: 1920 x 1080
-- Visual direction: cute pastel game poster, rounded panels, pink/blue/purple accents, glowing workshop heart.
-- Copyright note: original vector/raster shapes only; no third-party game image is embedded.
+新版海报不再使用抽象网格模板，而是从仓库真实素材生成：
 
-Run:
+- Player: `Assets/Art/Generated/Characters/cat_maid_magic_wand_spritesheet.png`
+- Enemies: `Assets/Art/Generated/Enemies/*.png`
+- NPC and item/device accents: `Assets/Art/Generated/NPC/`, `Assets/Art/Generated/Items/`, `Assets/Art/Generated/Devices/`
+- Tile strip: `Assets/Art/Tiles/`
 
-```powershell
-python tools/generate_cute_submission_visuals.py
-```
+海报中的三张截图框如果没有真实截图，会明确标记为“等待 Unity 截图回填”，没有伪造 Demo 截图。
