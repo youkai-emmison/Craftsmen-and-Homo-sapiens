@@ -1,32 +1,23 @@
 # WebGL Deployment Guide
 
-本任务只准备 WebGL 构建和部署材料，不实际部署。
+本仓库只准备 Unity WebGL 构建脚本、静态站点整理脚本和部署说明。当前没有实际部署，也不会伪造 Playable Demo Link。
 
 ## Project
 
-- 中文名：能工智人：遗忘工坊
-- English: Craftsmen and Homo Sapiens: The Forgotten Forge
+- 中文名：能工智人：糖芯工坊
+- English: Craftsmen and Homo Sapiens: The Candy Forge
 - Track: 叙事类游戏 / Narrative Games
 - Demo scene: `Assets/Scenes/SampleScene.unity`
 
-## Unity Version
-
-推荐使用：
-
-- Unity 2022.3.53f1
-- Unity 2022.3.53f1c1
-
-不要为了部署无意义升级 Unity 版本，避免 `.meta`、`ProjectSettings` 或资源导入格式变化。
-
 ## Build Output
 
-WebGL 构建输出目录：
+Unity WebGL 原始构建输出：
 
 ```text
 Build/WebGL
 ```
 
-静态站点整理目录：
+Render / 静态站点发布目录：
 
 ```text
 Submission/WebGLSite
@@ -41,7 +32,7 @@ Tools > Hackathon > Build WebGL
 Tools > Hackathon > Prepare Deploy Folder
 ```
 
-脚本位置：
+对应脚本：
 
 ```text
 Assets/Scripts/Editor/WebGLBuildCommand.cs
@@ -50,16 +41,19 @@ Assets/Scripts/Editor/HackathonBuildMenu.cs
 
 ## Build Steps
 
-1. 用 Unity 打开项目。
+1. 用 Unity `2022.3.53f1` 或 `2022.3.53f1c1` 打开项目。
 2. 打开 `Assets/Scenes/SampleScene.unity`。
 3. 确认 Console 没有红色编译错误。
-4. 确认 Build Settings 中包含 Demo 场景。
-5. 点击 `Tools > Hackathon > Build WebGL`。
-6. 等待 Unity 构建到 `Build/WebGL`。
-7. 点击 `Tools > Hackathon > Prepare Deploy Folder`。
-8. 确认 `Submission/WebGLSite/index.html` 存在。
+4. 打开 `File > Build Settings...`，切换到 WebGL。
+5. 确认 Demo 场景已经加入 `Scenes In Build`。
+6. 建议在 WebGL Publishing Settings 中使用 `Compression Format: Disabled`，或启用 `Decompression Fallback`。
+7. 点击 `Tools > Hackathon > Build WebGL`。
+8. 等待 Unity 生成 `Build/WebGL`。
+9. 点击 `Tools > Hackathon > Prepare Deploy Folder`，或运行整理脚本。
 
-也可以用脚本整理静态站点目录：
+## Prepare Static Site Folder
+
+Windows:
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File tools/prepare_webgl_site.ps1
@@ -71,9 +65,35 @@ macOS / Linux:
 bash tools/prepare_webgl_site.sh
 ```
 
+整理后必须存在：
+
+```text
+Submission/WebGLSite/index.html
+Submission/WebGLSite/Build/
+Submission/WebGLSite/TemplateData/
+```
+
+如果缺少这些路径，说明还没有真实 Unity WebGL 构建，不能部署。
+
+## Validate For Render
+
+Render Static Site 的 Build Command 使用：
+
+```bash
+bash tools/render_validate_static_site.sh
+```
+
+本地 Windows 可检查：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File tools/render_validate_static_site.ps1
+```
+
+验证脚本只检查真实 WebGL 静态站点是否存在，不会运行 Unity，也不会创建假页面。
+
 ## Local Preview
 
-Unity WebGL 不能稳定地直接双击 `index.html` 运行，建议使用本地静态服务器：
+Unity WebGL 不建议直接双击 `index.html` 运行。可以启动本地静态服务器：
 
 ```powershell
 cd Submission/WebGLSite
@@ -86,33 +106,34 @@ python -m http.server 8000
 http://localhost:8000
 ```
 
-注意：`localhost` 只能用于测试，不能填入正式报名表。
+`localhost` 只用于本地测试，不能填到比赛提交表单。
 
-## Compression Note
+## Render
 
-如果部署后浏览器黑屏或控制台出现 `.wasm`、`.data`、`.br`、`.gz` 相关加载问题，优先使用兼容性方案：
-
-1. 打开 Unity Player Settings。
-2. 找到 WebGL Publishing Settings。
-3. 启用 Decompression Fallback。
-4. 重新 Build WebGL。
-
-这样文件可能更大，但更适合普通静态站点托管。
-
-## Deployment Targets
-
-推荐目标：
-
-- Render Static Site
-- Cloudflare Pages
-- GitHub Pages
-
-详细比较见：
+Render 专项步骤见：
 
 ```text
-docs/DEPLOYMENT_OPTIONS.md
-docs/FINAL_MANUAL_STEPS.md
+docs/RENDER_DEPLOYMENT.md
 ```
+
+推荐 Render 设置：
+
+```text
+Repository: youkai-emmison/Craftsmen-and-Homo-sapiens
+Branch: render-deploy
+Root Directory: 留空
+Build Command: bash tools/render_validate_static_site.sh
+Publish Directory: Submission/WebGLSite
+Environment Variables: SKIP_INSTALL_DEPS=true
+```
+
+## Common Issues
+
+- 404：Publish Directory 写错，或 `Submission/WebGLSite/index.html` 没提交。
+- Render build failed：验证脚本找不到真实 WebGL 构建。
+- Unity 加载黑屏：检查 WebGL 压缩设置，建议禁用压缩或启用 Decompression Fallback 后重建。
+- GitHub push 失败：单文件超过 100MB，需要 Git LFS 或换 Cloudflare Pages Direct Upload。
+- 页面能打开但游戏不动：打开浏览器 Console 检查 404、`.wasm`、`.data`、`.br`、`.gz` 报错。
 
 ## Submission Reminder
 
@@ -121,7 +142,5 @@ docs/FINAL_MANUAL_STEPS.md
 - WebGL 在线试玩链接
 - Demo 视频链接
 - PPT / PDF 链接
-- CodeBuddy 历史导出链接或文件
-- 团队信息
-
-本仓库已准备部署脚本和说明，但没有实际部署。
+- CodeBuddy 历史导出文件
+- 团队、学校、队长联系方式

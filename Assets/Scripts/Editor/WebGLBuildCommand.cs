@@ -50,9 +50,15 @@ public static class WebGLBuildCommand
         }
 
         CopyDirectory(webGLBuildPath, deployFolderPath);
+        if (!HasRequiredWebGLFiles(deployFolderPath))
+        {
+            Debug.LogError($"Deploy folder preparation failed: {deployFolderPath} is missing index.html, Build, or TemplateData.");
+            return;
+        }
+
         File.WriteAllText(
-            Path.Combine(deployFolderPath, "README_DEPLOY.txt"),
-            "Static Unity WebGL deploy folder for hackathon submission. Upload this folder content to Render Static Site, Cloudflare Pages, or GitHub Pages.\n");
+            Path.Combine(deployFolderPath, "DEPLOYMENT_README.md"),
+            "Unity WebGL static deploy folder.\n\nRender settings:\n- Build Command: bash tools/render_validate_static_site.sh\n- Publish Directory: Submission/WebGLSite\n");
 
         Debug.Log($"Deploy folder prepared: {deployFolderPath}");
     }
@@ -71,6 +77,13 @@ public static class WebGLBuildCommand
         }
 
         return enabledScenePaths.ToArray();
+    }
+
+    private static bool HasRequiredWebGLFiles(string path)
+    {
+        return File.Exists(Path.Combine(path, "index.html"))
+            && Directory.Exists(Path.Combine(path, "Build"))
+            && Directory.Exists(Path.Combine(path, "TemplateData"));
     }
 
     private static void CopyDirectory(string sourcePath, string destinationPath)

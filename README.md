@@ -12,12 +12,12 @@
 
 《能工智人：糖芯工坊》是一款 AI 叙事驱动的 Unity 2D 横版动作冒险 Demo。玩家扮演一名意外穿越到糖果异世界的理工男，被系统误绑定为“见习女仆工程师”。为了回到现实世界，玩家需要在糖芯工坊中与 NPC 对话、移动跳跃、近战战斗、收集怪物掉落材料、合成装备与道具、学习技能，并最终击败污染糖芯炉的 Boss。
 
-本项目当前目标是比赛提交原型，不追求完整商业游戏系统。优先保证：
+当前目标是黑客松提交原型，不追求完整商业游戏系统。优先保证：
 
 - 3 到 5 分钟可演示流程
 - AI 叙事主题明确
-- WebGL 可部署准备
 - 海报、PPT、源码包和提交文案完整
+- WebGL 可部署到静态站点
 
 ## World Setting
 
@@ -106,17 +106,32 @@ Tools > Hackathon > Prepare Deploy Folder
 powershell -ExecutionPolicy Bypass -File tools/prepare_webgl_site.ps1
 ```
 
+Render 验证脚本：
+
+```bash
+bash tools/render_validate_static_site.sh
+```
+
+Render Static Site 推荐配置：
+
+```text
+Branch: render-deploy
+Build Command: bash tools/render_validate_static_site.sh
+Publish Directory: Submission/WebGLSite
+Environment Variables: SKIP_INSTALL_DEPS=true
+```
+
 详细说明：
 
 ```text
 docs/WEBGL_DEPLOYMENT.md
-docs/DEPLOYMENT_OPTIONS.md
+docs/RENDER_DEPLOYMENT.md
 docs/FINAL_MANUAL_STEPS.md
 ```
 
 ## Submission Materials
 
-本次提交材料集中在：
+提交材料集中在：
 
 ```text
 Submission/

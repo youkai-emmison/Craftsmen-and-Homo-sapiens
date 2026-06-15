@@ -33,6 +33,10 @@ Thumbs.db
 *.rar
 *.7z
 
+# Render deployment branch may commit prepared Unity WebGL static files.
+!/Submission/WebGLSite/
+!/Submission/WebGLSite/**
+
 # Unity Asset Store raw assets kept local for the public repository
 /Assets/Art/ThirdParty/
 /Assets/Art/ThirdParty.meta

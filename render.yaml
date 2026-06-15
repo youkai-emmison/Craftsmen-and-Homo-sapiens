@@ -1,7 +1,12 @@
 services:
   - type: web
-    name: forgotten-forge-webgl
+    name: candy-forge-webgl
     runtime: static
-    buildCommand: ""
-    staticPublishPath: Submission/WebGLSite
+    branch: render-deploy
+    buildCommand: bash tools/render_validate_static_site.sh
+    staticPublishPath: ./Submission/WebGLSite
+    autoDeployTrigger: commit
     pullRequestPreviewsEnabled: false
+    envVars:
+      - key: SKIP_INSTALL_DEPS
+        value: "true"

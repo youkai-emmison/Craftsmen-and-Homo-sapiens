@@ -38,6 +38,10 @@
 *.ppt binary
 *.pptx binary
 
+# Scripts
+*.sh text eol=lf
+*.ps1 text
+
 # Unity
 *.unitypackage binary
 *.prefab text

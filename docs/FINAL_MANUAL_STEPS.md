@@ -4,12 +4,13 @@ Codex 已准备提交材料、构建脚本和部署说明，但没有实际部�
 
 ## 1. Unity WebGL 构建
 
-1. 用 Unity 2022.3.53f1 / 2022.3.53f1c1 打开项目。
+1. 用 Unity `2022.3.53f1` 或 `2022.3.53f1c1` 打开项目。
 2. 打开 `Assets/Scenes/SampleScene.unity`。
 3. 确认 Console 没有红色编译错误。
 4. 打开 `File > Build Settings...`，确认 WebGL 平台可用。
-5. 确认 Demo 场景已加入 Scenes In Build。
-6. 点击 Unity 菜单：
+5. 确认 Demo 场景已加入 `Scenes In Build`。
+6. 建议 WebGL Publishing Settings 使用 `Compression Format: Disabled`，或启用 `Decompression Fallback`。
+7. 点击：
 
 ```text
 Tools > Hackathon > Build WebGL
@@ -39,52 +40,66 @@ powershell -ExecutionPolicy Bypass -File tools/prepare_webgl_site.ps1
 
 ```text
 Submission/WebGLSite/index.html
+Submission/WebGLSite/Build/
+Submission/WebGLSite/TemplateData/
 ```
 
-## 3. 手动部署
+## 3. Render 部署
 
-任选一个平台部署：
+Codex 只能准备仓库、脚本和文档。Render 账号授权和创建 Static Site 需要人工操作。
 
-- Render Static Site
-- Cloudflare Pages
-- GitHub Pages
+推荐流程见：
 
-部署后把公开链接复制到：
+```text
+docs/RENDER_DEPLOYMENT.md
+```
+
+Render 控制台核心配置：
+
+```text
+Repository: youkai-emmison/Craftsmen-and-Homo-sapiens
+Branch: render-deploy
+Root Directory: 留空
+Build Command: bash tools/render_validate_static_site.sh
+Publish Directory: Submission/WebGLSite
+Environment Variables: SKIP_INSTALL_DEPS=true
+```
+
+不要把未部署链接填入比赛表单。Render 成功部署后，再复制 `onrender.com` 链接。
+
+## 4. 回填 WebGL 链接
+
+部署成功后，把链接复制到：
 
 - `docs/SUBMISSION_FORM_COPY.md`
-- `submissions/link_backfill_values.local.json`
-- 最终报名表
+- `README.md`
+- PPT 的 Demo Link 占位
+- 比赛提交表单
 
-## 4. 录制 Demo 视频
+## 5. 录制 Demo 视频
 
 按 `docs/DEMO_RECORDING_GUIDE.md` 录制 3 到 5 分钟视频。
 
 必须展示：
 
 - 标题或开场画面
-- NPC / 记忆日志叙事
+- NPC / 糖芯工坊日志叙事
 - 移动、跳跃、攻击
-- 成长反馈
+- 背包、合成、技能树
 - Boss 战
-- 结局 / Demo Complete
+- Victory / 结局或回家装置修复
 
-## 5. 回填外部链接
+## 6. 回填外部链接
 
 准备好以下链接：
 
 - WebGL 在线试玩链接
 - Demo 视频链接
 - PPT / PDF 链接
-- CodeBuddy 历史导出链接或文件
+- CodeBuddy 历史导出文件
 - GitHub 仓库链接
 
-如果要批量回填已有材料，可参考：
-
-```text
-submissions/LINK_BACKFILL_TOOL_ZH.md
-```
-
-## 6. 打包源码
+## 7. 打包源码
 
 需要源码包时执行：
 

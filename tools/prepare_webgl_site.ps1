@@ -14,7 +14,7 @@ param(
 $ErrorActionPreference = "Stop"
 
 if (-not (Test-Path -LiteralPath $SourcePath -PathType Container)) {
-    throw "SourcePath does not exist: $SourcePath. Build WebGL in Unity first."
+    throw "Please open Unity and run Tools/Hackathon/Build WebGL first. SourcePath does not exist: $SourcePath"
 }
 
 if (Test-Path -LiteralPath $OutputPath) {
@@ -24,12 +24,30 @@ if (Test-Path -LiteralPath $OutputPath) {
 New-Item -ItemType Directory -Force -Path $OutputPath | Out-Null
 Copy-Item -LiteralPath (Join-Path $SourcePath "*") -Destination $OutputPath -Recurse -Force
 
-$readme = @"
-Static Unity WebGL deploy folder.
+$requiredPaths = @(
+    (Join-Path $OutputPath "index.html"),
+    (Join-Path $OutputPath "Build"),
+    (Join-Path $OutputPath "TemplateData")
+)
 
-Upload the contents of this folder to Render Static Site, Cloudflare Pages, GitHub Pages, or another static host.
+foreach ($requiredPath in $requiredPaths) {
+    if (-not (Test-Path -LiteralPath $requiredPath)) {
+        throw "Prepared WebGLSite is incomplete. Missing required path: $requiredPath"
+    }
+}
+
+$readme = @"
+# Unity WebGL Static Deploy Folder
+
+This folder was copied from `Build/WebGL` for static hosting.
+
+Expected Render settings:
+
+- Build Command: `bash tools/render_validate_static_site.sh`
+- Publish Directory: `Submission/WebGLSite`
+
 This script only prepares files. It does not deploy anything.
 "@
 
-Set-Content -LiteralPath (Join-Path $OutputPath "README_DEPLOY.txt") -Value $readme -Encoding UTF8
+Set-Content -LiteralPath (Join-Path $OutputPath "DEPLOYMENT_README.md") -Value $readme -Encoding UTF8
 Write-Host "Prepared static WebGL deploy folder: $OutputPath"
