@@ -165,8 +165,9 @@ def create_poster() -> None:
     draw.text((1292, 648), "Worldbuilding & Story", font=font(27, True), fill=(56, 47, 84, 255))
     draw.text((1292, 698), "Game Key Art", font=font(27, True), fill=(56, 47, 84, 255))
 
-    draw.rounded_rectangle((1252, 782, 1812, 830), radius=20, fill=(255, 246, 232, 236))
-    draw.text((1284, 792), "Team / Demo Link：待回填", font=font(25, True), fill=DARK)
+    draw.rounded_rectangle((1252, 782, 1812, 848), radius=22, fill=(255, 246, 232, 238))
+    draw.text((1284, 792), "Team：落云宗", font=font(25, True), fill=DARK)
+    draw.text((1284, 820), "成员：秦天 / 陈磊    Demo Link：待回填", font=font(20, True), fill=PURPLE)
 
     poster.convert("RGB").save(POSTER_PNG, optimize=True, quality=91)
 
@@ -229,7 +230,9 @@ Video subtitles, the NVIDIA prompt, and irrelevant margins were removed. No game
 
 ## Honest Submission Notes
 
-- Demo Link and Team are still placeholders until humans fill them in.
+- Team: 落云宗。
+- Members: 秦天 / 陈磊。
+- Demo Link is still a placeholder until humans fill it in.
 - This poster does not claim that deployment, video recording, or CodeBuddy export has already happened.
 """,
         encoding="utf-8",

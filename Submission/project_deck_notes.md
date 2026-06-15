@@ -13,15 +13,15 @@
 | 5 | 合成与技能树 | 上下双截图 + 成长路线 | 04_crafting_clean.png, 05_skilltree_clean.png | 展示材料、合成、技能学习如何连接战斗成长。 |
 | 6 | Demo 录屏路线 | 六截图时间轴 | 01_move_jump_attack_clean.png, 02_npc_dialogue_clean.png, 03_backpack_clean.png, 04_crafting_clean.png, 05_skilltree_clean.png, 06_boss_combat_clean.png | 把 3-5 分钟演示路线讲清楚。 |
 | 7 | 技术结构与部署准备 | 模块节点图 + Boss 小截图 | 06_boss_combat_clean.png, tech_architecture.png | 说明 Unity 2D 模块拆分和 WebGL 静态部署准备。 |
-| 8 | 亮点与交付材料 | 真实截图条 + 亮点摘要 | 01_move_jump_attack_clean.png, 02_npc_dialogue_clean.png, 04_crafting_clean.png, 05_skilltree_clean.png, 06_boss_combat_clean.png | 收束作品亮点与提交材料，不再做一页“我们没做什么”。 |
 
 ## Export Notes
 
 - PPTX: `Submission/project_deck.pptx`
 - PDF: `Submission/project_deck.pdf`
-- Slide previews: `Submission/project_deck_assets/slide-01.png` 到 `slide-08.png`
+- Slide previews: `Submission/project_deck_assets/slide-01.png` 到 `slide-07.png`
 - Clean screenshots: `Submission/clean_screenshots/`
 
 ## Manual Check
 
-- 最终答辩前请检查 Team、Demo Link、Video Link、CodeBuddy Export 是否已经回填。
+- Team 已填写为：落云宗；成员：秦天 / 陈磊。
+- 最终答辩前请检查 Demo Link、Video Link、CodeBuddy Export 是否已经回填。

@@ -19,5 +19,7 @@ Video subtitles, the NVIDIA prompt, and irrelevant margins were removed. No game
 
 ## Honest Submission Notes
 
-- Demo Link and Team are still placeholders until humans fill them in.
+- Team: 落云宗。
+- Members: 秦天 / 陈磊。
+- Demo Link is still a placeholder until humans fill it in.
 - This poster does not claim that deployment, video recording, or CodeBuddy export has already happened.

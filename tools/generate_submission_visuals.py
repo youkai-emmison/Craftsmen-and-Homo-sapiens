@@ -524,25 +524,27 @@ def create_tech_architecture() -> Path:
     image = Image.new("RGBA", (1600, 900), COLORS["paper"])
     draw_background(image, grid=False)
     draw = ImageDraw.Draw(image, "RGBA")
-    draw_text(draw, "Unity 2D Technical Structure", (90, 70), font(56, True), COLORS["purple_dark"])
-    center = (800, 425)
-    panel(draw, (center[0] - 150, center[1] - 72, center[0] + 150, center[1] + 72), COLORS["dark_panel"], COLORS["blue"], 30, 4)
-    draw_text(draw, "Unity 2D", (center[0] - 70, center[1] - 18), font(32, True), COLORS["white"])
-    modules = [
-        ("Player", 260, 220),
-        ("Combat", 560, 185),
-        ("Enemy", 1040, 185),
-        ("Rooms", 1320, 220),
-        ("UI", 290, 610),
-        ("Dialogue", 560, 660),
-        ("Craft / Skill", 1010, 660),
-        ("WebGL Build", 1300, 610),
+    draw_text(draw, "Unity 2D 技术结构", (90, 46), font(56, True), COLORS["purple_dark"])
+    draw_text(draw, "按职责拆分模块：玩法、系统、叙事和构建流程彼此独立，方便多人协作。", (94, 118), font(25), COLORS["muted"], 1320)
+
+    # The old radial chart crossed too many lines. This board uses lanes so the
+    # PPT page stays readable at small size.
+    lanes = [
+        ("核心玩法", ["Player", "Combat", "Enemy", "Rooms"], COLORS["pink"], 170),
+        ("成长系统", ["Backpack", "Craft", "Skill Tree", "Device"], COLORS["blue"], 398),
+        ("叙事与界面", ["Dialogue", "NPC", "Memory Log", "UI"], COLORS["purple"], 626),
     ]
-    for label, x, y in modules:
-        panel(draw, (x - 105, y - 42, x + 105, y + 42), COLORS["white"], COLORS["pink"] if y < center[1] else COLORS["blue"], 22, 3)
-        draw.line((center[0], center[1], x, y), fill=(99, 72, 147, 150), width=4)
-        draw_text(draw, label, (x - 88, y - 15), font(24, True), COLORS["purple_dark"], 185)
-    draw_text(draw, "WebGL build can be hosted on Render / Cloudflare Pages / GitHub Pages.", (170, 790), font(25), COLORS["muted"], 1200)
+
+    for title, modules, accent, top in lanes:
+        panel(draw, (100, top, 1500, top + 175), (255, 255, 255, 236), accent, 34, 4)
+        draw_text(draw, title, (140, top + 36), font(34, True), COLORS["purple_dark"])
+        for index, module in enumerate(modules):
+            left = 370 + index * 270
+            panel(draw, (left, top + 44, left + 230, top + 120), COLORS["blue_soft"] if index % 2 else COLORS["pink_soft"], None, 22, 0)
+            draw_text(draw, module, (left + 24, top + 67), font(24, True), COLORS["purple_dark"], 200)
+
+    panel(draw, (100, 828, 1500, 880), COLORS["dark_panel"], COLORS["blue"], 22, 3)
+    draw_text(draw, "WebGL Build：可部署到 Render / Cloudflare Pages / GitHub Pages", (140, 840), font(23, True), COLORS["white"], 1200)
     image.convert("RGB").save(output, optimize=True)
     return output
 

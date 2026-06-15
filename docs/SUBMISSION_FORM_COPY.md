@@ -85,10 +85,10 @@ Submission/Craftsmen-and-Homo-sapiens_Source.zip
 ## Team / School / Captain
 
 ```text
-队伍名称：待回填
+队伍名称：落云宗
 学校：待回填
 队长：待回填
-成员与分工：待回填
+成员与分工：秦天 / 陈磊
 联系方式：待回填
 ```
 

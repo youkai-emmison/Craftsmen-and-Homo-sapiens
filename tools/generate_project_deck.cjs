@@ -85,12 +85,6 @@ const slides = [
     assets: [screenshots.boss, "tech_architecture.png"],
     purpose: "说明 Unity 2D 模块拆分和 WebGL 静态部署准备。",
   },
-  {
-    title: "亮点与交付材料",
-    layout: "真实截图条 + 亮点摘要",
-    assets: [screenshots.move, screenshots.npc, screenshots.craft, screenshots.skill, screenshots.boss],
-    purpose: "收束作品亮点与提交材料，不再做一页“我们没做什么”。",
-  },
 ];
 
 async function writeBlob(filePath, blob) {
@@ -158,8 +152,8 @@ async function image(slide, filePath, x, y, w, h, alt, fit = "contain") {
 }
 
 function footer(slide, number) {
-  text(slide, `0${number} / 08`, 56, 684, 84, 22, { fontSize: 12, bold: true, color: COLORS.pink });
-  text(slide, "能工智人：遗忘工坊 | Narrative Games", 150, 684, 360, 22, { fontSize: 12, color: COLORS.muted });
+  text(slide, `0${number} / 07`, 56, 684, 84, 22, { fontSize: 12, bold: true, color: COLORS.pink });
+  text(slide, "能工智人：遗忘工坊 | 落云宗：秦天 / 陈磊", 150, 684, 440, 22, { fontSize: 12, color: COLORS.muted });
 }
 
 function bullet(slide, value, x, y, color = COLORS.pink) {
@@ -183,7 +177,8 @@ async function slideCover(presentation) {
     fontSize: 22,
     color: COLORS.white,
   });
-  text(slide, "Team / Demo Link：待回填", 62, 604, 350, 26, { fontSize: 18, color: "#FFF4E4" });
+  text(slide, "Team：落云宗    成员：秦天 / 陈磊", 62, 586, 390, 26, { fontSize: 18, color: "#FFF4E4" });
+  text(slide, "Demo Link：待回填", 62, 616, 260, 24, { fontSize: 16, color: "#FFF4E4" });
 }
 
 async function slideGame(presentation) {
@@ -296,37 +291,6 @@ async function slideTech(presentation) {
   footer(slide, 7);
 }
 
-async function slideHighlights(presentation) {
-  const slide = presentation.slides.add();
-  slide.background.fill = COLORS.paper;
-  text(slide, "亮点与交付材料", 68, 56, 460, 54, { fontSize: 42, bold: true });
-  text(slide, "真实截图已经进入海报和 PPT，提交材料更像一个可玩的游戏作品。", 70, 116, 760, 32, {
-    fontSize: 21,
-    color: COLORS.muted,
-  });
-  const strip = [screenshots.move, screenshots.npc, screenshots.craft, screenshots.skill, screenshots.boss];
-  for (let index = 0; index < strip.length; index += 1) {
-    await image(slide, screenshotPath(strip[index]), 64 + index * 230, 170, 196, 112, `Highlight ${index + 1}`, "cover");
-  }
-  const highlights = [
-    "AI 叙事驱动",
-    "真实可玩 Demo",
-    "背包 / 合成 / 技能树",
-    "Boss 战高潮",
-    "WebGL 部署准备",
-  ];
-  for (let index = 0; index < highlights.length; index += 1) {
-    const x = 96 + (index % 3) * 360;
-    const y = 350 + Math.floor(index / 3) * 84;
-    bullet(slide, highlights[index], x, y, index % 2 === 0 ? COLORS.pink : COLORS.blue);
-  }
-  text(slide, "回填位：Team / Demo Link / Video Link / CodeBuddy Export", 94, 594, 760, 28, {
-    fontSize: 18,
-    color: COLORS.muted,
-  });
-  footer(slide, 8);
-}
-
 async function writeTextArtifacts() {
   const slideRows = slides
     .map((slide, index) => `| ${index + 1} | ${slide.title} | ${slide.layout} | ${slide.assets.join(", ")} | ${slide.purpose} |`)
@@ -341,7 +305,8 @@ async function writeTextArtifacts() {
       `- 叙事证明：使用 \`02_npc_dialogue_clean.png\` 做“工坊记忆日志 / NPC 对话”区域。\n` +
       `- 底部截图条：使用 01、02、03、04、05、06 六张 clean 图。\n` +
       `- 标题区：左上深色遮罩，避免文字压在复杂截图上。\n` +
-      `- Team / Demo Link：保留待回填位置，不伪造链接。\n\n` +
+      `- Team：落云宗；成员：秦天 / 陈磊。\n` +
+      `- Demo Link：保留待回填位置，不伪造链接。\n\n` +
       `## PPT Layouts\n\n` +
       `| # | Page | Layout | Screenshots / Assets | Purpose |\n| - | - | - | - | - |\n${slideRows}\n\n` +
       `## Screenshot Usage\n\n` +
@@ -350,7 +315,7 @@ async function writeTextArtifacts() {
       `- 03：背包与成长 / Slide 4 / Slide 6。\n` +
       `- 04：合成系统 / Slide 5 / Slide 6 / Slide 8。\n` +
       `- 05：技能树 / Slide 5 / Slide 6 / Slide 8。\n` +
-      `- 06：Boss 战 / Poster / Slide 1 / Slide 6 / Slide 7 / Slide 8。\n\n` +
+      `- 06：Boss 战 / Poster / Slide 1 / Slide 6 / Slide 7。\n\n` +
       `## Anti-Overlap Rules\n\n` +
       `- 文字不直接压在复杂截图上；封面使用深色侧栏。\n` +
       `- 每页保留大图，最多 4 个短文本块。\n` +
@@ -368,10 +333,11 @@ async function writeTextArtifacts() {
       `## Export Notes\n\n` +
       `- PPTX: \`Submission/project_deck.pptx\`\n` +
       `- PDF: \`Submission/project_deck.pdf\`\n` +
-      `- Slide previews: \`Submission/project_deck_assets/slide-01.png\` 到 \`slide-08.png\`\n` +
+      `- Slide previews: \`Submission/project_deck_assets/slide-01.png\` 到 \`slide-07.png\`\n` +
       `- Clean screenshots: \`Submission/clean_screenshots/\`\n\n` +
       `## Manual Check\n\n` +
-      `- 最终答辩前请检查 Team、Demo Link、Video Link、CodeBuddy Export 是否已经回填。\n`,
+      `- Team 已填写为：落云宗；成员：秦天 / 陈磊。\n` +
+      `- 最终答辩前请检查 Demo Link、Video Link、CodeBuddy Export 是否已经回填。\n`,
     "utf8",
   );
 
@@ -384,8 +350,7 @@ async function writeTextArtifacts() {
       `## 4. 背包、装备与成长\n展示背包、装备说明和角色属性。\n\n` +
       `## 5. 合成与技能树\n展示材料、合成、技能学习和战斗成长的连接。\n\n` +
       `## 6. Demo 录屏路线\n六张真实截图组成 3-5 分钟录屏时间轴。\n\n` +
-      `## 7. 技术结构与部署准备\nUnity 2D 模块和 WebGL 静态部署准备。\n\n` +
-      `## 8. 亮点与交付材料\n总结 AI 叙事、真实可玩 Demo、Boss 战和提交材料。\n`,
+      `## 7. 技术结构与部署准备\nUnity 2D 模块和 WebGL 静态部署准备。\n`,
     "utf8",
   );
 
@@ -399,8 +364,7 @@ async function writeTextArtifacts() {
       `## Slide 4\n说明成长反馈：玩家可以通过背包看到装备、道具、属性和战斗数值变化。\n\n` +
       `## Slide 5\n说明系统深度：材料掉落后可以合成道具，技能树提供进一步成长，最后服务于战斗表现。\n\n` +
       `## Slide 6\n按时间轴讲 Demo 视频：开场移动、NPC 对话、背包、合成、技能树、Boss 战。Victory 画面由最终录屏补上。\n\n` +
-      `## Slide 7\n说明工程结构：Unity 2D 模块拆分清楚，WebGL 构建和静态部署文档已经准备。\n\n` +
-      `## Slide 8\n收束亮点：AI 叙事、真实可玩流程、系统成长、Boss 战高潮和提交材料准备。\n`,
+      `## Slide 7\n说明工程结构：Unity 2D 模块拆分清楚，WebGL 构建和静态部署文档已经准备。结尾口头补一句：团队是落云宗，成员为秦天和陈磊。\n`,
     "utf8",
   );
 }
@@ -427,7 +391,6 @@ async function main() {
   await slideCraftSkill(presentation);
   await slideTimeline(presentation);
   await slideTech(presentation);
-  await slideHighlights(presentation);
 
   for (const [index, slide] of presentation.slides.items.entries()) {
     const stem = `slide-${String(index + 1).padStart(2, "0")}`;
