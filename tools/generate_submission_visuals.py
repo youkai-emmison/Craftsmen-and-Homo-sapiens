@@ -213,11 +213,14 @@ def draw_background(image: Image.Image, grid: bool = False) -> None:
             draw.line((x, 0, x, height), fill=(255, 128, 184, 28), width=1)
         for y in range(0, height, 110):
             draw.line((0, y, width, y), fill=(116, 205, 255, 24), width=1)
-    for index in range(16):
-        x = (index * 211 + 120) % width
-        y = (index * 137 + 80) % height
-        radius = 34 + (index % 4) * 18
-        color = (255, 128, 184, 40) if index % 2 else (116, 205, 255, 38)
+    # Keep decorative color away from the content area; dense bubbles made the deck feel crowded.
+    edge_blobs = [
+        (90, 120, 46, (116, 205, 255, 32)),
+        (width - 110, 100, 58, (255, 128, 184, 34)),
+        (width - 120, height - 110, 62, (203, 240, 229, 38)),
+        (150, height - 120, 40, (255, 128, 184, 28)),
+    ]
+    for x, y, radius, color in edge_blobs:
         draw.ellipse((x - radius, y - radius, x + radius, y + radius), fill=color)
 
 
@@ -262,23 +265,27 @@ def npc_frame(index: int) -> Image.Image:
 def create_player_lineup() -> Path:
     output = VISUAL_DIR / "player_lineup.png"
     image = Image.new("RGBA", (1600, 900), COLORS["paper"])
-    draw_background(image, grid=True)
+    draw_background(image, grid=False)
     draw = ImageDraw.Draw(image, "RGBA")
-    panel(draw, (70, 70, 1530, 830), (255, 255, 255, 230), COLORS["pink"], 42, 4)
-    draw_text(draw, "Player Action Lineup", (112, 106), font(54, True), COLORS["purple_dark"])
-    draw_text(draw, "Real player spritesheet frames: idle, attack, hurt, walk and climb.", (116, 176), font(26), COLORS["muted"], 1180)
+    draw_text(draw, "Player Action Lineup", (105, 95), font(62, True), COLORS["purple_dark"])
+    draw_text(draw, "Idle / move / attack / hurt frames from the real player spritesheets.", (108, 175), font(27), COLORS["muted"], 1200)
+    draw.rectangle((0, 620, 1600, 760), fill=(222, 245, 255, 150))
+    image.alpha_composite(tile_strip(1600, 90), (0, 760))
 
-    frames = extract_grid(PLAYER_MAIN, 4, 4, [0, 1, 4, 5, 8, 9, 12, 13])
-    frames += extract_grid(PLAYER_WALK, 7, 2, [0, 1, 2, 7])
-    labels = ["Idle", "Idle", "Ready", "Ready", "Attack", "Attack", "Hurt", "Hurt", "Walk", "Walk", "Move", "Climb"]
-    for index, frame in enumerate(frames[:12]):
-        col = index % 6
-        row = index // 6
-        left = 105 + col * 238
-        top = 290 + row * 255
-        panel(draw, (left, top, left + 230, top + 220), COLORS["blue_soft"], (146, 214, 255, 200), 24, 2)
-        paste_center(image, frame, (left + 18, top + 18, left + 212, top + 168))
-        draw_text(draw, labels[index], (left + 26, top + 178), font(22, True), COLORS["purple"])
+    frames = [
+        ("Idle", player_pose(0)),
+        ("Ready", player_pose(4)),
+        ("Attack", player_pose(8)),
+        ("Hurt", player_pose(12)),
+        ("Walk", trim_alpha(extract_grid(PLAYER_WALK, 7, 2, [0])[0], 6)),
+        ("Move", trim_alpha(extract_grid(PLAYER_WALK, 7, 2, [2])[0], 6)),
+        ("Climb", trim_alpha(extract_grid(PLAYER_WALK, 7, 2, [7])[0], 6)),
+    ]
+    for index, (label, frame) in enumerate(frames):
+        x = 105 + index * 205
+        sprite = fit_image(frame, 170, 250, Image.Resampling.LANCZOS)
+        image.alpha_composite(sprite, (x + (170 - sprite.width) // 2, 388 + (250 - sprite.height) // 2))
+        draw_text(draw, label, (x + 36, 665), font(25, True), COLORS["purple_dark"])
 
     image.convert("RGB").save(output, optimize=True)
     return output
@@ -287,21 +294,21 @@ def create_player_lineup() -> Path:
 def create_enemy_lineup() -> Path:
     output = VISUAL_DIR / "enemy_lineup.png"
     image = Image.new("RGBA", (1600, 900), COLORS["paper"])
-    draw_background(image, grid=True)
+    draw_background(image, grid=False)
     draw = ImageDraw.Draw(image, "RGBA")
-    panel(draw, (70, 70, 1530, 830), (255, 255, 255, 232), COLORS["blue"], 42, 4)
-    draw_text(draw, "Enemy Lineup", (112, 106), font(56, True), COLORS["purple_dark"])
-    draw_text(draw, "Prototype enemies for early room, mid room, aerial threat and boss placeholder.", (116, 178), font(26), COLORS["muted"], 1200)
+    draw_text(draw, "Enemy Lineup", (105, 95), font(62, True), COLORS["purple_dark"])
+    draw_text(draw, "Readable monster silhouettes for early room, mid room, aerial threat and boss placeholder.", (108, 175), font(27), COLORS["muted"], 1200)
+    draw.rectangle((0, 620, 1600, 760), fill=(222, 245, 255, 150))
+    image.alpha_composite(tile_strip(1600, 90), (0, 760))
 
     roles = ["Early Room", "Mid Room", "Aerial Threat", "Boss Variant"]
     for index, (name, path) in enumerate(ENEMY_SHEETS):
         frame = extract_grid(path, 4, 4, [0, 5, 8, 12])[index % 4]
-        left = 116 + index * 365
-        top = 290
-        panel(draw, (left, top, left + 330, top + 500), (255, 244, 250, 248), COLORS["pink"], 32, 3)
-        paste_center(image, frame, (left + 34, top + 36, left + 296, top + 320))
-        draw_text(draw, name, (left + 26, top + 346), font(25, True), COLORS["purple_dark"], 280)
-        draw_text(draw, roles[index], (left + 26, top + 410), font(24), COLORS["muted"], 280)
+        left = 140 + index * 365
+        sprite = fit_image(frame, 265, 310, Image.Resampling.LANCZOS)
+        image.alpha_composite(sprite, (left + (265 - sprite.width) // 2, 330 + (310 - sprite.height) // 2))
+        draw_text(draw, name, (left - 8, 665), font(25, True), COLORS["purple_dark"], 300)
+        draw_text(draw, roles[index], (left - 8, 707), font(22), COLORS["muted"], 300)
 
     image.convert("RGB").save(output, optimize=True)
     return output
@@ -422,7 +429,7 @@ def create_hero_stage() -> Path:
     image.alpha_composite(npc, (420, 595))
     draw.line((560, 665, 660, 620), fill=COLORS["pink"], width=8)
     draw_text(draw, "AI narrative + room combat", (925, 130), font(42, True), COLORS["purple_dark"])
-    draw_text(draw, "Real assets. Screenshots pending.", (930, 190), font(25), COLORS["muted"], 520)
+    draw_text(draw, "Cute workshop action loop.", (930, 190), font(25), COLORS["muted"], 520)
 
     image.convert("RGB").save(output, optimize=True)
     return output
@@ -507,7 +514,7 @@ def create_demo_timeline() -> Path:
         top = 515
         panel(draw, (left, top, left + 210, top + 145), COLORS["dark_panel"], COLORS["pink"], 20, 2)
         draw_text(draw, label, (left + 22, top + 30), font(22, True), COLORS["white"], 160)
-        draw_text(draw, "等待 Unity 截图回填", (left + 22, top + 78), font(17), (238, 246, 255, 230), 160)
+        draw_text(draw, "录屏镜头节点", (left + 22, top + 78), font(17), (238, 246, 255, 230), 160)
     image.convert("RGB").save(output, optimize=True)
     return output
 
@@ -535,7 +542,7 @@ def create_tech_architecture() -> Path:
         panel(draw, (x - 105, y - 42, x + 105, y + 42), COLORS["white"], COLORS["pink"] if y < center[1] else COLORS["blue"], 22, 3)
         draw.line((center[0], center[1], x, y), fill=(99, 72, 147, 150), width=4)
         draw_text(draw, label, (x - 88, y - 15), font(24, True), COLORS["purple_dark"], 185)
-    draw_text(draw, "Render / Cloudflare / GitHub Pages are deployment targets, not completed links yet.", (170, 790), font(25), COLORS["muted"], 1200)
+    draw_text(draw, "WebGL build can be hosted on Render / Cloudflare Pages / GitHub Pages.", (170, 790), font(25), COLORS["muted"], 1200)
     image.convert("RGB").save(output, optimize=True)
     return output
 
