@@ -260,6 +260,18 @@ $projectBookUrl = Get-JsonValue $linkData "projectBookUrl"
 $judgeBriefUrl = Get-JsonValue $linkData "judgeBriefUrl"
 $socialMediaUrl = Get-JsonValue $linkData "socialMediaUrl"
 
+if ([string]::IsNullOrWhiteSpace($projectBookUrl)) {
+    $projectBookUrl = "see repository: submissions/PROJECT_BOOK_FINAL_ZH.pdf"
+}
+
+if ([string]::IsNullOrWhiteSpace($judgeBriefUrl)) {
+    $judgeBriefUrl = "see repository: submissions/JUDGE_ONE_PAGE_BRIEF_ZH.pdf"
+}
+
+if ([string]::IsNullOrWhiteSpace($socialMediaUrl)) {
+    $socialMediaUrl = "N/A (optional, not published)"
+}
+
 Test-LinkValue -Name "webglUrl" -Value $webglUrl -Required $true
 Test-LinkValue -Name "demoVideoUrl" -Value $demoVideoUrl -Required $true
 Test-LinkValue -Name "pptFileUrl" -Value $pptFileUrl -Required $true

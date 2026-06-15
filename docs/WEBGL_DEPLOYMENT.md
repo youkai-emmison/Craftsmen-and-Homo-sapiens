@@ -1,121 +1,127 @@
-# WebGL 构建与部署说明
+# WebGL Deployment Guide
 
-## 目标
+本任务只准备 WebGL 构建和部署材料，不实际部署。
 
-比赛要求作品提供可在浏览器中直接在线体验的网页地址。因此最终需要把 Unity 项目构建为 WebGL，并部署到静态网页托管平台。
+## Project
 
-最终上传当天可以直接按照 `submissions/WEBGL_UPLOAD_RUNBOOK.md` 执行。
+- 中文名：能工智人：遗忘工坊
+- English: Craftsmen and Homo Sapiens: The Forgotten Forge
+- Track: 叙事类游戏 / Narrative Games
+- Demo scene: `Assets/Scenes/SampleScene.unity`
 
-## 推荐 Unity 版本
+## Unity Version
 
-- Unity `2022.3.53f1`
-- Unity `2022.3.53f1c1`
+推荐使用：
 
-不要无意义升级 Unity 版本，避免 `.meta`、ProjectSettings 或资源导入格式变化。
+- Unity 2022.3.53f1
+- Unity 2022.3.53f1c1
 
-## 本地构建步骤
+不要为了部署无意义升级 Unity 版本，避免 `.meta`、`ProjectSettings` 或资源导入格式变化。
 
-1. 打开 Unity Hub。
-2. 使用 Unity 2022.3.53f1 / 2022.3.53f1c1 打开项目。
-3. 打开当前 Demo 场景：
-   - 当前可用：`Assets/Scenes/SampleScene.unity`
-   - 若后续新增正式场景：`Assets/Scenes/HackathonDemo.unity`
-4. 进入 `File > Build Settings...`
-5. 选择 `WebGL`
-6. 点击 `Switch Platform`
-7. 确认 Scenes In Build 中包含 Demo 场景。
-8. 点击 `Build`
-9. 输出目录建议选择：
+## Build Output
 
-`Build/WebGL`
+WebGL 构建输出目录：
 
-## 本地预览
+```text
+Build/WebGL
+```
 
-Unity WebGL 不能直接双击 `index.html` 可靠运行，建议使用本地静态服务器。
+静态站点整理目录：
 
-可选方式：
+```text
+Submission/WebGLSite
+```
+
+## Unity Editor Menu
+
+项目提供两个编辑器菜单：
+
+```text
+Tools > Hackathon > Build WebGL
+Tools > Hackathon > Prepare Deploy Folder
+```
+
+脚本位置：
+
+```text
+Assets/Scripts/Editor/WebGLBuildCommand.cs
+Assets/Scripts/Editor/HackathonBuildMenu.cs
+```
+
+## Build Steps
+
+1. 用 Unity 打开项目。
+2. 打开 `Assets/Scenes/SampleScene.unity`。
+3. 确认 Console 没有红色编译错误。
+4. 确认 Build Settings 中包含 Demo 场景。
+5. 点击 `Tools > Hackathon > Build WebGL`。
+6. 等待 Unity 构建到 `Build/WebGL`。
+7. 点击 `Tools > Hackathon > Prepare Deploy Folder`。
+8. 确认 `Submission/WebGLSite/index.html` 存在。
+
+也可以用脚本整理静态站点目录：
 
 ```powershell
-cd Build/WebGL
+powershell -ExecutionPolicy Bypass -File tools/prepare_webgl_site.ps1
+```
+
+macOS / Linux:
+
+```bash
+bash tools/prepare_webgl_site.sh
+```
+
+## Local Preview
+
+Unity WebGL 不能稳定地直接双击 `index.html` 运行，建议使用本地静态服务器：
+
+```powershell
+cd Submission/WebGLSite
 python -m http.server 8000
 ```
 
 浏览器打开：
 
-`http://localhost:8000`
+```text
+http://localhost:8000
+```
 
-如果本机 Python 命令不可用，可以使用 VS Code Live Server、Node.js 静态服务器或其他本地服务器。
+注意：`localhost` 只能用于测试，不能填入正式报名表。
 
-## 部署方式建议
+## Compression Note
 
-### 方案 A：腾讯云 Cloud Studio
+如果部署后浏览器黑屏或控制台出现 `.wasm`、`.data`、`.br`、`.gz` 相关加载问题，优先使用兼容性方案：
 
-适合比赛语境。
+1. 打开 Unity Player Settings。
+2. 找到 WebGL Publishing Settings。
+3. 启用 Decompression Fallback。
+4. 重新 Build WebGL。
 
-1. 创建 Cloud Studio 工作空间。
-2. 上传或拉取项目仓库。
-3. 构建 WebGL。
-4. 将 `Build/WebGL` 作为静态站点目录。
-5. 获取公开访问链接。
+这样文件可能更大，但更适合普通静态站点托管。
 
-### 方案 B：GitHub Pages
+## Deployment Targets
 
-适合快速公开展示。
+推荐目标：
 
-1. 将 `Build/WebGL` 内容放入单独分支或 `docs/` 静态目录。
-2. 在 GitHub 仓库 Settings 中开启 Pages。
-3. 选择对应分支与目录。
-4. 等待部署完成。
-
-注意：如果仓库包含第三方 Asset Store 原始素材，请先确认许可证和仓库公开策略。
-
-### 方案 C：其他静态托管
-
-任何能托管静态文件的平台都可以，例如：
-
+- Render Static Site
 - Cloudflare Pages
-- Vercel
-- Netlify
-- 自有服务器
+- GitHub Pages
 
-## WebGL 构建前检查
+详细比较见：
 
-- [ ] 当前 Demo 场景能 Play。
-- [ ] Console 没有红色 C# 编译错误。
-- [ ] 没有关键 `NullReferenceException` 刷屏。
-- [ ] UI 字体能在 WebGL 中显示。
-- [ ] 操作提示清楚。
-- [ ] 打开网页后能开始游戏。
-- [ ] 3 分钟内能走完 Demo 路线。
+```text
+docs/DEPLOYMENT_OPTIONS.md
+docs/FINAL_MANUAL_STEPS.md
+```
 
-## 提交时需要填写
+## Submission Reminder
 
-- 在线试玩链接：
-  - 待填写
-- Demo 视频链接：
-  - 待填写
-- GitHub 仓库链接：
-  - 待填写
+正式提交前需要人工回填：
 
-## 常见问题
+- WebGL 在线试玩链接
+- Demo 视频链接
+- PPT / PDF 链接
+- CodeBuddy 历史导出链接或文件
+- 团队信息
 
-### 页面加载很慢
-
-Unity WebGL 首次加载较慢，录视频时可以提前打开页面并等待加载完成。
-
-### 中文乱码
-
-如果 TextMeshPro 没有中文字体资产，建议提交版 UI 使用英文文本，或者制作包含中文字符的 TMP 字体资产。
-
-### 浏览器黑屏
-
-检查：
-
-- WebGL 构建是否完整上传。
-- 浏览器控制台是否有资源 404。
-- 服务器是否正确提供 `.wasm`、`.data`、`.js` 文件。
-- 当前场景是否加入 Build Settings。
-
-### Git 不建议提交 Build
-
-`Build/WebGL` 可以作为最终部署产物，但一般不建议长期提交到主项目仓库。可以用单独部署分支或发布包保存。
+本仓库已准备部署脚本和说明，但没有实际部署。

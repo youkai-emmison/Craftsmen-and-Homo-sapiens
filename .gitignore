@@ -43,3 +43,5 @@ Thumbs.db
 /submissions/artifact-build-manifest.json
 /submissions/final_upload_packages/
 /submissions/link_backfill_values.local.json
+/Submission/*.inspect.ndjson
+/Submission/project_deck_assets/*.layout.json

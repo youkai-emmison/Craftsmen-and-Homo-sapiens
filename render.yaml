@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: forgotten-forge-webgl
+    runtime: static
+    buildCommand: ""
+    staticPublishPath: Submission/WebGLSite
+    pullRequestPreviewsEnabled: false

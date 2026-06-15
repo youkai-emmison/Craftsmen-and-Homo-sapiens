@@ -35,6 +35,14 @@ Copy-Item submissions\link_backfill_values.example.json submissions\link_backfil
 - `judgeBriefUrl`
 - `socialMediaUrl`
 
+如果这些可选字段留空，脚本会自动写入兜底说明：
+
+- `projectBookUrl`：指向仓库里的 `submissions/PROJECT_BOOK_FINAL_ZH.pdf`。
+- `judgeBriefUrl`：指向仓库里的 `submissions/JUDGE_ONE_PAGE_BRIEF_ZH.pdf`。
+- `socialMediaUrl`：写成 `N/A (optional, not published)`。
+
+这样最终材料里不会留下“待回填”，也不会把可选项误当成必填项。
+
 3. 先试跑：
 
 ```powershell
