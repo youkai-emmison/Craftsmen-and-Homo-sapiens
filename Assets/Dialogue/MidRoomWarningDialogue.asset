@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27dd0aa2839e4b6ca5f81a07a66a0d51, type: 3}
   m_Name: MidRoomWarningDialogue
   m_EditorClassIdentifier: 
-  sequenceName: Mid Room Warning
+  sequenceName: Candy Forge Mid Room Warning
   lines:
-  - speakerName: Field Tech
-    content: "Yo, quick heads-up. The next room hits harder, so don't just mash buttons and pray."
-  - speakerName: Field Tech
+  - speakerName: Candy Tech
+    content: "Yo, quick heads-up. The Sugarblight Wizard is messing with the Candy Core, so the next room hits harder."
+  - speakerName: Candy Tech
     content: "That blue skill-energy bar comes back on its own. Spend it when it matters, then chill for a sec."
-  - speakerName: Field Tech
-    content: "If a door is locked, clear the room first. Boss room is ahead, so uh... breathe before you swing."
+  - speakerName: Candy Tech
+    content: "If a door is locked, clear the room first. Boss room is ahead, so uh... breathe before you swing that wand."

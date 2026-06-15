@@ -118,19 +118,19 @@ def create_poster() -> None:
 
     # A single readable title panel replaces the old many-box poster layout.
     add_shadow_panel(draw, (74, 68, 830, 354), 36)
-    draw.text((116, 106), "能工智人：遗忘工坊", font=font(72, True), fill=WHITE)
+    draw.text((116, 106), "能工智人：糖芯工坊", font=font(72, True), fill=WHITE)
     draw.text((120, 190), "Craftsmen and Homo Sapiens", font=font(34, True), fill=(222, 245, 255, 255))
-    draw.text((120, 234), "The Forgotten Forge", font=font(34, True), fill=(255, 221, 239, 255))
+    draw.text((120, 234), "The Candy Forge", font=font(34, True), fill=(255, 221, 239, 255))
     draw.text((120, 292), "叙事类游戏 / Narrative Games", font=font(31, True), fill=(255, 178, 210, 255))
 
-    pitch = "AI 叙事驱动的横版动作冒险，在地下工坊的记忆日志中揭开文明冲突真相。"
+    pitch = "理工男穿越成异世界女仆工程师，用糖果材料搓科技，打败 Boss 找到回家的路。"
     draw_wrapped_text(draw, pitch, (98, 392), font(36, True), WHITE, 760, 10)
 
     add_shadow_panel(draw, (92, 548, 738, 806), 32)
-    draw.text((128, 586), "工坊记忆日志", font=font(42, True), fill=(255, 221, 239, 255))
+    draw.text((128, 586), "糖芯工坊日志", font=font(42, True), fill=(255, 221, 239, 255))
     draw_wrapped_text(
         draw,
-        "AI 生成世界观、房间日志、Boss 背景与结局文本，并通过 NPC 对话进入游戏流程。",
+        "AI 辅助生成糖果异世界世界观、NPC 对话、糖芯工坊日志、Boss 背景与结局文本，并通过对话和 UI 进入游戏流程。",
         (128, 650),
         font(28),
         (239, 247, 255, 255),
@@ -187,7 +187,7 @@ def write_sources() -> None:
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8">
-  <title>能工智人：遗忘工坊 Screenshot Poster</title>
+  <title>能工智人：糖芯工坊 Screenshot Poster</title>
   <style>
     body { margin: 0; background: #261f3a; font-family: "Microsoft YaHei", Arial, sans-serif; }
     main { max-width: 1280px; margin: 32px auto; padding: 24px; }
@@ -197,7 +197,7 @@ def write_sources() -> None:
 </head>
 <body>
 <main>
-  <img src="poster_1920x1080.png" alt="Craftsmen and Homo Sapiens screenshot-driven poster">
+  <img src="poster_1920x1080.png" alt="Craftsmen and Homo Sapiens: The Candy Forge screenshot-driven poster">
   <p>Generated from cleaned real gameplay screenshots under Submission/clean_screenshots.</p>
 </main>
 </body>
@@ -211,12 +211,12 @@ def write_notes() -> None:
     POSTER_NOTES.write_text(
         """# Poster Notes
 
-This screenshot-driven poster replaces the earlier asset-collage style.
+This screenshot-driven poster replaces the earlier asset-collage style and uses the Candy Forge world setting.
 
 ## Real Screenshots Used
 
 - `Submission/clean_screenshots/06_boss_combat_hero_crop.png`: main poster background and gameplay climax.
-- `Submission/clean_screenshots/02_npc_dialogue_clean.png`: AI narrative / NPC dialogue proof panel.
+- `Submission/clean_screenshots/02_npc_dialogue_clean.png`: Candy Forge log / NPC dialogue proof panel.
 - `Submission/clean_screenshots/01_move_jump_attack_clean.png`: bottom screenshot strip, movement and combat.
 - `Submission/clean_screenshots/03_backpack_clean.png`: bottom screenshot strip, backpack and equipment.
 - `Submission/clean_screenshots/04_crafting_clean.png`: bottom screenshot strip, crafting.

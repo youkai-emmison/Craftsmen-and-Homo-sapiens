@@ -1,35 +1,41 @@
-# Demo Recording Guide
+# Demo 体验流程 / Demo Recording Guide
 
-本任务不录制最终 Demo 视频。本文档给负责录屏的同学使用。
+本文档给负责录屏的同学使用。表达上面向比赛展示，不写成内部调试备注。
 
 ## Recommended Length
 
 3 到 5 分钟。
 
-## Timeline
+## Experience Flow
 
-和新版 PPT 第 6 页保持一致。当前已经有 6 张清理后的真实截图用于 PPT 和海报：
+和新版 PPT 的“Demo 体验流程”页保持一致。当前已经有 6 张清理后的真实截图用于 PPT 和海报：
 
 | Time | Shot | What To Show |
 | --- | --- | --- |
-| 0:00 | 移动 / 开场 | 主角移动、跳跃、攻击，参考 `01_move_jump_attack_clean.png` |
-| 0:30 | NPC / 日志 | NPC 对话和叙事提示，参考 `02_npc_dialogue_clean.png` |
-| 1:30 | 背包 | 背包、装备说明、角色属性，参考 `03_backpack_clean.png` |
-| 2:00 | 合成 | 材料和 Craft 按钮，参考 `04_crafting_clean.png` |
+| 0:00 | 穿越开场 / 移动 | 主角在糖果异世界中移动、跳跃、攻击，参考 `01_move_jump_attack_clean.png` |
+| 0:30 | NPC 对话 / 日志 | 糖芯档案员对话和糖芯工坊日志，参考 `02_npc_dialogue_clean.png` |
+| 1:30 | 背包成长 | 背包、装备说明、角色属性，参考 `03_backpack_clean.png` |
+| 2:00 | 合成系统 | 材料、CandyStick、Craft 按钮，参考 `04_crafting_clean.png` |
 | 2:30 | 技能树 | 技能图标、技能说明和成长反馈，参考 `05_skilltree_clean.png` |
-| 3:30 | Boss | Boss 战斗高潮，参考 `06_boss_combat_clean.png` |
-| 4:00 | Victory | Demo Complete / Victory / 结局文本，最终录屏时补拍 |
+| 3:30 | Boss 战 | 糖蚀巫师 / Boss 战斗高潮，参考 `06_boss_combat_clean.png` |
+| 4:00 | Victory / 结局 | Demo Complete / Victory / 回家装置修复文本，最终录屏时补拍 |
+
+一句话展示目标：
+
+```text
+3–5 分钟展示完整游戏闭环：穿越开场、NPC 对话、战斗、成长、合成、Boss 战与结局。
+```
 
 ## Must-Capture 7 Shots
 
 这些镜头也对应 `Submission/screenshots/` 的截图文件名：
 
-1. `01_title_or_spawn.png`：出生点 / 开场画面。
-2. `02_intro_memory_log.png`：NPC 对话或工坊记忆日志。
+1. `01_title_or_spawn.png`：出生点 / 糖果异世界开场画面。
+2. `02_intro_memory_log.png`：NPC 对话或糖芯工坊日志。
 3. `03_early_room_combat.png`：早期房间战斗。
-4. `04_level_up_or_growth.png`：经验成长、制作、技力或背包反馈。
+4. `04_level_up_or_growth.png`：经验成长、制作、技力、背包或技能树反馈。
 5. `05_mid_room_enemy.png`：中段敌人或更强怪物。
-6. `06_boss_room.png`：Boss 房或最终异常体。
+6. `06_boss_room.png`：Boss 房或糖蚀巫师战斗。
 7. `07_victory_screen.png`：Demo Complete / Victory / 结局文本。
 
 ## Screenshot Tool

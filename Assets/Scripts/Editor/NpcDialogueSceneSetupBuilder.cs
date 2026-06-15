@@ -32,9 +32,9 @@ public static class NpcDialogueSceneSetupBuilder
             "Opening Guide",
             new[]
             {
-                CreateLine("Archivist", "Hey, you're finally here. Welcome to the dungeon shift. Not fancy, but hey, it keeps things interesting."),
-                CreateLine("Archivist", "A / D to move, Space to jump, J or Left Mouse to hit. Easy enough, yeah?"),
-                CreateLine("Archivist", "B opens the backpack, N opens crafting. Go right when you're ready, and uh... don't hug every weird monster.")
+                CreateLine("Candy Archivist", "Oh, finally. A real-world engineering student fell into the Candy Forge and the system registered you as a trainee maid engineer. Yeah, weird day."),
+                CreateLine("Candy Archivist", "A / D to move, Space to jump, J or Left Mouse to swing. Basic maid-engineer etiquette, apparently."),
+                CreateLine("Candy Archivist", "B opens the backpack, N opens crafting. Grab candy materials, make gear, and please don't hug the rampaging dessert spirits.")
             });
 
         DialogueSequence midRoomDialogue = CreateOrUpdateSequence(
@@ -42,9 +42,9 @@ public static class NpcDialogueSceneSetupBuilder
             "Mid Room Warning",
             new[]
             {
-                CreateLine("Field Tech", "Yo, quick heads-up. The next room hits harder, so don't just mash buttons and pray."),
-                CreateLine("Field Tech", "That blue skill-energy bar comes back on its own. Spend it when it matters, then chill for a sec."),
-                CreateLine("Field Tech", "If a door is locked, clear the room first. Boss room is ahead, so uh... breathe before you swing.")
+                CreateLine("Candy Tech", "Yo, quick heads-up. The Sugarblight Wizard is messing with the Candy Core, so the next room hits harder."),
+                CreateLine("Candy Tech", "That blue skill-energy bar comes back on its own. Spend it when it matters, then chill for a sec."),
+                CreateLine("Candy Tech", "If a door is locked, clear the room first. Boss room is ahead, so uh... breathe before you swing that wand.")
             });
 
         DialoguePanelController dialoguePanel = CreateOrUpdateDialoguePanel();

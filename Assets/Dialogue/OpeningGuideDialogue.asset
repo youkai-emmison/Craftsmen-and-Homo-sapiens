@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27dd0aa2839e4b6ca5f81a07a66a0d51, type: 3}
   m_Name: OpeningGuideDialogue
   m_EditorClassIdentifier: 
-  sequenceName: Opening Guide
+  sequenceName: Candy Forge Opening Guide
   lines:
-  - speakerName: Archivist
-    content: "Hey, you're finally here. Welcome to the dungeon shift. Not fancy, but hey, it keeps things interesting."
-  - speakerName: Archivist
-    content: "A / D to move, Space to jump, J or Left Mouse to hit. Easy enough, yeah?"
-  - speakerName: Archivist
-    content: "B opens the backpack, N opens crafting. Go right when you're ready, and uh... don't hug every weird monster."
+  - speakerName: Candy Archivist
+    content: "Oh, finally. A real-world engineering student fell into the Candy Forge and the system registered you as a trainee maid engineer. Yeah, weird day."
+  - speakerName: Candy Archivist
+    content: "A / D to move, Space to jump, J or Left Mouse to swing. Basic maid-engineer etiquette, apparently."
+  - speakerName: Candy Archivist
+    content: "B opens the backpack, N opens crafting. Grab candy materials, make gear, and please don't hug the rampaging dessert spirits."

@@ -1,11 +1,11 @@
 # AI Creation Log
 
-本文档用于比赛提交时说明 AI 在《能工智人：遗忘工坊》中的使用方式。
+本文档用于比赛提交时说明 AI 在《能工智人：糖芯工坊》中的使用方式。
 
 ## Project
 
-- 中文名：能工智人：遗忘工坊
-- English: Craftsmen and Homo Sapiens: The Forgotten Forge
+- 中文名：能工智人：糖芯工坊
+- English: Craftsmen and Homo Sapiens: The Candy Forge
 - Track: 叙事类游戏 / Narrative Games
 
 ## AI Usage Summary
@@ -16,40 +16,47 @@
 
 ### Worldbuilding
 
-AI 辅助生成地下工坊、工匠文明、智人文明、遗忘档案、异常构造体等世界观方向。
+AI 辅助生成“糖果异世界 + 女仆工程师 + 合成科技 + Boss 回家”的轻喜剧叙事方向。
 
 核心设定：
 
 ```text
-地下工坊曾试图把工匠的技艺和智人的判断力融合进“智核”。实验失败后，工坊记忆被封存。玩家进入遗迹，在记忆日志中读取真相。
+糖芯王国是一座由“糖芯炉”驱动的异世界。这里的甜点不是食物，而是能源、武器、魔法和机械零件。主角洛辰原本是现实世界的理工男大学生，在实验事故后穿越到这里，被系统错误绑定为“见习女仆工程师”。为了回到现实世界，他必须学习技能、收集糖果材料、合成装备与道具，并击败污染糖芯炉的糖蚀巫师。
 ```
 
-### Room Memory Logs
+### Candy Forge Logs
 
-AI 辅助生成房间记忆日志，用于把剧情嵌入战斗和探索流程。
+AI 辅助生成糖芯工坊日志，用于把剧情嵌入 NPC 对话、房间推进和 Demo 展示流程。
 
 示例：
 
 ```text
-炉心记录：工匠们把判断力交给机器，把记忆交给人类。协议中断后，房间仍在重复旧命令。
+糖芯日志 01：
+未知人类个体坠入糖芯工坊。检测到异常知识结构：工程学、动画数据库、熬夜经验。系统职业绑定失败，已临时分配为“见习女仆工程师”。
+
+糖芯日志 04：
+CandyStick、Moonthread、Scrapguard……这些看起来像零食的材料，经过工坊装置处理后，可以变成真正能打 Boss 的装备。
+
+糖芯日志 06：
+糖蚀巫师守在传送门前。他不是最终答案，而是阻止你回家的最后一道 Bug。
 ```
 
 游戏中对应位置：
 
 - NPC 对话
-- 房间提示
+- 糖芯工坊日志
 - Boss 背景文本
 - 结局 / Demo Complete 文本
-- Demo 录屏讲解文案
+- Demo 展示讲解文案
 
 ### Character / Enemy / Boss Lore
 
 AI 辅助生成：
 
-- 玩家身份：进入遗忘工坊的探索者。
-- NPC：档案员与技术员，负责引导记忆日志和玩法提示。
-- 普通敌人：工坊异常生物、失控构造体、精英怪视觉占位。
-- Demo Boss：核心哨兵或最终异常体。
+- 主角：洛辰 / 见习女仆工程师，现实世界理工男大学生。
+- NPC：糖芯档案员，负责引导操作和解释糖芯工坊日志。
+- 普通敌人：被污染糖芯能量影响后失控的暴走甜点精灵。
+- Demo Boss：糖蚀巫师，污染糖芯炉并阻止主角回家。
 
 这些设定服务于原创叙事氛围，不复制任何商业作品角色、剧情、UI、音乐或数值。
 
@@ -80,28 +87,9 @@ Submission/visual_assets/submission_status_board.png
 - `Assets/Art/Generated/Devices/`
 - `Assets/Art/Tiles/`
 
-### Poster and PPT
-
-新版海报和 PPT 使用项目真实素材重做：
-
-```text
-Submission/poster_1920x1080.png
-Submission/poster_source.svg
-Submission/poster_source.html
-Submission/project_deck.pptx
-Submission/project_deck.pdf
-```
-
-注意：
-
-- 没有使用其他游戏截图。
-- 没有伪造 Unity 实机截图。
-- 没有声称已经部署或已经录制最终视频。
-- 缺失的实机截图位置会明确标注为“等待 Unity 截图回填”。
-
 ### Real Screenshot Cleanup
 
-团队提供了 6 张项目实际运行截图，Codex 辅助清理录屏遮挡并用于提交材料：
+团队提供了 6 张项目实际运行截图，Codex 辅助清理录屏遮挡并用于海报和 PPT：
 
 ```text
 Submission/raw_screenshots/
@@ -118,6 +106,25 @@ tools/clean_submission_screenshots.py
 
 这些处理只去除非游戏内容，不伪造不存在的 UI、角色、关卡或胜利画面。
 
+### Poster and PPT
+
+新版海报和 PPT 使用项目真实截图与糖芯工坊世界观重做：
+
+```text
+Submission/poster_1920x1080.png
+Submission/poster_source.svg
+Submission/poster_source.html
+Submission/project_deck.pptx
+Submission/project_deck.pdf
+```
+
+注意：
+
+- 没有使用其他游戏截图。
+- 没有伪造 Unity 实机截图。
+- 没有声称已经部署或已经录制最终视频。
+- Demo Link、Video Link 等外部链接仍需人工回填。
+
 ### Development Assistance
 
 AI / Codex 辅助完成：
@@ -126,14 +133,6 @@ AI / Codex 辅助完成：
 - NPC 对话、背包、制作、技力、战斗流程相关文档。
 - WebGL 构建菜单和静态部署准备脚本。
 - 海报、PPT、提交文案、录屏指南和最终检查清单。
-
-## CodeBuddy Export Placeholder
-
-最终提交前需要补入 CodeBuddy / AI 对话历史导出链接或文件。
-
-```text
-待回填：CodeBuddy 历史导出链接或文件名
-```
 
 ## Human Review
 

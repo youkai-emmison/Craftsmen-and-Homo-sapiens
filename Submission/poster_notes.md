@@ -1,11 +1,11 @@
 # Poster Notes
 
-This screenshot-driven poster replaces the earlier asset-collage style.
+This screenshot-driven poster replaces the earlier asset-collage style and uses the Candy Forge world setting.
 
 ## Real Screenshots Used
 
 - `Submission/clean_screenshots/06_boss_combat_hero_crop.png`: main poster background and gameplay climax.
-- `Submission/clean_screenshots/02_npc_dialogue_clean.png`: AI narrative / NPC dialogue proof panel.
+- `Submission/clean_screenshots/02_npc_dialogue_clean.png`: Candy Forge log / NPC dialogue proof panel.
 - `Submission/clean_screenshots/01_move_jump_attack_clean.png`: bottom screenshot strip, movement and combat.
 - `Submission/clean_screenshots/03_backpack_clean.png`: bottom screenshot strip, backpack and equipment.
 - `Submission/clean_screenshots/04_crafting_clean.png`: bottom screenshot strip, crafting.
