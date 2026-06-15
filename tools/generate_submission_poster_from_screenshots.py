@@ -5,7 +5,7 @@ from __future__ import annotations
 import base64
 from pathlib import Path
 
-from PIL import Image, ImageDraw, ImageEnhance, ImageFont, ImageOps
+from PIL import Image, ImageDraw, ImageEnhance, ImageFilter, ImageFont, ImageOps
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -90,6 +90,34 @@ def add_shadow_panel(draw: ImageDraw.ImageDraw, box: tuple[int, int, int, int], 
     draw.rounded_rectangle(box, radius=radius, fill=(39, 31, 61, 232), outline=(255, 255, 255, 72), width=2)
 
 
+def add_gradient_overlay(canvas: Image.Image) -> Image.Image:
+    width, height = canvas.size
+    overlay = Image.new("RGBA", canvas.size, (0, 0, 0, 0))
+    pixels = overlay.load()
+    for y in range(height):
+        top_strength = max(0, 1 - y / 520)
+        bottom_strength = max(0, (y - 650) / 430)
+        for x in range(width):
+            left_strength = max(0, 1 - x / 980)
+            alpha = int(42 + 150 * left_strength + 70 * top_strength + 95 * bottom_strength)
+            pixels[x, y] = (31, 23, 49, min(alpha, 235))
+    return Image.alpha_composite(canvas.convert("RGBA"), overlay)
+
+
+def draw_text_shadow(
+    draw: ImageDraw.ImageDraw,
+    position: tuple[int, int],
+    value: str,
+    text_font: ImageFont.FreeTypeFont,
+    fill: tuple[int, int, int, int],
+    shadow: tuple[int, int, int, int] = (28, 18, 44, 190),
+    offset: tuple[int, int] = (4, 5),
+) -> None:
+    x, y = position
+    draw.text((x + offset[0], y + offset[1]), value, font=text_font, fill=shadow)
+    draw.text((x, y), value, font=text_font, fill=fill)
+
+
 def require_clean_screenshots() -> None:
     required = [
         "01_move_jump_attack_clean.png",
@@ -109,65 +137,48 @@ def create_poster() -> None:
     require_clean_screenshots()
 
     background = load_rgb(CLEAN_DIR / "06_boss_combat_hero_crop.png")
-    background = ImageEnhance.Brightness(background).enhance(0.78)
+    background = ImageEnhance.Brightness(background).enhance(0.82)
     background = ImageEnhance.Contrast(background).enhance(1.08)
     poster = ImageOps.fit(background, (1920, 1080), method=Image.Resampling.LANCZOS)
-    overlay = Image.new("RGBA", poster.size, (37, 26, 52, 74))
-    poster = Image.alpha_composite(poster.convert("RGBA"), overlay)
+    poster = poster.filter(ImageFilter.GaussianBlur(7))
+    poster = add_gradient_overlay(poster)
     draw = ImageDraw.Draw(poster, "RGBA")
 
-    # A single readable title panel replaces the old many-box poster layout.
-    add_shadow_panel(draw, (74, 68, 830, 354), 36)
-    draw.text((116, 106), "能工智人：糖芯工坊", font=font(72, True), fill=WHITE)
-    draw.text((120, 190), "Craftsmen and Homo Sapiens", font=font(34, True), fill=(222, 245, 255, 255))
-    draw.text((120, 234), "The Candy Forge", font=font(34, True), fill=(255, 221, 239, 255))
-    draw.text((120, 292), "叙事类游戏 / Narrative Games", font=font(31, True), fill=(255, 178, 210, 255))
+    # Poster V3: one clear focal image, strong title hierarchy, very few text groups.
+    hero_box = (830, 164, 1798, 738)
+    shadow = Image.new("RGBA", poster.size, (0, 0, 0, 0))
+    shadow_draw = ImageDraw.Draw(shadow, "RGBA")
+    shadow_draw.rounded_rectangle((hero_box[0] + 22, hero_box[1] + 24, hero_box[2] + 22, hero_box[3] + 24), radius=38, fill=(24, 15, 36, 180))
+    shadow = shadow.filter(ImageFilter.GaussianBlur(16))
+    poster = Image.alpha_composite(poster, shadow)
+    draw = ImageDraw.Draw(poster, "RGBA")
+    paste_cover(poster, load_rgb(CLEAN_DIR / "06_boss_combat_clean.png"), hero_box, radius=34)
+    draw.rounded_rectangle(hero_box, radius=34, outline=(255, 255, 255, 170), width=3)
+    draw.rounded_rectangle((hero_box[0], hero_box[3] - 72, hero_box[2], hero_box[3]), radius=34, fill=(33, 24, 52, 205))
+    draw.text((hero_box[0] + 34, hero_box[3] - 54), "Boss 战实机画面", font=font(30, True), fill=WHITE)
+    draw.text((hero_box[2] - 318, hero_box[3] - 52), "Demo Link：待回填", font=font(24, True), fill=(255, 221, 239, 255))
+
+    draw_text_shadow(draw, (92, 94), "能工智人：", font(86, True), WHITE)
+    draw_text_shadow(draw, (92, 188), "糖芯工坊", font(96, True), WHITE)
+    draw.text((98, 304), "Craftsmen and Homo Sapiens:", font=font(30, True), fill=(229, 246, 255, 255))
+    draw.text((98, 340), "The Candy Forge", font=font(32, True), fill=(229, 246, 255, 255))
+    draw.rounded_rectangle((100, 402, 455, 456), radius=24, fill=(255, 128, 184, 230))
+    draw.text((128, 412), "叙事类游戏 / Narrative Games", font=font(26, True), fill=(42, 31, 66, 255))
 
     pitch = "理工男穿越成异世界女仆工程师，用糖果材料搓科技，打败 Boss 找到回家的路。"
-    draw_wrapped_text(draw, pitch, (98, 392), font(36, True), WHITE, 760, 10)
+    draw_wrapped_text(draw, pitch, (100, 486), font(40, True), WHITE, 660, 14)
 
-    add_shadow_panel(draw, (92, 548, 738, 806), 32)
-    draw.text((128, 586), "糖芯工坊日志", font=font(42, True), fill=(255, 221, 239, 255))
-    draw_wrapped_text(
-        draw,
-        "AI 辅助生成糖果异世界世界观、NPC 对话、糖芯工坊日志、Boss 背景与结局文本，并通过对话和 UI 进入游戏流程。",
-        (128, 650),
-        font(28),
-        (239, 247, 255, 255),
-        520,
-        10,
-    )
-    paste_cover(poster, load_rgb(CLEAN_DIR / "02_npc_dialogue_clean.png"), (758, 544, 1222, 806), radius=26)
-    draw.rounded_rectangle((758, 544, 1222, 806), radius=26, outline=(116, 205, 255, 210), width=3)
+    tags = [("AI 叙事", PINK), ("合成成长", BLUE), ("Boss 战", (126, 227, 180, 255))]
+    tag_x = 102
+    for label, color in tags:
+        text_width = draw.textbbox((0, 0), label, font=font(25, True))[2]
+        draw.rounded_rectangle((tag_x, 686, tag_x + text_width + 44, 740), radius=24, fill=color)
+        draw.text((tag_x + 22, 696), label, font=font(25, True), fill=(42, 31, 66, 255))
+        tag_x += text_width + 68
 
-    strip = [
-        ("移动/战斗", "01_move_jump_attack_clean.png"),
-        ("NPC 对话", "02_npc_dialogue_clean.png"),
-        ("背包装备", "03_backpack_clean.png"),
-        ("合成系统", "04_crafting_clean.png"),
-        ("技能成长", "05_skilltree_clean.png"),
-        ("Boss 战", "06_boss_combat_clean.png"),
-    ]
-    start_x = 82
-    y = 858
-    card_w = 278
-    card_h = 144
-    gap = 22
-    for index, (label, file_name) in enumerate(strip):
-        left = start_x + index * (card_w + gap)
-        paste_cover(poster, load_rgb(CLEAN_DIR / file_name), (left, y, left + card_w, y + card_h), radius=18)
-        draw.rounded_rectangle((left, y, left + card_w, y + card_h), radius=18, outline=(255, 255, 255, 150), width=2)
-        draw.rounded_rectangle((left, y + card_h - 36, left + card_w, y + card_h), radius=18, fill=(39, 31, 61, 204))
-        draw.text((left + 18, y + card_h - 31), label, font=font(22, True), fill=WHITE)
-
-    draw.rounded_rectangle((1252, 550, 1812, 760), radius=30, fill=(255, 248, 253, 232))
-    draw.text((1288, 590), "AI-assisted modules", font=font(31, True), fill=PURPLE)
-    draw.text((1292, 648), "Worldbuilding & Story", font=font(27, True), fill=(56, 47, 84, 255))
-    draw.text((1292, 698), "Game Key Art", font=font(27, True), fill=(56, 47, 84, 255))
-
-    draw.rounded_rectangle((1252, 782, 1812, 848), radius=22, fill=(255, 246, 232, 238))
-    draw.text((1284, 792), "Team：落云宗", font=font(25, True), fill=DARK)
-    draw.text((1284, 820), "成员：秦天 / 陈磊    Demo Link：待回填", font=font(20, True), fill=PURPLE)
+    draw.line((102, 812, 684, 812), fill=(255, 221, 239, 180), width=3)
+    draw.text((102, 842), "AI modules：Worldbuilding & Story / Game Key Art", font=font(23, True), fill=(232, 244, 255, 230))
+    draw.text((102, 890), "Team：落云宗  |  秦天 / 陈磊", font=font(28, True), fill=(255, 246, 232, 255))
 
     poster.convert("RGB").save(POSTER_PNG, optimize=True, quality=91)
 
@@ -216,17 +227,16 @@ This screenshot-driven poster replaces the earlier asset-collage style and uses 
 ## Real Screenshots Used
 
 - `Submission/clean_screenshots/06_boss_combat_hero_crop.png`: main poster background and gameplay climax.
-- `Submission/clean_screenshots/02_npc_dialogue_clean.png`: Candy Forge log / NPC dialogue proof panel.
-- `Submission/clean_screenshots/01_move_jump_attack_clean.png`: bottom screenshot strip, movement and combat.
-- `Submission/clean_screenshots/03_backpack_clean.png`: bottom screenshot strip, backpack and equipment.
-- `Submission/clean_screenshots/04_crafting_clean.png`: bottom screenshot strip, crafting.
-- `Submission/clean_screenshots/05_skilltree_clean.png`: bottom screenshot strip, skill growth.
-- `Submission/clean_screenshots/06_boss_combat_clean.png`: bottom screenshot strip, Boss combat.
+- `Submission/clean_screenshots/06_boss_combat_clean.png`: the single primary gameplay screenshot.
 
 ## Cleanup Notes
 
 The source screenshots were cleaned by `tools/clean_submission_screenshots.py`.
 Video subtitles, the NVIDIA prompt, and irrelevant margins were removed. No gameplay UI was fabricated.
+
+## Design Notes
+
+The poster follows a single-focal-point layout: one large gameplay image, a strong title block, three short feature tags, and minimal footer information. Earlier multi-screenshot strips were removed because they made the poster feel crowded.
 
 ## Honest Submission Notes
 

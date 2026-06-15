@@ -81,10 +81,10 @@ const slides = [
     purpose: "展示材料、合成、技能学习如何连接战斗成长。",
   },
   {
-    title: "Demo 体验流程",
+    title: "Demo 视频讲解",
     layout: "六截图时间轴",
     assets: [screenshots.move, screenshots.npc, screenshots.backpack, screenshots.craft, screenshots.skill, screenshots.boss],
-    purpose: "用 3-5 分钟展示完整游戏闭环。",
+    purpose: "用视频讲解顺序展示完整游戏闭环。",
   },
   {
     title: "技术结构与部署准备",
@@ -309,8 +309,8 @@ async function slideCraftSkill(presentation) {
 async function slideTimeline(presentation) {
   const slide = presentation.slides.add();
   slide.background.fill = COLORS.paper;
-  text(slide, "Demo 体验流程", 64, 48, 430, 54, { fontSize: 42, bold: true });
-  text(slide, "3–5 分钟展示完整游戏闭环：穿越开场、NPC 对话、战斗、成长、合成、Boss 战与结局。", 66, 108, 860, 32, {
+  text(slide, "Demo 视频讲解", 64, 48, 430, 54, { fontSize: 42, bold: true });
+  text(slide, "3–5 分钟视频展示完整游戏闭环：穿越开场、NPC 对话、战斗、成长、合成、Boss 战与结局。", 66, 108, 900, 32, {
     fontSize: 21,
     color: COLORS.muted,
   });
@@ -338,16 +338,20 @@ async function slideTech(presentation) {
   const slide = presentation.slides.add();
   slide.background.fill = "#F6F2FF";
   text(slide, "技术结构与部署准备", 68, 56, 520, 54, { fontSize: 40, bold: true });
-  await image(slide, visualPath("tech_architecture.png"), 60, 150, 600, 420, "Tech architecture", "contain");
-  await image(slide, screenshotPath(screenshots.boss), 716, 158, 470, 270, "Boss combat screenshot", "cover");
-  text(slide, "Unity 2D 模块", 730, 468, 260, 30, { fontSize: 26, bold: true, color: COLORS.purple });
-  text(slide, "Player / Combat / Enemy / Rooms / UI / Dialogue / Craft / Skill", 730, 510, 430, 54, {
-    fontSize: 20,
+  panel(slide, 48, 128, 650, 500, COLORS.white, "#74CDFF", 2, "rounded-2xl");
+  await image(slide, visualPath("tech_architecture.png"), 66, 148, 614, 460, "Tech architecture", "contain");
+  panel(slide, 728, 128, 500, 500, COLORS.white, "#FF80B8", 2, "rounded-2xl");
+  await image(slide, screenshotPath(screenshots.boss), 752, 154, 452, 258, "Boss combat screenshot", "cover");
+  text(slide, "Unity 2D 模块", 760, 442, 260, 30, { fontSize: 26, bold: true, color: COLORS.purple });
+  text(slide, "Player / Combat / Enemy / Rooms / UI / Dialogue / Craft / Skill", 760, 484, 410, 54, {
+    fontSize: 19,
     color: COLORS.muted,
   });
-  text(slide, "WebGL Build 可部署到 Render、Cloudflare Pages 或 GitHub Pages。", 730, 582, 420, 42, {
-    fontSize: 18,
-    color: COLORS.dark,
+  panel(slide, 760, 552, 410, 50, "#211B33", "none", 0, "rounded-xl");
+  text(slide, "WebGL Build：Render / Cloudflare Pages / GitHub Pages", 780, 565, 360, 24, {
+    fontSize: 15,
+    bold: true,
+    color: COLORS.white,
   });
   footer(slide, 8);
 }
@@ -411,7 +415,7 @@ async function writeTextArtifacts() {
       `## 4. AI 叙事进入游戏\nNPC 对话截图证明 AI 叙事进入 UI 与流程。\n\n` +
       `## 5. 背包、装备与成长\n展示背包、装备说明和角色属性。\n\n` +
       `## 6. 合成与技能树\n展示材料、合成、技能学习和战斗成长的连接。\n\n` +
-      `## 7. Demo 体验流程\n六张真实截图组成 3-5 分钟体验时间轴。\n\n` +
+      `## 7. Demo 视频讲解\n六张真实截图组成 3-5 分钟视频讲解时间轴。\n\n` +
       `## 8. 技术结构与部署准备\nUnity 2D 模块和 WebGL 静态部署准备。\n`,
     "utf8",
   );
@@ -426,7 +430,7 @@ async function writeTextArtifacts() {
       `## Slide 4\n强调赛题契合度：AI 生成的世界观、糖芯工坊日志、Boss 背景和结局文本通过 NPC 对话进入游戏流程，而不是只写在文档里。\n\n` +
       `## Slide 5\n说明成长反馈：玩家可以通过背包看到装备、道具、属性和战斗数值变化。\n\n` +
       `## Slide 6\n说明系统深度：材料掉落后可以合成道具，技能树提供进一步成长，最后服务于 Boss 战表现。\n\n` +
-      `## Slide 7\n按时间轴讲 Demo 体验：开场移动、NPC 对话、背包、合成、技能树、Boss 战，Victory 画面由最终录屏补拍。\n\n` +
+      `## Slide 7\n按时间轴讲 Demo 视频：开场移动、NPC 对话、背包、合成、技能树、Boss 战，Victory 画面由最终录屏补拍。\n\n` +
       `## Slide 8\n说明工程结构：Unity 2D 模块拆分清晰，WebGL 构建和静态部署文档已经准备。结尾补一句团队是落云宗，成员为秦天和陈磊。\n`,
     "utf8",
   );

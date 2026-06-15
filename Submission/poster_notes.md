@@ -5,17 +5,16 @@ This screenshot-driven poster replaces the earlier asset-collage style and uses 
 ## Real Screenshots Used
 
 - `Submission/clean_screenshots/06_boss_combat_hero_crop.png`: main poster background and gameplay climax.
-- `Submission/clean_screenshots/02_npc_dialogue_clean.png`: Candy Forge log / NPC dialogue proof panel.
-- `Submission/clean_screenshots/01_move_jump_attack_clean.png`: bottom screenshot strip, movement and combat.
-- `Submission/clean_screenshots/03_backpack_clean.png`: bottom screenshot strip, backpack and equipment.
-- `Submission/clean_screenshots/04_crafting_clean.png`: bottom screenshot strip, crafting.
-- `Submission/clean_screenshots/05_skilltree_clean.png`: bottom screenshot strip, skill growth.
-- `Submission/clean_screenshots/06_boss_combat_clean.png`: bottom screenshot strip, Boss combat.
+- `Submission/clean_screenshots/06_boss_combat_clean.png`: the single primary gameplay screenshot.
 
 ## Cleanup Notes
 
 The source screenshots were cleaned by `tools/clean_submission_screenshots.py`.
 Video subtitles, the NVIDIA prompt, and irrelevant margins were removed. No gameplay UI was fabricated.
+
+## Design Notes
+
+The poster follows a single-focal-point layout: one large gameplay image, a strong title block, three short feature tags, and minimal footer information. Earlier multi-screenshot strips were removed because they made the poster feel crowded.
 
 ## Honest Submission Notes
 

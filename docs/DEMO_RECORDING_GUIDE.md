@@ -1,4 +1,4 @@
-# Demo 体验流程 / Demo Recording Guide
+# Demo 视频讲解 / Demo Recording Guide
 
 本文档给负责录屏的同学使用。表达上面向比赛展示，不写成内部调试备注。
 
@@ -6,9 +6,9 @@
 
 3 到 5 分钟。
 
-## Experience Flow
+## Video Explanation Flow
 
-和新版 PPT 的“Demo 体验流程”页保持一致。当前已经有 6 张清理后的真实截图用于 PPT 和海报：
+和新版 PPT 的“Demo 视频讲解”页保持一致。当前已经有 6 张清理后的真实截图用于 PPT 和海报：
 
 | Time | Shot | What To Show |
 | --- | --- | --- |
@@ -23,7 +23,7 @@
 一句话展示目标：
 
 ```text
-3–5 分钟展示完整游戏闭环：穿越开场、NPC 对话、战斗、成长、合成、Boss 战与结局。
+3–5 分钟视频展示完整游戏闭环：穿越开场、NPC 对话、战斗、成长、合成、Boss 战与结局。
 ```
 
 ## Must-Capture 7 Shots
