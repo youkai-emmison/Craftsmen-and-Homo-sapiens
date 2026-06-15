@@ -170,10 +170,10 @@ function bullet(slide, value, x, y, color = COLORS.pink) {
 }
 
 function settingCard(slide, title, body, x, y, color) {
-  panel(slide, x, y, 332, 132, COLORS.white, color, 2, "rounded-2xl");
-  rectangle(slide, x + 24, y + 24, 14, 14, color);
-  text(slide, title, x + 50, y + 15, 230, 34, { fontSize: 24, bold: true, color: COLORS.purple });
-  text(slide, body, x + 28, y + 58, 276, 54, { fontSize: 18, color: COLORS.muted });
+  panel(slide, x, y, 380, 112, COLORS.white, color, 2, "rounded-2xl");
+  rectangle(slide, x + 22, y + 22, 12, 12, color);
+  text(slide, title, x + 46, y + 14, 260, 30, { fontSize: 22, bold: true, color: COLORS.purple });
+  text(slide, body, x + 26, y + 52, 320, 44, { fontSize: 15, color: COLORS.muted });
 }
 
 async function slideCover(presentation) {
@@ -209,31 +209,30 @@ async function slideWorldSetting(presentation) {
     34,
     { fontSize: 21, color: COLORS.muted },
   );
-  await image(slide, screenshotPath(screenshots.move), 58, 172, 596, 360, "Candy side-scroller world screenshot", "cover");
-  await image(slide, screenshotPath(screenshots.npc), 82, 454, 354, 154, "Candy forge dialogue proof", "cover");
-  panel(slide, 700, 172, 454, 420, "#FFFFFF", "#FF80B8", 2, "rounded-2xl");
+  await image(slide, screenshotPath(screenshots.move), 58, 172, 596, 390, "Candy side-scroller world screenshot", "cover");
+  panel(slide, 700, 172, 454, 440, "#FFFFFF", "#FF80B8", 2, "rounded-2xl");
   settingCard(
     slide,
     "穿越身份",
     "现实世界的理工男大学生意外穿越，被糖芯系统误绑定为“见习女仆工程师”。",
-    760,
-    204,
+    738,
+    202,
     COLORS.pink,
   );
   settingCard(
     slide,
     "糖果规则",
     "甜点不是食物，而是能源、武器、材料和技能。怪物掉落材料可合成装备与道具。",
-    760,
-    334,
+    738,
+    342,
     COLORS.blue,
   );
   settingCard(
     slide,
     "回家目标",
     "修复糖芯传送装置，击败污染糖芯炉的糖蚀巫师，重新打开回到现实世界的传送门。",
-    760,
-    464,
+    738,
+    482,
     COLORS.candyGreen,
   );
   footer(slide, 2);
@@ -347,9 +346,9 @@ async function slideTech(presentation) {
     fontSize: 19,
     color: COLORS.muted,
   });
-  panel(slide, 760, 552, 410, 50, "#211B33", "none", 0, "rounded-xl");
-  text(slide, "WebGL Build：Render / Cloudflare Pages / GitHub Pages", 780, 565, 360, 24, {
-    fontSize: 15,
+  panel(slide, 760, 548, 410, 62, "#211B33", "none", 0, "rounded-xl");
+  text(slide, "WebGL Build\nRender / Cloudflare Pages / GitHub Pages", 784, 558, 354, 42, {
+    fontSize: 14,
     bold: true,
     color: COLORS.white,
   });

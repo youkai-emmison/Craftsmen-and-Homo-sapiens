@@ -162,8 +162,8 @@ def create_poster() -> None:
     draw_text_shadow(draw, (92, 188), "糖芯工坊", font(96, True), WHITE)
     draw.text((98, 304), "Craftsmen and Homo Sapiens:", font=font(30, True), fill=(229, 246, 255, 255))
     draw.text((98, 340), "The Candy Forge", font=font(32, True), fill=(229, 246, 255, 255))
-    draw.rounded_rectangle((100, 402, 455, 456), radius=24, fill=(255, 128, 184, 230))
-    draw.text((128, 412), "叙事类游戏 / Narrative Games", font=font(26, True), fill=(42, 31, 66, 255))
+    draw.rounded_rectangle((100, 402, 520, 456), radius=24, fill=(255, 128, 184, 230))
+    draw.text((128, 413), "叙事类游戏 / Narrative Games", font=font(24, True), fill=(42, 31, 66, 255))
 
     pitch = "理工男穿越成异世界女仆工程师，用糖果材料搓科技，打败 Boss 找到回家的路。"
     draw_wrapped_text(draw, pitch, (100, 486), font(40, True), WHITE, 660, 14)
