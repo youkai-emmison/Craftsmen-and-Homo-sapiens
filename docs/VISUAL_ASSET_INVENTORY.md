@@ -4,10 +4,10 @@ This inventory records the real project assets used for the rebuilt poster and P
 
 ## Summary
 
-- Player assets are strong enough for the poster hero and action lineup.
+- Player assets are used for the poster hero, cover slide, and action lineup.
 - Enemy assets include four readable prototype enemies for demo variety.
-- NPC assets support the dialogue / memory-log narrative pitch.
-- Item and device icons help show crafting, growth, and support-device features.
+- NPC assets support dialogue and the memory-log narrative pitch.
+- Item and device icons show crafting, growth, and support-device features.
 - Real Unity screenshots are still needed for final submission polish.
 
 ## Asset List
@@ -30,26 +30,15 @@ This inventory records the real project assets used for the rebuilt poster and P
 | Device | Ground Turret | `Assets/Art/Generated/Devices/ground_turret.png` | Crafted device / turret visual proof | Found |
 | Device | Projectile | `Assets/Art/Generated/Devices/ground_turret_projectile.png` | Crafted device / turret visual proof | Found |
 
-## Good Poster Candidates
+## V2 Submission Visuals
 
-- `cat_maid_magic_wand_spritesheet.png`: main character silhouette and action pose.
-- `crystal_fox_spirit_girl_spritesheet.png`: cute but hostile enemy highlight.
-- `archivist_guide_idle_02.png`: NPC / memory archive narrative cue.
-- `GearspikeWandIcon.png`, `GroundTurretIcon.png`: crafting and support-device accents.
-
-## Good PPT Candidates
-
-- `Submission/visual_assets/player_lineup.png` for the player slide.
-- `Submission/visual_assets/enemy_lineup.png` for the enemy slide.
-- `Submission/visual_assets/npc_lineup.png` for AI narrative and dialogue.
-- `Submission/visual_assets/asset_contact_sheet.png` for production proof.
+- `Submission/visual_assets/hero_stage.png`: poster/cover main visual.
+- `Submission/visual_assets/gameplay_loop_route.png`: gameplay flow slide.
+- `Submission/visual_assets/memory_log_mock.png`: AI narrative UI slide.
+- `Submission/visual_assets/demo_timeline.png`: recording route slide.
+- `Submission/visual_assets/tech_architecture.png`: technical structure slide.
+- `Submission/visual_assets/submission_status_board.png`: submission checklist slide.
 
 ## Needs Human Capture
 
 The final deck still needs real Unity screenshots for opening, memory log UI, combat, growth, boss, and victory. Use `Tools/Hackathon/Capture Submission Screenshots` inside Unity and place the output under `Submission/screenshots/`.
-
-## Avoid For Submission Visuals
-
-- Do not use ignored `Assets/Art/ThirdParty/` raw Asset Store files in public submission materials unless licensing and repository policy are confirmed.
-- Do not use external game screenshots or copied poster art.
-- Do not use blank placeholders without clear labels.

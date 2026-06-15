@@ -1,10 +1,23 @@
 # Demo Recording Guide
 
-本任务不录制最终 Demo 视频。此文档给负责录屏的同学使用。
+本任务不录制最终 Demo 视频。本文档给负责录屏的同学使用。
 
 ## Recommended Length
 
 3 到 5 分钟。
+
+## Timeline
+
+和新版 PPT 第 6 页保持一致：
+
+| Time | Shot | What To Show |
+| --- | --- | --- |
+| 0:00 | 开场 | 项目名、出生点、主角画面 |
+| 0:30 | NPC / 日志 | NPC 对话或工坊记忆日志 |
+| 1:00 | 移动战斗 | 移动、跳跃、近战攻击、普通怪 |
+| 2:00 | 成长反馈 | 经验、制作、技力、背包或成长反馈 |
+| 3:00 | Boss | Boss 房或最终异常体 |
+| 4:00 | Victory | Demo Complete / Victory / 结局文本 |
 
 ## Must-Capture 7 Shots
 
@@ -17,34 +30,6 @@
 5. `05_mid_room_enemy.png`：中段敌人或更强怪物。
 6. `06_boss_room.png`：Boss 房或最终异常体。
 7. `07_victory_screen.png`：Demo Complete / Victory / 结局文本。
-
-## Recording Route
-
-1. 标题 / 开场
-   - 展示项目名：`能工智人：遗忘工坊`。
-   - 简短说明赛道：叙事类游戏。
-2. Intro / NPC 引导
-   - 走近 NPC。
-   - 按交互键打开对话框。
-   - 展示“工坊记忆日志”的叙事感。
-3. 基础操作
-   - 左右移动。
-   - 跳跃。
-   - 近战攻击。
-   - 如果要展示背包或制作面板，时间不要太长。
-4. Combat / Room Clear
-   - 击败普通敌人。
-   - 展示血条、攻击反馈、房间推进或门解锁。
-5. Progression
-   - 展示经验、升级、制作、技力条或装置反馈。
-   - 只需要证明“打怪 -> 变强/获得工具”这个小闭环。
-6. Boss Fight
-   - 进入 Boss 房。
-   - 展示 Boss 攻击和玩家反击。
-   - 击败 Boss。
-7. Victory / Ending
-   - 展示 Demo Complete 或结局文本。
-   - 结尾停留 2 到 3 秒，方便剪辑。
 
 ## Screenshot Tool
 
@@ -68,7 +53,7 @@ docs/SCREENSHOT_CAPTURE_GUIDE.md
 
 ## Recording Checklist
 
-- Unity Console 没有红色错误。
+- Unity Console 没有红色编译错误。
 - Game View 使用 16:9。
 - 对话文字不乱码。
 - UI 不遮挡角色。

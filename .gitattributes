@@ -33,6 +33,11 @@
 *.gz binary
 *.tar binary
 
+# Documents / decks
+*.pdf binary
+*.ppt binary
+*.pptx binary
+
 # Unity
 *.unitypackage binary
 *.prefab text

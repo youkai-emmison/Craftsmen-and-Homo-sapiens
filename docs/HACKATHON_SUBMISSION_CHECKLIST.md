@@ -1,6 +1,6 @@
 # Hackathon Submission Checklist
 
-最终提交前按此清单检查。Codex 本次只准备材料，不实际部署，不录制最终视频，不伪造 CodeBuddy 历史。
+最终提交前按此清单检查。Codex 当前只准备材料，不实际部署，不录制最终视频，不伪造 CodeBuddy 历史。
 
 ## Required Materials
 
@@ -15,12 +15,14 @@
 - [ ] CodeBuddy / AI conversation history
 - [ ] GitHub repository link
 - [ ] Team / school / captain information
+- [ ] Optional social media link
 
 ## Visual Proof
 
 - [x] Real project asset lineup generated under `Submission/visual_assets/`.
 - [x] Poster uses project player, enemy, NPC, item, device, and tile visuals.
 - [x] PPT uses real visual assets on each slide.
+- [x] PPT pages use different layouts instead of one repeated template.
 - [ ] Real Unity screenshots captured under `Submission/screenshots/`.
 - [ ] Poster / PPT screenshot placeholders replaced after real captures if time allows.
 

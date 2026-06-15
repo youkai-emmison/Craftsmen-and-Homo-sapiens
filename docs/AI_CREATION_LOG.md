@@ -31,7 +31,7 @@ AI 辅助生成房间记忆日志，用于把剧情嵌入战斗和探索流程�
 示例：
 
 ```text
-Training chamber unlocked. Minor constructs are still following obsolete orders.
+炉心记录：工匠们把判断力交给机器，把记忆交给人类。协议中断后，房间仍在重复旧命令。
 ```
 
 游戏中对应位置：
@@ -55,7 +55,7 @@ AI 辅助生成：
 
 ### Game Visual Asset Presentation
 
-Codex 脚本整理了项目内真实素材，并生成提交展示图：
+Codex 脚本整理项目内真实素材，并生成提交展示图：
 
 ```text
 Submission/visual_assets/player_lineup.png
@@ -63,6 +63,12 @@ Submission/visual_assets/enemy_lineup.png
 Submission/visual_assets/npc_lineup.png
 Submission/visual_assets/asset_contact_sheet.png
 Submission/visual_assets/character_cards.png
+Submission/visual_assets/hero_stage.png
+Submission/visual_assets/gameplay_loop_route.png
+Submission/visual_assets/memory_log_mock.png
+Submission/visual_assets/demo_timeline.png
+Submission/visual_assets/tech_architecture.png
+Submission/visual_assets/submission_status_board.png
 ```
 
 这些展示图来自仓库内已有游戏素材，包括：
@@ -90,7 +96,7 @@ Submission/project_deck.pdf
 
 - 没有使用其他游戏截图。
 - 没有伪造 Unity 实机截图。
-- 没有声称已部署或已录制最终视频。
+- 没有声称已经部署或已经录制最终视频。
 - 缺失的实机截图位置会明确标注为“等待 Unity 截图回填”。
 
 ### Development Assistance

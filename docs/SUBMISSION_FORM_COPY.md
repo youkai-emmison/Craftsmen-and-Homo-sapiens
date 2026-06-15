@@ -1,6 +1,6 @@
 # Submission Form Copy
 
-以下内容可以直接复制到比赛报名表。真实链接、团队信息和学校信息需要最后人工回填。
+以下内容可以直接复制到比赛提交表单。真实链接、团队信息和学校信息需要最后人工回填。
 
 ## Project Title
 
@@ -31,15 +31,16 @@ AI 叙事驱动的横版动作冒险，在地下工坊的记忆日志中揭开�
 ## Project Description
 
 ```text
-《能工智人：遗忘工坊》是一款 AI 叙事驱动的 2D 横版动作游戏原型。玩家扮演进入地下工坊遗迹的探索者，在房间推进、近战战斗、经验成长、制作与 Boss 挑战中逐步接近被遗忘的文明真相。游戏把 AI 辅助生成的世界观、角色设定、房间档案、Boss 背景与结局文本嵌入为“工坊记忆日志”和 NPC 对话，让玩家在实际游玩流程中拼合剧情，而不是只在说明文档里阅读设定。
+《能工智人：遗忘工坊》是一款 AI 叙事驱动的 2D 横版动作游戏原型。玩家扮演进入地下工坊遗迹的探索者，在房间推进、近战战斗、经验成长、制作与 Boss 挑战中逐步接近被遗忘的文明真相。游戏把 AI 辅助生成的世界观、角色设定、房间档案、Boss 背景与结局文本嵌入“工坊记忆日志”和 NPC 对话，让玩家在实际游玩流程中拼合剧情，而不是只在说明文档里阅读设定。
 ```
 
 ## AI-Assisted Modules
 
+表单模块建议只勾选：
+
 ```text
 - 世界观与剧情 Worldbuilding & Story
-- 游戏视觉资产整理与展示 Game Visual Asset Presentation
-- Unity Demo、构建脚本、部署文档与提交材料整理
+- 游戏原画 Game Key Art
 ```
 
 ## AI Usage Description
@@ -97,5 +98,5 @@ Submission/Craftsmen-and-Homo-sapiens_Source.zip
 WebGL 在线链接：尚未实际部署，等待人工部署后回填。
 Demo 视频：尚未最终录制，等待队友录屏后回填。
 CodeBuddy 历史记录：尚未导出，等待最终提交前回填。
-Unity 实机截图：可通过 Tools/Hackathon/Capture Submission Screenshots 生成，当前海报/PPT 中缺失位置已明确标注为截图占位。
+Unity 实机截图：可通过 Tools/Hackathon/Capture Submission Screenshots 生成；当前海报/PPT 中缺失位置已明确标注为截图占位。
 ```
