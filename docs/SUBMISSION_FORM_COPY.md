@@ -53,8 +53,7 @@ Craftsmen and Homo Sapiens: The Candy Forge
 
 ## Playable Demo Link
 
-```text
-待回填：Render WebGL 在线试玩链接
+https://craftsmen-and-homo-sapiens.onrender.com
 ```
 
 ## Demo Video
@@ -97,7 +96,7 @@ Submission/Craftsmen-and-Homo-sapiens_Source.zip
 ## Current Honesty Notes
 
 ```text
-WebGL 在线链接：尚未实际部署，等待人工部署到 Render 后回填。
+WebGL online link: deployed on Render: https://craftsmen-and-homo-sapiens.onrender.com.
 Demo 视频：尚未最终录制，等待队友录屏后回填。
 Unity 实机截图：已有真实运行截图用于海报和 PPT；Victory / 最终视频仍需人工录屏后回填。
 CodeBuddy 历史：不要伪造，等待人工导出真实历史后提交。

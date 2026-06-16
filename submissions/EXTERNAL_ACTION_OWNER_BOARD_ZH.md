@@ -13,7 +13,7 @@
 
 | 外部动作 | 状态 | 建议负责人 | 产物 | 验收标准 | 回填位置 |
 | --- | --- | --- | --- | --- | --- |
-| WebGL 在线试玩 | Not Started | Unity 工程负责人 | WebGL 公开链接 | 无痕窗口可打开，不是 `localhost`，不需要登录 | `LINKS_TO_FILL.md`、`JUDGE_QUICK_START.md`、PPT、提交问卷 |
+| WebGL 在线试玩 | Done | Unity 工程负责人 | WebGL 公开链接 | 无痕窗口可打开，不是 `localhost`，不需要登录 | `LINKS_TO_FILL.md`、`JUDGE_QUICK_START.md`、PPT、提交问卷 |
 | Demo 视频 | Not Started | 演示 / 录屏负责人 | 公开视频链接 | 3 分钟左右，能看到 AI 叙事、战斗、成长、Boss 或胜利反馈 | `LINKS_TO_FILL.md`、PPT、WebGL 页面、提交问卷 |
 | CodeBuddy 历史导出 | Not Started | AI 协作记录负责人 | 导出文件或公开链接 | 能看到项目名、Unity / C# / 提交材料相关协作记录 | `LINKS_TO_FILL.md`、提交问卷、上传包 |
 | 团队真实信息 | Not Started | 队长 / 提交负责人 | 团队名、学校、成员、分工 | `TEAM_INFO_TEMPLATE.md` 中没有 `TODO` | PPT 最后一页、提交问卷、视频简介 |

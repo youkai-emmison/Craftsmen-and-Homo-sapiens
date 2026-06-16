@@ -9,7 +9,7 @@ V3 的核心原则是以真实游戏截图为主视觉，并把世界观统一�
 - 底部截图条：使用 01、02、03、04、05、06 六张 clean 图。
 - 标题区：左上深色遮罩，避免文字压在复杂截图上。
 - Team：落云宗；成员：秦天 / 陈磊。
-- Demo Link：保留待回填位置，不伪造链接。
+- Playable Demo Link：已回填 https://craftsmen-and-homo-sapiens.onrender.com。
 
 ## PPT Layouts
 

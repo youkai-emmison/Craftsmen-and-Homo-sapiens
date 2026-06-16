@@ -81,7 +81,7 @@ Tencent Cloud Hackathon
 上传试玩页后，把以下链接补齐：
 
 ```text
-WebGL 在线试玩：TODO
+WebGL 在线试玩：https://craftsmen-and-homo-sapiens.onrender.com
 Demo 视频：TODO
 GitHub 仓库：https://github.com/youkai-emmison/Craftsmen-and-Homo-sapiens/tree/master
 PPT / PDF：TODO

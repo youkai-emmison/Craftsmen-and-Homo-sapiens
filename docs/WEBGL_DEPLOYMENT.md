@@ -1,6 +1,6 @@
 # WebGL Deployment Guide
 
-本仓库只准备 Unity WebGL 构建脚本、静态站点整理脚本和部署说明。当前没有实际部署，也不会伪造 Playable Demo Link。
+The Render playable demo link is now available: https://craftsmen-and-homo-sapiens.onrender.com.
 
 ## Project
 

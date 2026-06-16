@@ -16,7 +16,7 @@
 
 《能工智人 / Craftsmen and Homo sapiens》是一个 Unity 2D 横版动作地牢 Demo，参赛方向为腾讯云黑客松赛题三“叙事类游戏 / AI 重塑叙事体验”。玩家进入由 AI 档案重构的地下工坊，在移动、跳跃、战斗、成长和 Boss 挑战中逐步理解“工匠”与“智人”分裂的真相。
 
-WebGL 在线试玩：待回填  
+WebGL 在线试玩：https://craftsmen-and-homo-sapiens.onrender.com
 GitHub 仓库：https://github.com/youkai-emmison/Craftsmen-and-Homo-sapiens/tree/master
 
 ## 视频简介，长版
@@ -31,16 +31,16 @@ AI 在项目中主要参与三类工作：
 2. AI 美术辅助：辅助规划主角、怪物、道具、地图、UI 等占位视觉方向。
 3. AI 编程协作：使用 CodeBuddy / AI 编程助手辅助 Unity C# 脚本开发、调试、文档、PPT 和提交材料整理。
 
-WebGL 在线试玩：待回填  
-GitHub 仓库：https://github.com/youkai-emmison/Craftsmen-and-Homo-sapiens/tree/master  
-项目书 PDF：待回填或见仓库 `submissions/PROJECT_BOOK_FINAL_ZH.pdf`  
+WebGL 在线试玩：https://craftsmen-and-homo-sapiens.onrender.com
+GitHub 仓库：https://github.com/youkai-emmison/Craftsmen-and-Homo-sapiens/tree/master
+项目书 PDF：待回填或见仓库 `submissions/PROJECT_BOOK_FINAL_ZH.pdf`
 评委单页摘要：待回填或见仓库 `submissions/JUDGE_ONE_PAGE_BRIEF_ZH.pdf`
 
 ## 置顶评论 / 备用说明
 
 试玩链接和提交材料：
 
-- WebGL 在线试玩：待回填
+- WebGL 在线试玩：https://craftsmen-and-homo-sapiens.onrender.com
 - GitHub 仓库：https://github.com/youkai-emmison/Craftsmen-and-Homo-sapiens/tree/master
 - 项目书 PDF：待回填
 - 评委单页摘要：待回填

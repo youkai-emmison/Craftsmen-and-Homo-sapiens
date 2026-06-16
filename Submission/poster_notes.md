@@ -20,5 +20,5 @@ The poster follows a single-focal-point layout: one large gameplay image, a stro
 
 - Team: 落云宗。
 - Members: 秦天 / 陈磊。
-- Demo Link is still a placeholder until humans fill it in.
+- Demo Link has been filled with https://craftsmen-and-homo-sapiens.onrender.com.
 - This poster does not claim that deployment, video recording, or CodeBuddy export has already happened.

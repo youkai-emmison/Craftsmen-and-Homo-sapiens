@@ -6,7 +6,7 @@
 
 | 材料 | 当前文件或链接 | 状态 | 提交用途 | 最后动作 |
 | --- | --- | --- | --- | --- |
-| 在线试玩链接 | WebGL 链接待回填 | Needs External Action | 作品网页链接 / 试玩入口 | 按 `WEBGL_UPLOAD_RUNBOOK.md` 构建上传，并填入 `LINKS_TO_FILL.md` |
+| 在线试玩链接 | https://craftsmen-and-homo-sapiens.onrender.com | Ready | 作品网页链接 / 试玩入口 | 按 `WEBGL_UPLOAD_RUNBOOK.md` 构建上传，并填入 `LINKS_TO_FILL.md` |
 | Demo 视频 | 视频链接待回填 | Needs External Action | 展示核心玩法和 AI 使用 | 按 `DEMO_RECORDING_RUNBOOK.md` 录制上传，并填入 `LINKS_TO_FILL.md` |
 | CodeBuddy 历史记录 | 导出文件或链接待回填 | Needs External Action | 证明 AI 编程助手参与 | 按 `CODEBUDDY_SUBMISSION_CHECKLIST.md` 导出 |
 | GitHub 仓库 | https://github.com/youkai-emmison/Craftsmen-and-Homo-sapiens/tree/master | Ready | 代码仓库链接 | 最终确认仓库可访问 |

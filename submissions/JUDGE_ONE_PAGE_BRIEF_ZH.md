@@ -31,7 +31,7 @@
 
 ## 快速试玩信息
 
-- WebGL 在线试玩：待回填
+- WebGL 在线试玩：https://craftsmen-and-homo-sapiens.onrender.com
 - Demo 视频：待回填
 - GitHub 仓库：https://github.com/youkai-emmison/Craftsmen-and-Homo-sapiens/tree/master
 - 推荐体验时长：3 到 5 分钟

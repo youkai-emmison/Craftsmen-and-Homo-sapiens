@@ -193,7 +193,7 @@ async function slideCover(presentation) {
     color: COLORS.white,
   });
   text(slide, "Team：落云宗    成员：秦天 / 陈磊", 62, 586, 390, 26, { fontSize: 18, color: "#FFF4E4" });
-  text(slide, "Demo Link：待回填", 62, 616, 260, 24, { fontSize: 16, color: "#FFF4E4" });
+  text(slide, "Playable Demo:\ncraftsmen-and-homo-sapiens.onrender.com", 62, 606, 420, 46, { fontSize: 14, bold: true, color: "#FFF4E4" });
 }
 
 async function slideWorldSetting(presentation) {
@@ -347,7 +347,7 @@ async function slideTech(presentation) {
     color: COLORS.muted,
   });
   panel(slide, 760, 548, 410, 62, "#211B33", "none", 0, "rounded-xl");
-  text(slide, "WebGL Build\nRender / Cloudflare Pages / GitHub Pages", 784, 558, 354, 42, {
+  text(slide, "Playable Demo\ncraftsmen-and-homo-sapiens.onrender.com", 784, 558, 354, 42, {
     fontSize: 14,
     bold: true,
     color: COLORS.white,
@@ -370,7 +370,7 @@ async function writeTextArtifacts() {
       `- 底部截图条：使用 01、02、03、04、05、06 六张 clean 图。\n` +
       `- 标题区：左上深色遮罩，避免文字压在复杂截图上。\n` +
       `- Team：落云宗；成员：秦天 / 陈磊。\n` +
-      `- Demo Link：保留待回填位置，不伪造链接。\n\n` +
+      `- Playable Demo Link：已回填 https://craftsmen-and-homo-sapiens.onrender.com。\n\n` +
       `## PPT Layouts\n\n` +
       `| # | Page | Layout | Screenshots / Assets | Purpose |\n| - | - | - | - | - |\n${slideRows}\n\n` +
       `## Screenshot Usage\n\n` +
@@ -401,7 +401,7 @@ async function writeTextArtifacts() {
       `- Clean screenshots: \`Submission/clean_screenshots/\`\n\n` +
       `## Manual Check\n\n` +
       `- Team 已填写为：落云宗；成员：秦天 / 陈磊。\n` +
-      `- 最终答辩前请检查 Demo Link 和 Video Link 是否已经回填。\n`,
+      `- WebGL Demo Link 已回填，最终答辩前仍需检查 Video Link 是否已经回填。\n`,
     "utf8",
   );
 
@@ -415,7 +415,7 @@ async function writeTextArtifacts() {
       `## 5. 背包、装备与成长\n展示背包、装备说明和角色属性。\n\n` +
       `## 6. 合成与技能树\n展示材料、合成、技能学习和战斗成长的连接。\n\n` +
       `## 7. Demo 视频讲解\n六张真实截图组成 3-5 分钟视频讲解时间轴。\n\n` +
-      `## 8. 技术结构与部署准备\nUnity 2D 模块和 WebGL 静态部署准备。\n`,
+      `## 8. 技术结构与部署准备\nUnity 2D 模块和 Render 在线试玩链接。\n`,
     "utf8",
   );
 
@@ -430,7 +430,7 @@ async function writeTextArtifacts() {
       `## Slide 5\n说明成长反馈：玩家可以通过背包看到装备、道具、属性和战斗数值变化。\n\n` +
       `## Slide 6\n说明系统深度：材料掉落后可以合成道具，技能树提供进一步成长，最后服务于 Boss 战表现。\n\n` +
       `## Slide 7\n按时间轴讲 Demo 视频：开场移动、NPC 对话、背包、合成、技能树、Boss 战，Victory 画面由最终录屏补拍。\n\n` +
-      `## Slide 8\n说明工程结构：Unity 2D 模块拆分清晰，WebGL 构建和静态部署文档已经准备。结尾补一句团队是落云宗，成员为秦天和陈磊。\n`,
+      `## Slide 8\n说明工程结构：Unity 2D 模块拆分清晰，Playable Demo 链接已回填。结尾补一句团队是落云宗，成员为秦天和陈磊。\n`,
     "utf8",
   );
 }

@@ -6,7 +6,7 @@
 
 | 链接项 | 当前状态 | 链接 | 生成方式 | 必须同步到哪里 | 验证标准 |
 | --- | --- | --- | --- | --- | --- |
-| WebGL 在线试玩 | TODO | TODO | 按 `WEBGL_UPLOAD_RUNBOOK.md` 构建并上传 | `FINAL_SUBMISSION_INFO.md`、`JUDGE_QUICK_START.md`、PPT 最后一页、提交问卷、Demo 视频简介 | 无痕窗口可打开，不是 localhost，不需要登录 |
+| WebGL 在线试玩 | Ready | https://craftsmen-and-homo-sapiens.onrender.com | Deployed to Render Static Site | `FINAL_SUBMISSION_INFO.md`、`JUDGE_QUICK_START.md`、PPT 最后一页、提交问卷、Demo 视频简介 | 无痕窗口可打开，不是 localhost，不需要登录 |
 | Demo 视频 | TODO | TODO | 按 `DEMO_RECORDING_RUNBOOK.md` 录制并上传 | `FINAL_SUBMISSION_INFO.md`、`JUDGE_QUICK_START.md`、PPT、提交问卷、WebGL 页面 | 可公开播放，3 分钟左右，能看到 AI 叙事和完整闭环 |
 | PPT 文件 | TODO | TODO | 上传 `Craftsmen_Hackathon_Deck.pptx` 或 PDF 预览版 | `FINAL_SUBMISSION_INFO.md`、提交问卷 | 链接可访问，文件不是空白或旧版 |
 | CodeBuddy 历史记录 | TODO | TODO | 按 `CODEBUDDY_SUBMISSION_CHECKLIST.md` 导出并上传 | `FINAL_SUBMISSION_INFO.md`、提交问卷 | 文件能打开，能看到项目名和 CodeBuddy 参与记录 |

@@ -25,4 +25,4 @@
 ## Manual Check
 
 - Team 已填写为：落云宗；成员：秦天 / 陈磊。
-- 最终答辩前请检查 Demo Link 和 Video Link 是否已经回填。
+- WebGL Demo Link 已回填，最终答辩前仍需检查 Video Link 是否已经回填。

@@ -65,7 +65,7 @@ Publish Directory: Submission/WebGLSite
 Environment Variables: SKIP_INSTALL_DEPS=true
 ```
 
-不要把未部署链接填入比赛表单。Render 成功部署后，再复制 `onrender.com` 链接。
+Render playable demo link is ready: `https://craftsmen-and-homo-sapiens.onrender.com`.
 
 ## 4. 回填 WebGL 链接
 
@@ -73,7 +73,7 @@ Environment Variables: SKIP_INSTALL_DEPS=true
 
 - `docs/SUBMISSION_FORM_COPY.md`
 - `README.md`
-- PPT 的 Demo Link 占位
+- PPT Demo Link has been filled.
 - 比赛提交表单
 
 ## 5. 录制 Demo 视频

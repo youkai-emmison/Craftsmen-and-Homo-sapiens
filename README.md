@@ -170,7 +170,7 @@ Submission/Craftsmen-and-Homo-sapiens_Source.zip
 
 最终提交前请人工回填：
 
-- Playable Demo Link: `待回填`
+- Playable Demo Link: `https://craftsmen-and-homo-sapiens.onrender.com`
 - Demo Video Link: `待回填`
 - Team / School / Captain: `待回填`
 

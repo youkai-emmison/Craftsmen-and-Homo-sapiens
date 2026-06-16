@@ -113,7 +113,7 @@ http://localhost:8000
 
 ## 最终链接记录
 
-- WebGL 在线试玩链接：TODO
-- 上传平台：TODO
-- 上传日期：TODO
+- WebGL 在线试玩链接：https://craftsmen-and-homo-sapiens.onrender.com
+- Upload platform: Render Static Site
+- Upload date: 2026-06-16
 - 最后检查人：TODO

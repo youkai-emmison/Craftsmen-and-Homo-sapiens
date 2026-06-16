@@ -156,7 +156,7 @@ def create_poster() -> None:
     draw.rounded_rectangle(hero_box, radius=34, outline=(255, 255, 255, 170), width=3)
     draw.rounded_rectangle((hero_box[0], hero_box[3] - 72, hero_box[2], hero_box[3]), radius=34, fill=(33, 24, 52, 205))
     draw.text((hero_box[0] + 34, hero_box[3] - 54), "Boss 战实机画面", font=font(30, True), fill=WHITE)
-    draw.text((hero_box[2] - 318, hero_box[3] - 52), "Demo Link：待回填", font=font(24, True), fill=(255, 221, 239, 255))
+    draw.text((hero_box[2] - 560, hero_box[3] - 52), "Demo: craftsmen-and-homo-sapiens.onrender.com", font=font(19, True), fill=(255, 221, 239, 255))
 
     draw_text_shadow(draw, (92, 94), "能工智人：", font(86, True), WHITE)
     draw_text_shadow(draw, (92, 188), "糖芯工坊", font(96, True), WHITE)
@@ -242,7 +242,7 @@ The poster follows a single-focal-point layout: one large gameplay image, a stro
 
 - Team: 落云宗。
 - Members: 秦天 / 陈磊。
-- Demo Link is still a placeholder until humans fill it in.
+- Demo Link has been filled with https://craftsmen-and-homo-sapiens.onrender.com.
 - This poster does not claim that deployment, video recording, or CodeBuddy export has already happened.
 """,
         encoding="utf-8",

@@ -123,7 +123,7 @@ Submission/project_deck.pdf
 - 没有使用其他游戏截图。
 - 没有伪造 Unity 实机截图。
 - 没有声称已经部署或已经录制最终视频。
-- Demo Link、Video Link 等外部链接仍需人工回填。
+- WebGL Demo Link: https://craftsmen-and-homo-sapiens.onrender.com; Demo Video and CodeBuddy export still need manual backfill.
 
 ### Development Assistance
 

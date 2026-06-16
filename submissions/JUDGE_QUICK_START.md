@@ -8,7 +8,7 @@
 - 参赛赛题：赛题三：叙事类游戏 / AI 重塑叙事体验
 - 游戏类型：Unity 2D 横版动作地牢 Demo
 - 推荐体验时长：3 到 5 分钟
-- WebGL 在线试玩链接：TODO
+- WebGL 在线试玩链接：https://craftsmen-and-homo-sapiens.onrender.com
 - Demo 视频链接：TODO
 - GitHub 仓库链接：https://github.com/youkai-emmison/Craftsmen-and-Homo-sapiens/tree/master
 
@@ -72,7 +72,7 @@
 
 ## 提交前需要替换的占位
 
-- [ ] WebGL 在线试玩链接。
+- [x] WebGL 在线试玩链接。
 - [ ] Demo 视频链接。
 - [ ] 团队成员信息。
 - [ ] PPT 最后一页中的链接和团队信息。

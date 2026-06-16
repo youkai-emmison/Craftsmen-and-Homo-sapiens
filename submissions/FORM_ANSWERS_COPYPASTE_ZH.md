@@ -79,7 +79,7 @@
 
 填表前请先在 `submissions/LINKS_TO_FILL.md` 中补齐以下链接。
 
-- WebGL 在线试玩链接：待回填
+- WebGL 在线试玩链接：https://craftsmen-and-homo-sapiens.onrender.com
 - Demo 视频链接：待回填
 - GitHub 仓库链接：https://github.com/youkai-emmison/Craftsmen-and-Homo-sapiens/tree/master
 - PPT 文件链接：待回填
@@ -103,7 +103,7 @@
 ## 15. 提交前提醒
 
 - 不要把本地路径当作在线链接提交。
-- WebGL 链接必须能在无痕浏览器打开。
+- WebGL 在线试玩链接：https://craftsmen-and-homo-sapiens.onrender.com
 - Demo 视频链接必须公开可访问。
 - CodeBuddy 历史记录需要能证明 AI 编程助手参与开发。
 - PPT 最后一页、提交问卷、作品页和 `FINAL_SUBMISSION_INFO.md` 中的链接应保持一致。

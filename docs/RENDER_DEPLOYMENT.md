@@ -1,6 +1,6 @@
 # Render Deployment Guide
 
-本页说明如何把 Unity WebGL 构建产物部署到 Render Static Site。Codex 不登录 Render 账号，也不声称已经部署成功。最终 `onrender.com` 链接需要人工在 Render 控制台创建后回填。
+The Render playable demo link is now available: https://craftsmen-and-homo-sapiens.onrender.com.
 
 ## 1. 准备 Unity WebGL 构建
 
@@ -119,7 +119,7 @@ SKIP_INSTALL_DEPS=true
 ```
 
 9. 点击 Create Static Site。
-10. 部署完成后复制 Render 给出的 `https://xxxxx.onrender.com` 链接。
+10. Deployment result link: `https://craftsmen-and-homo-sapiens.onrender.com`.
 
 ## 6. 部署后检查
 
@@ -129,7 +129,7 @@ SKIP_INSTALL_DEPS=true
 4. 测试移动、跳跃、攻击。
 5. 展示 NPC 对话、背包、合成、技能树、Boss 战。
 6. 打开浏览器 Console，确认没有明显 404 或 WebGL 压缩解析错误。
-7. 把最终链接填入比赛表单的 `Playable Demo Link`。
+7. Fill the competition form `Playable Demo Link` with `https://craftsmen-and-homo-sapiens.onrender.com`.
 
 ## 7. 常见错误
 
@@ -145,5 +145,5 @@ SKIP_INSTALL_DEPS=true
 
 - `docs/SUBMISSION_FORM_COPY.md`
 - `README.md`
-- PPT 的 Demo Link 占位
+- PPT 的 Demo Link 已回填
 - 比赛提交表单

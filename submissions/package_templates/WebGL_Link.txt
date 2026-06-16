@@ -1,5 +1,5 @@
 WebGL 在线试玩链接：
-TODO
+https://craftsmen-and-homo-sapiens.onrender.com
 
 验证方式：
 1. 用无痕窗口打开。

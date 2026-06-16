@@ -70,7 +70,7 @@
 
 ## 最终提交链接
 
-- WebGL 在线试玩链接：TODO
+- WebGL 在线试玩链接：https://craftsmen-and-homo-sapiens.onrender.com
 - Demo 视频链接：TODO
 - GitHub 仓库链接：https://github.com/youkai-emmison/Craftsmen-and-Homo-sapiens/tree/master
 - PPT 文件链接：TODO
