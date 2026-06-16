@@ -22,7 +22,7 @@ if (Test-Path -LiteralPath $OutputPath) {
 }
 
 New-Item -ItemType Directory -Force -Path $OutputPath | Out-Null
-Copy-Item -LiteralPath (Join-Path $SourcePath "*") -Destination $OutputPath -Recurse -Force
+Copy-Item -Path (Join-Path $SourcePath "*") -Destination $OutputPath -Recurse -Force
 
 $requiredPaths = @(
     (Join-Path $OutputPath "index.html"),
